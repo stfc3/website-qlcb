@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<urlrewrite>
+    <rule match-type="wildcard">
+        <from>/new/**</from>
+        <to>/new.zul</to>
+    </rule>
+    
+    <rule match-type="wildcard">
+        <from>/new1/**</from>
+        <to>/new1.zul</to>
+    </rule>
+</urlrewrite>

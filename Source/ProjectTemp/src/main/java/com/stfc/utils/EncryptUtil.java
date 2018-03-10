@@ -11,8 +11,8 @@ public class EncryptUtil {
 
     private static final Logger logger = Logger.getLogger(EncryptUtil.class);
 
-    private static final String key = "CKPManagement1.0";
-    private static final String initVector = "CKPManagement1.0";
+    private static final String key = "websitesqlcb2018";
+    private static final String initVector = "websitesqlcb2018";
 
     public static String encrypt(String value) {
         try {
