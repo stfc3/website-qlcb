@@ -1,0 +1,925 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Cổng thông tin chính thức của trường Đại học Công Nghiệp Hà Nội - Bộ Công Thương. Địa chỉ: Minh Khai - Từ Liêm - Hà Nội" />
+    <meta name="copyright" content="Copyright 2017 by https://www.haui.edu.vn" />
+    <meta name="abstract" content="Đại học Công Nghiệp Hà Nội" />
+    <meta name="distribution" content="Global" />
+    <meta name="keywords" content="Đại học Công nghiệp Hà Nội, Haui">
+    <meta name="author" content="https://haui.edu.vn" />
+
+    <meta property="og:locale" content="vi_VN" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="ĐẠI HỌC C&#212;NG NGHIỆP H&#192; NỘI || HaUI" />
+    <meta property="og:description" content="Đại học C&#244;ng nghiệp H&#224; Nội" />
+    <meta property="og:url" content="" />
+    <meta property="og:site_name" content="Đại học C&#244;ng nghiệp H&#224; Nội" />
+    <meta property="og:image" content="" />
+    <meta property="og:image:width" content="400" />
+    <meta property="og:image:height" content="400" />
+
+    <!-- Favicon -->
+    <link href="https://www.haui.edu.vn/dnn/web/haui/assets/images/favicon.png" rel="icon" type="image/png">
+    <link href="https://www.haui.edu.vn/dnn/web/haui/assets/images/favicon.png" rel="shortcut icon" type="image/png">
+
+    <!-- Efinance Title -->
+    <title>ĐẠI HỌC C&#212;NG NGHIỆP H&#192; NỘI || HaUI</title>
+
+    <!-- css file -->
+    <link href="https://www.haui.edu.vn/dnn/web/haui/assets/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="https://www.haui.edu.vn/dnn/web/haui/assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://www.haui.edu.vn/dnn/web/haui/assets/css/style.css" rel="stylesheet" />
+
+    <!-- Responsive stylesheet -->
+    <link href="https://www.haui.edu.vn/dnn/web/haui/assets/css/responsive.css" rel="stylesheet" />
+
+
+</head>
+
+<body>
+    <!-- Main Header Start -->
+    <header class="irs-main-header">
+<div class="irs-header-top-bar">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9 col-sm-9 hidden-xs menu">
+                <ul>
+                    <li class="dropdown">
+                        <div class="dropdown">
+                            <button class="dropbtn">Khoa</button>
+                            <div class="dropdown-content">
+                                <a href="/vn/page/kck">Khoa Cơ khí</a>
+                                <a href="/vn/page/kcnh">Khoa Công nghệ Hoá</a>
+                                <a href="/vn/page/kcnmtt">Khoa Công nghệ may</a>
+                                <a href="/vn/page/kcnot">Khoa Công nghệ Ô tô</a>
+                                <a href="/vn/page/kcntt">Khoa Công nghệ thông tin</a>
+                                <a href="/vn/page/kd">Khoa Điện</a>
+                                <a href="/vn/page/kdt">Khoa Điện tử</a>
+                                <a href="/vn/page/kktkt">Khoa Kế toán - Kiểm toán</a>
+                                <a href="/vn/page/kkhcb">Khoa Khoa học cơ bản</a>
+                                <a href="/vn/page/kml">Khoa Lý luận chính trị - Pháp luật</a>
+                                <a href="/vn/page/knn">Khoa Ngoại ngữ</a>
+                                <a href="/vn/page/kqlkd">Khoa Quản lý kinh doanh</a>
+                                <a href="/vn/page/kspdl">Khoa Du lịch</a>
+                                <a href="/vn/page/ttncudcgcn">Khoa Viện công nghệ HaUI</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <div class="dropdown">
+                            <button class="dropbtn">Phòng</button>
+                            <div class="dropdown-content">
+                                <a href="/vn/html/phong-to-chuc-hanh-chinh">Phòng Tổ chức hành chính</a>
+                                <a href="/vn/html/phong-dao-tao">Phòng Đào tạo</a>
+                                <a href="/vn/page/cthssv/">Công tác Học sinh Sinh viên</a>
+                                <a href="/vn/page/khcn/html/phong-khoa-hoc-cong-ngheh">Phòng Khoa học công nghệ</a>
+                                <a href="/vn/page/phtqt/html/phong-hop-tac-quoc-te">Phòng Hợp tác quốc tế</a>
+                                <a href="/vn/html/phong-tai-chinh-ke-toan">Phòng Tài chính kế toán</a>
+                                <a href="/vn/html/phong-quan-tri">Phòng Quản trị</a>
+                                <a href="/vn/html/phong-thanh-tra-giao-duc">Phòng Thanh tra Giáo dục</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <div class="dropdown">
+                            <button class="dropbtn">Trung tâm Đào tạo</button>
+                            <div class="dropdown-content">
+                                <a href="/vn/page/ttdtsdh">Trung tâm Đào tạo Sau đại học</a>
+                                <a href="/vn/page/kgdtcqp">Trung tâm Giáo dục thể chất và Thể thao</a>
+                                <a href="/vn/page/ttdtqt">Trung tâm Đào tạo Quốc tế</a>
+                                <a href="/vn/page/ttdtlx">Trung tâm Đào tạo Lái xe</a>
+                                <a href="/vn/page/ttdtkthf">Trung tâm Đào tạo kỹ thuật HaUI-Foxconn</a>
+                                <a href="/vn/page/ttnnth">Trung tâm Công nghệ thông tin</a>
+                                <a href="/vn/page/ttckvh">Trung tâm Cơ khí</a>
+                                <a href="/vn/page/ttvn">Trung tâm Việt Nhật</a>
+                                <a href="/vn/page/ktc">Trung tâm Đào tạo thường xuyên</a>
+                                <a href="/vn/page/tt-gdqp-an">Trung tâm Giáo dục Quốc phòng An ninh</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <div class="dropdown">
+                            <button class="dropbtn">Trung tâm Dịch vụ</button>
+                            <div class="dropdown-content">
+                                <a href="#">Trung tâm Truyền thông & Quan hệ Công chúng</a>
+                                <a href="http://qhdn.haui.edu.vn/">Trung tâm hợp tác doanh nghiệp</a>
+                                <a href="/vn/html/tram-y-te">Trạm Y tế</a>
+                                <a href="/vn/html/trung-tam-dich-vu-nha-an">Trung tâm Quản lý Ký túc xá</a>
+                                <a href="http://dhcnhn.vn/">Trung tâm Đảm bảo chất lượng</a>
+                                <a href="#">Trung tâm Khảo khí</a>
+                                <a href="http://lib.haui.edu.vn/">Trung tâm Thư viện</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="https://mail.haui.edu.vn/" target="_blank">Thư điện tử</a></li>
+                    <li><a href="http://lib.haui.edu.vn/" target="_blank">Thư viện</a></li>
+                    <li><a href="/vn/html/lien-he" target="_blank">Liên hệ</a></li>
+                    <li><a href="#" target="_blank">Liên kết Website</a></li>
+                    <li><a href="/vn/m/sitemap" target="_blank">Sitemap</a></li>
+                </ul>
+            </div>
+
+            <div class="col-md-3 col-sm-3 text-right hidden-xs">
+                <div class="irs-header-top-col">
+                    <div class="irs-social">
+                        <!--<a href="#">
+                            <i class="icofont icofont-social-facebook"></i>
+                        </a>
+                        <a href="#">
+                            <i class="icofont icofont-social-twitter"></i>
+                        </a>
+                        <a href="#">
+                            <i class="icofont icofont-social-vimeo"></i>
+                        </a>
+                        <a href="#">
+                            <i class="icofont icofont-brand-linkedin"></i>
+                        </a>
+                        -->
+                        <span class="changeLang">
+                            <a href="/vn">                                
+                                <img src="https://www.haui.edu.vn/dnn/web/haui/images/vn.jpg">
+                            </a>
+                            <a href="/en">
+                                <img src="https://www.haui.edu.vn/dnn/web/haui/images/en.jpg">
+                            </a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+        <div class="irs-header-nav scrollingto-fixed">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <nav class="navbar navbar-default irs-navbar">
+                            <div class="container-fluid" style="padding-right: 0px">
+
+                                <!-- Brand and toggle get grouped for better mobile display -->
+                                <div class="navbar-header">
+                                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+                                        aria-expanded="false">
+                                        <span class="sr-only">Toggle navigation</span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                    </button>
+                                    <a class="navbar-brand" href="/vn/">
+                                        <img src="https://www.haui.edu.vn/dnn/web/haui/assets/images/logo-ngang.png" alt="Đại học Công Nghiệp Hà Nội">
+                                    </a>
+                                    
+                                </div>
+                                <!-- Collect the nav links, forms, and other content for toggling -->
+                                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                                    <ul class="nav navbar-nav navbar-right" data-hover="dropdown" data-animations="flipInY">
+                                        <li class="active">
+                                            <a href="/vn/"><i class="fa fa-home" aria-hidden="true" style="font-size: 20px"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="/vn/html/gioi-thieu?p=gioi-thieu">Giới thiệu</a>
+                                        </li>
+
+                                        <li>
+                                            <a href="https://tuyensinh.haui.edu.vn/">Tuyển sinh</a>
+                                        </li>
+
+                                        <li>
+                                            <a href="https://dttc.haui.edu.vn/vn">Đào tạo</a>
+                                        </li>
+										<li>
+                                            <a href="https://egov.haui.edu.vn/">Egov</a>
+                                        </li>
+                                        <li>
+                                            <a href="/vn/page/khcn">Khoa học công nghệ</a>
+                                        </li>
+
+                                        <li>
+                                            <a href="/vn/page/cthssv">Sinh viên</a>
+                                        </li>
+
+                                        <li class="dropdown">
+                                            <a href="/vn/page/phtqt">Hợp tác Đối ngoại</a>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <a href="/vn/page/phtqt/html/chuong-trinh-htqt">Chương trình HTQT</a>
+                                                </li>
+                                                <li>
+                                                    <a href="/vn/page/phtqt/html/mang-luoi-htqt">Mạng lưới hợp tác quốc tế</a>
+                                                </li>
+                                                <li>
+                                                    <a href="/vn/page/phtqt/html/thoa-thuan-hop-tac">Thoả thuận hợp tác</a>
+                                                </li>
+                                                <li>
+                                                    <a href="/vn/page/phtqt/html/cac-truong-dai-hoc-hop-tac">Các trường Đại học đối tác</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!-- /.navbar-collapse -->
+                            </div>
+                            <!-- /.container-fluid -->
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Main Header end -->
+
+    
+
+
+
+<section class="irs-main-slider">
+    <div class="container">
+        <div id="myCarousel" class="carousel fade-carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+                    <ol class="carousel-indicators">
+                            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                    </ol>
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner">
+
+                            <div class="item slides active">
+                                <img src="/media/1/ufi1990.jpg">
+                            </div>
+                    </div>
+
+        </div>
+    </div>
+</section>
+
+
+<div>
+    <a href="/old" class="btn btn-default irs-btn-transparent-two btn-read-more see-event old hidden-xs">Phiên bản cũ</a>
+</div>
+<!-- Discription start -->
+<section class="irs-blog-field">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="irs-discription-col text-center">
+                    <h1>Sứ mạng - Tầm nhìn - Giá trị cốt lõi</h1>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <p class="irs-topdiscription">
+                    Trường Đại học Công nghiệp Hà Nội là trường đại học công lập trực thuộc Bộ Công Thương, 
+                    có truyền thống đào tạo cán bộ khoa học kỹ thuật, cán bộ kinh tế, công nhân kỹ thuật lâu đời nhất Việt Nam 
+                    (tiền thân là Trường Chuyên nghiệp Hà Nội thành lập năm 1898 và Trường Chuyên nghiệp Hải Phòng thành lập năm 1913) 
+                    và là một trong những trường trọng điểm quốc gia trong hệ thống giáo dục kỹ thuật và dạy nghề.
+                </p>
+                <span class="read-more">Xem thêm
+                </span>
+            </div>
+
+        </div>
+        <div class="row des">
+            <div class="col-md-8">
+                <div class="irs-discription-col">
+                    <h2>Giá trị cốt lõi</h2>
+                    <ul>
+                        <li><i class="zmdi zmdi-dot-circle"></i><span>Kiên định hướng mục tiêu</span> Kiên định trong việc xác định mục tiêu, định hướng phát triển Nhà trường, kiên quyết trong công tác điều hành, quản lý</li>
+                    </ul>
+
+                    <ul>
+                        <li><i class="zmdi zmdi-dot-circle"></i><span>Khoa học là định hướng</span> Tính Khoa học được coi là định hướng phát triển Nhà trường</li>
+                    </ul>
+
+                    <ul>
+                        <li><i class="zmdi zmdi-dot-circle"></i><span>Khách hàng là trung tâm</span> Hướng thị trường, đặt lợi ích và sự thỏa mãn khách hàng và các bên quan tâm là trung tâm các hoạt động của Nhà trường</li>
+                    </ul>
+
+                    <ul>
+                        <li><i class="zmdi zmdi-dot-circle"></i><span>Kỹ nghệ làm nền tảng</span> Lấy truyền thống Kỹ nghệ thực hành, công nghệ là nền tảng định hướng phát triển Nhà trường</li>
+                    </ul>
+
+                    <ul>
+                        <li><i class="zmdi zmdi-dot-circle"></i><span>Kết nối tạo sức mạnh</span> Lấy truyền thống Kỹ nghệ thực hành, công nghệ là nền tảng định hướng phát triển Nhà trường</li>
+                    </ul>
+
+                    <ul>
+                        <li><i class="zmdi zmdi-dot-circle"></i><span>Kỹ nghệ làm nền tảng</span> Đoàn kết nội bộ, gắn kết với doanh nghiệp, thực tiễn tạo nên sức mạnh bên trong và bên ngoài để phát triển Nhà trường</li>
+                    </ul>
+
+                    <ul>
+                        <li><i class="zmdi zmdi-dot-circle"></i><span>Khác biệt từ sáng tạo</span> Tạo ra sự khác biệt để đột phá nhờ sự sáng tạo trong các lĩnh vực hoạt động của Nhà trường</li>
+                    </ul>
+
+                    <ul>
+                        <li><i class="zmdi zmdi-dot-circle"></i><span>Kỷ cương để vững bền</span> Lấy Kỷ cương, kỷ luật, các chuẩn mực đạo đức, nghề nghiệp làm cơ sở cho sự phát triển bền vững của Nhà trường</li>
+                    </ul>
+
+                    <ul>
+                        <li><i class="zmdi zmdi-dot-circle"></i><span>Khách quan giữ công bằng</span> Lấy dân chủ, minh bạch, khách quan để giữ công bằng, tạo môi trường phát triển bền vững</li>
+                    </ul>
+
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="irs-discription-col">
+                    <h2>Sứ mạng</h2>
+                    <p class="irs-topdiscription">
+                        Trường Đại học Công nghiệp Hà Nội cung cấp dịch vụ giáo dục, đào tạo, nghiên cứu khoa học, 
+                        tư vấn, ứng dụng và chuyển giao công nghệ đáp ứng yêu cầu công nghiệp hóa - hiện đại hóa đất nước và hội nhập quốc tế.
+                    </p>
+
+                    <h2>Tầm nhìn</h2>
+                    <p class="irs-topdiscription">
+                        Trường Đại học Công nghiệp Hà Nội là cơ sở đào tạo định hướng ứng dụng nhiều ngành, nhiều loại hình, nhiều cấp trình độ; 
+                        Là trường đại học đạt chuẩn quốc gia và chuẩn quốc tế một số lĩnh vực; Là trung tâm nghiên cứu ứng dụng, chuyển giao 
+                        công nghệ uy tín; Là địa chỉ tin cậy cung cấp nguồn nhân lực chất lượng cao cho thị trường lao động trong nước và quốc tế.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="row des">
+            <div class="col-md-12">
+                <div class="irs-discription-col text-center">
+                    <h2>Chất lượng <span>Sáng tạo </span>Đoàn kết <span>Phát triển</span></h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Discription end  -->
+
+<!-- Blog start -->
+<section class="irs-blog-field">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="irs-section-title">
+                    <h2>
+                        <a href="/vn/tin-tuc"><span>Tin tức</span></a>
+
+                    </h2>
+                    <div class="irs-title-line">
+                        <div class="irs-title-icon">
+                            <i class="icofont icofont-news"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row animatedParent animateOnce">
+                <div class="col-md-4 col-sm-6">
+                    <div class="irs-courses-col animated fadeInLeftShort slow delay-250">
+                        <div class="irs-courses-img" id="index-img">
+                            <a href="/vn/tin-tuc/dai-hoc-cong-nghiep-ha-noi-to-chuc-hoi-nghi-khoa-hoc-dao-tao-nguon-nhan-luc-chat-luong-cao-trong-thoi-ky-cach-mang-cong-nghiep-4-0/59656">
+                                <img src="https://www.haui.edu.vn/media/68/t68322.jpg" alt="Đại học C&#244;ng nghiệp H&#224; Nội tổ chức Hội nghị khoa học: đ&#224;o tạo nguồn nh&#226;n lực chất lượng cao trong thời kỳ c&#225;ch mạng c&#244;ng nghiệp 4.0">
+                            </a>
+                            <div class="irs-courses-img-text">
+                                <ul class="clearfix">
+                                    <li>
+                                        <p>
+                                            <i class="zmdi zmdi-calendar-alt"></i>Thứ Ba, 17:25 27/02/2018
+                                        </p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="irs-courses-content" id="index-content-no-head">
+                            <p>
+                                <a href="/vn/tin-tuc/dai-hoc-cong-nghiep-ha-noi-to-chuc-hoi-nghi-khoa-hoc-dao-tao-nguon-nhan-luc-chat-luong-cao-trong-thoi-ky-cach-mang-cong-nghiep-4-0/59656">Đại học C&#244;ng nghiệp H&#224; Nội tổ chức Hội nghị khoa học: đ&#224;o tạo nguồn nh&#226;n lực chất lượng cao trong thời kỳ c&#225;ch mạng c&#244;ng nghiệp 4.0</a>
+                            </p>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="irs-courses-col animated fadeInLeftShort slow delay-250">
+                        <div class="irs-courses-img" id="index-img">
+                            <a href="/vn/tin-tuc/gap-mat-can-bo-y-te-ngay-thay-thuoc-viet-nam/59667">
+                                <img src="https://www.haui.edu.vn/media/68/t68333.jpg" alt="Gặp mặt c&#225;n bộ y tế ng&#224;y Thầy thuốc Việt Nam">
+                            </a>
+                            <div class="irs-courses-img-text">
+                                <ul class="clearfix">
+                                    <li>
+                                        <p>
+                                            <i class="zmdi zmdi-calendar-alt"></i>Thứ Ba, 09:23 27/02/2018
+                                        </p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="irs-courses-content" id="index-content-no-head">
+                            <p>
+                                <a href="/vn/tin-tuc/gap-mat-can-bo-y-te-ngay-thay-thuoc-viet-nam/59667">Gặp mặt c&#225;n bộ y tế ng&#224;y Thầy thuốc Việt Nam</a>
+                            </p>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="irs-courses-col animated fadeInLeftShort slow delay-250">
+                        <div class="irs-courses-img" id="index-img">
+                            <a href="/vn/tin-tuc/thu-chuc-tet-cua-hieu-truong-xuan-mau-tuat-2018/59647">
+                                <img src="https://www.haui.edu.vn/media/68/t68305.jpg" alt="THƯ CH&#218;C TẾT CỦA HIỆU TRƯỞNG XU&#194;N MẬU TUẤT 2018">
+                            </a>
+                            <div class="irs-courses-img-text">
+                                <ul class="clearfix">
+                                    <li>
+                                        <p>
+                                            <i class="zmdi zmdi-calendar-alt"></i>Thứ Hai, 13:50 12/02/2018
+                                        </p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="irs-courses-content" id="index-content-no-head">
+                            <p>
+                                <a href="/vn/tin-tuc/thu-chuc-tet-cua-hieu-truong-xuan-mau-tuat-2018/59647">THƯ CH&#218;C TẾT CỦA HIỆU TRƯỞNG XU&#194;N MẬU TUẤT 2018</a>
+                            </p>
+                            
+                        </div>
+                    </div>
+                </div>
+
+            <div class="col-md-12">                
+                <a class="btn btn-default irs-btn-transparent-two btn-read-more" href="/vn/tin-tuc" role="button">Xem thêm</a>
+            </div>            
+        </div>
+    </div>
+</section>
+<!-- Blog end -->
+
+
+<section class="irs-blog-field irs-blog-single-field">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="irs-section-title">
+                    <h2>
+                        <a href="/vn/thong-bao-tin-noi-bo">
+                            <span>Th&#244;ng b&#225;o</span>
+                        </a>
+                    </h2>
+                    <div class="irs-title-line">
+                        <div class="irs-title-icon">
+                            <i class="icofont icofont-notification"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+
+                <div class="irs-blog-single-col">
+                    <div class="irs-blog-col">
+                        <div class="irs-courses-img" id="index-img">
+                            <a href="/vn/thong-bao-tin-noi-bo/thong-bao-ke-hoach-to-chuc-ky-niem-120-nam-truyen-thong-truong-dai-hoc-cong-nghiep-ha-noi/59510">
+                                <img src="https://www.haui.edu.vn/media/0/t0.jpg" alt="notice" onerror="this.src='https://www.haui.edu.vn/dnn/web/haui/assets/images/notice.jpg'">
+                            </a>
+                        </div>
+                        <div class="irs-info-text">
+                            <ul class="clearfix">
+                                <li>
+                                    <p>
+                                        <i class="icofont icofont-clock-time"></i>
+                                        <a href="#">Ba, 08:21 02/01/2018</a>
+                                    </p>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="irs-courses-content">
+                            <h4>
+                                <a href="/vn/thong-bao-tin-noi-bo/thong-bao-ke-hoach-to-chuc-ky-niem-120-nam-truyen-thong-truong-dai-hoc-cong-nghiep-ha-noi/59510">Th&#244;ng b&#225;o kế hoạch tổ chức kỷ niệm 120 năm truyền thống Trường Đại học C&#244;ng nghiệp H&#224; Nội</a>
+                            </h4>
+                            <p>
+                                
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-12">
+                <div class="irs-blog-single-col">
+                    <div class="irs-side-bar">
+                        <div class="irs-post">
+
+                                <div class="irs-post-item" style="padding-left: 85px;">
+                                    <a href="/vn/thong-bao-tin-noi-bo/thong-bao-to-chuc-chuong-trinh-hoi-thao-co-hoi-viec-lam-va-trao-tang-sach-cua-cong-ty-tnhh-denso-viet-nam/59349">
+                                        <img src="https://www.haui.edu.vn/media/67/a67421.jpg" alt="Th&#244;ng b&#225;o tổ chức chương tr&#236;nh Hội thảo cơ hội việc l&#224;m v&#224; trao tặng s&#225;ch của C&#244;ng ty TNHH DENSO Việt Nam">
+                                    </a>
+                                    <a href="/vn/thong-bao-tin-noi-bo/thong-bao-to-chuc-chuong-trinh-hoi-thao-co-hoi-viec-lam-va-trao-tang-sach-cua-cong-ty-tnhh-denso-viet-nam/59349">
+                                        <h4>Th&#244;ng b&#225;o tổ chức chương tr&#236;nh Hội thảo cơ hội việc l&#224;m v&#224; trao tặng s&#225;ch của C&#244;ng ty TNHH DENSO Việt Nam</h4>
+                                    </a>
+                                    <span>Thứ Tư, 08:51 22/11/2017</span>
+                                </div>
+                                <div class="irs-post-item">
+                                    <a href="/vn/thong-bao-tin-noi-bo/thong-bao-ve-viec-ke-khai-ho-so-mua-bao-hiem-y-te-cho-hoc-sinh-sinh-vien-nam-hoc-2017-2018/59311">
+                                        <h4>Th&#244;ng b&#225;o về việc k&#234; khai hồ sơ mua Bảo hiểm y tế cho Học sinh - Sinh vi&#234;n năm học 2017 - 2018</h4>
+                                    </a>
+                                    <span>Chủ Nh&#226;̣t, 08:41 12/11/2017</span>
+                                </div>
+                                <div class="irs-post-item">
+                                    <a href="/vn/thong-bao-tin-noi-bo/ke-hoach-thi-lai-tot-nghiep-cho-sinh-vien-cac-lop-tccn-khoa-62-va-cac-khoa-cu/59259">
+                                        <h4>Kế hoạch thi lại tốt nghiệp cho sinh vi&#234;n c&#225;c lớp TCCN kh&#243;a 62 v&#224; c&#225;c kh&#243;a cũ</h4>
+                                    </a>
+                                    <span>Thứ Tư, 15:07 01/11/2017</span>
+                                </div>
+                                <div class="irs-post-item">
+                                    <a href="/vn/thong-bao-tin-noi-bo/ke-hoach-thi-lai-tot-nghiep-cho-sinh-vien-cac-lop-cdn-khoa-8-cdn-jica-khoa-4-va-cac-khoa-cu/59258">
+                                        <h4>Kế hoạch thi lại tốt nghiệp cho sinh vi&#234;n c&#225;c lớp CĐN kh&#243;a 8; CĐN JICA kh&#243;a 4 v&#224; c&#225;c kh&#243;a cũ</h4>
+                                    </a>
+                                    <span>Thứ Tư, 15:04 01/11/2017</span>
+                                </div>
+                                <div class="irs-post-item">
+                                    <a href="/vn/thong-bao-tin-noi-bo/thong-bao-chuong-trinh-sinh-vien-khoi-nghiep-voi-thuong-mai-dien-tu/59245">
+                                        <h4>Th&#244;ng b&#225;o chương tr&#236;nh &quot;Sinh vi&#234;n khởi nghiệp với thương mại điện tử&quot;</h4>
+                                    </a>
+                                    <span>Thứ Hai, 15:28 30/10/2017</span>
+                                </div>
+                            <a class="btn btn-default irs-btn-transparent-two btn-read-more" href="/vn/thong-bao-tin-noi-bo" role="button">Xem thêm</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="hide">
+                <div class="event-title-highlight">
+                    Sự kiện sắp diễn ra
+                </div>
+                <div class="wrap-highlight">
+                    <table id="event">
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                    <a href="#" class="btn btn-default irs-btn-transparent-two btn-read-more see-event">Xem thêm</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+<section class="irs-about-field">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="irs-section-title">
+                    <a href="/vn/page/cthssv">
+                        <h2>Sinh viên
+                        <span>HaUI</span>
+                        </h2>
+                    </a>
+                    <div class="irs-title-line">
+                        <div class="irs-title-icon">
+                            <i class="icofont icofont-graduate-alt"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="irs-courses-img">
+                    <img src="https://www.haui.edu.vn/dnn/web/haui/assets/images/about/intro.png" alt="" />
+                </div>
+            </div>
+            <div class="col-md-8" style="padding-top: 40px">
+                
+                <div class="row">
+                    <div class="col-md-1 col-sm-1 col-xs-2" style="font-size: 30px">
+                        <i class="icofont icofont-ui-check"></i>
+                    </div>
+                    <div class="col-md-11 col-sm-11 col-xs-10">
+                        <div class="intro">
+                            <h3>Chuyên môn giỏi</h3>
+                            <div class="entry-text">
+                                <p>
+                                    Lý thuyết vững vàng, thực hành thành thạo. Trên 85% sinh viên tốt nghiệp HaUI có việc làm trong năm đầu tiên.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-1 col-sm-1 col-xs-2" style="font-size: 30px">
+                        <i class="icofont icofont-ui-check"></i>
+                    </div>
+                    <div class="col-md-11 col-sm-11 col-xs-10">
+                        <div class="intro">
+                            <h3>Kỹ năng đa dạng</h3>
+                            <div class="entry-text">
+                                <p>
+                                    Phát triển tối đa năng lực bản thân với các kỹ năng mềm cần thiết: Tiếng Anh (TOEIC 450+), Tin học Chuẩn kỹ năng sử dụng CNTT, ...
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-1 col-sm-1 col-xs-2" style="font-size: 30px">
+                        <i class="icofont icofont-ui-check"></i>
+                    </div>
+                    <div class="col-md-11 col-sm-11 col-xs-10">
+                        <div class="intro">
+                            <h3>Đạo đức chuẩn mực</h3>
+                            <div class="entry-text">
+                                <p>
+                                    Rèn luyện trong môi trường nghiêm túc: Hiếu thảo với cha mẹ, Thượng tôn pháp luật, Tinh thần phụng sự cộng đồng.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Liên kết website-->
+
+<section class="irs-about-field">
+    <div class="container">
+        <div class="row">
+            <div class="carousel slide" id="link-web" data-ride="carousel" data-interval="3000">
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <div class="col-md-2 col-sm-4 col-xs-6 link-web">
+                            <a href="https://dttc.haui.edu.vn">
+                                <img src="https://www.haui.edu.vn/dnn/web/haui/assets/images/link-site/1.png" alt="" class="img-responsive">
+                                <p class="text-center">Cổng thông tin Đào tạo</p>
+                            </a>
+                        </div>
+                        <div class="col-md-2 col-sm-4 col-xs-6 link-web">
+                            <a href="http://lib.haui.edu.vn">
+                                <img src="https://www.haui.edu.vn/dnn/web/haui/assets/images/link-site/2.png" alt="" class="img-responsive">
+                                <p class="text-center">Trung tâm thông tin
+                                    <br>
+                                    THƯ VIỆN</p>
+                            </a>
+                        </div>
+                        <div class="col-md-2 col-sm-4 col-xs-6 link-web">
+                            <a href="http://letco.vn">
+                                <img src="https://www.haui.edu.vn/dnn/web/haui/assets/images/link-site/3.jpg" alt="" class="img-responsive">
+                                <p class="text-center">Trung tâm đào tạo<br>
+                                    và cung ứng nhân lực</p>
+                            </a>
+                        </div>
+                        <div class="col-md-2 col-sm-4 col-xs-6 link-web">
+                            <a href="http://dhcnhn.vn">
+                                <img src="https://www.haui.edu.vn/dnn/web/haui/assets/images/link-site/4.gif" alt="" class="img-responsive">
+                                <p class="text-center">Trung tâm<br>
+                                    Quản lý chất lượng</p>
+                            </a>
+                        </div>
+                        <div class="col-md-2 col-sm-4 col-xs-6 link-web">
+                            <a href="/vn/page/chuongtrinh5s">
+                                <img src="https://www.haui.edu.vn/dnn/web/haui/assets/images/link-site/5.jpg" alt="" class="img-responsive">
+                                <p class="text-center">Hoạt động 5S</p>
+                            </a>
+                        </div>
+                        <div class="col-md-2 col-sm-4 col-xs-6 link-web">
+                            <a href="/vn/page/du-an-haui-jica">
+                                <img src="https://www.haui.edu.vn/dnn/web/haui/assets/images/link-site/6.jpg" alt="" class="img-responsive">
+                                <p class="text-center">Dự án<br>
+                                    HaUI - JICA</p>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="col-md-2 col-sm-4 col-xs-6 link-web">
+                            <a href="/vn/html/tap-chi-khoa-hoc-cong-nghe">
+                                <img src="https://www.haui.edu.vn/dnn/web/haui/assets/images/link-site/khcn.jpg" alt="" class="img-responsive">
+                                <p class="text-center">Khoa học công nghệ</p>
+                            </a>
+                        </div>
+                        <div class="col-md-2 col-sm-4 col-xs-6 link-web">
+                            <a href="http://lib.haui.edu.vn">
+                                <img src="https://www.haui.edu.vn/dnn/web/haui/assets/images/link-site/2.png" alt="" class="img-responsive">
+                                <p class="text-center">Trung tâm thông tin
+                                    <br>
+                                    THƯ VIỆN</p>
+                            </a>
+                        </div>
+                        <div class="col-md-2 col-sm-4 col-xs-6 link-web">
+                            <a href="http://letco.vn">
+                                <img src="https://www.haui.edu.vn/dnn/web/haui/assets/images/link-site/logoqhdn.png" alt="" class="img-responsive">
+                                <p class="text-center">Hợp tác Doanh nghiệp<br>
+                                    và Đào tạo ngắn hạn</p>
+                            </a>
+                        </div>
+                        <div class="col-md-2 col-sm-4 col-xs-6 link-web">
+                            <a href="/vn/page/chuongtrinh5s">
+                                <img src="https://www.haui.edu.vn/dnn/web/haui/assets/images/link-site/5.jpg" alt="" class="img-responsive">
+                                <p class="text-center">Hoạt động 5S</p>
+                            </a>
+                        </div>                        
+                        <div class="col-md-2 col-sm-4 col-xs-6 link-web">
+                            <a href="http://dhcnhn.vn">
+                                <img src="https://www.haui.edu.vn/dnn/web/haui/assets/images/link-site/khuyenhoc.jpg" alt="" class="img-responsive">
+                                <p class="text-center">Quỹ khuyến học<br>
+                                    NGUYỄN THANH BÌNH</p>
+                            </a>
+                        </div>
+                        <div class="col-md-2 col-sm-4 col-xs-6 link-web">
+                            <a href="/vn/page/du-an-haui-jica">
+                                <img src="https://www.haui.edu.vn/dnn/web/haui/assets/images/link-site/6.jpg" alt="" class="img-responsive">
+                                <p class="text-center">Dự án<br>
+                                    HaUI - JICA</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <ol class="carousel-indicators">
+                    <li data-target="#link-web" data-slide-to="0" class="active"></li>
+                    <li data-target="#link-web" data-slide-to="1"></li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Liên kết website-->
+
+
+<!-- Footer start -->
+<footer class="irs-footer-field">
+    <div class="container">
+        <div class="row animatedParent animateOnce animateOnce">
+            <div class="col-md-1 hidden-sm">
+                <div class="irs-footer-about">
+                    <a href="/vn">
+                        <img class="irs-foooter-logo" src="https://www.haui.edu.vn/dnn/web/haui/assets/images/logo.png" alt="">
+                    </a>
+
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="irs-footer-link">
+                    <h4 class="irs-footer-heading">Đơn vị trực thuộc</h4>
+                    <ul>
+                        <li>
+                            <a href="/vn/html/cac-khoa">Các Khoa - Viện</a>
+                        </li>
+                        <li>
+                            <a href="/vn/html/phong-ban-chuc-nang">Phòng ban chức năng</a>
+                        </li>
+                        <li>
+                            <a href="/vn/html/cac-trung-tam">Các trung tâm</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="irs-footer-link">
+                    <h4 class="irs-footer-heading">Hoạt động sinh viên</h4>
+                    <ul>
+                        <li>
+                            <a href="/vn/page/cthssv/news/thong-tin-cong-tac-hssv">Thông tin Công tác HSSV</a>
+                        </li>
+                        <li>
+                            <a href="/vn/page/cthssv/news/hoc-bong">Học bổng</a>
+                        </li>
+                        <li>
+                            <a href="/vn/page/cthssv/news/guong-sang-sinh-vien">Gương sáng sinh viên</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="irs-footer-contact">
+                    <h4 class="irs-footer-heading">Trụ sở chính</h4>
+                    
+                    
+                    <div class="irs-mailbox">
+                        <p>
+                            <i class="zmdi zmdi-email"></i>Email: dhcnhn@haui.edu.vn
+                        </p>
+                        <p>
+                            <i class="fa fa-phone" aria-hidden="true"></i>+84 4 37655121
+                        </p>
+                        <p>
+                            <i class="zmdi zmdi-gps-dot"></i>Số 298 đường Cầu Diễn, quận Bắc Từ Liêm, Hà Nội
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="irs-footer-contact">
+                    <h4 class="irs-footer-heading">Các cơ sở khác</h4>
+                    
+                    
+                    <div class="irs-mailbox">
+                        <p>
+                            <i class="zmdi zmdi-pin"></i>Cơ sở 2: Phường Tây Tựu, quận Bắc Từ Liêm, Hà Nội
+                        </p>
+                        <p>
+                            <i class="zmdi zmdi-pin"></i>Cơ sở 3: Phường Lê Hồng Phong, thành phố Phủ Lý, Hà Nam
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- Footer end -->
+
+<section class="irs-copyright-field">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="irs-copyright">
+                    <p>
+                        Copyright © 2018 Hanoi University of Industry.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+    
+    <!-- script start from here -->
+    <script type="text/javascript" src="https://www.haui.edu.vn/dnn/web/haui/assets/js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="https://www.haui.edu.vn/dnn/web/haui/assets/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://www.haui.edu.vn/dnn/web/haui/assets/js/bootstrap-dropdownhover.min.js"></script>
+    
+    <script type="text/javascript" src="https://www.haui.edu.vn/dnn/web/haui/assets/js/jquery-scrolltofixed-min.js"></script>
+    
+    
+    
+    <script type="text/javascript" src="https://www.haui.edu.vn/dnn/web/haui/assets/js/jquery.magnific-popup.min.js"></script>
+    
+    <script type="text/javascript" src="https://www.haui.edu.vn/dnn/web/haui/assets/js/css3-animate-it.js"></script>
+    <script type="text/javascript" src="https://www.haui.edu.vn/dnn/web/haui/assets/js/bootstrap-slider.js"></script>
+    <script type="text/javascript" src="https://www.haui.edu.vn/dnn/web/haui/assets/js/jquery.scrollUp.js"></script>
+    <script type="text/javascript" src="https://www.haui.edu.vn/dnn/web/haui/assets/js/classie.js"></script>
+
+
+    <!-- Custom script for all pages -->
+    <script type="text/javascript" src="https://www.haui.edu.vn/dnn/web/haui/assets/js/script.js"></script>
+    <!-- Funfact START -->
+    <!-- DkZ -->
+    <script type="text/javascript">
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-48346684-11', 'auto');
+  ga('send', 'pageview');
+        $(document).ready(function ($) {
+            $(".des").hide();
+            $(".read-more").click(function () {
+                $(".des").toggle("slow");
+            });
+            
+            //var s = [], i = 0;
+            //$('.start-count').each(function () {
+            //    var $this = $(this);
+            //    $this.data('target', parseInt($this.html()));
+            //    s.push(parseInt($this.html()));
+            //    $this.data('counted', false);
+            //    $this.html('0');
+            //});
+
+            //$(window).bind('scroll', function () {
+            //    var speed = 1000;
+            //    $('.start-count').each(function () {
+            //        var $this = $(this);
+            //        if (!$this.data('counted') && $(window).scrollTop() + $(window).height() >= $this.offset().top) {
+            //            $this.data('counted', true);
+            //            $this.animate({
+            //                dummy: 1
+            //            }, {
+            //                duration: speed,
+            //                step: function (now) {
+            //                    var $this = $(this);
+            //                    var val = Math.round($this.data('target') * now);
+            //                    $this.html(val);
+            //                }
+            //            });
+            //        }
+            //    });
+            //}).triggerHandler('scroll');
+        });
+    </script>
+</body>
+</html>

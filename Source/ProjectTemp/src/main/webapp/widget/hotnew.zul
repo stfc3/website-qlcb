@@ -1,0 +1,52 @@
+<!-- HOT NEWS -->
+<div class="irs-blog-field">
+    <div class="container">
+        <div class="row border-bottom-title-category">
+            <div class="col-md-8">
+                <div class="title-category">
+                    <x:h2>
+                        <a href="tintuc.html">
+                            <span>Tin tức nổi bật</span>
+                        </a>
+                    </x:h2>
+                    <div class="irs-title-line">
+                        <div class="irs-title-icon">
+                            <x:i class="icofont icofont-news"></x:i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row animatedParent animateOnce">
+            <div class="col-md-3 col-sm-5">
+                <div class="irs-courses-col animated fadeInLeftShort slow delay-250">
+                    <div class="irs-courses-img" id="index-img">
+                        <a href="baiviet.html">
+                            <x:img src="media/tinhot/1/1.jpg" alt="Gặp mặt đầu xuân Mậu Tuất 2018"></x:img>
+                        </a>
+                        <div class="irs-courses-img-text">
+                            <x:ul class="clearfix">
+                                <x:li>
+                                    <x:p>
+                                        <x:i class="zmdi zmdi-calendar-alt"></x:i>Thứ Ba, 09:23 27/02/2018
+                                    </x:p>
+                                </x:li>
+                            </x:ul>
+                        </div>
+                    </div>
+                    <div class="irs-courses-content" id="index-content-no-head">
+                        <x:p>
+                            <a href="baiviet.html">Gặp mặt đầu xuân Mậu Tuất 2018 Trường cán bộ quản lý Giao thông vận tải</a>
+                        </x:p>
+                            
+                    </div>
+                </div>
+            </div>
+                
+            <div class="col-md-12">                
+                <a class="btn btn-default irs-btn-transparent-two btn-read-more" href="tintuc.html">Xem thêm</a>
+            </div>            
+        </div>
+    </div>
+</div>
+<!-- HOT NEWS end -->

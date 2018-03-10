@@ -1,0 +1,926 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="C?ng thông tin chính th?c c?a tru?ng Ð?i h?c Công Nghi?p Hà N?i - B? Công Thuong. Ð?a ch?: Minh Khai - T? Liêm - Hà N?i" />
+    <meta name="copyright" content="Copyright 2017 by https://www.haui.edu.vn" />
+    <meta name="abstract" content="Ð?i h?c Công Nghi?p Hà N?i" />
+    <meta name="distribution" content="Global" />
+    <meta name="keywords" content="Ð?i h?c Công nghi?p Hà N?i, Haui">
+    <meta name="author" content="https://haui.edu.vn" />
+
+    <meta property="og:locale" content="vi_VN" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Ð?I H?C C&#212;NG NGHI?P H&#192; N?I || HaUI" />
+    <meta property="og:description" content="Ð?i h?c C&#244;ng nghi?p H&#224; N?i" />
+    <meta property="og:url" content="" />
+    <meta property="og:site_name" content="Ð?i h?c C&#244;ng nghi?p H&#224; N?i" />
+    <meta property="og:image" content="" />
+    <meta property="og:image:width" content="400" />
+    <meta property="og:image:height" content="400" />
+
+    <!-- Favicon -->
+    <link href="/dnn/web/haui/assets/images/favicon.png" rel="icon" type="image/png">
+    <link href="/dnn/web/haui/assets/images/favicon.png" rel="shortcut icon" type="image/png">
+
+    <!-- Efinance Title -->
+    <title>Ð?I H?C C&#212;NG NGHI?P H&#192; N?I || HaUI</title>
+
+    <!-- css file -->
+    <link href="/dnn/web/haui/assets/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="/dnn/web/haui/assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/dnn/web/haui/assets/css/style.css" rel="stylesheet" />
+
+    <!-- Responsive stylesheet -->
+    <link href="/dnn/web/haui/assets/css/responsive.css" rel="stylesheet" />
+
+
+</head>
+
+<body>
+    <!-- Main Header Start -->
+    <header class="irs-main-header">
+<div class="irs-header-top-bar">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9 col-sm-9 hidden-xs menu">
+                <ul>
+                    <li class="dropdown">
+                        <div class="dropdown">
+                            <button class="dropbtn">Khoa</button>
+                            <div class="dropdown-content">
+                                <a href="/vn/page/kck">Khoa Co khí</a>
+                                <a href="/vn/page/kcnh">Khoa Công ngh? Hoá</a>
+                                <a href="/vn/page/kcnmtt">Khoa Công ngh? may</a>
+                                <a href="/vn/page/kcnot">Khoa Công ngh? Ô tô</a>
+                                <a href="/vn/page/kcntt">Khoa Công ngh? thông tin</a>
+                                <a href="/vn/page/kd">Khoa Ði?n</a>
+                                <a href="/vn/page/kdt">Khoa Ði?n t?</a>
+                                <a href="/vn/page/kktkt">Khoa K? toán - Ki?m toán</a>
+                                <a href="/vn/page/kkhcb">Khoa Khoa h?c co b?n</a>
+                                <a href="/vn/page/kml">Khoa Lý lu?n chính tr? - Pháp lu?t</a>
+                                <a href="/vn/page/knn">Khoa Ngo?i ng?</a>
+                                <a href="/vn/page/kqlkd">Khoa Qu?n lý kinh doanh</a>
+                                <a href="/vn/page/kspdl">Khoa Du l?ch</a>
+                                <a href="/vn/page/ttncudcgcn">Khoa Vi?n công ngh? HaUI</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <div class="dropdown">
+                            <button class="dropbtn">Phòng</button>
+                            <div class="dropdown-content">
+                                <a href="/vn/html/phong-to-chuc-hanh-chinh">Phòng T? ch?c hành chính</a>
+                                <a href="/vn/html/phong-dao-tao">Phòng Ðào t?o</a>
+                                <a href="/vn/page/cthssv/">Công tác H?c sinh Sinh viên</a>
+                                <a href="/vn/page/khcn/html/phong-khoa-hoc-cong-ngheh">Phòng Khoa h?c công ngh?</a>
+                                <a href="/vn/page/phtqt/html/phong-hop-tac-quoc-te">Phòng H?p tác qu?c t?</a>
+                                <a href="/vn/html/phong-tai-chinh-ke-toan">Phòng Tài chính k? toán</a>
+                                <a href="/vn/html/phong-quan-tri">Phòng Qu?n tr?</a>
+                                <a href="/vn/html/phong-thanh-tra-giao-duc">Phòng Thanh tra Giáo d?c</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <div class="dropdown">
+                            <button class="dropbtn">Trung tâm Ðào t?o</button>
+                            <div class="dropdown-content">
+                                <a href="/vn/page/ttdtsdh">Trung tâm Ðào t?o Sau d?i h?c</a>
+                                <a href="/vn/page/kgdtcqp">Trung tâm Giáo d?c th? ch?t và Th? thao</a>
+                                <a href="/vn/page/ttdtqt">Trung tâm Ðào t?o Qu?c t?</a>
+                                <a href="/vn/page/ttdtlx">Trung tâm Ðào t?o Lái xe</a>
+                                <a href="/vn/page/ttdtkthf">Trung tâm Ðào t?o k? thu?t HaUI-Foxconn</a>
+                                <a href="/vn/page/ttnnth">Trung tâm Công ngh? thông tin</a>
+                                <a href="/vn/page/ttckvh">Trung tâm Co khí</a>
+                                <a href="/vn/page/ttvn">Trung tâm Vi?t Nh?t</a>
+                                <a href="/vn/page/ktc">Trung tâm Ðào t?o thu?ng xuyên</a>
+                                <a href="/vn/page/tt-gdqp-an">Trung tâm Giáo d?c Qu?c phòng An ninh</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <div class="dropdown">
+                            <button class="dropbtn">Trung tâm D?ch v?</button>
+                            <div class="dropdown-content">
+                                <a href="#">Trung tâm Truy?n thông & Quan h? Công chúng</a>
+                                <a href="http://qhdn.haui.edu.vn/">Trung tâm h?p tác doanh nghi?p</a>
+                                <a href="/vn/html/tram-y-te">Tr?m Y t?</a>
+                                <a href="/vn/html/trung-tam-dich-vu-nha-an">Trung tâm Qu?n lý Ký túc xá</a>
+                                <a href="http://dhcnhn.vn/">Trung tâm Ð?m b?o ch?t lu?ng</a>
+                                <a href="#">Trung tâm Kh?o khí</a>
+                                <a href="http://lib.haui.edu.vn/">Trung tâm Thu vi?n</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="https://mail.haui.edu.vn/" target="_blank">Thu di?n t?</a></li>
+                    <li><a href="http://lib.haui.edu.vn/" target="_blank">Thu vi?n</a></li>
+                    <li><a href="/vn/html/lien-he" target="_blank">Liên h?</a></li>
+                    <li><a href="#" target="_blank">Liên k?t Website</a></li>
+                    <li><a href="/vn/m/sitemap" target="_blank">Sitemap</a></li>
+                </ul>
+            </div>
+
+            <div class="col-md-3 col-sm-3 text-right hidden-xs">
+                <div class="irs-header-top-col">
+                    <div class="irs-social">
+                        <!--<a href="#">
+                            <i class="icofont icofont-social-facebook"></i>
+                        </a>
+                        <a href="#">
+                            <i class="icofont icofont-social-twitter"></i>
+                        </a>
+                        <a href="#">
+                            <i class="icofont icofont-social-vimeo"></i>
+                        </a>
+                        <a href="#">
+                            <i class="icofont icofont-brand-linkedin"></i>
+                        </a>
+                        -->
+                        <span class="changeLang">
+                            <a href="/vn">                                
+                                <img src="/dnn/web/haui/images/vn.jpg">
+                            </a>
+                            <a href="/en">
+                                <img src="/dnn/web/haui/images/en.jpg">
+                            </a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+        <div class="irs-header-nav scrollingto-fixed">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <nav class="navbar navbar-default irs-navbar">
+                            <div class="container-fluid" style="padding-right: 0px">
+
+                                <!-- Brand and toggle get grouped for better mobile display -->
+                                <div class="navbar-header">
+                                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+                                        aria-expanded="false">
+                                        <span class="sr-only">Toggle navigation</span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                    </button>
+                                    <a class="navbar-brand" href="/vn/">
+                                        <img src="/dnn/web/haui/assets/images/logo-ngang.png" alt="Ð?i h?c Công Nghi?p Hà N?i">
+                                    </a>
+                                    
+                                </div>
+                                <!-- Collect the nav links, forms, and other content for toggling -->
+                                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                                    <ul class="nav navbar-nav navbar-right" data-hover="dropdown" data-animations="flipInY">
+                                        <li class="active">
+                                            <a href="/vn/"><i class="fa fa-home" aria-hidden="true" style="font-size: 20px"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="/vn/html/gioi-thieu?p=gioi-thieu">Gi?i thi?u</a>
+                                        </li>
+
+                                        <li>
+                                            <a href="https://tuyensinh.haui.edu.vn/">Tuy?n sinh</a>
+                                        </li>
+
+                                        <li>
+                                            <a href="https://dttc.haui.edu.vn/vn">Ðào t?o</a>
+                                        </li>
+										<li>
+                                            <a href="https://egov.haui.edu.vn/">Egov</a>
+                                        </li>
+                                        <li>
+                                            <a href="/vn/page/khcn">Khoa h?c công ngh?</a>
+                                        </li>
+
+                                        <li>
+                                            <a href="/vn/page/cthssv">Sinh viên</a>
+                                        </li>
+
+                                        <li class="dropdown">
+                                            <a href="/vn/page/phtqt">H?p tác Ð?i ngo?i</a>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <a href="/vn/page/phtqt/html/chuong-trinh-htqt">Chuong trình HTQT</a>
+                                                </li>
+                                                <li>
+                                                    <a href="/vn/page/phtqt/html/mang-luoi-htqt">M?ng lu?i h?p tác qu?c t?</a>
+                                                </li>
+                                                <li>
+                                                    <a href="/vn/page/phtqt/html/thoa-thuan-hop-tac">Tho? thu?n h?p tác</a>
+                                                </li>
+                                                <li>
+                                                    <a href="/vn/page/phtqt/html/cac-truong-dai-hoc-hop-tac">Các tru?ng Ð?i h?c d?i tác</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!-- /.navbar-collapse -->
+                            </div>
+                            <!-- /.container-fluid -->
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Main Header end -->
+
+    
+
+
+
+<section class="irs-main-slider">
+    <div class="container">
+        <div id="myCarousel" class="carousel fade-carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+                    <ol class="carousel-indicators">
+                            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                    </ol>
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner">
+
+                            <div class="item slides active">
+                                <img src="/media/1/ufi1990.jpg">
+                            </div>
+                    </div>
+
+        </div>
+    </div>
+</section>
+
+
+<div>
+    <a href="/old" class="btn btn-default irs-btn-transparent-two btn-read-more see-event old hidden-xs">Phiên b?n cu</a>
+</div>
+<!-- Discription start -->
+<section class="irs-blog-field">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="irs-discription-col text-center">
+                    <h1>S? m?ng - T?m nhìn - Giá tr? c?t lõi</h1>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <p class="irs-topdiscription">
+                    Tru?ng Ð?i h?c Công nghi?p Hà N?i là tru?ng d?i h?c công l?p tr?c thu?c B? Công Thuong, 
+                    có truy?n th?ng dào t?o cán b? khoa h?c k? thu?t, cán b? kinh t?, công nhân k? thu?t lâu d?i nh?t Vi?t Nam 
+                    (ti?n thân là Tru?ng Chuyên nghi?p Hà N?i thành l?p nam 1898 và Tru?ng Chuyên nghi?p H?i Phòng thành l?p nam 1913) 
+                    và là m?t trong nh?ng tru?ng tr?ng di?m qu?c gia trong h? th?ng giáo d?c k? thu?t và d?y ngh?.
+                </p>
+                <span class="read-more">Xem thêm
+                </span>
+            </div>
+
+        </div>
+        <div class="row des">
+            <div class="col-md-8">
+                <div class="irs-discription-col">
+                    <h2>Giá tr? c?t lõi</h2>
+                    <ul>
+                        <li><i class="zmdi zmdi-dot-circle"></i><span>Kiên d?nh hu?ng m?c tiêu</span> Kiên d?nh trong vi?c xác d?nh m?c tiêu, d?nh hu?ng phát tri?n Nhà tru?ng, kiên quy?t trong công tác di?u hành, qu?n lý</li>
+                    </ul>
+
+                    <ul>
+                        <li><i class="zmdi zmdi-dot-circle"></i><span>Khoa h?c là d?nh hu?ng</span> Tính Khoa h?c du?c coi là d?nh hu?ng phát tri?n Nhà tru?ng</li>
+                    </ul>
+
+                    <ul>
+                        <li><i class="zmdi zmdi-dot-circle"></i><span>Khách hàng là trung tâm</span> Hu?ng th? tru?ng, d?t l?i ích và s? th?a mãn khách hàng và các bên quan tâm là trung tâm các ho?t d?ng c?a Nhà tru?ng</li>
+                    </ul>
+
+                    <ul>
+                        <li><i class="zmdi zmdi-dot-circle"></i><span>K? ngh? làm n?n t?ng</span> L?y truy?n th?ng K? ngh? th?c hành, công ngh? là n?n t?ng d?nh hu?ng phát tri?n Nhà tru?ng</li>
+                    </ul>
+
+                    <ul>
+                        <li><i class="zmdi zmdi-dot-circle"></i><span>K?t n?i t?o s?c m?nh</span> L?y truy?n th?ng K? ngh? th?c hành, công ngh? là n?n t?ng d?nh hu?ng phát tri?n Nhà tru?ng</li>
+                    </ul>
+
+                    <ul>
+                        <li><i class="zmdi zmdi-dot-circle"></i><span>K? ngh? làm n?n t?ng</span> Ðoàn k?t n?i b?, g?n k?t v?i doanh nghi?p, th?c ti?n t?o nên s?c m?nh bên trong và bên ngoài d? phát tri?n Nhà tru?ng</li>
+                    </ul>
+
+                    <ul>
+                        <li><i class="zmdi zmdi-dot-circle"></i><span>Khác bi?t t? sáng t?o</span> T?o ra s? khác bi?t d? d?t phá nh? s? sáng t?o trong các linh v?c ho?t d?ng c?a Nhà tru?ng</li>
+                    </ul>
+
+                    <ul>
+                        <li><i class="zmdi zmdi-dot-circle"></i><span>K? cuong d? v?ng b?n</span> L?y K? cuong, k? lu?t, các chu?n m?c d?o d?c, ngh? nghi?p làm co s? cho s? phát tri?n b?n v?ng c?a Nhà tru?ng</li>
+                    </ul>
+
+                    <ul>
+                        <li><i class="zmdi zmdi-dot-circle"></i><span>Khách quan gi? công b?ng</span> L?y dân ch?, minh b?ch, khách quan d? gi? công b?ng, t?o môi tru?ng phát tri?n b?n v?ng</li>
+                    </ul>
+
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="irs-discription-col">
+                    <h2>S? m?ng</h2>
+                    <p class="irs-topdiscription">
+                        Tru?ng Ð?i h?c Công nghi?p Hà N?i cung c?p d?ch v? giáo d?c, dào t?o, nghiên c?u khoa h?c, 
+                        tu v?n, ?ng d?ng và chuy?n giao công ngh? dáp ?ng yêu c?u công nghi?p hóa - hi?n d?i hóa d?t nu?c và h?i nh?p qu?c t?.
+                    </p>
+
+                    <h2>T?m nhìn</h2>
+                    <p class="irs-topdiscription">
+                        Tru?ng Ð?i h?c Công nghi?p Hà N?i là co s? dào t?o d?nh hu?ng ?ng d?ng nhi?u ngành, nhi?u lo?i hình, nhi?u c?p trình d?; 
+                        Là tru?ng d?i h?c d?t chu?n qu?c gia và chu?n qu?c t? m?t s? linh v?c; Là trung tâm nghiên c?u ?ng d?ng, chuy?n giao 
+                        công ngh? uy tín; Là d?a ch? tin c?y cung c?p ngu?n nhân l?c ch?t lu?ng cao cho th? tru?ng lao d?ng trong nu?c và qu?c t?.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="row des">
+            <div class="col-md-12">
+                <div class="irs-discription-col text-center">
+                    <h2>Ch?t lu?ng <span>Sáng t?o </span>Ðoàn k?t <span>Phát tri?n</span></h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Discription end  -->
+
+<!-- Blog start -->
+<section class="irs-blog-field">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="irs-section-title">
+                    <h2>
+                        <a href="/vn/tin-tuc"><span>Tin t?c</span></a>
+
+                    </h2>
+                    <div class="irs-title-line">
+                        <div class="irs-title-icon">
+                            <i class="icofont icofont-news"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row animatedParent animateOnce">
+                <div class="col-md-4 col-sm-6">
+                    <div class="irs-courses-col animated fadeInLeftShort slow delay-250">
+                        <div class="irs-courses-img" id="index-img">
+                            <a href="/vn/tin-tuc/dai-hoc-cong-nghiep-ha-noi-to-chuc-hoi-nghi-khoa-hoc-dao-tao-nguon-nhan-luc-chat-luong-cao-trong-thoi-ky-cach-mang-cong-nghiep-4-0/59656">
+                                <img src="/media/68/t68322.jpg" alt="Ð?i h?c C&#244;ng nghi?p H&#224; N?i t? ch?c H?i ngh? khoa h?c: d&#224;o t?o ngu?n nh&#226;n l?c ch?t lu?ng cao trong th?i k? c&#225;ch m?ng c&#244;ng nghi?p 4.0">
+                            </a>
+                            <div class="irs-courses-img-text">
+                                <ul class="clearfix">
+                                    <li>
+                                        <p>
+                                            <i class="zmdi zmdi-calendar-alt"></i>Thu´ Ba, 17:25 27/02/2018
+                                        </p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="irs-courses-content" id="index-content-no-head">
+                            <p>
+                                <a href="/vn/tin-tuc/dai-hoc-cong-nghiep-ha-noi-to-chuc-hoi-nghi-khoa-hoc-dao-tao-nguon-nhan-luc-chat-luong-cao-trong-thoi-ky-cach-mang-cong-nghiep-4-0/59656">Ð?i h?c C&#244;ng nghi?p H&#224; N?i t? ch?c H?i ngh? khoa h?c: d&#224;o t?o ngu?n nh&#226;n l?c ch?t lu?ng cao trong th?i k? c&#225;ch m?ng c&#244;ng nghi?p 4.0</a>
+                            </p>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="irs-courses-col animated fadeInLeftShort slow delay-250">
+                        <div class="irs-courses-img" id="index-img">
+                            <a href="/vn/tin-tuc/gap-mat-can-bo-y-te-ngay-thay-thuoc-viet-nam/59667">
+                                <img src="/media/68/t68333.jpg" alt="G?p m?t c&#225;n b? y t? ng&#224;y Th?y thu?c Vi?t Nam">
+                            </a>
+                            <div class="irs-courses-img-text">
+                                <ul class="clearfix">
+                                    <li>
+                                        <p>
+                                            <i class="zmdi zmdi-calendar-alt"></i>Thu´ Ba, 09:23 27/02/2018
+                                        </p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="irs-courses-content" id="index-content-no-head">
+                            <p>
+                                <a href="/vn/tin-tuc/gap-mat-can-bo-y-te-ngay-thay-thuoc-viet-nam/59667">G?p m?t c&#225;n b? y t? ng&#224;y Th?y thu?c Vi?t Nam</a>
+                            </p>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="irs-courses-col animated fadeInLeftShort slow delay-250">
+                        <div class="irs-courses-img" id="index-img">
+                            <a href="/vn/tin-tuc/thu-chuc-tet-cua-hieu-truong-xuan-mau-tuat-2018/59647">
+                                <img src="/media/68/t68305.jpg" alt="THU CH&#218;C T?T C?A HI?U TRU?NG XU&#194;N M?U TU?T 2018">
+                            </a>
+                            <div class="irs-courses-img-text">
+                                <ul class="clearfix">
+                                    <li>
+                                        <p>
+                                            <i class="zmdi zmdi-calendar-alt"></i>Thu´ Hai, 13:50 12/02/2018
+                                        </p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="irs-courses-content" id="index-content-no-head">
+                            <p>
+                                <a href="/vn/tin-tuc/thu-chuc-tet-cua-hieu-truong-xuan-mau-tuat-2018/59647">THU CH&#218;C T?T C?A HI?U TRU?NG XU&#194;N M?U TU?T 2018</a>
+                            </p>
+                            
+                        </div>
+                    </div>
+                </div>
+
+            <div class="col-md-12">                
+                <a class="btn btn-default irs-btn-transparent-two btn-read-more" href="/vn/tin-tuc" role="button">Xem thêm</a>
+            </div>            
+        </div>
+    </div>
+</section>
+<!-- Blog end -->
+
+
+<section class="irs-blog-field irs-blog-single-field">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="irs-section-title">
+                    <h2>
+                        <a href="/vn/thong-bao-tin-noi-bo">
+                            <span>Th&#244;ng b&#225;o</span>
+                        </a>
+                    </h2>
+                    <div class="irs-title-line">
+                        <div class="irs-title-icon">
+                            <i class="icofont icofont-notification"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+
+                <div class="irs-blog-single-col">
+                    <div class="irs-blog-col">
+                        <div class="irs-courses-img" id="index-img">
+                            <a href="/vn/thong-bao-tin-noi-bo/thong-bao-ke-hoach-to-chuc-ky-niem-120-nam-truyen-thong-truong-dai-hoc-cong-nghiep-ha-noi/59510">
+                                <img src="/media/0/t0.jpg" alt="notice" onerror="this.src='/dnn/web/haui/assets/images/notice.jpg'">
+                            </a>
+                        </div>
+                        <div class="irs-info-text">
+                            <ul class="clearfix">
+                                <li>
+                                    <p>
+                                        <i class="icofont icofont-clock-time"></i>
+                                        <a href="#">Ba, 08:21 02/01/2018</a>
+                                    </p>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="irs-courses-content">
+                            <h4>
+                                <a href="/vn/thong-bao-tin-noi-bo/thong-bao-ke-hoach-to-chuc-ky-niem-120-nam-truyen-thong-truong-dai-hoc-cong-nghiep-ha-noi/59510">Th&#244;ng b&#225;o k? ho?ch t? ch?c k? ni?m 120 nam truy?n th?ng Tru?ng Ð?i h?c C&#244;ng nghi?p H&#224; N?i</a>
+                            </h4>
+                            <p>
+                                
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-12">
+                <div class="irs-blog-single-col">
+                    <div class="irs-side-bar">
+                        <div class="irs-post">
+
+                                <div class="irs-post-item" style="padding-left: 85px;">
+                                    <a href="/vn/thong-bao-tin-noi-bo/thong-bao-to-chuc-chuong-trinh-hoi-thao-co-hoi-viec-lam-va-trao-tang-sach-cua-cong-ty-tnhh-denso-viet-nam/59349">
+                                        <img src="/media/67/a67421.jpg" alt="Th&#244;ng b&#225;o t? ch?c chuong tr&#236;nh H?i th?o co h?i vi?c l&#224;m v&#224; trao t?ng s&#225;ch c?a C&#244;ng ty TNHH DENSO Vi?t Nam">
+                                    </a>
+                                    <a href="/vn/thong-bao-tin-noi-bo/thong-bao-to-chuc-chuong-trinh-hoi-thao-co-hoi-viec-lam-va-trao-tang-sach-cua-cong-ty-tnhh-denso-viet-nam/59349">
+                                        <h4>Th&#244;ng b&#225;o t? ch?c chuong tr&#236;nh H?i th?o co h?i vi?c l&#224;m v&#224; trao t?ng s&#225;ch c?a C&#244;ng ty TNHH DENSO Vi?t Nam</h4>
+                                    </a>
+                                    <span>Thu´ Tu, 08:51 22/11/2017</span>
+                                </div>
+                                <div class="irs-post-item">
+                                    <a href="/vn/thong-bao-tin-noi-bo/thong-bao-ve-viec-ke-khai-ho-so-mua-bao-hiem-y-te-cho-hoc-sinh-sinh-vien-nam-hoc-2017-2018/59311">
+                                        <h4>Th&#244;ng b&#225;o v? vi?c k&#234; khai h? so mua B?o hi?m y t? cho H?c sinh - Sinh vi&#234;n nam h?c 2017 - 2018</h4>
+                                    </a>
+                                    <span>Chu? Nh&#226;?t, 08:41 12/11/2017</span>
+                                </div>
+                                <div class="irs-post-item">
+                                    <a href="/vn/thong-bao-tin-noi-bo/ke-hoach-thi-lai-tot-nghiep-cho-sinh-vien-cac-lop-tccn-khoa-62-va-cac-khoa-cu/59259">
+                                        <h4>K? ho?ch thi l?i t?t nghi?p cho sinh vi&#234;n c&#225;c l?p TCCN kh&#243;a 62 v&#224; c&#225;c kh&#243;a cu</h4>
+                                    </a>
+                                    <span>Thu´ Tu, 15:07 01/11/2017</span>
+                                </div>
+                                <div class="irs-post-item">
+                                    <a href="/vn/thong-bao-tin-noi-bo/ke-hoach-thi-lai-tot-nghiep-cho-sinh-vien-cac-lop-cdn-khoa-8-cdn-jica-khoa-4-va-cac-khoa-cu/59258">
+                                        <h4>K? ho?ch thi l?i t?t nghi?p cho sinh vi&#234;n c&#225;c l?p CÐN kh&#243;a 8; CÐN JICA kh&#243;a 4 v&#224; c&#225;c kh&#243;a cu</h4>
+                                    </a>
+                                    <span>Thu´ Tu, 15:04 01/11/2017</span>
+                                </div>
+                                <div class="irs-post-item">
+                                    <a href="/vn/thong-bao-tin-noi-bo/thong-bao-chuong-trinh-sinh-vien-khoi-nghiep-voi-thuong-mai-dien-tu/59245">
+                                        <h4>Th&#244;ng b&#225;o chuong tr&#236;nh &quot;Sinh vi&#234;n kh?i nghi?p v?i thuong m?i di?n t?&quot;</h4>
+                                    </a>
+                                    <span>Thu´ Hai, 15:28 30/10/2017</span>
+                                </div>
+                            <a class="btn btn-default irs-btn-transparent-two btn-read-more" href="/vn/thong-bao-tin-noi-bo" role="button">Xem thêm</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="hide">
+                <div class="event-title-highlight">
+                    S? ki?n s?p di?n ra
+                </div>
+                <div class="wrap-highlight">
+                    <table id="event">
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                    <a href="#" class="btn btn-default irs-btn-transparent-two btn-read-more see-event">Xem thêm</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+<section class="irs-about-field">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="irs-section-title">
+                    <a href="/vn/page/cthssv">
+                        <h2>Sinh viên
+                        <span>HaUI</span>
+                        </h2>
+                    </a>
+                    <div class="irs-title-line">
+                        <div class="irs-title-icon">
+                            <i class="icofont icofont-graduate-alt"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="irs-courses-img">
+                    <img src="/dnn/web/haui/assets/images/about/intro.png" alt="" />
+                </div>
+            </div>
+            <div class="col-md-8" style="padding-top: 40px">
+                
+                <div class="row">
+                    <div class="col-md-1 col-sm-1 col-xs-2" style="font-size: 30px">
+                        <i class="icofont icofont-ui-check"></i>
+                    </div>
+                    <div class="col-md-11 col-sm-11 col-xs-10">
+                        <div class="intro">
+                            <h3>Chuyên môn gi?i</h3>
+                            <div class="entry-text">
+                                <p>
+                                    Lý thuy?t v?ng vàng, th?c hành thành th?o. Trên 85% sinh viên t?t nghi?p HaUI có vi?c làm trong nam d?u tiên.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-1 col-sm-1 col-xs-2" style="font-size: 30px">
+                        <i class="icofont icofont-ui-check"></i>
+                    </div>
+                    <div class="col-md-11 col-sm-11 col-xs-10">
+                        <div class="intro">
+                            <h3>K? nang da d?ng</h3>
+                            <div class="entry-text">
+                                <p>
+                                    Phát tri?n t?i da nang l?c b?n thân v?i các k? nang m?m c?n thi?t: Ti?ng Anh (TOEIC 450+), Tin h?c Chu?n k? nang s? d?ng CNTT, ...
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-1 col-sm-1 col-xs-2" style="font-size: 30px">
+                        <i class="icofont icofont-ui-check"></i>
+                    </div>
+                    <div class="col-md-11 col-sm-11 col-xs-10">
+                        <div class="intro">
+                            <h3>Ð?o d?c chu?n m?c</h3>
+                            <div class="entry-text">
+                                <p>
+                                    Rèn luy?n trong môi tru?ng nghiêm túc: Hi?u th?o v?i cha m?, Thu?ng tôn pháp lu?t, Tinh th?n ph?ng s? c?ng d?ng.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Liên k?t website-->
+
+<section class="irs-about-field">
+    <div class="container">
+        <div class="row">
+            <div class="carousel slide" id="link-web" data-ride="carousel" data-interval="3000">
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <div class="col-md-2 col-sm-4 col-xs-6 link-web">
+                            <a href="https://dttc.haui.edu.vn">
+                                <img src="/dnn/web/haui/assets/images/link-site/1.png" alt="" class="img-responsive">
+                                <p class="text-center">C?ng thông tin Ðào t?o</p>
+                            </a>
+                        </div>
+                        <div class="col-md-2 col-sm-4 col-xs-6 link-web">
+                            <a href="http://lib.haui.edu.vn">
+                                <img src="/dnn/web/haui/assets/images/link-site/2.png" alt="" class="img-responsive">
+                                <p class="text-center">Trung tâm thông tin
+                                    <br>
+                                    THU VI?N</p>
+                            </a>
+                        </div>
+                        <div class="col-md-2 col-sm-4 col-xs-6 link-web">
+                            <a href="http://letco.vn">
+                                <img src="/dnn/web/haui/assets/images/link-site/3.jpg" alt="" class="img-responsive">
+                                <p class="text-center">Trung tâm dào t?o<br>
+                                    và cung ?ng nhân l?c</p>
+                            </a>
+                        </div>
+                        <div class="col-md-2 col-sm-4 col-xs-6 link-web">
+                            <a href="http://dhcnhn.vn">
+                                <img src="/dnn/web/haui/assets/images/link-site/4.gif" alt="" class="img-responsive">
+                                <p class="text-center">Trung tâm<br>
+                                    Qu?n lý ch?t lu?ng</p>
+                            </a>
+                        </div>
+                        <div class="col-md-2 col-sm-4 col-xs-6 link-web">
+                            <a href="/vn/page/chuongtrinh5s">
+                                <img src="/dnn/web/haui/assets/images/link-site/5.jpg" alt="" class="img-responsive">
+                                <p class="text-center">Ho?t d?ng 5S</p>
+                            </a>
+                        </div>
+                        <div class="col-md-2 col-sm-4 col-xs-6 link-web">
+                            <a href="/vn/page/du-an-haui-jica">
+                                <img src="/dnn/web/haui/assets/images/link-site/6.jpg" alt="" class="img-responsive">
+                                <p class="text-center">D? án<br>
+                                    HaUI - JICA</p>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="col-md-2 col-sm-4 col-xs-6 link-web">
+                            <a href="/vn/html/tap-chi-khoa-hoc-cong-nghe">
+                                <img src="/dnn/web/haui/assets/images/link-site/khcn.jpg" alt="" class="img-responsive">
+                                <p class="text-center">Khoa h?c công ngh?</p>
+                            </a>
+                        </div>
+                        <div class="col-md-2 col-sm-4 col-xs-6 link-web">
+                            <a href="http://lib.haui.edu.vn">
+                                <img src="/dnn/web/haui/assets/images/link-site/2.png" alt="" class="img-responsive">
+                                <p class="text-center">Trung tâm thông tin
+                                    <br>
+                                    THU VI?N</p>
+                            </a>
+                        </div>
+                        <div class="col-md-2 col-sm-4 col-xs-6 link-web">
+                            <a href="http://letco.vn">
+                                <img src="/dnn/web/haui/assets/images/link-site/logoqhdn.png" alt="" class="img-responsive">
+                                <p class="text-center">H?p tác Doanh nghi?p<br>
+                                    và Ðào t?o ng?n h?n</p>
+                            </a>
+                        </div>
+                        <div class="col-md-2 col-sm-4 col-xs-6 link-web">
+                            <a href="/vn/page/chuongtrinh5s">
+                                <img src="/dnn/web/haui/assets/images/link-site/5.jpg" alt="" class="img-responsive">
+                                <p class="text-center">Ho?t d?ng 5S</p>
+                            </a>
+                        </div>                        
+                        <div class="col-md-2 col-sm-4 col-xs-6 link-web">
+                            <a href="http://dhcnhn.vn">
+                                <img src="/dnn/web/haui/assets/images/link-site/khuyenhoc.jpg" alt="" class="img-responsive">
+                                <p class="text-center">Qu? khuy?n h?c<br>
+                                    NGUY?N THANH BÌNH</p>
+                            </a>
+                        </div>
+                        <div class="col-md-2 col-sm-4 col-xs-6 link-web">
+                            <a href="/vn/page/du-an-haui-jica">
+                                <img src="/dnn/web/haui/assets/images/link-site/6.jpg" alt="" class="img-responsive">
+                                <p class="text-center">D? án<br>
+                                    HaUI - JICA</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <ol class="carousel-indicators">
+                    <li data-target="#link-web" data-slide-to="0" class="active"></li>
+                    <li data-target="#link-web" data-slide-to="1"></li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Liên k?t website-->
+
+
+<!-- Footer start -->
+<footer class="irs-footer-field">
+    <div class="container">
+        <div class="row animatedParent animateOnce animateOnce">
+            <div class="col-md-1 hidden-sm">
+                <div class="irs-footer-about">
+                    <a href="/vn">
+                        <img class="irs-foooter-logo" src="/dnn/web/haui/assets/images/logo.png" alt="">
+                    </a>
+
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="irs-footer-link">
+                    <h4 class="irs-footer-heading">Ðon v? tr?c thu?c</h4>
+                    <ul>
+                        <li>
+                            <a href="/vn/html/cac-khoa">Các Khoa - Vi?n</a>
+                        </li>
+                        <li>
+                            <a href="/vn/html/phong-ban-chuc-nang">Phòng ban ch?c nang</a>
+                        </li>
+                        <li>
+                            <a href="/vn/html/cac-trung-tam">Các trung tâm</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="irs-footer-link">
+                    <h4 class="irs-footer-heading">Ho?t d?ng sinh viên</h4>
+                    <ul>
+                        <li>
+                            <a href="/vn/page/cthssv/news/thong-tin-cong-tac-hssv">Thông tin Công tác HSSV</a>
+                        </li>
+                        <li>
+                            <a href="/vn/page/cthssv/news/hoc-bong">H?c b?ng</a>
+                        </li>
+                        <li>
+                            <a href="/vn/page/cthssv/news/guong-sang-sinh-vien">Guong sáng sinh viên</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="irs-footer-contact">
+                    <h4 class="irs-footer-heading">Tr? s? chính</h4>
+                    
+                    
+                    <div class="irs-mailbox">
+                        <p>
+                            <i class="zmdi zmdi-email"></i>Email: dhcnhn@haui.edu.vn
+                        </p>
+                        <p>
+                            <i class="fa fa-phone" aria-hidden="true"></i>+84 4 37655121
+                        </p>
+                        <p>
+                            <i class="zmdi zmdi-gps-dot"></i>S? 298 du?ng C?u Di?n, qu?n B?c T? Liêm, Hà N?i
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="irs-footer-contact">
+                    <h4 class="irs-footer-heading">Các co s? khác</h4>
+                    
+                    
+                    <div class="irs-mailbox">
+                        <p>
+                            <i class="zmdi zmdi-pin"></i>Co s? 2: Phu?ng Tây T?u, qu?n B?c T? Liêm, Hà N?i
+                        </p>
+                        <p>
+                            <i class="zmdi zmdi-pin"></i>Co s? 3: Phu?ng Lê H?ng Phong, thành ph? Ph? Lý, Hà Nam
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- Footer end -->
+
+<section class="irs-copyright-field">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="irs-copyright">
+                    <p>
+                        Copyright © 2018 Hanoi University of Industry.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+    
+    <!-- script start from here -->
+    <script type="text/javascript" src="/dnn/web/haui/assets/js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="/dnn/web/haui/assets/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/dnn/web/haui/assets/js/bootstrap-dropdownhover.min.js"></script>
+    
+    <script type="text/javascript" src="/dnn/web/haui/assets/js/jquery-scrolltofixed-min.js"></script>
+    
+    
+    
+    <script type="text/javascript" src="/dnn/web/haui/assets/js/jquery.magnific-popup.min.js"></script>
+    
+    <script type="text/javascript" src="/dnn/web/haui/assets/js/css3-animate-it.js"></script>
+    <script type="text/javascript" src="/dnn/web/haui/assets/js/bootstrap-slider.js"></script>
+    <script type="text/javascript" src="/dnn/web/haui/assets/js/jquery.scrollUp.js"></script>
+    <script type="text/javascript" src="/dnn/web/haui/assets/js/classie.js"></script>
+
+
+    <!-- Custom script for all pages -->
+    <script type="text/javascript" src="/dnn/web/haui/assets/js/script.js"></script>
+    <!-- Funfact START -->
+    <!-- DkZ -->
+    <script type="text/javascript">
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-48346684-11', 'auto');
+  ga('send', 'pageview');
+        $(document).ready(function ($) {
+            $(".des").hide();
+            $(".read-more").click(function () {
+                $(".des").toggle("slow");
+            });
+            
+            //var s = [], i = 0;
+            //$('.start-count').each(function () {
+            //    var $this = $(this);
+            //    $this.data('target', parseInt($this.html()));
+            //    s.push(parseInt($this.html()));
+            //    $this.data('counted', false);
+            //    $this.html('0');
+            //});
+
+            //$(window).bind('scroll', function () {
+            //    var speed = 1000;
+            //    $('.start-count').each(function () {
+            //        var $this = $(this);
+            //        if (!$this.data('counted') && $(window).scrollTop() + $(window).height() >= $this.offset().top) {
+            //            $this.data('counted', true);
+            //            $this.animate({
+            //                dummy: 1
+            //            }, {
+            //                duration: speed,
+            //                step: function (now) {
+            //                    var $this = $(this);
+            //                    var val = Math.round($this.data('target') * now);
+            //                    $this.html(val);
+            //                }
+            //            });
+            //        }
+            //    });
+            //}).triggerHandler('scroll');
+        });
+    </script>
+</body>
+</html>
+
