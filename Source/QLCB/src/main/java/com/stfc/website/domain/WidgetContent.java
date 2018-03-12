@@ -19,7 +19,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "stfc_widget_content")
-@NamedQuery(name = "WidgetContent.getAllWidgetContent", query = "FROM Widget u WHERE widgetId in (1) status = 1 ORDER BY order")
+@NamedQuery(name = "WidgetContent.getAllWidgetContent", query = "FROM WidgetContent u WHERE widgetId in :lstWidgetID status = 1 ORDER BY order")
 public class WidgetContent {
 
     private long widgetContentId;
