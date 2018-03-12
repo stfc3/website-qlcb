@@ -6,6 +6,7 @@
 package com.stfc.website.service;
 
 import com.stfc.website.domain.Widget;
+import com.stfc.website.domain.WidgetContent;
 import java.util.List;
 
 /**
@@ -15,5 +16,6 @@ import java.util.List;
 public interface WidgetService {
 
     List<Widget> getAllWidget();
+    List<WidgetContent> getAllWidgetContent(List<Long> lstWidgetId);
 
 }

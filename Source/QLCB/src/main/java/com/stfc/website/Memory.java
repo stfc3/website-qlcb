@@ -6,7 +6,9 @@
 package com.stfc.website;
 
 import com.stfc.website.domain.Widget;
+import com.stfc.website.domain.WidgetContent;
 import com.stfc.website.service.WidgetService;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,9 +25,16 @@ public class Memory {
 
     private static WidgetService widgetService;
 
+    public static WidgetService getWidgetService() {
+        return widgetService;
+    }
 
-    //list Vi tri
+    public static void setWidgetService(WidgetService widgetService) {
+        Memory.widgetService = widgetService;
+    }
+    //list
     public static Map<Long, Widget> listWidgetCache;
+    public static Map<Long, WidgetContent> listWidgetContentCache;
 
     /**
      * Ham start up dashboard
@@ -34,6 +43,7 @@ public class Memory {
         try {
             logger.info("==============STARTUP MEMORY==============");
             loadWidget();
+            loadWidgetContent();
         } catch (Throwable ex) {
             logger.error(ex.getMessage(), ex);
         }
@@ -62,8 +72,8 @@ public class Memory {
      */
     private synchronized void clearCache() {
         listWidgetCache.clear();
+        listWidgetContentCache.clear();
     }
-
 
     public static void loadWidget() {
         List<Widget> vlstWidget;
@@ -75,7 +85,28 @@ public class Memory {
         }
     }
 
+    public static void loadWidgetContent() {
+        if (listWidgetCache == null || listWidgetCache.isEmpty()) {
+            loadWidget();
+        }
+        List<Long> lstWidgetId = new ArrayList<>();
+        List<Widget> vlstWidget = new ArrayList<>(listWidgetCache.values());
+        for (Widget wg : vlstWidget) {
+            lstWidgetId.add(wg.getWidgetId());
+        }
+        List<WidgetContent> vlstWidgetContent;
+        vlstWidgetContent = widgetService.getAllWidgetContent(lstWidgetId);
+        if (vlstWidgetContent != null) {
+            listWidgetContentCache = vlstWidgetContent.stream().collect(Collectors.toMap(WidgetContent::getWidgetContentId, widgetContent -> widgetContent));
+        } else {
+            listWidgetContentCache = new HashMap<>();
+        }
+    }
+
     public static Map<Long, Widget> getListWidgetCache() {
+        if (listWidgetCache == null || listWidgetCache.isEmpty()) {
+            loadWidget();
+        }
         return listWidgetCache;
     }
 
@@ -83,15 +114,15 @@ public class Memory {
         Memory.listWidgetCache = listWidgetCache;
     }
 
-    public static WidgetService getWidgetService() {
-        return widgetService;
+    public static Map<Long, WidgetContent> getListWidgetContentCache() {
+        if (listWidgetContentCache == null || listWidgetContentCache.isEmpty()) {
+            loadWidgetContent();
+        }
+        return listWidgetContentCache;
     }
 
-    public static void setWidgetService(WidgetService widgetService) {
-        Memory.widgetService = widgetService;
+    public static void setListWidgetContentCache(Map<Long, WidgetContent> listWidgetContentCache) {
+        Memory.listWidgetContentCache = listWidgetContentCache;
     }
-
-    
-
 
 }

@@ -6,10 +6,14 @@
 package com.stfc.website.dao;
 
 import com.stfc.website.domain.Widget;
+import com.stfc.website.domain.WidgetContent;
 import java.util.List;
+import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.transform.Transformers;
+import org.hibernate.type.StandardBasicTypes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -19,6 +23,8 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public class WidgetDAO {
+
+    private static final Logger logger = Logger.getLogger(WidgetDAO.class);
 
     @Autowired
     SessionFactory sessionFactory;
@@ -33,5 +39,32 @@ public class WidgetDAO {
         return (List<Widget>) query.list();
     }
 
+    public List<WidgetContent> getAllWidgetContent(List<Long> lstWidgetId) {
+        try {
+            if (lstWidgetId != null && !lstWidgetId.isEmpty()) {
+                StringBuilder vstrSql = new StringBuilder("SELECT widget_content_id as widgetContentId, widget_id as widgetId, widget_content_name as widgetContentName,");
+                vstrSql.append(" widget_content as widgetContent, widget_image as widgetImage, widget_content_order as widgetOrder, widget_content_type as widgetType");
+                vstrSql.append(" FROM stfc_widget_content");
+                vstrSql.append(" WHERE status = 1 AND widget_id IN (:lstWidgetId)");
+                vstrSql.append(" ORDER BY widget_content_order ");
+                Query query = getCurrentSession()
+                        .createSQLQuery(vstrSql.toString())
+                        .addScalar("widgetContentId", StandardBasicTypes.LONG)
+                        .addScalar("widgetId", StandardBasicTypes.LONG)
+                        .addScalar("widgetContentName", StandardBasicTypes.STRING)
+                        .addScalar("widgetContent", StandardBasicTypes.STRING)
+                        .addScalar("widgetImage", StandardBasicTypes.STRING)
+                        .addScalar("widgetOrder", StandardBasicTypes.INTEGER)
+                        .addScalar("widgetType", StandardBasicTypes.STRING)
+                        .setResultTransformer(
+                                Transformers.aliasToBean(WidgetContent.class));
+                query.setParameterList("lstWidgetId", lstWidgetId);
+                return (List<WidgetContent>) query.list();
+            }
+        } catch (Exception e) {
+
+        }
+        return null;
+    }
 
 }

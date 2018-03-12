@@ -5,35 +5,21 @@
  */
 package com.stfc.website.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-
 /**
  *
  * @author daond
  */
-@Entity
-@Table(name = "stfc_widget_content")
-@NamedQuery(name = "WidgetContent.getAllWidgetContent", query = "FROM WidgetContent u WHERE widgetId in :lstWidgetID status = 1 ORDER BY order")
+
 public class WidgetContent {
 
     private long widgetContentId;
     private long widgetId;
-    private long categoryId;
-    private String widgetContentTitle;
+    private String widgetContentName;
     private String widgetContent;
     private String widgetImage;
-    private int order;
-    private int status;
+    private int widgetOrder;
+    private String widgetType;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "widget_content_id")
     public long getWidgetContentId() {
         return widgetContentId;
     }
@@ -42,7 +28,6 @@ public class WidgetContent {
         this.widgetContentId = widgetContentId;
     }
 
-    @Column(name = "widget_id")
     public long getWidgetId() {
         return widgetId;
     }
@@ -51,25 +36,14 @@ public class WidgetContent {
         this.widgetId = widgetId;
     }
 
-    @Column(name = "category_id")
-    public long getCategoryId() {
-        return categoryId;
+    public String getWidgetContentName() {
+        return widgetContentName;
     }
 
-    public void setCategoryId(long categoryId) {
-        this.categoryId = categoryId;
+    public void setWidgetContentName(String widgetContentName) {
+        this.widgetContentName = widgetContentName;
     }
 
-    @Column(name = "widget_content_title")
-    public String getWidgetContentTitle() {
-        return widgetContentTitle;
-    }
-
-    public void setWidgetContentTitle(String widgetContentTitle) {
-        this.widgetContentTitle = widgetContentTitle;
-    }
-
-    @Column(name = "widget_content")
     public String getWidgetContent() {
         return widgetContent;
     }
@@ -78,7 +52,6 @@ public class WidgetContent {
         this.widgetContent = widgetContent;
     }
 
-    @Column(name = "widget_image")
     public String getWidgetImage() {
         return widgetImage;
     }
@@ -87,22 +60,20 @@ public class WidgetContent {
         this.widgetImage = widgetImage;
     }
 
-    @Column(name = "widget_content_order")
-    public int getOrder() {
-        return order;
+    public int getWidgetOrder() {
+        return widgetOrder;
     }
 
-    public void setOrder(int order) {
-        this.order = order;
+    public void setWidgetOrder(int widgetOrder) {
+        this.widgetOrder = widgetOrder;
     }
 
-    @Column(name = "status")
-    public int getStatus() {
-        return status;
+    public String getWidgetType() {
+        return widgetType;
     }
 
-    public void setStatus(int status) {
-        this.status = status;
+    public void setWidgetType(String widgetType) {
+        this.widgetType = widgetType;
     }
 
 }
