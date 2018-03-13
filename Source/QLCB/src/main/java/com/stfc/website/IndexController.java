@@ -8,7 +8,8 @@ package com.stfc.website;
 import com.stfc.utils.Constants;
 import com.stfc.utils.SpringConstant;
 import com.stfc.website.domain.Widget;
-import com.stfc.website.domain.WidgetContent;
+import com.stfc.website.bean.WidgetContent;
+import com.stfc.website.bean.WidgetMapContent;
 import com.stfc.website.service.WidgetService;
 import java.util.ArrayList;
 import java.util.List;
@@ -57,7 +58,7 @@ public class IndexController extends SelectorComposer<Div> {
         }
         widgetService = (WidgetService) SpringUtil.getBean(SpringConstant.WIDGET_SERVICE);
 
-        List<Widget> vlstWidget = new ArrayList<>(Memory.getListWidgetCache().values());
+        List<WidgetMapContent> vlstWidget = new ArrayList<>(Memory.getListWidgetMapContentCache().values());
 //        List<WidgetContent> vlstWidgetContent = new ArrayList<>(Memory.getListWidgetContentCache().values());
         buildSlider();
         buildWidget(vlstWidget);
@@ -65,24 +66,24 @@ public class IndexController extends SelectorComposer<Div> {
 
     }
 
-    private void buildWidget(List<Widget> plstWidget) {
+    private void buildWidget(List<WidgetMapContent> plstWidget) {
         if (plstWidget != null && !plstWidget.isEmpty()) {
             // lay widgetContent
-            List<WidgetContent> vlstWidgetContent = new ArrayList<>(Memory.getListWidgetContentCache().values());
-            List<WidgetContent> vlstWidgetContentByWidget;
-            for (Widget wg : plstWidget) {
-                vlstWidgetContentByWidget = new ArrayList<>();
-                for (int i = 0; i < vlstWidgetContent.size(); i++) {
-                    if (vlstWidgetContent.get(i).getWidgetId() == wg.getWidgetId()) {
-                        vlstWidgetContentByWidget.add(vlstWidgetContent.get(i));
-                    }
-                }
+//            List<WidgetContent> vlstWidgetContent = new ArrayList<>(Memory.getListWidgetContentCache().values());
+//            List<WidgetContent> vlstWidgetContentByWidget;
+            for (WidgetMapContent wg : plstWidget) {
+//                vlstWidgetContentByWidget = new ArrayList<>();
+//                for (int i = 0; i < vlstWidgetContent.size(); i++) {
+//                    if (vlstWidgetContent.get(i).getWidgetId() == wg.getWidgetId()) {
+//                        vlstWidgetContentByWidget.add(vlstWidgetContent.get(i));
+//                    }
+//                }
                 if (Constants.WIDGET_TYPE_HOTNEWS.equals(wg.getWidgetType())) {
                     buildWidgetHotNews(wg);
                 } else if (Constants.WIDGET_TYPE_NEWS_EVENT.equals(wg.getWidgetType())) {
                     buildWidgetNewsPost(wg);
                 } else if (Constants.WIDGET_TYPE_MULTI.equals(wg.getWidgetType())) {
-                    buildMultiCategory(wg, vlstWidgetContentByWidget);
+                    buildMultiCategory(wg);
                 }
             }
         }
@@ -110,7 +111,7 @@ public class IndexController extends SelectorComposer<Div> {
     /*
     /*Build HOT NEWS
      */
-    private void buildWidgetHotNews(Widget wg) {
+    private void buildWidgetHotNews(WidgetMapContent wg) {
         Div hotNewMain = new Div();
         hotNewMain.setClass("irs-blog-field");
         hotNewMain.setParent(addWidgetIndex);
@@ -216,7 +217,7 @@ public class IndexController extends SelectorComposer<Div> {
         lblTitle.setParent(linkReadMore);
     }
 
-    private void buildWidgetNewsPost(Widget wg) {
+    private void buildWidgetNewsPost(WidgetMapContent wg) {
         Div hotNewMain = new Div();
         hotNewMain.setClass("irs-blog-field irs-blog-single-field");
         hotNewMain.setParent(addWidgetIndex);
@@ -365,9 +366,9 @@ public class IndexController extends SelectorComposer<Div> {
         lblTitle.setParent(linkReadMore);
     }
 
-    private void buildMultiCategory(Widget wg, List<WidgetContent> vlstWidgetContentByWidget) {
-        if (vlstWidgetContentByWidget != null && !vlstWidgetContentByWidget.isEmpty()) {
-            int intWidgetContent = vlstWidgetContentByWidget.size();
+    private void buildMultiCategory(WidgetMapContent wg) {
+        if (wg.getListContent() != null && !wg.getListContent().isEmpty()) {
+            int intWidgetContent = wg.getListContent().size();
             Div hotNewMain = new Div();
             hotNewMain.setClass("irs-blog-field irs-blog-single-field");
             hotNewMain.setParent(addWidgetIndex);
@@ -408,7 +409,7 @@ public class IndexController extends SelectorComposer<Div> {
             divRow.setClass("row");
             divRow.setParent(container);
 
-            for (WidgetContent wc : vlstWidgetContentByWidget) {
+            for (WidgetContent wc : wg.getListContent()) {
                 Div divContent = new Div();
                 switch (intWidgetContent) {
                     case 1:

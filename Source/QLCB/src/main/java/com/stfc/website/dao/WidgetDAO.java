@@ -6,7 +6,7 @@
 package com.stfc.website.dao;
 
 import com.stfc.website.domain.Widget;
-import com.stfc.website.domain.WidgetContent;
+import com.stfc.website.bean.WidgetContent;
 import java.util.List;
 import org.apache.log4j.Logger;
 import org.hibernate.Query;

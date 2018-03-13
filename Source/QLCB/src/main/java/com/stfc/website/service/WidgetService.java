@@ -6,7 +6,7 @@
 package com.stfc.website.service;
 
 import com.stfc.website.domain.Widget;
-import com.stfc.website.domain.WidgetContent;
+import com.stfc.website.bean.WidgetContent;
 import java.util.List;
 
 /**

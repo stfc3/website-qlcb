@@ -3,25 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.stfc.website.domain;
+package com.stfc.website.bean;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
+import java.util.List;
 
 /**
  *
  * @author daond
  */
-@Entity
-@Table(name = "stfc_widget")
-@NamedQuery(name = "Widget.getAllWidget", query = "FROM Widget u WHERE status = 1 ORDER BY order")
-public class Widget {
-
+public class WidgetMapContent {
     private long widgetId;
     private String widgetCode;
     private String widgetName;
@@ -30,10 +20,8 @@ public class Widget {
     private int order;
     private String description;
     private int status;
+    private List<WidgetContent> listContent;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "widget_id")
     public long getWidgetId() {
         return widgetId;
     }
@@ -42,7 +30,6 @@ public class Widget {
         this.widgetId = widgetId;
     }
 
-    @Column(name = "widget_code")
     public String getWidgetCode() {
         return widgetCode;
     }
@@ -51,7 +38,6 @@ public class Widget {
         this.widgetCode = widgetCode;
     }
 
-    @Column(name = "widget_name")
     public String getWidgetName() {
         return widgetName;
     }
@@ -60,7 +46,6 @@ public class Widget {
         this.widgetName = widgetName;
     }
 
-    @Column(name = "widget_type")
     public String getWidgetType() {
         return widgetType;
     }
@@ -69,7 +54,6 @@ public class Widget {
         this.widgetType = widgetType;
     }
 
-    @Column(name = "widget_position")
     public int getWidgetPosition() {
         return widgetPosition;
     }
@@ -78,7 +62,6 @@ public class Widget {
         this.widgetPosition = widgetPosition;
     }
 
-    @Column(name = "widget_order")
     public int getOrder() {
         return order;
     }
@@ -87,7 +70,6 @@ public class Widget {
         this.order = order;
     }
 
-    @Column(name = "description")
     public String getDescription() {
         return description;
     }
@@ -96,7 +78,6 @@ public class Widget {
         this.description = description;
     }
 
-    @Column(name = "status")
     public int getStatus() {
         return status;
     }
@@ -105,4 +86,12 @@ public class Widget {
         this.status = status;
     }
 
+    public List<WidgetContent> getListContent() {
+        return listContent;
+    }
+
+    public void setListContent(List<WidgetContent> listContent) {
+        this.listContent = listContent;
+    }
+    
 }

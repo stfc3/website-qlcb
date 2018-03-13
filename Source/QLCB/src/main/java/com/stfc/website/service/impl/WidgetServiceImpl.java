@@ -7,7 +7,7 @@ package com.stfc.website.service.impl;
 
 import com.stfc.website.dao.WidgetDAO;
 import com.stfc.website.domain.Widget;
-import com.stfc.website.domain.WidgetContent;
+import com.stfc.website.bean.WidgetContent;
 import com.stfc.website.service.WidgetService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
