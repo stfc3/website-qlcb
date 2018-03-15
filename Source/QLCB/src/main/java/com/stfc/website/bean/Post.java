@@ -5,6 +5,8 @@
  */
 package com.stfc.website.bean;
 
+import java.util.Date;
+
 /**
  *
  * @author daond
@@ -15,14 +17,13 @@ public class Post {
     private String postTitle;
     private String postExcerpt;
     private String postContent;
-    private long postParent;
     private String postTag;
     private long categoryId;
     private int isPin;
-    private int isPublish;
     private String featuredImage;
     private String postSlug;
     private int postOrder;
+    private Date postDate;
 
     public long getPostId() {
         return postId;
@@ -64,14 +65,6 @@ public class Post {
         this.postContent = postContent;
     }
 
-    public long getPostParent() {
-        return postParent;
-    }
-
-    public void setPostParent(long postParent) {
-        this.postParent = postParent;
-    }
-
     public String getPostTag() {
         return postTag;
     }
@@ -96,14 +89,6 @@ public class Post {
         this.isPin = isPin;
     }
 
-    public int getIsPublish() {
-        return isPublish;
-    }
-
-    public void setIsPublish(int isPublish) {
-        this.isPublish = isPublish;
-    }
-
     public String getFeaturedImage() {
         return featuredImage;
     }
@@ -126,6 +111,14 @@ public class Post {
 
     public void setPostOrder(int postOrder) {
         this.postOrder = postOrder;
+    }
+
+    public Date getPostDate() {
+        return postDate;
+    }
+
+    public void setPostDate(Date postDate) {
+        this.postDate = postDate;
     }
     
     

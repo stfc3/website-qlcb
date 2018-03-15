@@ -125,7 +125,7 @@ h6{font-weight:400;line-height:1.2;color:#000;margin-top:0;margin-bottom:10px;}
 .irs-courses-img-text ul li{float:right;}
 .irs-courses-img-text ul li p{color:#ffffff;text-transform:capitalize;}
 .irs-courses-img-text ul li p i{margin-right:5px;}
-.irs-courses-content{padding:30px 0 40px 0;}
+.irs-courses-content{padding:20px 0 20px 0; height: 180px;}
 .index-content{padding:15px;height:140px;}
 #index-content p{text-align:center;}
 #index-content a{margin-bottom:10px;}

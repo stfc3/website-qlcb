@@ -37,12 +37,12 @@ CREATE TABLE IF NOT EXISTS stfc_posts
     post_title VARCHAR(2000) COMMENT 'Tên bài viết',
 	post_excerpt TEXT COMMENT 'Trích đoạn bài viết',
     post_content TEXT COMMENT 'Nội dung bài viết',
-    post_status int COMMENT '1: Hoạt động, 0: Không hoạt động',
-    post_parent int COMMENT 'ID bài viết cha',
+    post_status int COMMENT '0: Không hoạt động, 1: Bản nháp ,2: Hoạt động, 3: Xuất bản, 4: Bài viết chờ duyệt, 5: Bài viết đang gỡ',
+    #post_parent int COMMENT 'ID bài viết cha',
     post_tag VARCHAR(2000) COMMENT 'Tag bài viết',
-    category_id INT COMMENT 'Category Id',
+    #category_id INT COMMENT 'Category Id',
 	is_pin int comment 'Ghim bài viết',
-	is_publish int comment '0: Bài viết đang gỡ, 1: Xuất bản, 2: Bài viết chờ duyệt',
+	#is_publish int comment '0: Bài viết đang gỡ, 1: Xuất bản, 2: Bài viết chờ duyệt',
 	featured_image VARCHAR(200) COMMENT 'Đường dẫn hình ảnh title',
 	post_slug VARCHAR(2000) COMMENT 'Url bài viết',
     post_order int comment 'Thứ tự bài viết',
@@ -74,12 +74,25 @@ CREATE TABLE IF NOT EXISTS stfc_banner
 (
     banner_id BIGINT NOT NULL AUTO_INCREMENT,
     banner_name VARCHAR(2000),
+    banner_url VARCHAR(2000),
 	banner_type int COMMENT '1: Logo, 2: Banner',
 	banner_order int,
-    post_status int COMMENT '1: Hoạt động, 0: Không hoạt động',
-	effect_from_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-	effect_to_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    banner_status int COMMENT '1: Hoạt động, 0: Không hoạt động',
+	effect_from_date datetime ,
+	#effect_to_date TIMESTAMP ,
+    effect_to_date datetime,
     create_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	modified_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP COMMENT 'Ngày sửa',
     PRIMARY KEY(banner_id)
 ) ENGINE=INNODB AUTO_INCREMENT=1 DEFAULT CHARSET=UTF8 COMMENT 'Bảng Banner';
+
+DROP TABLE IF EXISTS stfc_category_post;
+CREATE TABLE IF NOT EXISTS stfc_category_post
+(
+    map_id BIGINT NOT NULL AUTO_INCREMENT,
+    category_id BIGINT,
+    post_id BIGINT,
+    post_status int COMMENT '1: Hoạt động, 0: Không hoạt động',
+    create_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY(map_id)
+) ENGINE=INNODB AUTO_INCREMENT=1 DEFAULT CHARSET=UTF8 COMMENT 'Bảng map category and post';
