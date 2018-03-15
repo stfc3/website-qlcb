@@ -266,7 +266,7 @@ public class IndexController extends SelectorComposer<Div> {
             divRow.setClass("row");
             divRow.setParent(container);
             //build primary post
-            if (!lstPostByContent.isEmpty() && lstPostByContent.get(0).getIsPin() == 1) {
+            if (!lstPostByContent.isEmpty() && lstPostByContent.get(0) != null) {
                 Post postPrimary = lstPostByContent.get(0);
                 Div divPrimaryPost = new Div();
                 divPrimaryPost.setClass("col-md-7");
