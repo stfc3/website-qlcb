@@ -5,6 +5,8 @@
  */
 package com.stfc.website.service;
 
+import com.stfc.website.bean.Banner;
+import com.stfc.website.bean.Post;
 import com.stfc.website.domain.Widget;
 import com.stfc.website.bean.WidgetContent;
 import java.util.List;
@@ -17,5 +19,6 @@ public interface WidgetService {
 
     List<Widget> getAllWidget();
     List<WidgetContent> getAllWidgetContent(List<Long> lstWidgetId);
-
+    List<Post> getPost(List<Long> lstCategorytId);
+    List<Banner> getBanner();
 }

@@ -5,6 +5,8 @@
  */
 package com.stfc.website;
 
+import com.stfc.utils.Constants;
+import com.stfc.website.bean.Banner;
 import com.stfc.website.domain.Widget;
 import com.stfc.website.bean.WidgetContent;
 import com.stfc.website.bean.WidgetMapContent;
@@ -37,6 +39,10 @@ public class Memory {
     public static Map<Long, Widget> listWidgetCache;
     public static Map<Long, WidgetContent> listWidgetContentCache;
     public static Map<Long, WidgetMapContent> listWidgetMapContentCache;
+    public static List<Long> lstWidgetId = new ArrayList<>();
+    public static List<Long> lstCategoryId = new ArrayList<>();
+
+    public static Map<Long, Banner> listBannerCache;
 
     /**
      * Ham start up dashboard
@@ -44,6 +50,7 @@ public class Memory {
     public void startup() {
         try {
             logger.info("==============STARTUP MEMORY==============");
+            loadBanner();
             loadWidget();
             loadWidgetContent();
             loadWidgetMapContent();
@@ -74,9 +81,12 @@ public class Memory {
      * Ham xoa cache
      */
     private synchronized void clearCache() {
+        listBannerCache.clear();
         listWidgetCache.clear();
         listWidgetContentCache.clear();
         listWidgetMapContentCache.clear();
+        lstWidgetId.clear();
+        lstCategoryId.clear();
     }
 
     public static void loadWidget() {
@@ -93,7 +103,6 @@ public class Memory {
         if (listWidgetCache == null || listWidgetCache.isEmpty()) {
             loadWidget();
         }
-        List<Long> lstWidgetId = new ArrayList<>();
         List<Widget> vlstWidget = new ArrayList<>(listWidgetCache.values());
         for (Widget wg : vlstWidget) {
             lstWidgetId.add(wg.getWidgetId());
@@ -104,6 +113,16 @@ public class Memory {
             listWidgetContentCache = vlstWidgetContent.stream().collect(Collectors.toMap(WidgetContent::getWidgetContentId, widgetContent -> widgetContent));
         } else {
             listWidgetContentCache = new HashMap<>();
+        }
+        loadCategoryId();
+    }
+
+    public static void loadCategoryId() {
+        List<WidgetContent> vlstWidgetContent = new ArrayList<>(listWidgetContentCache.values());
+        for (WidgetContent wc : vlstWidgetContent) {
+            if (Constants.WIDGET_CONTENT_TYPE_CATEGORY.equals(wc.getWidgetType())) {
+                lstCategoryId.add(Long.parseLong(wc.getWidgetContent()));
+            }
         }
     }
 
@@ -133,11 +152,21 @@ public class Memory {
             wmc.setWidgetType(wg.getWidgetType());
             wmc.setWidgetPosition(wg.getWidgetPosition());
             wmc.setOrder(wg.getOrder());
-            wmc.setListContent(vlstWidgetContent);
+            wmc.setListContent(vlstWidgetContentByWidget);
             vlstWidgetMapContent.add(wmc);
         }
         if (vlstWidgetMapContent != null && !vlstWidgetMapContent.isEmpty()) {
             listWidgetMapContentCache = vlstWidgetMapContent.stream().collect(Collectors.toMap(WidgetMapContent::getWidgetId, widgetMapContent -> widgetMapContent));
+        }
+    }
+
+    public static void loadBanner() {
+        List<Banner> vlstBanner;
+        vlstBanner = widgetService.getBanner();
+        if (vlstBanner != null) {
+            listBannerCache = vlstBanner.stream().collect(Collectors.toMap(Banner::getPostId, banner -> banner));
+        } else {
+            listBannerCache = new HashMap<>();
         }
     }
 
@@ -174,6 +203,26 @@ public class Memory {
         Memory.listWidgetMapContentCache = listWidgetMapContentCache;
     }
 
-    
+    public static List<Long> getLstCategoryId() {
+        if (lstCategoryId == null && lstCategoryId.isEmpty()) {
+            loadCategoryId();
+        }
+        return lstCategoryId;
+    }
+
+    public static void setLstCategoryId(List<Long> lstCategoryId) {
+        Memory.lstCategoryId = lstCategoryId;
+    }
+
+    public static Map<Long, Banner> getListBannerCache() {
+        if (listBannerCache == null && listBannerCache.isEmpty()) {
+            loadBanner();
+        }
+        return listBannerCache;
+    }
+
+    public static void setListBannerCache(Map<Long, Banner> listBannerCache) {
+        Memory.listBannerCache = listBannerCache;
+    }
 
 }

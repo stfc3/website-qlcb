@@ -5,6 +5,8 @@
  */
 package com.stfc.website.service.impl;
 
+import com.stfc.website.bean.Banner;
+import com.stfc.website.bean.Post;
 import com.stfc.website.dao.WidgetDAO;
 import com.stfc.website.domain.Widget;
 import com.stfc.website.bean.WidgetContent;
@@ -36,5 +38,16 @@ public class WidgetServiceImpl implements WidgetService {
     public List<WidgetContent> getAllWidgetContent(List<Long> lstWidgetId) {
         return widgetDAO.getAllWidgetContent(lstWidgetId);
     }
+    
+    @Transactional(readOnly = true)
+    @Override
+    public List<Post> getPost(List<Long> lstCategorytId) {
+        return widgetDAO.getPost(lstCategorytId);
+    }
 
+    @Transactional(readOnly = true)
+    @Override
+    public List<Banner> getBanner() {
+        return widgetDAO.getBanner();
+    }
 }

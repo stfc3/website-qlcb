@@ -7,19 +7,18 @@ package com.stfc.website;
 
 import com.stfc.utils.Constants;
 import com.stfc.utils.SpringConstant;
-import com.stfc.website.domain.Widget;
+import com.stfc.website.bean.Banner;
+import com.stfc.website.bean.Post;
 import com.stfc.website.bean.WidgetContent;
 import com.stfc.website.bean.WidgetMapContent;
 import com.stfc.website.service.WidgetService;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.log4j.Logger;
 import org.zkoss.zhtml.H2;
 import org.zkoss.zhtml.H4;
 import org.zkoss.zhtml.P;
-import org.zkoss.zk.ui.Executions;
-import org.zkoss.zk.ui.Session;
-import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zk.ui.select.SelectorComposer;
 import org.zkoss.zk.ui.select.annotation.Wire;
 import org.zkoss.zk.ui.select.annotation.WireVariable;
@@ -38,8 +37,6 @@ public class IndexController extends SelectorComposer<Div> {
 
     private static final Logger logger = Logger.getLogger(IndexController.class);
 
-    private Session session;
-
     @Wire
     Div indexSlider;
 
@@ -49,39 +46,31 @@ public class IndexController extends SelectorComposer<Div> {
     @WireVariable
     protected WidgetService widgetService;
 
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm:ss dd/mm/yyyy");
+
     @Override
     public void doAfterCompose(Div comp) throws Exception {
         super.doAfterCompose(comp);
-        session = Sessions.getCurrent();
-        if (session.getAttribute(Constants.TOKEN) != null) {
-            Executions.sendRedirect(Constants.PAGE_HOME);
-        }
         widgetService = (WidgetService) SpringUtil.getBean(SpringConstant.WIDGET_SERVICE);
-
         List<WidgetMapContent> vlstWidget = new ArrayList<>(Memory.getListWidgetMapContentCache().values());
-//        List<WidgetContent> vlstWidgetContent = new ArrayList<>(Memory.getListWidgetContentCache().values());
-        buildSlider();
-        buildWidget(vlstWidget);
+        List<Post> lstPost = widgetService.getPost(Memory.getLstCategoryId());
+        List<Banner> lstBanner = new ArrayList<>(Memory.getListBannerCache().values());
+        if (lstBanner != null && !lstBanner.isEmpty()) {
+            buildSlider(lstBanner);
+        }
+        buildWidget(vlstWidget, lstPost);
         buildFooter(3);
 
     }
 
-    private void buildWidget(List<WidgetMapContent> plstWidget) {
+    private void buildWidget(List<WidgetMapContent> plstWidget, List<Post> plstPost) {
         if (plstWidget != null && !plstWidget.isEmpty()) {
-            // lay widgetContent
-//            List<WidgetContent> vlstWidgetContent = new ArrayList<>(Memory.getListWidgetContentCache().values());
-//            List<WidgetContent> vlstWidgetContentByWidget;
+
             for (WidgetMapContent wg : plstWidget) {
-//                vlstWidgetContentByWidget = new ArrayList<>();
-//                for (int i = 0; i < vlstWidgetContent.size(); i++) {
-//                    if (vlstWidgetContent.get(i).getWidgetId() == wg.getWidgetId()) {
-//                        vlstWidgetContentByWidget.add(vlstWidgetContent.get(i));
-//                    }
-//                }
                 if (Constants.WIDGET_TYPE_HOTNEWS.equals(wg.getWidgetType())) {
-                    buildWidgetHotNews(wg);
+                    buildWidgetHotNews(wg, plstPost);
                 } else if (Constants.WIDGET_TYPE_NEWS_EVENT.equals(wg.getWidgetType())) {
-                    buildWidgetNewsPost(wg);
+                    buildWidgetNewsPost(wg, plstPost);
                 } else if (Constants.WIDGET_TYPE_MULTI.equals(wg.getWidgetType())) {
                     buildMultiCategory(wg);
                 }
@@ -89,29 +78,45 @@ public class IndexController extends SelectorComposer<Div> {
         }
     }
 
-    private void buildSlider() {
+    private void buildSlider(List<Banner> plstBanner) {
         Div slider;
         Image img;
 
-        for (int i = 1; i <= 3; i++) {
-            slider = new Div();
-            if (i == 1) {
-                slider.setClass("item slides active");
-            } else {
-                slider.setClass("item slides");
+        for (int i = 0; i < plstBanner.size(); i++) {
+            Banner b = plstBanner.get(i);
+            if (b.getBannerType() == 2) {
+                slider = new Div();
+                A linkbanner = new A();
+                linkbanner.setHref(b.getBannerUrl());
+                linkbanner.setParent(slider);
+                if (i == 0) {
+                    slider.setClass("item slides active");
+                } else {
+                    slider.setClass("item slides");
+                }
+                slider.setParent(indexSlider);
+                img = new Image();
+                String src = "";
+                if (b.getBannerImage() != null) {
+                    src = b.getBannerImage();
+                }
+                img.setSrc(src);
+                img.setParent(linkbanner);
             }
-            slider.setParent(indexSlider);
-            img = new Image();
-            String src = "media/1/" + i + ".jpg";
-            img.setSrc(src);
-            img.setParent(slider);
         }
     }
 
     /*
     /*Build HOT NEWS
      */
-    private void buildWidgetHotNews(WidgetMapContent wg) {
+    private void buildWidgetHotNews(WidgetMapContent wg, List<Post> lstPost) {
+        List<Post> lstPostByContent = getPostByContent(wg, lstPost);
+        int postNumber;
+        if (lstPostByContent.size() >= 4) {
+            postNumber = 4;
+        } else {
+            postNumber = lstPostByContent.size();
+        }
         Div hotNewMain = new Div();
         hotNewMain.setClass("irs-blog-field");
         hotNewMain.setParent(addWidgetIndex);
@@ -153,7 +158,8 @@ public class IndexController extends SelectorComposer<Div> {
         rowContent.setParent(container);
 
         //Bai viet
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < postNumber; i++) {
+            Post p = lstPostByContent.get(i);
             Div resContent = new Div();
             resContent.setClass("col-md-3 col-sm-5");
             resContent.setParent(rowContent);
@@ -167,7 +173,7 @@ public class IndexController extends SelectorComposer<Div> {
             divImg.setParent(col);
 
             A linkImg = new A();
-            linkImg.setHref("https://www.google.com.vn/");
+            linkImg.setHref(p.getPostSlug());
             linkImg.setParent(divImg);
 
             Image img = new Image();
@@ -185,8 +191,8 @@ public class IndexController extends SelectorComposer<Div> {
 
             Span spanTime = new Span();
             spanTime.setParent(divTimeClearfix);
-
-            Label lblTime = new Label("Thứ Ba, 09:23 27/02/2018 ");
+            String datePost = dateFormat.format(p.getPostDate());
+            Label lblTime = new Label(datePost);
             lblTime.setClass("zmdi-calendar-alt");
             lblTime.setParent(spanTime);
 
@@ -195,10 +201,10 @@ public class IndexController extends SelectorComposer<Div> {
             divTitle.setParent(col);
 
             A linkTitle = new A();
-            linkTitle.setHref("https://www.google.com.vn/");
+            linkTitle.setHref(p.getPostSlug());
             linkTitle.setParent(divTitle);
 
-            Label lblTitle = new Label("Gặp mặt đầu xuân Mậu Tuất 2018 Trường cán bộ quản lý Giao thông vận tải");
+            Label lblTitle = new Label(p.getPostTitle());
             lblTitle.setParent(linkTitle);
 
         }
@@ -217,153 +223,163 @@ public class IndexController extends SelectorComposer<Div> {
         lblTitle.setParent(linkReadMore);
     }
 
-    private void buildWidgetNewsPost(WidgetMapContent wg) {
-        Div hotNewMain = new Div();
-        hotNewMain.setClass("irs-blog-field irs-blog-single-field");
-        hotNewMain.setParent(addWidgetIndex);
+    private void buildWidgetNewsPost(WidgetMapContent wg, List<Post> lstPost) {
+        if (wg != null && wg.getListContent() != null && !wg.getListContent().isEmpty() && lstPost != null && !lstPost.isEmpty()) {
+            List<Post> lstPostByContent = getPostByContent(wg, lstPost);
+            Div hotNewMain = new Div();
+            hotNewMain.setClass("irs-blog-field irs-blog-single-field");
+            hotNewMain.setParent(addWidgetIndex);
 
-        Div container = new Div();
-        container.setClass("container");
-        container.setParent(hotNewMain);
+            Div container = new Div();
+            container.setClass("container");
+            container.setParent(hotNewMain);
 
-        Div rowTitle = new Div();
-        rowTitle.setClass("row border-bottom-title-category");
-        rowTitle.setParent(container);
+            Div rowTitle = new Div();
+            rowTitle.setClass("row border-bottom-title-category");
+            rowTitle.setParent(container);
 
-        Div col_md_8 = new Div();
-        col_md_8.setClass("col-md-8");
-        col_md_8.setParent(rowTitle);
+            Div col_md_8 = new Div();
+            col_md_8.setClass("col-md-8");
+            col_md_8.setParent(rowTitle);
 
-        Div titleCategory = new Div();
-        titleCategory.setClass("title-category");
-        titleCategory.setParent(col_md_8);
+            Div titleCategory = new Div();
+            titleCategory.setClass("title-category");
+            titleCategory.setParent(col_md_8);
 
-        H2 h2Title = new H2();
-        h2Title.setParent(titleCategory);
+            H2 h2Title = new H2();
+            h2Title.setParent(titleCategory);
 
-        A hotnew = new A();
-        hotnew.setParent(h2Title);
+            A hotnew = new A();
+            hotnew.setParent(h2Title);
 
-        Span spanTitle = new Span();
-        spanTitle.setParent(hotnew);
-        String widgetTitle = "";
-        if (wg.getWidgetName() != null || !"".equals(wg.getWidgetName())) {
-            widgetTitle = wg.getWidgetName();
+            Span spanTitle = new Span();
+            spanTitle.setParent(hotnew);
+            String widgetTitle = "";
+            if (wg.getWidgetName() != null || !"".equals(wg.getWidgetName())) {
+                widgetTitle = wg.getWidgetName();
+            }
+            Label lblFunctionName = new Label(widgetTitle);
+            lblFunctionName.setParent(spanTitle);
+
+            //build content
+            Div divRow = new Div();
+            divRow.setClass("row");
+            divRow.setParent(container);
+            //build primary post
+            if (!lstPostByContent.isEmpty() && lstPostByContent.get(0) != null) {
+                Post postPrimary = lstPostByContent.get(0);
+                Div divPrimaryPost = new Div();
+                divPrimaryPost.setClass("col-md-7");
+                divPrimaryPost.setParent(divRow);
+
+                Div divPrimaryCol = new Div();
+                divPrimaryCol.setClass("irs-blog-single-col");
+                divPrimaryCol.setParent(divPrimaryPost);
+
+                Div divPrimaryColBlog = new Div();
+                divPrimaryColBlog.setClass("irs-blog-col");
+                divPrimaryColBlog.setParent(divPrimaryCol);
+
+                Div divPrimaryImg = new Div();
+                divPrimaryImg.setClass("irs-courses-img");
+                divPrimaryImg.setParent(divPrimaryColBlog);
+
+                A linkImg = new A();
+                linkImg.setHref(postPrimary.getPostSlug());
+                linkImg.setParent(divPrimaryImg);
+
+                Image img = new Image();
+                String src = postPrimary.getFeaturedImage();
+                img.setSrc(src);
+                img.setParent(linkImg);
+
+                Div divPrimaryTime = new Div();
+                divPrimaryTime.setClass("irs-info-text");
+                divPrimaryTime.setParent(divPrimaryColBlog);
+
+                Div divTimeClearfix = new Div();
+                divTimeClearfix.setClass("clearfix");
+                divTimeClearfix.setParent(divPrimaryTime);
+
+                Span spanTime = new Span();
+                spanTime.setParent(divTimeClearfix);
+
+                String datePostPrimary = dateFormat.format(postPrimary.getPostDate());
+                Label lblPrimaryTime = new Label(datePostPrimary);
+                lblPrimaryTime.setClass("icofont-clock-time");
+                lblPrimaryTime.setParent(spanTime);
+
+                Div divPrimaryTitle = new Div();
+                divPrimaryTitle.setClass("irs-courses-content");
+                divPrimaryTitle.setParent(divPrimaryColBlog);
+
+                A aPrimaryLinkTitle = new A();
+                aPrimaryLinkTitle.setHref(postPrimary.getPostSlug());
+                aPrimaryLinkTitle.setParent(divPrimaryTitle);
+
+                Label lblPrimaryTitle = new Label(postPrimary.getPostTitle());
+                lblPrimaryTitle.setParent(aPrimaryLinkTitle);
+            }
+
+            //build Post
+            Div divPost = new Div();
+            divPost.setClass("col-md-5 col-sm-12");
+            divPost.setParent(divRow);
+
+            Div divPostCol = new Div();
+            divPostCol.setClass("irs-blog-single-col");
+            divPostCol.setParent(divPost);
+
+            Div divPostSide = new Div();
+            divPostSide.setClass("irs-side-bar");
+            divPostSide.setParent(divPostCol);
+
+            Div irsPost = new Div();
+            irsPost.setClass("irs-post");
+            irsPost.setParent(divPostSide);
+            if (!lstPostByContent.isEmpty()) {
+                for (int i = 1; i < lstPostByContent.size(); i++) {
+                    Post p = lstPostByContent.get(i);
+                    Div divPostItem = new Div();
+                    divPostItem.setClass("irs-post-item post-item-padding");
+                    divPostItem.setParent(irsPost);
+
+                    A linkPostItem = new A();
+                    linkPostItem.setHref(p.getPostSlug());
+                    linkPostItem.setParent(divPostItem);
+
+                    Image imgPostItem = new Image();
+                    String srcPostItem = p.getFeaturedImage();
+                    imgPostItem.setSrc(srcPostItem);
+                    imgPostItem.setParent(linkPostItem);
+
+                    A aPostItemTitle = new A();
+                    aPostItemTitle.setHref(p.getPostSlug());
+                    aPostItemTitle.setParent(divPostItem);
+
+                    Label lblPostTitle = new Label(p.getPostTitle());
+                    lblPostTitle.setClass("post-title");
+                    lblPostTitle.setParent(aPostItemTitle);
+
+                    P spanPostTime = new P();
+                    spanPostTime.setParent(divPostItem);
+
+                    String datePostPrimary = dateFormat.format(p.getPostDate());
+                    Label lblPostItemTime = new Label(datePostPrimary);
+                    lblPostItemTime.setClass("time-post");
+                    lblPostItemTime.setParent(spanPostTime);
+                }
+            }
+
+            A linkReadMore = new A();
+            linkReadMore.setClass("btn btn-default irs-btn-transparent-two btn-read-more");
+            linkReadMore.setHref("https://www.google.com.vn/");
+            linkReadMore.setParent(irsPost);
+
+            Label lblTitle = new Label("Xem thêm");
+            lblTitle.setParent(linkReadMore);
         }
-        Label lblFunctionName = new Label(widgetTitle);
-        lblFunctionName.setParent(spanTitle);
 
-        //build content
-        Div divRow = new Div();
-        divRow.setClass("row");
-        divRow.setParent(container);
-
-        //build primary post
-        Div divPrimaryPost = new Div();
-        divPrimaryPost.setClass("col-md-7");
-        divPrimaryPost.setParent(divRow);
-
-        Div divPrimaryCol = new Div();
-        divPrimaryCol.setClass("irs-blog-single-col");
-        divPrimaryCol.setParent(divPrimaryPost);
-
-        Div divPrimaryColBlog = new Div();
-        divPrimaryColBlog.setClass("irs-blog-col");
-        divPrimaryColBlog.setParent(divPrimaryCol);
-
-        Div divPrimaryImg = new Div();
-        divPrimaryImg.setClass("irs-courses-img");
-        divPrimaryImg.setParent(divPrimaryColBlog);
-
-        A linkImg = new A();
-        linkImg.setHref("https://www.google.com.vn/");
-        linkImg.setParent(divPrimaryImg);
-
-        Image img = new Image();
-        String src = "media/tinhot/1/1.jpg";
-        img.setSrc(src);
-        img.setParent(linkImg);
-
-        Div divPrimaryTime = new Div();
-        divPrimaryTime.setClass("irs-info-text");
-        divPrimaryTime.setParent(divPrimaryColBlog);
-
-        Div divTimeClearfix = new Div();
-        divTimeClearfix.setClass("clearfix");
-        divTimeClearfix.setParent(divPrimaryTime);
-
-        Span spanTime = new Span();
-        spanTime.setParent(divTimeClearfix);
-
-        Label lblPrimaryTime = new Label("Thứ Ba, 09:23 27/02/2018");
-        lblPrimaryTime.setClass("icofont-clock-time");
-        lblPrimaryTime.setParent(spanTime);
-
-        Div divPrimaryTitle = new Div();
-        divPrimaryTitle.setClass("irs-courses-content");
-        divPrimaryTitle.setParent(divPrimaryColBlog);
-
-        A aPrimaryLinkTitle = new A();
-        aPrimaryLinkTitle.setHref("https://www.google.com.vn/");
-        aPrimaryLinkTitle.setParent(divPrimaryTitle);
-
-        Label lblPrimaryTitle = new Label("Gặp mặt đầu xuân Mậu Tuất 2018 Trường cán bộ quản lý Giao thông vận tải");
-        lblPrimaryTitle.setParent(aPrimaryLinkTitle);
-
-        //build Post
-        Div divPost = new Div();
-        divPost.setClass("col-md-5 col-sm-12");
-        divPost.setParent(divRow);
-
-        Div divPostCol = new Div();
-        divPostCol.setClass("irs-blog-single-col");
-        divPostCol.setParent(divPost);
-
-        Div divPostSide = new Div();
-        divPostSide.setClass("irs-side-bar");
-        divPostSide.setParent(divPostCol);
-
-        Div irsPost = new Div();
-        irsPost.setClass("irs-post");
-        irsPost.setParent(divPostSide);
-
-        for (int i = 0; i < 5; i++) {
-            Div divPostItem = new Div();
-            divPostItem.setClass("irs-post-item post-item-padding");
-            divPostItem.setParent(irsPost);
-
-            A linkPostItem = new A();
-            linkPostItem.setHref("https://www.google.com.vn/");
-            linkPostItem.setParent(divPostItem);
-
-            Image imgPostItem = new Image();
-            String srcPostItem = "media/tintuc_sukien/2/1.jpg";
-            imgPostItem.setSrc(srcPostItem);
-            imgPostItem.setParent(linkPostItem);
-
-            A aPostItemTitle = new A();
-            aPostItemTitle.setHref("https://www.google.com.vn/");
-            aPostItemTitle.setParent(divPostItem);
-
-            Label lblPostTitle = new Label("Gặp mặt đầu xuân Mậu Tuất 2018 Trường cán bộ quản lý Giao thông vận tải");
-            lblPostTitle.setClass("post-title");
-            lblPostTitle.setParent(aPostItemTitle);
-
-            P spanPostTime = new P();
-            spanPostTime.setParent(divPostItem);
-
-            Label lblPostItemTime = new Label("Thứ Ba, 09:23 27/02/2018 ");
-            lblPostItemTime.setClass("time-post");
-            lblPostItemTime.setParent(spanPostTime);
-        }
-
-        A linkReadMore = new A();
-        linkReadMore.setClass("btn btn-default irs-btn-transparent-two btn-read-more");
-        linkReadMore.setHref("https://www.google.com.vn/");
-        linkReadMore.setParent(irsPost);
-
-        Label lblTitle = new Label("Xem thêm");
-        lblTitle.setParent(linkReadMore);
     }
 
     private void buildMultiCategory(WidgetMapContent wg) {
@@ -508,6 +524,22 @@ public class IndexController extends SelectorComposer<Div> {
             lblPostItemTime.setParent(spanFooterContent);
 
         }
+    }
+
+    private List<Post> getPostByContent(WidgetMapContent wg, List<Post> lstPost) {
+        List<Post> lstPostByContent = new ArrayList<>();
+        if (wg != null && wg.getListContent() != null && !wg.getListContent().isEmpty() && lstPost != null && !lstPost.isEmpty()) {
+            for (WidgetContent wc : wg.getListContent()) {
+                for (Post p : lstPost) {
+                    if (Constants.WIDGET_CONTENT_TYPE_CATEGORY.equals(wc.getWidgetType())
+                            && Long.parseLong(wc.getWidgetContent()) == p.getCategoryId()) {
+                        lstPostByContent.add(p);
+                    }
+
+                }
+            }
+        }
+        return lstPostByContent;
     }
 
 }
