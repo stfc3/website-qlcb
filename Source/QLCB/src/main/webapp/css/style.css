@@ -168,6 +168,7 @@ h6{font-weight:400;line-height:1.2;color:#000;margin-top:0;margin-bottom:10px;}
 .irs-side-bar{margin-bottom:30px;}
 .irs-search-box{margin-bottom:30px;}
 .irs-sidebar-title{font-weight:bold;font-size:20px;color:#0d4e96;padding-bottom:10px;margin-bottom:40px;border-bottom:1px solid rgba(193, 193, 193, 0.5);display:block;}
+.irs-sidebar-title span {font-weight:bold;font-size:20px;color:#0d4e96;text-transform:uppercase;}
 .irs-search-box .form-control{height:45px;border-radius:0;box-shadow:none;}
 .irs-search-box .form-control:focus{border-color:#0d4e96;}
 .irs-search-box .btn{height:45px;border:1px solid #0d4e96;border-radius:0;padding:8px 20px;color:#ffffff;background:#0d4e96;}
@@ -233,7 +234,7 @@ h6{font-weight:400;line-height:1.2;color:#000;margin-top:0;margin-bottom:10px;}
 .masonry-gallery .isotope-item{width:25%;}
 .masonry-gallery .isotope-item{width:33.33%;}
 .masonry-gallery .isotope-item{overflow:hidden;}
-.inner-page-content{padding-top:30px;}
+.inner-page-content{padding-top:30px; padding-bottom:30px;}
 .irs-blog-field{padding:20px 0 0;}
 .irs-blog-col{margin-bottom:0px;}
 .irs-blog-col h3{text-align:justify;font-size:22px;font-weight:bold;margin-bottom:20px;}
@@ -438,7 +439,8 @@ ul.category-list li a:hover{color:#d95b44;margin-left:5px;}
 .center-heading .center-line{width:70px;height:2px;background-color:#999;display:block;margin:0 auto;}
 .center-heading p{font-size:21px;color:#777;margin-top:20px;font-weight:300;}
 .pHead{font-weight:bold;}
-.pTitle{font-size:25px;}
+.pTitle span{font-size:25px;}
+.pBody span{font-size:16px;line-height: 26px;}
 .pBody a, tbody a{color:#0d4e96;font-weight:bold;font-style:italic;}
 p img{width:initial;}
 i.fa.fa-home{font-size:25px;margin-top:-4px;}

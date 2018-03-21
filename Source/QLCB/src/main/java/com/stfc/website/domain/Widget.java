@@ -26,7 +26,7 @@ public class Widget {
     private String widgetCode;
     private String widgetName;
     private String widgetType;
-    private int widgetPosition;
+    private String widgetPosition;
     private int order;
     private String description;
     private int status;
@@ -70,11 +70,11 @@ public class Widget {
     }
 
     @Column(name = "widget_position")
-    public int getWidgetPosition() {
+    public String getWidgetPosition() {
         return widgetPosition;
     }
 
-    public void setWidgetPosition(int widgetPosition) {
+    public void setWidgetPosition(String widgetPosition) {
         this.widgetPosition = widgetPosition;
     }
 

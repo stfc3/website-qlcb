@@ -157,8 +157,8 @@
                             Từ đó đến nay, trải qua bao gian khó, thăng trầm, Nhà trường đã luôn bám sát nhiệm vụ Bộ giao, đáp ứng kịp thời nhu cầu đào tạo, bồi dưỡng cán bộ, công chức, 
                             viên chức của ngành GTVT và một phần cho các ngành kinh tế khác.
                         </x:p>
-                        <span class="read-more">Xem thêm
-                        </span>
+                        <!--<span class="read-more">Xem thêm-->
+                        <!--</span>-->
                     </div>
 
                 </div>
@@ -209,111 +209,11 @@
     
     
         <!-- HOT NEWS -->
-        <div id="addWidgetIndex">
-            
-        </div>
+        <div id="addWidgetIndex"></div>
         <!-- HOT NEWS end -->
-    
-    
-    
-        <!--Tuyen sinh-->
-        <div class="irs-blog-field irs-blog-single-field">
-            <div class="container">
-                <div class="row border-bottom-title-category">
-                    <div class="col-md-8">
-                        <div class="title-category">
-                            <x:h2>
-                                <a href="/vn/thong-bao-tin-noi-bo">
-                                    <span>Tuyển sinh - Đào tạo</span>
-                                </a>
-                            </x:h2>
-                    
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4 col-sm-12">
-                        <div class="irs-blog-single-col">
-                            <div class="irs-side-bar">
-                                <div class="irs-post">
-
-                                    <div class="irs-post-item-group">
-                                        <a href="">
-                                            <x:img src="images/tuyen_sinh.png" ></x:img>
-                                            <span class="irs-post-item-group-title">Tuyển sinh</span>
-                                        </a>
-                                    </div>
-                                    <div class="irs-post-item-3-column">
-                                        <a href="">
-                                            <x:h4>Thông báo chiêu sinh lớp “Bồi dưỡng ngạch Chuyên viên chính” tại Hải Phòng (Khai giảng 1/2018) </x:h4>
-                                        </a>
-                                        <span>Thứ 7, 15:11 20/04/2017</span>
-                                    </div>
-                                
-								
-                                    <a class="btn btn-default irs-btn-transparent-two btn-read-more" href="/vn/thong-bao-tin-noi-bo">Xem thêm</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-12">
-                        <div class="irs-blog-single-col">
-                            <div class="irs-side-bar">
-                                <div class="irs-post">
-
-                                    <div class="irs-post-item-group">
-                                        <a href="">
-                                            <x:img src="images/dao_tao.png" alt=""></x:img>
-                                            <span class="irs-post-item-group-title">Đào tạo</span>
-                                        </a>
-                                    </div>
-                                    <div class="irs-post-item-3-column">
-                                        <a href="">
-                                            <x:h4>Khai giảng “Lớp Bồi dưỡng ngạch chuyên viên K65” tại TP. HCM </x:h4>
-                                        </a>
-                                        <span>Chủ nhật, 12:33 11/11/2017</span>
-                                    </div>
-                                
-								
-                                    <a class="btn btn-default irs-btn-transparent-two btn-read-more" href="/vn/thong-bao-tin-noi-bo">Xem thêm</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-12">
-                        <div class="irs-blog-single-col">
-                            <div class="irs-side-bar">
-                                <div class="irs-post">
-                                    <div class="irs-post-item-group">
-                                        <a href="">
-                                            <x:img src="images/notifi.png" alt=""></x:img>
-                                            <span class="irs-post-item-group-title">Thông báo</span>
-                                        </a>
-                                    </div>
-                                    <div class="irs-post-item-3-column">
-                                        <a href="">
-                                            <x:h4>Khảo sát, tiếp thu ý kiến người học </x:h4>
-                                        </a>
-                                        <span>Thứ 4, 22:41 11/01/2017</span>
-                                    </div>
-								
-                                
-								
-                                    <a class="btn btn-default irs-btn-transparent-two btn-read-more" href="/vn/thong-bao-tin-noi-bo" >Xem thêm</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-  
-        </div>
-        <!--End Tuyen sinh-->
-    
-    
-    
+        
         <!--Giang vien-->
-        <div class="irs-about-field">
+<!--        <div class="irs-about-field">
             <div class="container">
                 <div class="row border-bottom-title-category">
                     <div class="col-md-8">
@@ -356,49 +256,13 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>-->
         <!--End Giang vien-->
     
     
     
         <!-- Footer start -->
-        <div class="irs-footer-field">
-            <div class="container">
-                <div class="row animatedParent animateOnce animateOnce">
-            
-                    <div class="col-md-4">
-                        <div class="irs-footer-link">
-                            <x:h4 class="irs-footer-heading">Các Phòng chuyên môn, nghiệp vụ</x:h4>
-                            <x:p>Phòng Đào tạo và Quản lý khoa học</x:p>
-                            <x:p>Phòng Tài chính kế toán</x:p>
-                            <x:p>Phòng Quản trị thiết bị</x:p>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="irs-footer-link">
-                            <x:h4 class="irs-footer-heading">Các Khoa</x:h4>
-                            <x:p>Khoa Cơ bản</x:p>
-                            <x:p>Khoa Quản lý nhà nước</x:p>
-                            <x:p>Khoa Quản lý doanh nghiệp</x:p>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="irs-footer-contact">
-                            <x:h4 class="irs-footer-heading">Trụ sở chính</x:h4>
-                            <div class="irs-mailbox">
-                                <x:p>
-                                    <x:i class="fa fa-envelope"></x:i>Email: itamc@mt.gov.vn</x:p>
-                                <x:p>
-                                    <x:i class="fa fa-phone" aria-hidden="true"></x:i>(84-4) 38389477</x:p>
-                                <x:p>
-                                    <x:i class="fa fa-map"></x:i>Xóm 19B - Cổ Nhuế - Từ Liêm - Hà Nội</x:p>
-                            </div>
-                        </div>
-                    </div>
-            
-                </div>
-            </div>
-        </div>
+        <div id="addWidgetFooter"></div>
         <!-- Footer end -->
 
         <div class="irs-copyright-field">

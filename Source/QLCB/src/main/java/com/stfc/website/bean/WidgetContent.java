@@ -19,6 +19,7 @@ public class WidgetContent {
     private String widgetImage;
     private int widgetOrder;
     private String widgetType;
+    private String detailMoreSlug;
 
     public long getWidgetContentId() {
         return widgetContentId;
@@ -74,6 +75,14 @@ public class WidgetContent {
 
     public void setWidgetType(String widgetType) {
         this.widgetType = widgetType;
+    }
+
+    public String getDetailMoreSlug() {
+        return detailMoreSlug;
+    }
+
+    public void setDetailMoreSlug(String detailMoreSlug) {
+        this.detailMoreSlug = detailMoreSlug;
     }
 
 }

@@ -12,12 +12,12 @@ import com.stfc.website.bean.Post;
 import com.stfc.website.bean.WidgetContent;
 import com.stfc.website.bean.WidgetMapContent;
 import com.stfc.website.service.WidgetService;
+import com.stfc.website.widget.WidgetBuilder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.log4j.Logger;
 import org.zkoss.zhtml.H2;
-import org.zkoss.zhtml.H4;
 import org.zkoss.zhtml.P;
 import org.zkoss.zk.ui.select.SelectorComposer;
 import org.zkoss.zk.ui.select.annotation.Wire;
@@ -25,7 +25,6 @@ import org.zkoss.zk.ui.select.annotation.WireVariable;
 import org.zkoss.zkplus.spring.SpringUtil;
 import org.zkoss.zul.A;
 import org.zkoss.zul.Div;
-import org.zkoss.zul.Html;
 import org.zkoss.zul.Image;
 import org.zkoss.zul.Label;
 import org.zkoss.zul.Span;
@@ -44,10 +43,14 @@ public class IndexController extends SelectorComposer<Div> {
     @Wire
     Div addWidgetIndex;
 
+    @Wire
+    Div addWidgetFooter;
+
     @WireVariable
     protected WidgetService widgetService;
 
     private SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm:ss dd/mm/yyyy");
+    private WidgetBuilder widgetBuilder = new WidgetBuilder();
 
     @Override
     public void doAfterCompose(Div comp) throws Exception {
@@ -57,10 +60,9 @@ public class IndexController extends SelectorComposer<Div> {
         List<Post> lstPost = widgetService.getPost(Memory.getLstCategoryId());
         List<Banner> lstBanner = new ArrayList<>(Memory.getListBannerCache().values());
         if (lstBanner != null && !lstBanner.isEmpty()) {
-            buildSlider(lstBanner);
+            widgetBuilder.buildSlider(lstBanner, indexSlider);
         }
         buildWidget(vlstWidget, lstPost);
-        buildFooter(3);
 
     }
 
@@ -68,41 +70,19 @@ public class IndexController extends SelectorComposer<Div> {
         if (plstWidget != null && !plstWidget.isEmpty()) {
 
             for (WidgetMapContent wg : plstWidget) {
-                if (Constants.WIDGET_TYPE_HOTNEWS.equals(wg.getWidgetType())) {
+                if (Constants.WIDGET_TYPE_HOTNEWS.equals(wg.getWidgetType())
+                        && Constants.WIDGET_POSITION_CONTENT.equalsIgnoreCase(wg.getWidgetPosition())) {
                     buildWidgetHotNews(wg, plstPost);
-                } else if (Constants.WIDGET_TYPE_NEWS_EVENT.equals(wg.getWidgetType())) {
+                } else if (Constants.WIDGET_TYPE_NEWS_EVENT.equals(wg.getWidgetType())
+                        && Constants.WIDGET_POSITION_CONTENT.equalsIgnoreCase(wg.getWidgetPosition())) {
                     buildWidgetNewsPost(wg, plstPost);
-                } else if (Constants.WIDGET_TYPE_MULTI.equals(wg.getWidgetType())) {
-                    buildMultiCategory(wg);
+                } else if (Constants.WIDGET_TYPE_MULTI.equals(wg.getWidgetType())
+                        && Constants.WIDGET_POSITION_CONTENT.equalsIgnoreCase(wg.getWidgetPosition())) {
+                    buildMultiCategory(wg, plstPost);
+                } else if (Constants.WIDGET_TYPE_FOOTER.equals(wg.getWidgetType())
+                        && Constants.WIDGET_POSITION_FOOTER.equalsIgnoreCase(wg.getWidgetPosition())) {
+                    widgetBuilder.buildFooter(wg, addWidgetFooter);
                 }
-            }
-        }
-    }
-
-    private void buildSlider(List<Banner> plstBanner) {
-        Div slider;
-        Image img;
-
-        for (int i = 0; i < plstBanner.size(); i++) {
-            Banner b = plstBanner.get(i);
-            if (b.getBannerType() == 2) {
-                slider = new Div();
-                A linkbanner = new A();
-                linkbanner.setHref(b.getBannerUrl());
-                linkbanner.setParent(slider);
-                if (i == 0) {
-                    slider.setClass("item slides active");
-                } else {
-                    slider.setClass("item slides");
-                }
-                slider.setParent(indexSlider);
-                img = new Image();
-                String src = "";
-                if (b.getBannerImage() != null) {
-                    src = b.getBannerImage();
-                }
-                img.setSrc(src);
-                img.setParent(linkbanner);
             }
         }
     }
@@ -217,7 +197,13 @@ public class IndexController extends SelectorComposer<Div> {
 
         A linkReadMore = new A();
         linkReadMore.setClass("btn btn-default irs-btn-transparent-two btn-read-more");
-        linkReadMore.setHref("https://www.google.com.vn/");
+        String strUrlDetaiMore = "#";
+        if (wg != null && wg.getListContent() != null && wg.getListContent().get(0) != null) {
+            if (wg.getListContent().get(0).getDetailMoreSlug() != null && !"".equals(wg.getListContent().get(0).getDetailMoreSlug())) {
+                strUrlDetaiMore = wg.getListContent().get(0).getDetailMoreSlug();
+            }
+        }
+        linkReadMore.setHref(strUrlDetaiMore);
         linkReadMore.setParent(divReadMore);
 
         Label lblTitle = new Label("Xem thêm");
@@ -383,8 +369,9 @@ public class IndexController extends SelectorComposer<Div> {
 
     }
 
-    private void buildMultiCategory(WidgetMapContent wg) {
+    private void buildMultiCategory(WidgetMapContent wg, List<Post> lstPost) {
         if (wg.getListContent() != null && !wg.getListContent().isEmpty()) {
+            List<Post> lstPostByContent = getPostByContent(wg, lstPost);
             int intWidgetContent = wg.getListContent().size();
             Div hotNewMain = new Div();
             hotNewMain.setClass("irs-blog-field irs-blog-single-field");
@@ -481,55 +468,47 @@ public class IndexController extends SelectorComposer<Div> {
                 lblTitle.setClass("irs-post-item-group-title");
                 lblTitle.setParent(spanTime);
 
+                //Build post
+                if (!lstPostByContent.isEmpty()) {
+                    for (int i = 1; i < lstPostByContent.size(); i++) {
+                        Post p = lstPostByContent.get(i);
+                        if (wc.getWidgetContent().equalsIgnoreCase(String.valueOf(p.getCategoryId()))) {
+                            Div divContentPostItem = new Div();
+                            divContentPostItem.setClass("irs-post-item-3-column");
+                            divContentPostItem.setParent(divContentPost);
+                            //daond
+                            A aPostItemTitle = new A();
+                            aPostItemTitle.setHref(p.getPostSlug());
+                            aPostItemTitle.setParent(divContentPostItem);
+
+                            Label lblPostTitle = new Label(p.getPostTitle());
+                            lblPostTitle.setClass("post-title");
+                            lblPostTitle.setParent(aPostItemTitle);
+
+                            P spanPostTime = new P();
+                            spanPostTime.setParent(divContentPostItem);
+
+                            String datePostPrimary = dateFormat.format(p.getPostDate());
+                            Label lblPostItemTime = new Label(datePostPrimary);
+                            lblPostItemTime.setClass("time-post");
+                            lblPostItemTime.setParent(spanPostTime);
+                        }
+                    }
+                }
+                A linkReadMore = new A();
+                linkReadMore.setClass("btn btn-default irs-btn-transparent-two btn-read-more");
+                String strUrlDetaiMore = "";
+                if (wc != null && wc.getDetailMoreSlug() != null && !"".equals(wc.getDetailMoreSlug())) {
+                    strUrlDetaiMore = wg.getListContent().get(0).getDetailMoreSlug();
+                }
+                linkReadMore.setHref(strUrlDetaiMore);
+                linkReadMore.setParent(divContentPost);
+
+                Label lblMore = new Label("Xem thêm");
+                lblMore.setParent(linkReadMore);
             }
         }
 
-    }
-
-    private void buildFooter(int column) {
-
-        Div divFooter = new Div();
-        divFooter.setClass("irs-footer-field");
-        divFooter.setParent(addWidgetIndex);
-
-        Div divContainer = new Div();
-        divContainer.setSclass("container");
-        divContainer.setParent(divFooter);
-
-        Div divRow = new Div();
-        divRow.setSclass("row animatedParent animateOnce animateOnce");
-        divRow.setParent(divContainer);
-
-        if (column == 3) {
-            Div divColumn3 = new Div();
-            divColumn3.setSclass("col-md-4");
-            divColumn3.setParent(divRow);
-
-            Div irsFooer = new Div();
-            irsFooer.setClass("irs-footer-link");
-            irsFooer.setParent(divColumn3);
-
-            H4 title = new H4();
-            title.setParent(irsFooer);
-
-            Label lblFunctionName = new Label("Các Phòng chuyên môn, nghiệp vụ");
-            lblFunctionName.setClass("irs-footer-heading");
-            lblFunctionName.setParent(title);
-
-            P spanFooterContent = new P();
-            spanFooterContent.setParent(irsFooer);
-
-            Html htmPostItemTime =new Html();
-            htmPostItemTime.setContent("<p>Phòng Đào tạo và Quản lý khoa học</p>\n"
-                    + "                            <p>Phòng Tài chính kế toán</p>\n"
-                    + "                            <p>Phòng Quản trị thiết bị</p>");
-//            Label lblPostItemTime = new Label("<p>Phòng Đào tạo và Quản lý khoa học</p>\n"
-//                    + "                            <p>Phòng Tài chính kế toán</p>\n"
-//                    + "                            <p>Phòng Quản trị thiết bị</p>");
-//            lblPostItemTime.setParent(spanFooterContent);
-            htmPostItemTime.setParent(spanFooterContent);
-
-        }
     }
 
     private List<Post> getPostByContent(WidgetMapContent wg, List<Post> lstPost) {

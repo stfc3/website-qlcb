@@ -46,7 +46,9 @@ public class WidgetDAO {
             if (lstWidgetId != null && !lstWidgetId.isEmpty()) {
                 StringBuilder vstrSql = new StringBuilder("SELECT widget_content_id as widgetContentId, widget_id as widgetId, widget_content_name as widgetContentName,");
                 vstrSql.append(" widget_content as widgetContent, widget_image as widgetImage, widget_content_order as widgetOrder, widget_content_type as widgetType");
-                vstrSql.append(" FROM stfc_widget_content");
+                vstrSql.append(" , COALESCE(stfc_categories.category_slug,'') as detailMoreSlug ");
+                vstrSql.append(" FROM stfc_widget_content left join stfc_categories on stfc_widget_content.widget_content = stfc_categories.category_id ");
+//                vstrSql.append(" FROM stfc_widget_content");
                 vstrSql.append(" WHERE status = 1 AND widget_id IN (:lstWidgetId)");
                 vstrSql.append(" ORDER BY widget_content_order ");
                 Query query = getCurrentSession()
@@ -58,6 +60,7 @@ public class WidgetDAO {
                         .addScalar("widgetImage", StandardBasicTypes.STRING)
                         .addScalar("widgetOrder", StandardBasicTypes.INTEGER)
                         .addScalar("widgetType", StandardBasicTypes.STRING)
+                        .addScalar("detailMoreSlug", StandardBasicTypes.STRING)
                         .setResultTransformer(
                                 Transformers.aliasToBean(WidgetContent.class));
                 query.setParameterList("lstWidgetId", lstWidgetId);

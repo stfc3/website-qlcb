@@ -18,11 +18,17 @@ public interface Constants {
     String PAGE_HOME="/index.zul";
     String PAGE_LOGIN="/login.zul";
     
-    String WIDGET_TYPE_HOTNEWS = "1";
-    String WIDGET_TYPE_NEWS_EVENT = "2";
-    String WIDGET_TYPE_MULTI = "3";
+    public static final String WIDGET_TYPE_HOTNEWS = "1";
+    public static final String WIDGET_TYPE_NEWS_EVENT = "2";
+    public static final String WIDGET_TYPE_MULTI = "3";
+    public static final String WIDGET_TYPE_FOOTER = "5";
     
     //1: Type Category, 2: Type Text
-    String WIDGET_CONTENT_TYPE_CATEGORY = "1";
+    public static final String WIDGET_CONTENT_TYPE_CATEGORY = "CATEGORY";
+    public static final String WIDGET_CONTENT_TYPE_TEXT = "TEXT";
+    
+    //Position widget
+    public static final String WIDGET_POSITION_CONTENT = "CONTENT";
+    public static final String WIDGET_POSITION_FOOTER = "FOOTER";
     
 }
