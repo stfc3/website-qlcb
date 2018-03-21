@@ -31,6 +31,7 @@ public class WidgetServiceImpl implements WidgetService {
         return widgetDAO.getAllWidget();
     }
 
+    @Transactional(readOnly = true)
     @Override
     public List<WidgetContent> getAllWidgetContent(List<Long> lstWidgetId) {
         return widgetDAO.getAllWidgetContent(lstWidgetId);

@@ -62,7 +62,7 @@ public class WidgetDAO {
                 return (List<WidgetContent>) query.list();
             }
         } catch (Exception e) {
-
+            logger.error(e.getMessage(), e);
         }
         return null;
     }
