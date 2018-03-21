@@ -25,6 +25,7 @@ import org.zkoss.zk.ui.select.annotation.WireVariable;
 import org.zkoss.zkplus.spring.SpringUtil;
 import org.zkoss.zul.A;
 import org.zkoss.zul.Div;
+import org.zkoss.zul.Html;
 import org.zkoss.zul.Image;
 import org.zkoss.zul.Label;
 import org.zkoss.zul.Span;
@@ -518,10 +519,15 @@ public class IndexController extends SelectorComposer<Div> {
             P spanFooterContent = new P();
             spanFooterContent.setParent(irsFooer);
 
-            Label lblPostItemTime = new Label("<p>Phòng Đào tạo và Quản lý khoa học</p>\n"
+            Html htmPostItemTime =new Html();
+            htmPostItemTime.setContent("<p>Phòng Đào tạo và Quản lý khoa học</p>\n"
                     + "                            <p>Phòng Tài chính kế toán</p>\n"
                     + "                            <p>Phòng Quản trị thiết bị</p>");
-            lblPostItemTime.setParent(spanFooterContent);
+//            Label lblPostItemTime = new Label("<p>Phòng Đào tạo và Quản lý khoa học</p>\n"
+//                    + "                            <p>Phòng Tài chính kế toán</p>\n"
+//                    + "                            <p>Phòng Quản trị thiết bị</p>");
+//            lblPostItemTime.setParent(spanFooterContent);
+            htmPostItemTime.setParent(spanFooterContent);
 
         }
     }

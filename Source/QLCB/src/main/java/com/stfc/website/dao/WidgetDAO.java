@@ -5,6 +5,8 @@
  */
 package com.stfc.website.dao;
 
+import com.stfc.website.bean.Banner;
+import com.stfc.website.bean.Post;
 import com.stfc.website.domain.Widget;
 import com.stfc.website.bean.WidgetContent;
 import java.util.List;
@@ -61,6 +63,71 @@ public class WidgetDAO {
                 query.setParameterList("lstWidgetId", lstWidgetId);
                 return (List<WidgetContent>) query.list();
             }
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+        }
+        return null;
+    }
+
+    public List<Post> getPost(List<Long> lstCategoryId) {
+        try {
+            if (lstCategoryId != null && !lstCategoryId.isEmpty()) {
+                StringBuilder vstrSql = new StringBuilder();
+                vstrSql.append("SELECT p.post_id as postId, p.author as author, p.post_title as postTitle, p.post_excerpt as postExcerpt,");
+                vstrSql.append(" p.post_content as postContent, p.post_tag as postTag, m.category_id as categoryId, p.is_pin as isPin,");
+                vstrSql.append(" p.featured_image as featuredImage, p.post_slug as postSlug, p.post_order as postOrder, p.post_date as postDate");
+                vstrSql.append(" FROM stfc_posts p INNER JOIN stfc_category_post m ON p.post_id = m.post_id");
+                vstrSql.append(" WHERE m.category_id IN (:lstCategoryId)");
+                vstrSql.append(" AND p.post_status = 3");
+                vstrSql.append(" and p.effect_from_date <= sysdate()");
+                vstrSql.append(" and p.effect_to_date >= sysdate()");
+                vstrSql.append(" ORDER BY p.is_pin desc, p.post_order, p.create_date ");
+                Query query = getCurrentSession()
+                        .createSQLQuery(vstrSql.toString())
+                        .addScalar("postId", StandardBasicTypes.LONG)
+                        .addScalar("author", StandardBasicTypes.STRING)
+                        .addScalar("postTitle", StandardBasicTypes.STRING)
+                        .addScalar("postExcerpt", StandardBasicTypes.STRING)
+                        .addScalar("postContent", StandardBasicTypes.STRING)
+                        .addScalar("postTag", StandardBasicTypes.STRING)
+                        .addScalar("categoryId", StandardBasicTypes.LONG)
+                        .addScalar("isPin", StandardBasicTypes.INTEGER)
+                        .addScalar("featuredImage", StandardBasicTypes.STRING)
+                        .addScalar("postSlug", StandardBasicTypes.STRING)
+                        .addScalar("postOrder", StandardBasicTypes.INTEGER)
+                        .addScalar("postDate", StandardBasicTypes.DATE)
+                        .setResultTransformer(
+                                Transformers.aliasToBean(Post.class));
+                query.setParameterList("lstCategoryId", lstCategoryId);
+                return (List<Post>) query.list();
+            }
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+        }
+        return null;
+    }
+
+    public List<Banner> getBanner() {
+        try {
+            StringBuilder vstrSql = new StringBuilder();
+            vstrSql.append(" SELECT banner_id as postId, banner_name as bannerName, banner_image as bannerImage,");
+            vstrSql.append(" banner_url as bannerUrl, banner_type as bannerType, banner_order as bannerOrder ");
+            vstrSql.append(" FROM stfc_banner");
+            vstrSql.append(" WHERE banner_status = 1  ");
+            vstrSql.append(" AND effect_from_date <= sysdate()");
+            vstrSql.append(" AND (effect_to_date >= sysdate() or effect_to_date is null)");
+            vstrSql.append(" ORDER BY banner_order ");
+            Query query = getCurrentSession()
+                    .createSQLQuery(vstrSql.toString())
+                    .addScalar("postId", StandardBasicTypes.LONG)
+                    .addScalar("bannerName", StandardBasicTypes.STRING)
+                    .addScalar("bannerImage", StandardBasicTypes.STRING)
+                    .addScalar("bannerUrl", StandardBasicTypes.STRING)
+                    .addScalar("bannerType", StandardBasicTypes.INTEGER)
+                    .addScalar("bannerOrder", StandardBasicTypes.INTEGER)
+                    .setResultTransformer(
+                            Transformers.aliasToBean(Banner.class));
+            return (List<Banner>) query.list();
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
         }
