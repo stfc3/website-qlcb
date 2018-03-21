@@ -31,5 +31,6 @@ public interface Constants {
     public static final String WIDGET_POSITION_CONTENT = "CONTENT";
     public static final String WIDGET_POSITION_FOOTER = "FOOTER";
     String PREFIX_POST = "post/";
+    String PREFIX_CATEGORY = "category/";
     
 }
