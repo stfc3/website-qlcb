@@ -5,6 +5,7 @@
  */
 package com.stfc.website;
 
+import com.stfc.utils.Constants;
 import com.stfc.website.bean.Banner;
 import com.stfc.website.bean.WidgetMapContent;
 import com.stfc.website.widget.WidgetBuilder;
@@ -51,7 +52,10 @@ public class PostController extends SelectorComposer<Div> {
         List<WidgetMapContent> vlstWidget = new ArrayList<>(Memory.getListWidgetMapContentCache().values());
         if (vlstWidget != null && !vlstWidget.isEmpty()) {
             for (WidgetMapContent wg : vlstWidget) {
-                widgetBuilder.buildFooter(wg, addWidgetFooter);
+                if (Constants.WIDGET_TYPE_FOOTER.equals(wg.getWidgetType())
+                        && Constants.WIDGET_POSITION_FOOTER.equalsIgnoreCase(wg.getWidgetPosition())) {
+                    widgetBuilder.buildFooter(wg, addWidgetFooter);
+                }
             }
         }
     }
