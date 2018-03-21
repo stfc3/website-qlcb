@@ -2,8 +2,8 @@
 
 <urlrewrite>
     <rule match-type="wildcard">
-        <from>/new/**</from>
-        <to>/new.zul</to>
+        <from>/post/**</from>
+        <to>/post.zul</to>
     </rule>
     
     <rule match-type="wildcard">

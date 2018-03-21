@@ -154,7 +154,7 @@ public class IndexController extends SelectorComposer<Div> {
             divImg.setParent(col);
 
             A linkImg = new A();
-            linkImg.setHref(p.getPostSlug());
+            linkImg.setHref(Constants.PREFIX_POST+p.getPostSlug());
             linkImg.setParent(divImg);
 
             Image img = new Image();
@@ -182,7 +182,7 @@ public class IndexController extends SelectorComposer<Div> {
             divTitle.setParent(col);
 
             A linkTitle = new A();
-            linkTitle.setHref(p.getPostSlug());
+            linkTitle.setHref(Constants.PREFIX_POST+p.getPostSlug());
             linkTitle.setParent(divTitle);
 
             Label lblTitle = new Label(p.getPostTitle());
@@ -272,7 +272,7 @@ public class IndexController extends SelectorComposer<Div> {
                 divPrimaryImg.setParent(divPrimaryColBlog);
 
                 A linkImg = new A();
-                linkImg.setHref(postPrimary.getPostSlug());
+                linkImg.setHref(Constants.PREFIX_POST+postPrimary.getPostSlug());
                 linkImg.setParent(divPrimaryImg);
 
                 Image img = new Image();
@@ -301,7 +301,7 @@ public class IndexController extends SelectorComposer<Div> {
                 divPrimaryTitle.setParent(divPrimaryColBlog);
 
                 A aPrimaryLinkTitle = new A();
-                aPrimaryLinkTitle.setHref(postPrimary.getPostSlug());
+                aPrimaryLinkTitle.setHref(Constants.PREFIX_POST+postPrimary.getPostSlug());
                 aPrimaryLinkTitle.setParent(divPrimaryTitle);
 
                 Label lblPrimaryTitle = new Label(postPrimary.getPostTitle());
@@ -332,7 +332,7 @@ public class IndexController extends SelectorComposer<Div> {
                     divPostItem.setParent(irsPost);
 
                     A linkPostItem = new A();
-                    linkPostItem.setHref(p.getPostSlug());
+                    linkPostItem.setHref(Constants.PREFIX_POST+p.getPostSlug());
                     linkPostItem.setParent(divPostItem);
 
                     Image imgPostItem = new Image();
@@ -341,7 +341,7 @@ public class IndexController extends SelectorComposer<Div> {
                     imgPostItem.setParent(linkPostItem);
 
                     A aPostItemTitle = new A();
-                    aPostItemTitle.setHref(p.getPostSlug());
+                    aPostItemTitle.setHref(Constants.PREFIX_POST+p.getPostSlug());
                     aPostItemTitle.setParent(divPostItem);
 
                     Label lblPostTitle = new Label(p.getPostTitle());
