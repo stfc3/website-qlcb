@@ -10,6 +10,8 @@ import com.stfc.website.bean.Banner;
 import com.stfc.website.domain.Widget;
 import com.stfc.website.bean.WidgetContent;
 import com.stfc.website.bean.WidgetMapContent;
+import com.stfc.website.domain.Category;
+import com.stfc.website.domain.Param;
 import com.stfc.website.service.WidgetService;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -35,6 +37,7 @@ public class Memory {
     public static void setWidgetService(WidgetService widgetService) {
         Memory.widgetService = widgetService;
     }
+
     //list
     public static Map<Long, Widget> listWidgetCache;
     public static Map<Long, WidgetContent> listWidgetContentCache;
@@ -43,6 +46,8 @@ public class Memory {
     public static List<Long> lstCategoryId = new ArrayList<>();
 
     public static Map<Long, Banner> listBannerCache;
+    public static Map<String, Param> listParamCache;
+    public static Map<Long, Category> listCategoryCache;
 
     /**
      * Ham start up dashboard
@@ -50,6 +55,8 @@ public class Memory {
     public void startup() {
         try {
             logger.info("==============STARTUP MEMORY==============");
+            loadParam();
+            loadCategory();
             loadBanner();
             loadWidget();
             loadWidgetContent();
@@ -81,6 +88,8 @@ public class Memory {
      * Ham xoa cache
      */
     private synchronized void clearCache() {
+        listParamCache.clear();
+        listCategoryCache.clear();
         listBannerCache.clear();
         listWidgetCache.clear();
         listWidgetContentCache.clear();
@@ -169,6 +178,26 @@ public class Memory {
             listBannerCache = new HashMap<>();
         }
     }
+    
+    public static void loadParam() {
+        List<Param> vlstParam;
+        vlstParam = widgetService.getAllParam();
+        if (vlstParam != null) {
+            listParamCache = vlstParam.stream().collect(Collectors.toMap(Param::getParamKey, param -> param));
+        } else {
+            listParamCache = new HashMap<>();
+        }
+    }
+    
+    public static void loadCategory() {
+        List<Category> vlstCategory;
+        vlstCategory = widgetService.getAllCategory();
+        if (vlstCategory != null) {
+            listCategoryCache = vlstCategory.stream().collect(Collectors.toMap(Category::getCategoryId, category -> category));
+        } else {
+            listCategoryCache = new HashMap<>();
+        }
+    }
 
     public static Map<Long, Widget> getListWidgetCache() {
         if (listWidgetCache == null || listWidgetCache.isEmpty()) {
@@ -223,6 +252,28 @@ public class Memory {
 
     public static void setListBannerCache(Map<Long, Banner> listBannerCache) {
         Memory.listBannerCache = listBannerCache;
+    }
+
+    public static Map<String, Param> getListParamCache() {
+        if (listParamCache == null && listParamCache.isEmpty()) {
+            loadParam();
+        }
+        return listParamCache;
+    }
+
+    public static void setListParamCache(Map<String, Param> listParamCache) {
+        Memory.listParamCache = listParamCache;
+    }
+
+    public static Map<Long, Category> getListCategoryCache() {
+        if (listCategoryCache == null && listCategoryCache.isEmpty()) {
+            loadCategory();
+        }
+        return listCategoryCache;
+    }
+
+    public static void setListCategoryCache(Map<Long, Category> listCategoryCache) {
+        Memory.listCategoryCache = listCategoryCache;
     }
 
 }

@@ -38,7 +38,7 @@
  
     <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
     <!--Index Website-->
-    <bean id="WidgetService" class="com.stfc.website.service.impl.WidgetServiceImpl" />
+    <bean id="WidgetService" class="com.stfc.website.service.impl.WidgetServiceImpl"/>
     
     <!--End Index Website-->
 </beans>

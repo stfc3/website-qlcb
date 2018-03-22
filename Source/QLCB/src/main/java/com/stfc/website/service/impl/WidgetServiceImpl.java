@@ -10,6 +10,8 @@ import com.stfc.website.bean.Post;
 import com.stfc.website.dao.WidgetDAO;
 import com.stfc.website.domain.Widget;
 import com.stfc.website.bean.WidgetContent;
+import com.stfc.website.domain.Category;
+import com.stfc.website.domain.Param;
 import com.stfc.website.service.WidgetService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,5 +51,22 @@ public class WidgetServiceImpl implements WidgetService {
     @Override
     public List<Banner> getBanner() {
         return widgetDAO.getBanner();
+    }
+
+    @Transactional(readOnly = true)
+    @Override
+    public List<Post> getPostByCategoryId(Long categorytId) {
+        return widgetDAO.getPostByCategoryId(categorytId);
+    }
+    @Transactional(readOnly = true)
+    @Override
+    public List<Param> getAllParam() {
+        return widgetDAO.getAllParam();
+    }
+
+    @Transactional(readOnly = true)
+    @Override
+    public List<Category> getAllCategory() {
+        return widgetDAO.getAllCategory();
     }
 }

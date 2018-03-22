@@ -46,7 +46,7 @@ public class PostController extends SelectorComposer<Div> {
         super.doAfterCompose(comp);
         List<Banner> lstBanner = new ArrayList<>(Memory.getListBannerCache().values());
         if (lstBanner != null && !lstBanner.isEmpty()) {
-            widgetBuilder.buildSlider(lstBanner, indexSlider);
+            widgetBuilder.buildBanner(lstBanner, indexSlider);
         }
         buildPostDetail();
         List<WidgetMapContent> vlstWidget = new ArrayList<>(Memory.getListWidgetMapContentCache().values());

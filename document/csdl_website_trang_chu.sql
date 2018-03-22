@@ -48,7 +48,7 @@ CREATE TABLE IF NOT EXISTS stfc_posts
     post_order int comment 'Thứ tự bài viết',
 	post_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP COMMENT 'Ngày xuất bản bài viết',
 	effect_from_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-	effect_to_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	effect_to_date TIMESTAMP ,
     create_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	modified_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP COMMENT 'Ngày sửa bài viết',
     PRIMARY KEY(post_id)
@@ -97,3 +97,16 @@ CREATE TABLE IF NOT EXISTS stfc_category_post
     create_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY(map_id)
 ) ENGINE=INNODB AUTO_INCREMENT=1 DEFAULT CHARSET=UTF8 COMMENT 'Bảng map category and post';
+
+DROP TABLE IF EXISTS stfc_params;
+CREATE TABLE IF NOT EXISTS stfc_params
+(
+    param_id BIGINT NOT NULL AUTO_INCREMENT,
+    param_key VARCHAR(200),
+    param_name VARCHAR(200),
+	param_value VARCHAR(200),
+	param_description VARCHAR(2000),
+    post_status int COMMENT '1: Hoạt động, 0: Không hoạt động',
+    create_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY(param_id)
+) ENGINE=INNODB AUTO_INCREMENT=1 DEFAULT CHARSET=UTF8 COMMENT 'Bảng stfc_params';

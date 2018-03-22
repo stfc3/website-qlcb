@@ -235,7 +235,7 @@ h6{font-weight:400;line-height:1.2;color:#000;margin-top:0;margin-bottom:10px;}
 .masonry-gallery .isotope-item{width:33.33%;}
 .masonry-gallery .isotope-item{overflow:hidden;}
 .inner-page-content{padding-top:30px; padding-bottom:30px;}
-.irs-blog-field{padding:20px 0 0;}
+.irs-blog-field{padding:10px 0 0;}
 .irs-blog-col{margin-bottom:0px;}
 .irs-blog-col h3{text-align:justify;font-size:22px;font-weight:bold;margin-bottom:20px;}
 .irs-blog-col .irs-courses-content p{margin-bottom:0px;}
@@ -560,7 +560,49 @@ span.textRight{margin-left:15px;text-align:center;color:white;font-size:12px;fon
     margin-bottom: 10px;
     
 }*/
+.irs-post .irs-post-item-3-column-hot{position:relative;margin-bottom:0px;}
+.irs-post .irs-post-item-3-column-hot a h4 {font-size:13px; margin-bottom: 0px;}
+.irs-post .irs-post-item-3-column-hot img{width:70px;height:70px;position:absolute;left:0;top:0;}
+.irs-post .irs-post-item-3-column-hot h4 {text-transform:inherit;text-align:justify;}
+.irs-post .irs-post-item-3-column-hot {color:#0d4e96;}
+.irs-post .irs-post-item-3-column-hot a h4 span:hover{
+    color: #c4313d;
+    text-decoration: underline;
+}
+.irs-post-item-3-column-hot .time-hot span {
+    font-size: 11px;
+    margin-left: 5px;
+    margin-top: -5px;
+}
+.title-category-hot {
+    text-transform:uppercase;
+    font-size: 16px;
 
+}
+.title-category-hot span {
+    font-size: 16px;
+    color: #0d4e96;
+    font-weight: bold;
+}
+.title-category-hot h2 {
+    margin-bottom: 0px;
+    line-height: 0px;
+}
+.border-bottom-title-category-hot {
+    border-bottom: 1px solid #0d4e96;
+    margin-bottom: 0px;
+}
+.post-hot {
+    height:291px;
+    padding: 10px 5px 5px 5px;
+    
+}
+.no-pading {
+    padding: 0px;
+}
+.scroll-y {
+    overflow-y: scroll;
+}
 
 
 

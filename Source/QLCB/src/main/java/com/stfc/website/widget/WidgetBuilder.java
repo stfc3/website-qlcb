@@ -6,6 +6,7 @@
 package com.stfc.website.widget;
 
 import com.stfc.website.bean.Banner;
+import com.stfc.website.bean.Post;
 import com.stfc.website.bean.WidgetContent;
 import com.stfc.website.bean.WidgetMapContent;
 import java.util.List;
@@ -17,6 +18,13 @@ import org.zkoss.zul.Div;
 import org.zkoss.zul.Html;
 import org.zkoss.zul.Image;
 import org.zkoss.zul.Label;
+import org.zkoss.zhtml.H2;
+import org.zkoss.zhtml.P;
+import org.zkoss.zul.A;
+import org.zkoss.zul.Div;
+import org.zkoss.zul.Image;
+import org.zkoss.zul.Label;
+import org.zkoss.zul.Span;
 
 /**
  *
@@ -24,7 +32,7 @@ import org.zkoss.zul.Label;
  */
 public class WidgetBuilder {
 
-    public void buildSlider(List<Banner> plstBanner, Component indexSlider) {
+    public void buildBanner(List<Banner> plstBanner, Component indexSlider) {
         Div slider;
         Image img;
 
@@ -51,7 +59,93 @@ public class WidgetBuilder {
             }
         }
     }
-    
+
+    public void buildBannerIndex(List<Banner> plstBanner, Component indexSlider, Component indexNotice,
+            String titleNotice, List<Post> lstPostNotice) {
+        Div slider;
+        Image img;
+
+        for (int i = 0; i < plstBanner.size(); i++) {
+            Banner b = plstBanner.get(i);
+            if (b.getBannerType() == 2) {
+                slider = new Div();
+                A linkbanner = new A();
+                linkbanner.setHref(b.getBannerUrl());
+                linkbanner.setParent(slider);
+                if (i == 0) {
+                    slider.setClass("item slides active");
+                } else {
+                    slider.setClass("item slides");
+                }
+                slider.setParent(indexSlider);
+                img = new Image();
+                String src = "";
+                if (b.getBannerImage() != null) {
+                    src = b.getBannerImage();
+                }
+                img.setSrc(src);
+                img.setParent(linkbanner);
+            }
+        }
+        //Build Notice
+        Div divColMd4 = new Div();
+        divColMd4.setSclass("col-md-4 no-pading");
+        divColMd4.setParent(indexNotice);
+
+        Div divBlogCol = new Div();
+        divBlogCol.setSclass("irs-blog-single-col");
+        divBlogCol.setParent(divColMd4);
+
+        Div divIrsPost = new Div();
+        divIrsPost.setSclass("irs-post");
+        divIrsPost.setParent(divBlogCol);
+
+        Div divTitle = new Div();
+        divTitle.setSclass("title-category-hot border-bottom-title-category-hot");
+        divTitle.setParent(divIrsPost);
+
+        H2 h2Title = new H2();
+        h2Title.setParent(divTitle);
+
+        Span spanTitle = new Span();
+        spanTitle.setParent(h2Title);
+
+        Label lblFunctionName = new Label(titleNotice);
+        lblFunctionName.setParent(spanTitle);
+        
+        Div divListPost = new Div();
+        divListPost.setSclass("post-hot scroll-y");
+        divListPost.setParent(divIrsPost);
+
+        if (lstPostNotice != null && !lstPostNotice.isEmpty()) {
+            for (Post p : lstPostNotice) {
+                Div divContentPostItem = new Div();
+                divContentPostItem.setClass("irs-post-item-3-column-hot");
+                divContentPostItem.setParent(divListPost);
+                //daond
+                A aPostItemTitle = new A();
+                aPostItemTitle.setHref(p.getPostSlug());
+                aPostItemTitle.setParent(divContentPostItem);
+
+                H4 h4Post = new H4();
+                h4Post.setParent(aPostItemTitle);
+                
+                Label lblPostTitle = new Label(p.getPostTitle());
+//                lblPostTitle.setClass("post-title");
+                lblPostTitle.setParent(h4Post);
+
+                P spanPostTime = new P();
+                spanPostTime.setParent(divContentPostItem);
+
+                String datePostPrimary = "22/03/2018";
+                Label lblPostItemTime = new Label(datePostPrimary);
+                lblPostItemTime.setClass("time-hot");
+                lblPostItemTime.setParent(spanPostTime);
+            }
+        }
+
+    }
+
     public void buildFooter(WidgetMapContent wg, Component addWidgetIndex) {
         if (wg.getListContent() != null && !wg.getListContent().isEmpty()) {
             int intWidgetContent = wg.getListContent().size();
