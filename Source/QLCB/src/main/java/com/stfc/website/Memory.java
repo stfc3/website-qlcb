@@ -49,6 +49,8 @@ public class Memory {
     public static Map<String, Param> listParamCache;
     public static Map<Long, Category> listCategoryCache;
 
+    public static Long lngCategoryNotice;
+
     /**
      * Ham start up dashboard
      */
@@ -178,17 +180,26 @@ public class Memory {
             listBannerCache = new HashMap<>();
         }
     }
-    
+
     public static void loadParam() {
         List<Param> vlstParam;
         vlstParam = widgetService.getAllParam();
         if (vlstParam != null) {
             listParamCache = vlstParam.stream().collect(Collectors.toMap(Param::getParamKey, param -> param));
+            for (Param p : vlstParam) {
+                if (Constants.PARAM_KEY_CATEGORY_NOTICE_BANNER.equals(p.getParamKey())) {
+                    try {
+                        lngCategoryNotice = Long.parseLong(p.getParamValue());
+                    } catch (Exception e) {
+                        logger.error(e.getMessage(), e);
+                    }
+                }
+            }
         } else {
             listParamCache = new HashMap<>();
         }
     }
-    
+
     public static void loadCategory() {
         List<Category> vlstCategory;
         vlstCategory = widgetService.getAllCategory();
@@ -274,6 +285,14 @@ public class Memory {
 
     public static void setListCategoryCache(Map<Long, Category> listCategoryCache) {
         Memory.listCategoryCache = listCategoryCache;
+    }
+
+    public static Long getLngCategoryNotice() {
+        return lngCategoryNotice;
+    }
+
+    public static void setLngCategoryNotice(Long lngCategoryNotice) {
+        Memory.lngCategoryNotice = lngCategoryNotice;
     }
 
 }

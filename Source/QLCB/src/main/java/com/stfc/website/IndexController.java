@@ -11,6 +11,8 @@ import com.stfc.website.bean.Banner;
 import com.stfc.website.bean.Post;
 import com.stfc.website.bean.WidgetContent;
 import com.stfc.website.bean.WidgetMapContent;
+import com.stfc.website.domain.Category;
+import com.stfc.website.domain.Param;
 import com.stfc.website.service.WidgetService;
 import com.stfc.website.widget.WidgetBuilder;
 import java.text.SimpleDateFormat;
@@ -41,6 +43,9 @@ public class IndexController extends SelectorComposer<Div> {
     Div indexSlider;
 
     @Wire
+    Div indexNotice;
+
+    @Wire
     Div addWidgetIndex;
 
     @Wire
@@ -59,8 +64,24 @@ public class IndexController extends SelectorComposer<Div> {
         List<WidgetMapContent> vlstWidget = new ArrayList<>(Memory.getListWidgetMapContentCache().values());
         List<Post> lstPost = widgetService.getPost(Memory.getLstCategoryId());
         List<Banner> lstBanner = new ArrayList<>(Memory.getListBannerCache().values());
-        if (lstBanner != null && !lstBanner.isEmpty()) {
-            widgetBuilder.buildSlider(lstBanner, indexSlider);
+        //Get list Post notice banner
+        List<Post> lstPostNotice = new ArrayList<>();
+        try {
+            lstPostNotice = widgetService.getPostByCategoryId(Memory.getLngCategoryNotice());
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+        }
+        if (lstPostNotice != null && !lstPostNotice.isEmpty()) {
+            List<Category> lstCategory = new ArrayList<>(Memory.getListCategoryCache().values());
+            if (lstCategory != null && !lstCategory.isEmpty()) {
+                for (Category c : lstCategory) {
+                    if (Memory.getLngCategoryNotice() == c.getCategoryId()) {
+                        widgetBuilder.buildBannerIndex(lstBanner, indexSlider, indexNotice, c.getCategoryName(), lstPostNotice);
+                    }
+                }
+            }
+        } else if (lstBanner != null && !lstBanner.isEmpty()) {
+            widgetBuilder.buildBanner(lstBanner, indexSlider);
         }
         buildWidget(vlstWidget, lstPost);
 
@@ -477,9 +498,13 @@ public class IndexController extends SelectorComposer<Div> {
                             divContentPostItem.setClass("irs-post-item-3-column");
                             divContentPostItem.setParent(divContentPost);
                             //daond
+                            Div divContentPostItemTitle = new Div();
+                            divContentPostItemTitle.setClass("irs-post-item-3-column-height");
+                            divContentPostItemTitle.setParent(divContentPostItem);
+                            
                             A aPostItemTitle = new A();
                             aPostItemTitle.setHref(p.getPostSlug());
-                            aPostItemTitle.setParent(divContentPostItem);
+                            aPostItemTitle.setParent(divContentPostItemTitle);
 
                             Label lblPostTitle = new Label(p.getPostTitle());
                             lblPostTitle.setClass("post-title");

@@ -106,7 +106,7 @@ CREATE TABLE IF NOT EXISTS stfc_params
     param_name VARCHAR(200),
 	param_value VARCHAR(200),
 	param_description VARCHAR(2000),
-    post_status int COMMENT '1: Hoạt động, 0: Không hoạt động',
+    param_status int COMMENT '1: Hoạt động, 0: Không hoạt động',
     create_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY(param_id)
 ) ENGINE=INNODB AUTO_INCREMENT=1 DEFAULT CHARSET=UTF8 COMMENT 'Bảng stfc_params';

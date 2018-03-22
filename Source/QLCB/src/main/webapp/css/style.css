@@ -528,7 +528,7 @@ span.textRight{margin-left:15px;text-align:center;color:white;font-size:12px;fon
     color:#f79400;
 }
 .irs-post .irs-post-item-3-column{position:relative;margin-bottom:10px;}
-.irs-post .irs-post-item-3-column a h4 {height: 58px; overflow: hidden;}
+.irs-post .irs-post-item-3-column-height {height: 54px; overflow: hidden;}
 .irs-post .irs-post-item-3-column img{width:70px;height:70px;position:absolute;left:0;top:0;}
 .irs-post .irs-post-item-3-column h4 {text-transform:inherit;text-align:justify;}
 .irs-post .irs-post-item-3-column {color:#0d4e96;font-size:12px;}

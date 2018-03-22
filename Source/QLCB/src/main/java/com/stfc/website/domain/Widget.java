@@ -22,7 +22,7 @@ import javax.persistence.Table;
 @NamedQuery(name = "Widget.getAllWidget", query = "FROM Widget u WHERE status = 1 ORDER BY order")
 public class Widget {
 
-    private long widgetId;
+    private Long widgetId;
     private String widgetCode;
     private String widgetName;
     private String widgetType;
@@ -34,11 +34,11 @@ public class Widget {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "widget_id")
-    public long getWidgetId() {
+    public Long getWidgetId() {
         return widgetId;
     }
 
-    public void setWidgetId(long widgetId) {
+    public void setWidgetId(Long widgetId) {
         this.widgetId = widgetId;
     }
 

@@ -22,20 +22,20 @@ import javax.persistence.Table;
 @NamedQuery(name = "Category.getAllCategory", query = "FROM Category u WHERE category_status = 1")
 public class Category {
 
-    private long categoryId;
+    private Long categoryId;
     private String categoryName;
-    private long categoryParent;
+    private Long categoryParent;
     private String categorySlug;
     private int categoryOrder;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "category_id")
-    public long getCategoryId() {
+    public Long getCategoryId() {
         return categoryId;
     }
 
-    public void setCategoryId(long categoryId) {
+    public void setCategoryId(Long categoryId) {
         this.categoryId = categoryId;
     }
 
@@ -49,11 +49,11 @@ public class Category {
     }
 
     @Column(name = "category_parent")
-    public long getCategoryParent() {
+    public Long getCategoryParent() {
         return categoryParent;
     }
 
-    public void setCategoryParent(long categoryParent) {
+    public void setCategoryParent(Long categoryParent) {
         this.categoryParent = categoryParent;
     }
 

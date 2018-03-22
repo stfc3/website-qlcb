@@ -18,9 +18,9 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "stfc_params")
-@NamedQuery(name = "Param.getAllParam", query = "FROM Param u WHERE status = 1")
+@NamedQuery(name = "Param.getAllParam", query = "FROM Param u WHERE param_status = 1")
 public class Param {
-    private long paramId;
+    private Long paramId;
     private String paramKey;
     private String paramName;
     private String paramValue;
@@ -28,11 +28,11 @@ public class Param {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "param_id")
-    public long getParamId() {
+    public Long getParamId() {
         return paramId;
     }
 
-    public void setParamId(long paramId) {
+    public void setParamId(Long paramId) {
         this.paramId = paramId;
     }
 

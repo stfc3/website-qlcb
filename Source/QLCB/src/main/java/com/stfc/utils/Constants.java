@@ -33,6 +33,6 @@ public interface Constants {
     String PREFIX_POST = "post/";
     String PREFIX_CATEGORY = "category/";
     
-    public static final String KEY_CATEGORY_NOTICE_BANNER = "CATEGORY_NOTICE_BANNER";
+    public static final String PARAM_KEY_CATEGORY_NOTICE_BANNER = "CATEGORY_NOTICE_BANNER";
     
 }
