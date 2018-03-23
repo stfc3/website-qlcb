@@ -45,7 +45,7 @@ public class ListPostController extends SelectorComposer<Div> {
     @Override
     public void doAfterCompose(Div comp) throws Exception {
         super.doAfterCompose(comp);
-        logger.info("======>URL from Executions: " + Executions.getCurrent().getAttribute("stfc-url"));
+        logger.info("======>URL from Executions: " + Executions.getCurrent().getAttribute(Constants.STFC_URL_ATTRIBUTE));
         List<Banner> lstBanner = new ArrayList<>(Memory.getListBannerCache().values());
         if (lstBanner != null && !lstBanner.isEmpty()) {
             widgetBuilder.buildBanner(lstBanner, indexSlider);

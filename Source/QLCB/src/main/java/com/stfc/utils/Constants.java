@@ -37,4 +37,6 @@ public interface Constants {
     
     public static final int MAX_POST_WIDGET_POST_DETAIL = 5;
     
+    String STFC_URL_ATTRIBUTE="stfc-url";
+    
 }
