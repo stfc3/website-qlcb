@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?page title="QLCB" href="../images/faviconCKP.ico"?>
+<?link rel="shortcut icon" type="image/x-icon" href="../images/faviconCKP.ico"?>
+<?link href="bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css"?>
+
+<?link href="less/index.css.dsp" rel="stylesheet" type="text/css"?>
+<?link href="css/backend.css" rel="stylesheet" type="text/css"?>
+
+<zk xmlns:w="client" >
+    <div id="main">
+        <div sclass="top">
+            <include src="navbar.zul" style="width:100%; position: relative;"/>  
+        </div>
+        <div zclass="backend-main">
+            <div zclass="backend-main-left">
+                <include src="sidebar.zul"/>
+            </div>
+            <div sclass="backend-main-right">
+                <div sclass="breadcrumbs">
+                    <div sclass="breadcrumb">
+                        <span sclass="home-icon z-icon-home"/>
+                        <a label="Home" href="#"/>
+                        <label value="Dashboard"/>
+                    </div>
+            
+                </div>
+
+            </div>
+        </div>
+    </div>
+    
+</zk>
