@@ -27,22 +27,22 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public class WidgetDAO {
-
+    
     private static final Logger logger = Logger.getLogger(WidgetDAO.class);
-
+    
     @Autowired
     SessionFactory sessionFactory;
-
+    
     protected final Session getCurrentSession() {
         return sessionFactory.getCurrentSession();
     }
-
+    
     public List<Widget> getAllWidget() {
-
+        
         Query query = getCurrentSession().getNamedQuery("Widget.getAllWidget");
         return (List<Widget>) query.list();
     }
-
+    
     public List<WidgetContent> getAllWidgetContent(List<Long> lstWidgetId) {
         try {
             if (lstWidgetId != null && !lstWidgetId.isEmpty()) {
@@ -73,7 +73,7 @@ public class WidgetDAO {
         }
         return null;
     }
-
+    
     public List<Post> getPost(List<Long> lstCategoryId) {
         try {
             if (lstCategoryId != null && !lstCategoryId.isEmpty()) {
@@ -111,8 +111,8 @@ public class WidgetDAO {
         }
         return null;
     }
-
-    public List<Post> getPostByCategoryId(Long categoryId) {
+    
+    public List<Post> getPostByCategoryId(Long categoryId, int limitPost) {
         try {
             StringBuilder vstrSql = new StringBuilder();
             vstrSql.append("SELECT p.post_id as postId, p.author as author, p.post_title as postTitle, p.post_excerpt as postExcerpt,");
@@ -124,6 +124,9 @@ public class WidgetDAO {
             vstrSql.append(" and p.effect_from_date <= sysdate()");
             vstrSql.append(" and p.effect_to_date >= sysdate()");
             vstrSql.append(" ORDER BY p.is_pin desc, p.post_order, p.create_date ");
+            if (limitPost > 0) {
+                vstrSql.append(" LIMIT " + String.valueOf(limitPost));
+            }
             Query query = getCurrentSession()
                     .createSQLQuery(vstrSql.toString())
                     .addScalar("postId", StandardBasicTypes.LONG)
@@ -147,7 +150,7 @@ public class WidgetDAO {
         }
         return null;
     }
-
+    
     public List<Banner> getBanner() {
         try {
             StringBuilder vstrSql = new StringBuilder();
@@ -184,5 +187,41 @@ public class WidgetDAO {
         Query query = getCurrentSession().getNamedQuery("Category.getAllCategory");
         return (List<Category>) query.list();
     }
-
+    
+    public List<Post> getPostBySlug(String postSlug) {
+        try {
+            StringBuilder vstrSql = new StringBuilder();
+            vstrSql.append("SELECT p.post_id as postId, p.author as author, p.post_title as postTitle, p.post_excerpt as postExcerpt,");
+            vstrSql.append(" p.post_content as postContent, p.post_tag as postTag, m.category_id as categoryId, p.is_pin as isPin,");
+            vstrSql.append(" p.featured_image as featuredImage, p.post_slug as postSlug, p.post_order as postOrder, p.post_date as postDate");
+            vstrSql.append(" FROM stfc_posts p INNER JOIN stfc_category_post m ON p.post_id = m.post_id");
+            vstrSql.append(" WHERE p.post_slug = :postSlug");
+            vstrSql.append(" AND p.post_status = 3");
+            vstrSql.append(" and p.effect_from_date <= sysdate()");
+            vstrSql.append(" and p.effect_to_date >= sysdate()");
+            vstrSql.append(" ORDER BY p.is_pin desc, p.post_order, p.create_date ");
+            Query query = getCurrentSession()
+                    .createSQLQuery(vstrSql.toString())
+                    .addScalar("postId", StandardBasicTypes.LONG)
+                    .addScalar("author", StandardBasicTypes.STRING)
+                    .addScalar("postTitle", StandardBasicTypes.STRING)
+                    .addScalar("postExcerpt", StandardBasicTypes.STRING)
+                    .addScalar("postContent", StandardBasicTypes.STRING)
+                    .addScalar("postTag", StandardBasicTypes.STRING)
+                    .addScalar("categoryId", StandardBasicTypes.LONG)
+                    .addScalar("isPin", StandardBasicTypes.INTEGER)
+                    .addScalar("featuredImage", StandardBasicTypes.STRING)
+                    .addScalar("postSlug", StandardBasicTypes.STRING)
+                    .addScalar("postOrder", StandardBasicTypes.INTEGER)
+                    .addScalar("postDate", StandardBasicTypes.DATE)
+                    .setResultTransformer(
+                            Transformers.aliasToBean(Post.class));
+            query.setParameter("postSlug", postSlug);
+            return (List<Post>) query.list();
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+        }
+        return null;
+    }
+    
 }

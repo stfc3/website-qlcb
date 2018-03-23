@@ -55,8 +55,8 @@ public class WidgetServiceImpl implements WidgetService {
 
     @Transactional(readOnly = true)
     @Override
-    public List<Post> getPostByCategoryId(Long categorytId) {
-        return widgetDAO.getPostByCategoryId(categorytId);
+    public List<Post> getPostByCategoryId(Long categorytId, int limitPost) {
+        return widgetDAO.getPostByCategoryId(categorytId, limitPost);
     }
     @Transactional(readOnly = true)
     @Override
@@ -69,4 +69,11 @@ public class WidgetServiceImpl implements WidgetService {
     public List<Category> getAllCategory() {
         return widgetDAO.getAllCategory();
     }
+
+    @Transactional(readOnly = true)
+    @Override
+    public List<Post> getPostBySlug(String postSlug) {
+        return widgetDAO.getPostBySlug(postSlug);
+    }
+    
 }

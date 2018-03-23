@@ -23,7 +23,8 @@ public interface WidgetService {
     List<WidgetContent> getAllWidgetContent(List<Long> lstWidgetId);
     List<Post> getPost(List<Long> lstCategorytId);
     List<Banner> getBanner();
-    List<Post> getPostByCategoryId(Long categorytId);
+    List<Post> getPostByCategoryId(Long categorytId, int limitPost);
+    List<Post> getPostBySlug(String postSlug);
     List<Param> getAllParam();
     List<Category> getAllCategory();
 }

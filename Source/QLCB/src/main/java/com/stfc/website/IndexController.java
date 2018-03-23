@@ -66,7 +66,7 @@ public class IndexController extends SelectorComposer<Div> {
         //Get list Post notice banner
         List<Post> lstPostNotice = new ArrayList<>();
         try {
-            lstPostNotice = widgetService.getPostByCategoryId(Memory.getLngCategoryNotice());
+            lstPostNotice = widgetService.getPostByCategoryId(Memory.getLngCategoryNotice(), 0);
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
         }

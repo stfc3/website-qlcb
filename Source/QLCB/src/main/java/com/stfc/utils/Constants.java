@@ -35,4 +35,8 @@ public interface Constants {
     
     public static final String PARAM_KEY_CATEGORY_NOTICE_BANNER = "CATEGORY_NOTICE_BANNER";
     public static final int MAX_POST_WIDGET_TYPE_MULTI = 5;
+    public static final String PARAM_KEY_CATEGORY_WIDGET_POST_DETAIL_1 = "CATEGORY_WIDGET_POST_DETAIL_1";
+    
+    public static final int MAX_POST_WIDGET_POST_DETAIL = 5;
+    
 }

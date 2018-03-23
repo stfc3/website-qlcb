@@ -5,10 +5,17 @@
  */
 package com.stfc.website;
 
+import com.stfc.utils.Common;
 import com.stfc.utils.Constants;
+import com.stfc.utils.SpringConstant;
 import com.stfc.website.bean.Banner;
+import com.stfc.website.bean.Post;
 import com.stfc.website.bean.WidgetMapContent;
+import com.stfc.website.domain.Category;
+import com.stfc.website.domain.Param;
+import com.stfc.website.service.WidgetService;
 import com.stfc.website.widget.WidgetBuilder;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.log4j.Logger;
@@ -20,7 +27,10 @@ import org.zkoss.zhtml.H3;
 import org.zkoss.zul.Label;
 import org.zkoss.zul.Span;
 import org.zkoss.zhtml.P;
+import org.zkoss.zk.ui.select.annotation.WireVariable;
+import org.zkoss.zkplus.spring.SpringUtil;
 import org.zkoss.zul.A;
+import org.zkoss.zul.Html;
 import org.zkoss.zul.Image;
 
 /**
@@ -41,14 +51,24 @@ public class PostController extends SelectorComposer<Div> {
 
     private WidgetBuilder widgetBuilder = new WidgetBuilder();
 
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm:ss dd/mm/yyyy");
+
+    @WireVariable
+    protected WidgetService widgetService;
+
     @Override
     public void doAfterCompose(Div comp) throws Exception {
         super.doAfterCompose(comp);
+        widgetService = (WidgetService) SpringUtil.getBean(SpringConstant.WIDGET_SERVICE);
         List<Banner> lstBanner = new ArrayList<>(Memory.getListBannerCache().values());
         if (lstBanner != null && !lstBanner.isEmpty()) {
             widgetBuilder.buildBanner(lstBanner, indexSlider);
         }
-        buildPostDetail();
+
+        //build post detail
+        String postSlug = "gap-mat-2018";
+        List<Post> lstPost = widgetService.getPostBySlug(postSlug);
+        buildPostDetail(lstPost);
         List<WidgetMapContent> vlstWidget = new ArrayList<>(Memory.getListWidgetMapContentCache().values());
         if (vlstWidget != null && !vlstWidget.isEmpty()) {
             for (WidgetMapContent wg : vlstWidget) {
@@ -60,102 +80,140 @@ public class PostController extends SelectorComposer<Div> {
         }
     }
 
-    private void buildPostDetail() {
-        Div postMain = new Div();
-        postMain.setClass("inner-page-content left-img");
-        postMain.setParent(postDetail);
+    private void buildPostDetail(List<Post> lstPost) {
+        if (lstPost != null && !lstPost.isEmpty()) {
+            Post p = lstPost.get(0);
+            Div postMain = new Div();
+            postMain.setClass("inner-page-content left-img");
+            postMain.setParent(postDetail);
 
-        Div divContainer = new Div();
-        divContainer.setClass("container");
-        divContainer.setParent(postMain);
+            Div divContainer = new Div();
+            divContainer.setClass("container");
+            divContainer.setParent(postMain);
 
-        Div divRow = new Div();
-        divRow.setClass("row");
-        divRow.setParent(divContainer);
+            Div divRow = new Div();
+            divRow.setClass("row");
+            divRow.setParent(divContainer);
 
-        Div divColMd8 = new Div();
-        divColMd8.setClass("col-md-8");
-        divColMd8.setParent(divRow);
+            Div divColMd8 = new Div();
+            divColMd8.setClass("col-md-8");
+            divColMd8.setParent(divRow);
 
-        //Post content
-        Div irsBlogSingle = new Div();
-        irsBlogSingle.setClass("irs-blog-single-col");
-        irsBlogSingle.setParent(divColMd8);
+            //Post content
+            Div irsBlogSingle = new Div();
+            irsBlogSingle.setClass("irs-blog-single-col");
+            irsBlogSingle.setParent(divColMd8);
 
-        Div irsBlogCol = new Div();
-        irsBlogCol.setClass("irs-blog-col");
-        irsBlogCol.setParent(irsBlogSingle);
+            Div irsBlogCol = new Div();
+            irsBlogCol.setClass("irs-blog-col");
+            irsBlogCol.setParent(irsBlogSingle);
 
-        H1 titlePost = new H1();
-        titlePost.setParent(irsBlogCol);
+            H1 titlePost = new H1();
+            titlePost.setParent(irsBlogCol);
 
-        Span spanTitle = new Span();
-        spanTitle.setClass("pTitle");
-        spanTitle.setParent(titlePost);
-        String postTitle = "Gặp mặt đầu xuân Mậu Tuất 2018";
-        Label lblPostTitle = new Label(postTitle);
-        lblPostTitle.setParent(spanTitle);
+            Span spanTitle = new Span();
+            spanTitle.setClass("pTitle");
+            spanTitle.setParent(titlePost);
+            String postTitle = "";
+            if (p.getPostTitle() != null && !"".equals(p.getPostTitle())) {
+                postTitle = p.getPostTitle();
+            }
+            Label lblPostTitle = new Label(postTitle);
+            lblPostTitle.setParent(spanTitle);
 
-        P postContent = new P();
-        postContent.setParent(irsBlogCol);
+            P postContent = new P();
+            postContent.setParent(irsBlogCol);
 
-        Span spanContent = new Span();
-        spanContent.setClass("pBody");
-        spanContent.setParent(postContent);
-        String strPostContent = "Sáng ngày 21/2/2018, Trường Cán bộ quản lý GTVT đã long trọng tổ chức buổi gặp mặt và chúc Tết các cán bộ, công chức, viên chức, Nhà trường nhân dịp đầu năm mới";
-        Label lblPostContent = new Label(strPostContent);
-        lblPostContent.setParent(spanContent);
+            Span spanContent = new Span();
+            spanContent.setClass("pBody");
+            spanContent.setParent(postContent);
+            String strPostContent = "";
+            Html htmPostContent = new Html();
+            if (p.getPostContent() != null && !"".equals(p.getPostContent())) {
+                strPostContent = p.getPostContent();
+            }
+            htmPostContent.setContent(strPostContent);
+            htmPostContent.setParent(spanContent);
 
-        //Build tin tuc noi bat
-        Div divColMd4 = new Div();
-        divColMd4.setClass("col-md-4");
-        divColMd4.setParent(divRow);
+            //Build tin tuc noi bat
+            Div divColMd4 = new Div();
+            divColMd4.setClass("col-md-4");
+            divColMd4.setParent(divRow);
 
-        Div irsSideBar = new Div();
-        irsSideBar.setClass("irs-side-bar");
-        irsSideBar.setParent(divColMd4);
+            Div irsSideBar = new Div();
+            irsSideBar.setClass("irs-side-bar");
+            irsSideBar.setParent(divColMd4);
 
-        Div irsPost = new Div();
-        irsPost.setClass("irs-post");
-        irsPost.setParent(irsSideBar);
+            Div irsPost = new Div();
+            irsPost.setClass("irs-post");
+            irsPost.setParent(irsSideBar);
 
-        H3 newPost = new H3();
-        newPost.setParent(irsPost);
+            H3 newPost = new H3();
+            newPost.setParent(irsPost);
 
-        Span spanNewPost = new Span();
-        spanNewPost.setClass("irs-sidebar-title");
-        spanNewPost.setParent(newPost);
-        String postNewPos = "Tin tiêu điểm";
-        Label lblNewPos = new Label(postNewPos);
-        lblNewPos.setParent(spanNewPost);
+            Param param1 = Common.getParamByKey(Constants.PARAM_KEY_CATEGORY_WIDGET_POST_DETAIL_1);
+            try {
+                if (param1 != null && param1.getParamValue() != null) {
+                    Long categoryId1 = Long.parseLong(param1.getParamValue());
+                    Category category1 = Common.getCategoryById(categoryId1);
+                    Span spanNewPost = new Span();
+                    spanNewPost.setClass("irs-sidebar-title");
+                    spanNewPost.setParent(newPost);
+                    String postNewPos = category1.getCategoryName();
+                    Label lblNewPos = new Label(postNewPos);
+                    lblNewPos.setParent(spanNewPost);
 
-        Div divPostItem = new Div();
-        divPostItem.setClass("irs-post-item post-item-padding");
-        divPostItem.setParent(irsPost);
+                    List<Post> lstPost1 = widgetService.getPostByCategoryId(categoryId1, Constants.MAX_POST_WIDGET_POST_DETAIL);
+                    if (lstPost1 != null && !lstPost1.isEmpty()) {
+                        for (Post p1 : lstPost1) {
+                            Div divPostItem = new Div();
+                            divPostItem.setClass("irs-post-item-post-detail post-item-padding");
+                            divPostItem.setParent(irsPost);
 
-        A linkPostItem = new A();
-        linkPostItem.setHref("");
-        linkPostItem.setParent(divPostItem);
+                            A linkPostItem = new A();
+                            linkPostItem.setHref("");
+                            linkPostItem.setParent(divPostItem);
 
-        Image imgPostItem = new Image();
-        String srcPostItem = "media/tintuc_sukien/1/1.jpg";
-        imgPostItem.setSrc(srcPostItem);
-        imgPostItem.setParent(linkPostItem);
+                            Image imgPostItem = new Image();
+                            String src = "";
+                            if (p1.getFeaturedImage() != null && !"".equals(p1.getFeaturedImage())) {
+                                src = p1.getFeaturedImage();
+                            }
+                            imgPostItem.setSrc(src);
+                            imgPostItem.setParent(linkPostItem);
 
-        A aPostItemTitle = new A();
-        aPostItemTitle.setHref("");
-        aPostItemTitle.setParent(divPostItem);
+                            Div divPostTitle = new Div();
+                            divPostTitle.setClass("irs-post-item-post-detail-title");
+                            divPostTitle.setParent(divPostItem);
 
-        Label lblPostTitleItem = new Label("Hội nghị nghiệm thu đề tài Nghiên cứu khoa học");
-        lblPostTitleItem.setClass("post-title");
-        lblPostTitleItem.setParent(aPostItemTitle);
+                            A aPostItemTitle = new A();
+                            aPostItemTitle.setHref("");
+                            aPostItemTitle.setParent(divPostTitle);
+                            String p1Title = "";
+                            if (p1.getPostTitle() != null && !"".equals(p1.getPostTitle())) {
+                                p1Title = p1.getPostTitle();
+                            }
 
-        P spanPostTime = new P();
-        spanPostTime.setParent(divPostItem);
+                            Label lblPostTitleItem = new Label(p1Title);
+                            lblPostTitleItem.setClass("post-title");
+                            lblPostTitleItem.setParent(aPostItemTitle);
 
-//        String datePostPrimary = dateFormat.format(p.getPostDate());
-        Label lblPostItemTime = new Label("21/03/2018");
-        lblPostItemTime.setClass("time-post");
-        lblPostItemTime.setParent(spanPostTime);
+                            P spanPostTime = new P();
+                            spanPostTime.setParent(divPostItem);
+
+                            String dateP1 = "";
+                            if (p1.getPostDate() != null && !"".equals(p1.getPostDate())) {
+                                dateP1 = dateFormat.format(p.getPostDate());
+                            }
+                            Label lblPostItemTime = new Label(dateP1);
+                            lblPostItemTime.setClass("time-post");
+                            lblPostItemTime.setParent(spanPostTime);
+                        }
+                    }
+                }
+            } catch (Exception e) {
+                logger.error(e.getMessage(), e);
+            }
+        }
     }
 }
