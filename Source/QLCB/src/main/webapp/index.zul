@@ -17,9 +17,7 @@
         <!-- Main Header start -->
          <include src="/header.zul"/>
         <!-- Main Header end -->
-    
-    
-    
+
         <!-- Slider -->
         <div class="irs-main-slider">
             <div class="container">
@@ -43,129 +41,10 @@
         </div>
         <!--End Slider -->
     
-        <!--Su menh - Tam nhin -->
-        <div class="irs-blog-field">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="irs-discription-col text-center">
-                            <x:h1>Sứ mạng - Tầm nhìn - Giá trị cốt lõi</x:h1>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <x:p class="irs-topdiscription">
-                            Quyết định số 346/QĐ-TC ngày 21 tháng 02 năm 1979 của Bộ trưởng Bộ Giao thông vận tải, 
-                            Trường Bổ túc cán bộ quản lý-Tiền thân của Trường Cán bộ quản lý Giao thông vận tải ngày nay được thành lập nhằm đáp ứng đòi hỏi khách quan, 
-                            cấp thiết về đào tạo, bồi dưỡng Cán bộ quản lý trong công cuộc khôi phục và phát triển ngành giao thông vận tải, phát triển kinh tế đất nước. 
-                            Từ đó đến nay, trải qua bao gian khó, thăng trầm, Nhà trường đã luôn bám sát nhiệm vụ Bộ giao, đáp ứng kịp thời nhu cầu đào tạo, bồi dưỡng cán bộ, công chức, 
-                            viên chức của ngành GTVT và một phần cho các ngành kinh tế khác.
-                        </x:p>
-                        <!--<span class="read-more">Xem thêm-->
-                        <!--</span>-->
-                    </div>
-
-                </div>
-                <div class="row des">
-                    <div class="col-md-8">
-                        <div class="irs-discription-col">
-                            <x:h2>Giá trị cốt lõi</x:h2>
-                            <x:ul>
-                                <x:li>
-                                    <x:i class="zmdi zmdi-dot-circle"></x:i>
-                                    <span>Ngày 16 tháng 01 năm 1984</span> Bộ trưởng Bộ GTVT ban hành Quyết định số 123/TCCB đổi tên Trường thành Trường Quản lý kinh tế giao thông vận tải và chuyển Trụ sở từ Xã Văn Phú, Huyện Mỹ Văn, Tỉnh Hưng Yên về tiếp nhận cơ sở vật chất, đội ngũ cán bộ, viên chức Trường Cơ giới 3 Liên hiệp xí nghiệp Cầu Thăng Long tại Xã Kim Nỗ, Huyện Đông Anh, Thành phố Hà Nội.
-                                </x:li>
-                            </x:ul>
-
-                            <x:ul>
-                                <x:li>
-                                    <x:i class="zmdi zmdi-dot-circle"></x:i>
-                                    <span>Ngày 22 tháng 4 năm 2008</span> Chính phủ ban hành Nghị định số 51/NĐ-CP “ Quy định chức năng, nhiệm vụ, quyền hạn và cơ cấu tổ chức của Bộ giao thông vận tải ”, theo qui định tại Nghị định này, Trường được đổi tên thành Trường Cán bộ quản lý GTVT và là 01 trong 05 tổ chức sự nghiệp thuộc Bộ Giao thông vận tải.
-                                </x:li>
-                            </x:ul>
-                            <x:ul>
-                                <x:li>
-                                    <x:i class="zmdi zmdi-dot-circle"></x:i>
-                                    <span>Ngày 04 tháng 4 năm 2013</span> Bộ trưởng Bộ Giao thông vận tải đã ban hành Quyết định số 842/QĐ-BGTVT về việc quy định chức năng, nhiệm vụ, quyền hạn, cơ cấu tổ chức của Trường Cán bộ quản lý giao thông vận tải. Theo quy định tại Quyết định này, Trường Cán bộ quản lý giao thông vận tải trực thuộc Bộ Giao thông vận tải, là đơn vị sự nghiệp đào tạo, chịu sự quản lý nghiệp vụ của các cơ quan nhà nước có liên quan.
-                                </x:li>
-                            </x:ul>
-
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="irs-discription-col">
-                            <x:h2>Sứ mạng</x:h2>
-                            <x:p class="irs-topdiscription">
-                                Trường cán bộ quản lý Giao thông vận tải cung cấp dịch vụ giáo dục, đào tạo, nghiên cứu khoa học, 
-                                tư vấn, ứng dụng và chuyển giao công nghệ đáp ứng yêu cầu công nghiệp hóa - hiện đại hóa đất nước và hội nhập quốc tế.
-                            </x:p>
-
-                            <x:h2>Tầm nhìn</x:h2>
-                            <x:p class="irs-topdiscription">
-                                Trường cán bộ quản lý Giao thông vận tải là cơ sở đào tạo định hướng ứng dụng nhiều ngành, nhiều loại hình, nhiều cấp trình độ trong nước và quốc tế.
-                            </x:p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--End Su menh - Tam nhin -->
-    
-    
         <!-- HOT NEWS -->
         <div id="addWidgetIndex"></div>
         <!-- HOT NEWS end -->
-        
-        <!--Giang vien-->
-<!--        <div class="irs-about-field">
-            <div class="container">
-                <div class="row border-bottom-title-category">
-                    <div class="col-md-8">
-                        <div class="title-category">
-                            <x:h2>
-                                <a href="/vn/thong-bao-tin-noi-bo">
-                                    <span>Giảng viên</span>
-                                </a>
-                            </x:h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="irs-courses-img">
-                            <x:img src="images/giang_vien.png" alt=""> </x:img>
-                        </div>
-                    </div>
-                    <div class="col-md-8" style="padding-top: 40px">
-                
-                        <div class="row">
-                            <div class="col-md-1 col-sm-1 col-xs-2" style="font-size: 30px">
-                                <x:i class="icofont icofont-ui-check"></x:i>
-                            </div>
-                            <div class="col-md-11 col-sm-11 col-xs-10">
-                                <div class="intro">
-                                    <x:h3>Đội ngũ giảng viên</x:h3>
-                                    <div class="entry-text">
-                                        <x:p>01 Nhà giáo ưu tú.</x:p>
-                                        <x:p>02 Tiến sỹ.</x:p>
-                                        <x:p>11 Thạc sỹ.</x:p>
-                                        <x:p>13 đồng chí đang học cao học.</x:p>
-                                        <x:p>32 Đại học.</x:p>
-                                        <x:p>35 giáo viên có chứng chỉ bồi dưỡng nghiệp vụ sư phạm bậc 1.</x:p>
-                                        <x:p>10 giáo viên có chứng chỉ bồi dưỡng nghiệp vụ sư phạm bậc 2.</x:p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>-->
-        <!--End Giang vien-->
-    
-    
-    
+ 
         <!-- Footer start -->
         <div id="addWidgetFooter"></div>
         <!-- Footer end -->
@@ -183,9 +62,7 @@
                 </div>
             </div>
         </div>
-    
-    
-        
+
     </div>
         
     <!-- script start from here -->
@@ -208,22 +85,5 @@
     <!-- Custom script for all pages -->
     <script type="text/javascript" src="js/script.js"></script>
     <!-- Funfact START -->
-    <!-- DkZ -->
-    <script type="text/javascript">
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-        ga('create', 'UA-48346684-11', 'auto');
-        ga('send', 'pageview');
-        $(document).ready(function ($) {
-        $(".des").hide();
-        $(".read-more").click(function () {
-        $(".des").toggle("slow");
-        });
-            
-        });
-    </script>
     
 </zk>

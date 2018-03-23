@@ -12,7 +12,6 @@ import com.stfc.website.bean.Post;
 import com.stfc.website.bean.WidgetContent;
 import com.stfc.website.bean.WidgetMapContent;
 import com.stfc.website.domain.Category;
-import com.stfc.website.domain.Param;
 import com.stfc.website.service.WidgetService;
 import com.stfc.website.widget.WidgetBuilder;
 import java.text.SimpleDateFormat;
@@ -234,6 +233,12 @@ public class IndexController extends SelectorComposer<Div> {
     private void buildWidgetNewsPost(WidgetMapContent wg, List<Post> lstPost) {
         if (wg != null && wg.getListContent() != null && !wg.getListContent().isEmpty() && lstPost != null && !lstPost.isEmpty()) {
             List<Post> lstPostByContent = getPostByContent(wg, lstPost);
+            int postNumber;
+            if (lstPostByContent.size() >= 6) {
+                postNumber = 6;
+            } else {
+                postNumber = lstPostByContent.size();
+            }
             Div hotNewMain = new Div();
             hotNewMain.setClass("irs-blog-field irs-blog-single-field");
             hotNewMain.setParent(addWidgetIndex);
@@ -346,7 +351,7 @@ public class IndexController extends SelectorComposer<Div> {
             irsPost.setClass("irs-post");
             irsPost.setParent(divPostSide);
             if (!lstPostByContent.isEmpty()) {
-                for (int i = 1; i < lstPostByContent.size(); i++) {
+                for (int i = 1; i <= postNumber; i++) {
                     Post p = lstPostByContent.get(i);
                     Div divPostItem = new Div();
                     divPostItem.setClass("irs-post-item post-item-padding");
@@ -490,10 +495,15 @@ public class IndexController extends SelectorComposer<Div> {
                 lblTitle.setParent(spanTime);
 
                 //Build post
+                int postNumber = 0;
                 if (!lstPostByContent.isEmpty()) {
-                    for (int i = 1; i < lstPostByContent.size(); i++) {
+                    for (int i = 0; i < lstPostByContent.size(); i++) {
                         Post p = lstPostByContent.get(i);
                         if (wc.getWidgetContent().equalsIgnoreCase(String.valueOf(p.getCategoryId()))) {
+                            if (postNumber == Constants.MAX_POST_WIDGET_TYPE_MULTI) {
+                                break;
+                            }
+                            postNumber++;
                             Div divContentPostItem = new Div();
                             divContentPostItem.setClass("irs-post-item-3-column");
                             divContentPostItem.setParent(divContentPost);
@@ -501,7 +511,7 @@ public class IndexController extends SelectorComposer<Div> {
                             Div divContentPostItemTitle = new Div();
                             divContentPostItemTitle.setClass("irs-post-item-3-column-height");
                             divContentPostItemTitle.setParent(divContentPostItem);
-                            
+
                             A aPostItemTitle = new A();
                             aPostItemTitle.setHref(p.getPostSlug());
                             aPostItemTitle.setParent(divContentPostItemTitle);
