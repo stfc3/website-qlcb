@@ -30,8 +30,6 @@ public interface Constants {
     //Position widget
     public static final String WIDGET_POSITION_CONTENT = "CONTENT";
     public static final String WIDGET_POSITION_FOOTER = "FOOTER";
-    String PREFIX_POST = "post/";
-    String PREFIX_CATEGORY = "category/";
     
     public static final String PARAM_KEY_CATEGORY_NOTICE_BANNER = "CATEGORY_NOTICE_BANNER";
     public static final int MAX_POST_WIDGET_TYPE_MULTI = 5;

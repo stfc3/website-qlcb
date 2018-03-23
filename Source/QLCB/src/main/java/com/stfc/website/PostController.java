@@ -27,6 +27,8 @@ import org.zkoss.zhtml.H3;
 import org.zkoss.zul.Label;
 import org.zkoss.zul.Span;
 import org.zkoss.zhtml.P;
+import org.zkoss.zk.ui.Executions;
+import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zk.ui.select.annotation.WireVariable;
 import org.zkoss.zkplus.spring.SpringUtil;
 import org.zkoss.zul.A;
@@ -59,6 +61,7 @@ public class PostController extends SelectorComposer<Div> {
     @Override
     public void doAfterCompose(Div comp) throws Exception {
         super.doAfterCompose(comp);
+        logger.info("======>URL from Executions: " + Executions.getCurrent().getAttribute("stfc-url"));
         widgetService = (WidgetService) SpringUtil.getBean(SpringConstant.WIDGET_SERVICE);
         List<Banner> lstBanner = new ArrayList<>(Memory.getListBannerCache().values());
         if (lstBanner != null && !lstBanner.isEmpty()) {

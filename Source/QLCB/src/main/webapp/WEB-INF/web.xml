@@ -26,6 +26,21 @@
         <dispatcher>REQUEST</dispatcher>
         <dispatcher>FORWARD</dispatcher>
     </filter-mapping>
+    
+    <!--stfc filter-->  
+    <filter>
+        <filter-name>StfcURLFilter</filter-name>
+        <filter-class>com.stfc.utils.WebsiteFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>StfcURLFilter</filter-name>
+        <url-pattern>/post/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>StfcURLFilter</filter-name>
+        <url-pattern>/category/*</url-pattern>
+    </filter-mapping>
+    <!--stfc filter--> 
     <!--rewrite url-->  
     <filter>
         <filter-name>UrlRewriteFilter</filter-name>
@@ -38,7 +53,7 @@
         <dispatcher>FORWARD</dispatcher>
     </filter-mapping>
     <!--rewrite url--> 
- 
+    
     <!-- Spring can be easily integrated into any Java-based web framework. 
  All you need to do is to declare the ContextLoaderListener in your web.xml 
  and use a contextConfigLocation <context-param> to set which context files 

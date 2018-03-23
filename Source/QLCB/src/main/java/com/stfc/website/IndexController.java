@@ -174,7 +174,7 @@ public class IndexController extends SelectorComposer<Div> {
             divImg.setParent(col);
 
             A linkImg = new A();
-            linkImg.setHref(Constants.PREFIX_POST + p.getPostSlug());
+            linkImg.setHref(p.getPostSlug());
             linkImg.setParent(divImg);
 
             Image img = new Image();
@@ -202,7 +202,7 @@ public class IndexController extends SelectorComposer<Div> {
             divTitle.setParent(col);
 
             A linkTitle = new A();
-            linkTitle.setHref(Constants.PREFIX_POST + p.getPostSlug());
+            linkTitle.setHref(p.getPostSlug());
             linkTitle.setParent(divTitle);
 
             Label lblTitle = new Label(p.getPostTitle());
@@ -223,7 +223,7 @@ public class IndexController extends SelectorComposer<Div> {
                 strUrlDetaiMore = wg.getListContent().get(0).getDetailMoreSlug();
             }
         }
-        linkReadMore.setHref(Constants.PREFIX_CATEGORY + strUrlDetaiMore);
+        linkReadMore.setHref(strUrlDetaiMore);
         linkReadMore.setParent(divReadMore);
 
         Label lblTitle = new Label("Xem thêm");
@@ -298,7 +298,7 @@ public class IndexController extends SelectorComposer<Div> {
                 divPrimaryImg.setParent(divPrimaryColBlog);
 
                 A linkImg = new A();
-                linkImg.setHref(Constants.PREFIX_POST + postPrimary.getPostSlug());
+                linkImg.setHref(postPrimary.getPostSlug());
                 linkImg.setParent(divPrimaryImg);
 
                 Image img = new Image();
@@ -327,7 +327,7 @@ public class IndexController extends SelectorComposer<Div> {
                 divPrimaryTitle.setParent(divPrimaryColBlog);
 
                 A aPrimaryLinkTitle = new A();
-                aPrimaryLinkTitle.setHref(Constants.PREFIX_POST + postPrimary.getPostSlug());
+                aPrimaryLinkTitle.setHref(postPrimary.getPostSlug());
                 aPrimaryLinkTitle.setParent(divPrimaryTitle);
 
                 Label lblPrimaryTitle = new Label(postPrimary.getPostTitle());
@@ -358,7 +358,7 @@ public class IndexController extends SelectorComposer<Div> {
                     divPostItem.setParent(irsPost);
 
                     A linkPostItem = new A();
-                    linkPostItem.setHref(Constants.PREFIX_POST + p.getPostSlug());
+                    linkPostItem.setHref(p.getPostSlug());
                     linkPostItem.setParent(divPostItem);
 
                     Image imgPostItem = new Image();
@@ -367,7 +367,7 @@ public class IndexController extends SelectorComposer<Div> {
                     imgPostItem.setParent(linkPostItem);
 
                     A aPostItemTitle = new A();
-                    aPostItemTitle.setHref(Constants.PREFIX_POST + p.getPostSlug());
+                    aPostItemTitle.setHref(p.getPostSlug());
                     aPostItemTitle.setParent(divPostItem);
 
                     Label lblPostTitle = new Label(p.getPostTitle());
@@ -386,7 +386,7 @@ public class IndexController extends SelectorComposer<Div> {
 
             A linkReadMore = new A();
             linkReadMore.setClass("btn btn-default irs-btn-transparent-two btn-read-more");
-            linkReadMore.setHref(Constants.PREFIX_CATEGORY);
+//            linkReadMore.setHref();
             linkReadMore.setParent(irsPost);
 
             Label lblTitle = new Label("Xem thêm");
@@ -536,7 +536,7 @@ public class IndexController extends SelectorComposer<Div> {
                 if (wc != null && wc.getDetailMoreSlug() != null && !"".equals(wc.getDetailMoreSlug())) {
                     strUrlDetaiMore = wg.getListContent().get(0).getDetailMoreSlug();
                 }
-                linkReadMore.setHref(Constants.PREFIX_CATEGORY + strUrlDetaiMore);
+                linkReadMore.setHref(strUrlDetaiMore);
                 linkReadMore.setParent(divContentPost);
 
                 Label lblMore = new Label("Xem thêm");

@@ -20,6 +20,7 @@ import org.zkoss.zhtml.H3;
 import org.zkoss.zul.Label;
 import org.zkoss.zul.Span;
 import org.zkoss.zhtml.P;
+import org.zkoss.zk.ui.Executions;
 import org.zkoss.zul.A;
 import org.zkoss.zul.Image;
 
@@ -44,6 +45,7 @@ public class ListPostController extends SelectorComposer<Div> {
     @Override
     public void doAfterCompose(Div comp) throws Exception {
         super.doAfterCompose(comp);
+        logger.info("======>URL from Executions: " + Executions.getCurrent().getAttribute("stfc-url"));
         List<Banner> lstBanner = new ArrayList<>(Memory.getListBannerCache().values());
         if (lstBanner != null && !lstBanner.isEmpty()) {
             widgetBuilder.buildBanner(lstBanner, indexSlider);
