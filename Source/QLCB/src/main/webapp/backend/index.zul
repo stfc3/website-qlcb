@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?page title="QLCB" href="../images/faviconCKP.ico"?>
+<?page title="Quản trị website" href="../images/faviconCKP.ico"?>
 <?link rel="shortcut icon" type="image/x-icon" href="../images/faviconCKP.ico"?>
 <?link href="bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css"?>
 
@@ -11,7 +11,7 @@
         <div sclass="top">
             <include src="navbar.zul" style="width:100%; position: relative;"/>  
         </div>
-        <div zclass="backend-main">
+        <div zclass="backend-main" apply="com.stfc.backend.controller.MainComposer">
             <div zclass="backend-main-left">
                 <include src="sidebar.zul"/>
             </div>
@@ -19,12 +19,12 @@
                 <div sclass="breadcrumbs">
                     <div sclass="breadcrumb">
                         <span sclass="home-icon z-icon-home"/>
-                        <a label="Home" href="#"/>
-                        <label value="Dashboard"/>
+                        <a label="Home" href="/admin"/>
+                        <label id="breadcrumb"/>
                     </div>
             
                 </div>
-
+                <include id="content"/>
             </div>
         </div>
     </div>

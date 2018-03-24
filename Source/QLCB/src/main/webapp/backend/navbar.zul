@@ -6,7 +6,7 @@
 
     <!-- Navbar -->
     <hlayout sclass="nav-user pull-right" spacing="0">
-        <a id="atask" iconSclass="z-icon-tasks" popup="taskpp, position=after_end, type=toggle" sclass="grey">
+<!--        <a id="atask" iconSclass="z-icon-tasks" popup="taskpp, position=after_end, type=toggle" sclass="grey">
             <label value="4" sclass="badge badge-grey"/>
         </a>
         <a id="anoti" iconSclass="z-icon-bell" popup="notipp, position=after_end, type=toggle" sclass="purple">
@@ -14,7 +14,7 @@
         </a>
         <a id="amsg" iconSclass="z-icon-envelope" popup="msgpp, position=after_end, type=toggle" sclass="green">
             <label value="5" sclass="badge badge-success"/>
-        </a>
+        </a>-->
         <!-- User menu -->
         <menubar sclass="user-menu light-blue">
             <menu tooltiptext="daond" label="Welcome, daond" image="assets/avatars/user.jpg">
