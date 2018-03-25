@@ -73,6 +73,9 @@ public class Memory {
      */
     public void reloadCache() {
         try {
+            clearCache();
+            Thread.sleep(5000);
+            startup();
         } catch (Throwable ex) {
             logger.error(ex.getMessage(), ex);
         }

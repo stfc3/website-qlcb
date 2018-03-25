@@ -9,6 +9,7 @@ import com.stfc.website.bean.Banner;
 import com.stfc.website.bean.Post;
 import com.stfc.website.bean.WidgetContent;
 import com.stfc.website.bean.WidgetMapContent;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import org.zkoss.zhtml.H4;
 import org.zkoss.zk.ui.Component;
@@ -26,6 +27,8 @@ import org.zkoss.zul.Span;
  * @author daond
  */
 public class WidgetBuilder {
+    
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm:ss dd/mm/yyyy");
 
     public void buildBanner(List<Banner> plstBanner, Component indexSlider) {
         Div slider;
@@ -132,7 +135,7 @@ public class WidgetBuilder {
                 P spanPostTime = new P();
                 spanPostTime.setParent(divContentPostItem);
 
-                String datePostPrimary = "22/03/2018";
+                String datePostPrimary = dateFormat.format(p.getPostDate());
                 Label lblPostItemTime = new Label(datePostPrimary);
                 lblPostItemTime.setClass("time-hot");
                 lblPostItemTime.setParent(spanPostTime);

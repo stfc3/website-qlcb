@@ -75,5 +75,16 @@ public class WidgetServiceImpl implements WidgetService {
     public List<Post> getPostBySlug(String postSlug) {
         return widgetDAO.getPostBySlug(postSlug);
     }
+
+    @Transactional(readOnly = true)
+    @Override
+    public List<Post> getPostByCategorySlug(String categorytSlug, int limitPost) {
+        return widgetDAO.getPostByCategorySlug(categorytSlug, limitPost);
+    }
+
+    @Override
+    public List<Post> getPostByCategoryIdRelated(Long categorytId, int limitPost, Long postId) {
+        return widgetDAO.getPostByCategoryIdRelated(categorytId, limitPost, postId);
+    }
     
 }

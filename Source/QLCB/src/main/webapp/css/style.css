@@ -261,7 +261,8 @@ h6{font-weight:400;line-height:1.2;color:#000;margin-top:0;margin-bottom:10px;}
 .irs-discription-col{margin-bottom:30px;}
 .irs-discription-col h1{color:#0d4e96;text-transform:uppercase;font-size:40px;margin-bottom:30px;}
 .irs-discription-col h1 span{color:#0d4e96;}
-.irs-discription-col h2{color:#0d4e96;font-size:25px;font-weight:600;}
+.irs-discription-col h2 span{color:#0d4e96;font-size:25px;font-weight:600;}
+.irs-discription-col h1 span{color:#0d4e96;font-size:25px;font-weight:600;}
 .irs-discription-col h2 span{color:#0d4e96;}
 .irs-topdiscription{margin-bottom:20px;}
 .irs-discription-col ul li{position:relative;margin-bottom:10px;}
@@ -610,6 +611,18 @@ span.textRight{margin-left:15px;text-align:center;color:white;font-size:12px;fon
 .scroll-y {
     overflow-y: scroll;
 }
+.irs-post-item-3-column-related span{
+    font-size: 14px;
+}
+.irs-post-item-3-column-related span:hover{
+    color: #c4313d;
+    text-decoration: underline;
+}
+
+
+
+
+
 
 
 

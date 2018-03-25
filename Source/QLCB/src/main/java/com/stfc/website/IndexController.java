@@ -178,7 +178,10 @@ public class IndexController extends SelectorComposer<Div> {
             linkImg.setParent(divImg);
 
             Image img = new Image();
-            String src = "media/tinhot/1/1.jpg";
+            String src = "";
+            if (p.getFeaturedImage() != null && !"".equals(p.getFeaturedImage())) {
+                src = p.getFeaturedImage();
+            }
             img.setSrc(src);
             img.setParent(linkImg);
 
@@ -386,7 +389,13 @@ public class IndexController extends SelectorComposer<Div> {
 
             A linkReadMore = new A();
             linkReadMore.setClass("btn btn-default irs-btn-transparent-two btn-read-more");
-//            linkReadMore.setHref();
+            String strUrlDetaiMore = "";
+            if (wg != null && wg.getListContent() != null && wg.getListContent().get(0) != null) {
+                if (wg.getListContent().get(0).getDetailMoreSlug() != null && !"".equals(wg.getListContent().get(0).getDetailMoreSlug())) {
+                    strUrlDetaiMore = wg.getListContent().get(0).getDetailMoreSlug();
+                }
+            }
+            linkReadMore.setHref(strUrlDetaiMore);
             linkReadMore.setParent(irsPost);
 
             Label lblTitle = new Label("Xem thêm");
@@ -439,7 +448,9 @@ public class IndexController extends SelectorComposer<Div> {
             divRow.setClass("row");
             divRow.setParent(container);
 
-            for (WidgetContent wc : wg.getListContent()) {
+//            for (WidgetContent wc : wg.getListContent()) {
+            for (int j = 0; j < wg.getListContent().size(); j++) {
+                WidgetContent wc = wg.getListContent().get(j);
                 Div divContent = new Div();
                 switch (intWidgetContent) {
                     case 1:
@@ -534,7 +545,7 @@ public class IndexController extends SelectorComposer<Div> {
                 linkReadMore.setClass("btn btn-default irs-btn-transparent-two btn-read-more");
                 String strUrlDetaiMore = "";
                 if (wc != null && wc.getDetailMoreSlug() != null && !"".equals(wc.getDetailMoreSlug())) {
-                    strUrlDetaiMore = wg.getListContent().get(0).getDetailMoreSlug();
+                    strUrlDetaiMore = wg.getListContent().get(j).getDetailMoreSlug();
                 }
                 linkReadMore.setHref(strUrlDetaiMore);
                 linkReadMore.setParent(divContentPost);
