@@ -30,7 +30,7 @@ public class WidgetBuilder {
     
     private SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm:ss dd/mm/yyyy");
 
-    public void buildBanner(List<Banner> plstBanner, Component indexSlider) {
+    public void buildBanner(List<Banner> plstBanner, Component indexSlider, String urlImage) {
         Div slider;
         Image img;
 
@@ -50,7 +50,7 @@ public class WidgetBuilder {
                 img = new Image();
                 String src = "";
                 if (b.getBannerImage() != null) {
-                    src = b.getBannerImage();
+                    src = urlImage + b.getBannerImage();
                 }
                 img.setSrc(src);
                 img.setParent(linkbanner);

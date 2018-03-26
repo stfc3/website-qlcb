@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c" ?>
-<?page title="Trường quản lý cán bộ Giao thông vận tải" href="images/faviconCKP.ico"?>
-<?link rel="shortcut icon" type="image/x-icon" href="images/faviconCKP.ico"?>
+<?page title="Trường quản lý cán bộ Giao thông vận tải" href=""?>
+<?link rel="shortcut icon" type="image/x-icon" href=""?>
 
 <?link href="css/font-awesome.css" rel="stylesheet" type="text/css"?>
 <?link href="css/font-awesome.min.css" rel="stylesheet" type="text/css"?>
@@ -15,7 +15,7 @@
 <zk xmlns:x="xhtml" xmlns:zk="zk">    
     <div apply="com.stfc.website.IndexController">
         <!-- Main Header start -->
-         <include src="/header.zul"/>
+        <include src="/header.zul"/>
         <!-- Main Header end -->
 
         <!-- Slider -->
@@ -49,19 +49,7 @@
         <div id="addWidgetFooter"></div>
         <!-- Footer end -->
 
-        <div class="irs-copyright-field">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="irs-copyright">
-                            <x:p>
-                                Copyright © 2018 - Được phát triển bởi Stfc Team 
-                            </x:p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <include src="/copyright.zul"/>
 
     </div>
         

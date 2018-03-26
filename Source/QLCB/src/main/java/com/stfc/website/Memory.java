@@ -44,6 +44,7 @@ public class Memory {
     public static Map<Long, WidgetMapContent> listWidgetMapContentCache;
     public static List<Long> lstWidgetId = new ArrayList<>();
     public static List<Long> lstCategoryId = new ArrayList<>();
+    public static List<Long> lstCategoryIdInternal = new ArrayList<>();
 
     public static Map<Long, Banner> listBannerCache;
     public static Map<String, Param> listParamCache;
@@ -101,6 +102,7 @@ public class Memory {
         listWidgetMapContentCache.clear();
         lstWidgetId.clear();
         lstCategoryId.clear();
+        lstCategoryIdInternal.clear();
     }
 
     public static void loadWidget() {
@@ -136,6 +138,9 @@ public class Memory {
         for (WidgetContent wc : vlstWidgetContent) {
             if (Constants.WIDGET_CONTENT_TYPE_CATEGORY.equals(wc.getWidgetType())) {
                 lstCategoryId.add(Long.parseLong(wc.getWidgetContent()));
+            }
+            if (Constants.WIDGET_CONTENT_TYPE_CATEGORY_INTERNAL.equals(wc.getWidgetType())) {
+                lstCategoryIdInternal.add(Long.parseLong(wc.getWidgetContent()));
             }
         }
     }
@@ -296,6 +301,14 @@ public class Memory {
 
     public static void setLngCategoryNotice(Long lngCategoryNotice) {
         Memory.lngCategoryNotice = lngCategoryNotice;
+    }
+
+    public static List<Long> getLstCategoryIdInternal() {
+        return lstCategoryIdInternal;
+    }
+
+    public static void setLstCategoryIdInternal(List<Long> lstCategoryIdInternal) {
+        Memory.lstCategoryIdInternal = lstCategoryIdInternal;
     }
 
 }

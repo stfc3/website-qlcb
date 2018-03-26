@@ -367,8 +367,8 @@ h6{font-weight:400;line-height:1.2;color:#000;margin-top:0;margin-bottom:10px;}
 .irs-footer-contact p{}
 .irs-footer-contact p i{margin-right:10px;}
 .irs-copyright-field{background:#083970;text-align:center;padding:5px 0;}
-.irs-copyright-field p{color:#ffffff;text-transform:capitalize;}
-.irs-copyright-field p a{color:#0d4e96;}
+.irs-copyright-field {color:#ffffff;text-transform:capitalize;}
+.irs-copyright-field  a{color:#0d4e96;}
 .entry{padding-bottom:10px;margin-bottom:20px;border-bottom:2px solid #F5F5F5;}
 .entry-title{font-size:30px;}
 .entry-title a{color:#333;text-align:justify;}

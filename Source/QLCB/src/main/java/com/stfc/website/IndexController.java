@@ -5,6 +5,7 @@
  */
 package com.stfc.website;
 
+import com.stfc.utils.Common;
 import com.stfc.utils.Constants;
 import com.stfc.utils.SpringConstant;
 import com.stfc.website.bean.Banner;
@@ -55,6 +56,7 @@ public class IndexController extends SelectorComposer<Div> {
 
     private SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm:ss dd/mm/yyyy");
     private WidgetBuilder widgetBuilder = new WidgetBuilder();
+    private String urlImage;
 
     @Override
     public void doAfterCompose(Div comp) throws Exception {
@@ -63,6 +65,7 @@ public class IndexController extends SelectorComposer<Div> {
         List<WidgetMapContent> vlstWidget = new ArrayList<>(Memory.getListWidgetMapContentCache().values());
         List<Post> lstPost = widgetService.getPost(Memory.getLstCategoryId());
         List<Banner> lstBanner = new ArrayList<>(Memory.getListBannerCache().values());
+        urlImage = Common.getParamByKey(Constants.HOME_PAGE_URL_IMAGE).getParamValue();
         //Get list Post notice banner
         List<Post> lstPostNotice = new ArrayList<>();
         try {
@@ -80,7 +83,7 @@ public class IndexController extends SelectorComposer<Div> {
                 }
             }
         } else if (lstBanner != null && !lstBanner.isEmpty()) {
-            widgetBuilder.buildBanner(lstBanner, indexSlider);
+            widgetBuilder.buildBanner(lstBanner, indexSlider, urlImage);
         }
         buildWidget(vlstWidget, lstPost);
 
@@ -180,7 +183,7 @@ public class IndexController extends SelectorComposer<Div> {
             Image img = new Image();
             String src = "";
             if (p.getFeaturedImage() != null && !"".equals(p.getFeaturedImage())) {
-                src = p.getFeaturedImage();
+                src = urlImage + p.getFeaturedImage();
             }
             img.setSrc(src);
             img.setParent(linkImg);
@@ -305,7 +308,7 @@ public class IndexController extends SelectorComposer<Div> {
                 linkImg.setParent(divPrimaryImg);
 
                 Image img = new Image();
-                String src = postPrimary.getFeaturedImage();
+                String src = urlImage + postPrimary.getFeaturedImage();
                 img.setSrc(src);
                 img.setParent(linkImg);
 
@@ -365,7 +368,7 @@ public class IndexController extends SelectorComposer<Div> {
                     linkPostItem.setParent(divPostItem);
 
                     Image imgPostItem = new Image();
-                    String srcPostItem = p.getFeaturedImage();
+                    String srcPostItem = urlImage + p.getFeaturedImage();
                     imgPostItem.setSrc(srcPostItem);
                     imgPostItem.setParent(linkPostItem);
 

@@ -59,15 +59,18 @@ public class PostController extends SelectorComposer<Div> {
 
     @WireVariable
     protected WidgetService widgetService;
+    
+    private String urlImage;
 
     @Override
     public void doAfterCompose(Div comp) throws Exception {
         super.doAfterCompose(comp);
         logger.info("======>URL from Executions: " + Executions.getCurrent().getAttribute(Constants.STFC_URL_ATTRIBUTE));
         widgetService = (WidgetService) SpringUtil.getBean(SpringConstant.WIDGET_SERVICE);
+        urlImage = Common.getParamByKey(Constants.HOME_PAGE_URL_IMAGE).getParamValue();
         List<Banner> lstBanner = new ArrayList<>(Memory.getListBannerCache().values());
         if (lstBanner != null && !lstBanner.isEmpty()) {
-            widgetBuilder.buildBanner(lstBanner, indexSlider);
+            widgetBuilder.buildBanner(lstBanner, indexSlider, urlImage);
         }
 
         //build post detail
