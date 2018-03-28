@@ -63,13 +63,13 @@ public class IndexController extends SelectorComposer<Div> {
         super.doAfterCompose(comp);
         widgetService = (WidgetService) SpringUtil.getBean(SpringConstant.WIDGET_SERVICE);
         List<WidgetMapContent> vlstWidget = new ArrayList<>(Memory.getListWidgetMapContentCache().values());
-        List<Post> lstPost = widgetService.getPost(Memory.getLstCategoryId());
+        List<Post> lstPost = widgetService.getPost(Memory.getLstCategoryId(), Constants.POST_IS_PUBLIC);
         List<Banner> lstBanner = new ArrayList<>(Memory.getListBannerCache().values());
         urlImage = Common.getParamByKey(Constants.HOME_PAGE_URL_IMAGE).getParamValue();
         //Get list Post notice banner
         List<Post> lstPostNotice = new ArrayList<>();
         try {
-            lstPostNotice = widgetService.getPostByCategoryId(Memory.getLngCategoryNotice(), 0);
+            lstPostNotice = widgetService.getPostByCategoryId(Memory.getLngCategoryNotice(), 0, Constants.POST_IS_PUBLIC);
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
         }

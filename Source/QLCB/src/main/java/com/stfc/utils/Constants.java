@@ -50,5 +50,9 @@ public interface Constants {
     public static final String WIDGET_CONTENT_TYPE_CATEGORY_INTERNAL = "CATEGORY_INTERNAL";
     public static final String HOME_PAGE_URL_IMAGE = "HOME_PAGE_URL_IMAGE";
     public static final String INTERNAL_PAGE_URL_IMAGE = "INTERNAL_PAGE_URL_IMAGE";
+    
+    public static final int POST_IS_PUBLIC = 0;
+    public static final int POST_IS_PRIVATE = 1;
+    public static final int POST_IS_PUBLIC_AND_PRIVATE = 2;
 
 }

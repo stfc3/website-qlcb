@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.stfc.internalpage.controller;
+package com.stfc.documentpage.controller;
 
 import com.stfc.website.*;
 import com.stfc.utils.Common;
@@ -41,9 +41,9 @@ import org.zkoss.zul.Image;
  *
  * @author daond
  */
-public class InternalPageController extends SelectorComposer<Div> {
+public class DocumentPageController extends SelectorComposer<Div> {
 
-    private static final Logger logger = Logger.getLogger(InternalPageController.class);
+    private static final Logger logger = Logger.getLogger(DocumentPageController.class);
     @Wire
     Div indexSlider;
 

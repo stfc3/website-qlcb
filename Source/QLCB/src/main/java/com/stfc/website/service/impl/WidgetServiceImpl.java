@@ -6,6 +6,7 @@
 package com.stfc.website.service.impl;
 
 import com.stfc.website.bean.Banner;
+import com.stfc.website.bean.Document;
 import com.stfc.website.bean.Post;
 import com.stfc.website.dao.WidgetDAO;
 import com.stfc.website.domain.Widget;
@@ -43,8 +44,8 @@ public class WidgetServiceImpl implements WidgetService {
     
     @Transactional(readOnly = true)
     @Override
-    public List<Post> getPost(List<Long> lstCategorytId) {
-        return widgetDAO.getPost(lstCategorytId);
+    public List<Post> getPost(List<Long> lstCategorytId, int isPrivate) {
+        return widgetDAO.getPost(lstCategorytId, isPrivate);
     }
 
     @Transactional(readOnly = true)
@@ -55,8 +56,8 @@ public class WidgetServiceImpl implements WidgetService {
 
     @Transactional(readOnly = true)
     @Override
-    public List<Post> getPostByCategoryId(Long categorytId, int limitPost) {
-        return widgetDAO.getPostByCategoryId(categorytId, limitPost);
+    public List<Post> getPostByCategoryId(Long categorytId, int limitPost, int isPrivate) {
+        return widgetDAO.getPostByCategoryId(categorytId, limitPost, isPrivate);
     }
     @Transactional(readOnly = true)
     @Override
@@ -82,9 +83,16 @@ public class WidgetServiceImpl implements WidgetService {
         return widgetDAO.getPostByCategorySlug(categorytSlug, limitPost);
     }
 
+    @Transactional(readOnly = true)
     @Override
     public List<Post> getPostByCategoryIdRelated(Long categorytId, int limitPost, Long postId) {
         return widgetDAO.getPostByCategoryIdRelated(categorytId, limitPost, postId);
+    }
+
+    @Transactional(readOnly = true)
+    @Override
+    public List<Document> getDocument() {
+        return widgetDAO.getDocument();
     }
     
 }

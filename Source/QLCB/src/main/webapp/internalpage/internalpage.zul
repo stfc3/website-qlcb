@@ -3,7 +3,7 @@
 <?page title="Trường quản lý cán bộ Giao thông vận tải" href="images/faviconCKP.ico"?>
 <?link rel="shortcut icon" type="image/x-icon" href="images/faviconCKP.ico"?>
 
-<?link href="../css/font-awesome.css" rel="stylesheet" type="text/css"?>
+<?link href="/css/font-awesome.css" rel="stylesheet" type="text/css"?>
 <?link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css"?>
 <?link href="../css/font-awesome-animation.min.css" rel="stylesheet" type="text/css"?>
 <?link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css"?>
@@ -48,7 +48,7 @@
         <div id="addWidgetFooter"></div>
         <!-- Footer end -->
 
-        <include src="../copyright.zul"/>
+        <include src="/copyright.zul"/>
         
     </div>
         
