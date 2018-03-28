@@ -173,7 +173,7 @@ public class PostController extends SelectorComposer<Div> {
                     Label lblNewPos = new Label(postNewPos);
                     lblNewPos.setParent(spanNewPost);
 
-                    List<Post> lstPost1 = widgetService.getPostByCategoryId(categoryId1, Constants.MAX_POST_WIDGET_POST_DETAIL);
+                    List<Post> lstPost1 = widgetService.getPostByCategoryId(categoryId1, Constants.MAX_POST_WIDGET_POST_DETAIL, Constants.POST_IS_PUBLIC);
                     if (lstPost1 != null && !lstPost1.isEmpty()) {
                         for (Post p1 : lstPost1) {
                             Div divPostItem = new Div();
