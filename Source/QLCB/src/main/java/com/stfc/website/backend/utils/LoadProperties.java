@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.dvd.ckp.mailsend;
+package com.stfc.website.backend.utils;
 
 import com.dvd.ckp.mailsend.common.Constant;
 import com.dvd.ckp.mailsend.entity.ConfigEntity;

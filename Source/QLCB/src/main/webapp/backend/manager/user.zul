@@ -7,30 +7,30 @@
         </ckeditor>
         <button id="btnSave">Save</button>-->
         <groupbox>
-            <caption label="Quản lý danh sách người dùng" />
+            <caption label="${c:l('user.title')}" />
             <hlayout spacing="10px" >
                 <hbox hflex="1"/>
                 <hbox hflex="2">
-                    <label hflex="1" value="Tên đăng nhập"/>
+                    <label hflex="1" value="${c:l('user.name')}"/>
                     <textbox hflex="3"  id="userName"  onBlur="self.value=self.value.trim()"/>  
                 </hbox>
                 <hbox hflex="1"/>   
                 <hbox hflex="2">
-                    <label hflex="1" value="Email"/>
+                    <label hflex="1" value="${c:l('user.email')}"/>
                     <textbox hflex="3" id="email"  onBlur="self.value=self.value.trim()" />  
                 </hbox>                
                 <hbox hflex="1"/>                              
             </hlayout>
             <space height="20px"></space>
             <div style="text-align:center">
-                <button class="btn btn-default" mold="trendy" id="btnSearch" label="Tìm kiếm" focus="true" iconSclass="z-icon-search"/>
-                <button class="btn btn-default" mold="trendy" id="btnAdd" label="Thêm mới" iconSclass="z-icon-plus-circle"/>                
-                <button class="btn btn-default" mold="trendy" id="btnReset" label="Làm mới" iconSclass="z-icon-refresh"/>
+                <button class="btn btn-default" mold="trendy" id="btnSearch" label="${c:l('search')}" focus="true" iconSclass="z-icon-search"/>
+                <button class="btn btn-default" mold="trendy" id="btnAdd" label="${c:l('add')}" iconSclass="z-icon-plus-circle"/>                
+                <button class="btn btn-default" mold="trendy" id="btnReset" label="${c:l('reset')}" iconSclass="z-icon-refresh"/>
             </div>
         </groupbox>
         <groupbox id="graction" visible="true" >
-            <caption id="lstActionId" visible="true" label="Danh sách người dùng" />
-            <listbox visible="true" emptyMessage="Không có dữ liệu"  id="resultList" model="${$composer.listData}" mold="paging" pageSize="20"   multiple="true" pagingPosition="both" sizedByContent="true">
+            <caption id="lstActionId" visible="true" label="${c:l('user.list')}" />
+            <listbox visible="true" emptyMessage="${c:l('nodata')}"  id="resultList" model="${$composer.listData}" mold="paging" pageSize="20"   multiple="true" pagingPosition="both" sizedByContent="true">
                 <listhead sizable = "true">
                     <listheader hflex="1" align="center" >STT</listheader>                    
                     <listheader hflex="2" align="center" sort="auto(firstName)" >Họ đệm</listheader>  
@@ -68,7 +68,7 @@
                         <listcell style="text-align:center">                                                         
                             <a class="btn-cursor" iconSclass="z-icon-pencil" forward="onClick=onEdit" tooltiptext="Sửa"/>
                             <a class="btn-cursor" iconSclass="z-icon-lock" forward="onClick=onEdit" tooltiptext="Khóa"/>
-                            <a class="btn-cursor" iconSclass="z-icon-refresh" forward="onClick=onEdit" tooltiptext="Reset mật khẩu"/>
+                            <a class="btn-cursor" iconSclass="z-icon-refresh" forward="onClick=onReset" tooltiptext="Reset mật khẩu"/>
                         </listcell> 
                         
                     </listitem>

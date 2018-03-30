@@ -5,19 +5,28 @@
  */
 package com.stfc.backend.controller;
 
+import com.stfc.backend.email.MailSend;
 import com.stfc.website.backend.service.UserService;
 import com.stfc.utils.SpringConstant;
-import com.stfc.website.backend.utils.StringUtils;
+import com.stfc.website.backend.utils.EncryptUtil;
 import com.stfc.website.domain.User;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.apache.log4j.Logger;
 import org.zkoss.zk.ui.Component;
+import org.zkoss.zk.ui.Executions;
+import org.zkoss.zk.ui.event.Event;
+import org.zkoss.zk.ui.event.EventListener;
+import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zk.ui.select.annotation.WireVariable;
 import org.zkoss.zk.ui.util.GenericForwardComposer;
 import org.zkoss.zkplus.spring.SpringUtil;
 import org.zkoss.zul.ListModelList;
 import org.zkoss.zul.Listbox;
 import org.zkoss.zul.Textbox;
+import org.zkoss.zk.ui.event.ForwardEvent;
+import org.zkoss.zul.Window;
 
 /**
  *
@@ -36,6 +45,9 @@ public class UserController extends GenericForwardComposer<Component> {
     private ListModelList<User> listData = new ListModelList<>();
 
     private ListModelList listSearch;
+
+    private Window userManager;
+    private Window addUser;
 
     @WireVariable
     private Textbox userName;
@@ -75,7 +87,14 @@ public class UserController extends GenericForwardComposer<Component> {
     }
 
     public void onClick$btnAdd() {
-        onSearch();
+        Map<String, Object> arguments = new HashMap();
+        final Window windownUpload = (Window) Executions.createComponents("/backend/manager/include/add_user.zul", userManager,
+                arguments);
+        windownUpload.doModal();
+        windownUpload.setBorder(true);
+        windownUpload.setBorder("normal");
+        windownUpload.setClosable(true);
+
     }
 
     public void onClick$btnSearch() {
@@ -85,5 +104,34 @@ public class UserController extends GenericForwardComposer<Component> {
     public void onClick$btnReset() {
         userName.setValue("");
         email.setValue("");
+    }
+
+    /**
+     *
+     * @param event
+     */
+    public void onReset(ForwardEvent event) {
+
+        MailSend mailSend = new MailSend();
+
+        String pass = EncryptUtil.encrypt("12345");
+
+        String content = "mat khau cua ban la: " + pass;
+        mailSend.sendMail("viettx.dev@gmail.com", content);
+
+    }
+
+    public void onEdit(ForwardEvent event) {
+        Map<String, Object> arguments = new HashMap();
+        final Window windownUpload = (Window) Executions.createComponents("/backend/manager/include/add_user.zul", userManager,
+                arguments);
+        windownUpload.doModal();
+        windownUpload.setBorder(true);
+        windownUpload.setBorder("normal");
+        windownUpload.setClosable(true);
+    }
+
+    public void onClick$btnCancel() {
+        addUser.detach();
     }
 }

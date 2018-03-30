@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<zk xmlns:n="native">
+    <window id="addUser" apply="com.stfc.backend.controller.UserController"
+            position="center,center" closable="true"
+            action="show: slideDown;hide: slideUp" border="normal" width="40%"
+            height="70%" maximizable="false" title="${c:l('user.add')}"
+            onCancel="addUser.detach();"
+            contentStyle="overflow:auto">
+
+        <groupbox class="groupboxFull">
+            <!--<caption label="Thêm mới người dùng" />-->
+            <vlayout>
+                <label class="labelNote" hflex="1" value="${c:l('user.note')}"/>
+                
+                <hlayout>
+                    <hbox hflex="1"/>
+                    <hbox hflex="2">
+                        <label value="${c:l('user.name')}"/>
+                        <span style="color:red">*</span>
+                        
+                    </hbox>
+                    <hbox hflex="7">
+                        <textbox hflex="2" class="text-right" id="txtUserName"  onBlur="self.value=self.value.trim()"/> 
+                    </hbox>
+                    <hbox hflex="1"/> 
+                </hlayout> 
+                      
+                <hlayout>
+                    <hbox hflex="1"/>
+                    <hbox hflex="2">
+                        <label value="${c:l('user.email')}"/>
+                        <span style="color:red">*</span>
+                        
+                    </hbox>
+                    <hbox hflex="7">
+                        <textbox hflex="2" id="txtEmail"  onBlur="self.value=self.value.trim()"/>
+                    </hbox>
+                    <hbox hflex="1"/>
+                    
+                </hlayout>    
+                <hlayout>
+                    <hbox hflex="1"/>
+                    <hbox hflex="2">
+                        <label value="${c:l('user.role')}"/>
+                        <span style="color:red">*</span>                       
+                    </hbox>
+                    <hbox hflex="7">
+                        <textbox hflex="2" id="txtRole"  onBlur="self.value=self.value.trim()"/>                 
+                    </hbox>
+                    <hbox hflex="1"/>
+                </hlayout>                     
+                
+                <hlayout>
+                    <hbox hflex="1"/>
+                    <hbox hflex="2">
+                        <label value="${c:l('user.firstName')}"/>                        
+                    </hbox> 
+                    <hbox hflex="7">
+                        <textbox hflex="2" id="txtFirstName"  onBlur="self.value=self.value.trim()"/>  
+                    </hbox>   
+                    <hbox hflex="1"/>   
+                </hlayout>  
+                
+                <hlayout>
+                    <hbox hflex="1"/>                   
+                    
+                    <hbox hflex="2">
+                        <label hflex="1" value="${c:l('user.lastName')}" style="text-align: right;"/>
+                        
+                    </hbox>   
+                    <hbox hflex="7">                        
+                        <textbox hflex="2" id="txtLastName"  onBlur="self.value=self.value.trim()" />  
+                        
+                    </hbox> 
+                    <hbox hflex="1"/>       
+                </hlayout>   
+                <hlayout>
+                    <hbox hflex="1"/>
+                    <hbox hflex="2">
+                        <label hflex="2" value="${c:l('user.birthday')}"/>
+                        <span style="color:red"></span>                        
+                    </hbox>  
+                    <hbox hflex="7">
+                        <textbox  hflex="2" id="txtBirthday"  onBlur="self.value=self.value.trim()"/>
+                    </hbox> 
+                    <hbox hflex="1"/>
+                </hlayout>            
+            </vlayout>
+            <space height="20px"></space>
+            <div style="text-align:center">
+                <button class="btn btn-default" mold="trendy" id="btnSave" label="${c:l('save')}" focus="true" iconSclass="z-icon-floppy-o"/>
+                <button class="btn btn-default" mold="trendy" id="btnCancel" label="${c:l('cancel')}" iconSclass="z-icon-ban"/>                
+                
+            </div>
+        </groupbox>
+        
+    </window>
+</zk>

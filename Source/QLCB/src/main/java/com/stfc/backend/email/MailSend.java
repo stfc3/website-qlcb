@@ -1,8 +1,9 @@
-package com.dvd.ckp.mailsend;
+package com.stfc.backend.email;
 
 import com.dvd.ckp.mailsend.common.Constant;
 import com.dvd.ckp.mailsend.entity.ConfigEntity;
 import com.dvd.ckp.mailsend.utils.DatetimeUtils;
+import com.stfc.website.backend.utils.LoadProperties;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -37,7 +38,7 @@ public class MailSend {
     private static final Logger logger = Logger.getLogger(MailSend.class);
     private LoadProperties properties = new LoadProperties();
 
-    public void sendMail() {
+    public void sendMail(String email, String content) {
         try {
             ConfigEntity entity = properties.loadConfig();
             // Set mail properties
@@ -65,22 +66,21 @@ public class MailSend {
 //                input.put("Author", "java2db.com");
 //                input.put("Topic", "HTML Template for Email");
 //                input.put("Content In", "English");
-                InternetAddress[] recipient = getInternetAddresses(entity.getRecipient());
+                InternetAddress[] recipient = getInternetAddresses(email);
                 message.addRecipients(Message.RecipientType.TO, recipient);
 
                 // Add CC  
-                InternetAddress[] CcAddress = getInternetAddresses(entity.getCc());
-                message.setRecipients(javax.mail.Message.RecipientType.CC, CcAddress);
-
-                // Add BBC
-                InternetAddress[] BccAddress = getInternetAddresses(entity.getBcc());
-                message.setRecipients(javax.mail.Message.RecipientType.BCC, BccAddress);
-
+//                InternetAddress[] CcAddress = getInternetAddresses(entity.getCc());
+//                message.setRecipients(javax.mail.Message.RecipientType.CC, CcAddress);
+//
+//                // Add BBC
+//                InternetAddress[] BccAddress = getInternetAddresses(entity.getBcc());
+//                message.setRecipients(javax.mail.Message.RecipientType.BCC, BccAddress);
                 // HTML mail content
                 // String htmlText =
                 // readEmailFromHtml("C:/mail/HTMLTemplate.html", input);
                 String htmlText = entity.getContent();
-                messageBodyPart.setContent(htmlText, Constant.HTML_UTF_8);
+                messageBodyPart.setContent(content, Constant.HTML_UTF_8);
 
                 multipart.addBodyPart(messageBodyPart);
 

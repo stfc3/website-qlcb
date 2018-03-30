@@ -44,3 +44,11 @@ body {
 .nav-user > div .user-menu.z-menubar .z-menu-content:active {
     border-radius: 0 !important;
 }
+
+/*viettx BE*/
+.labelNote{
+    color:red; font-style: italic;
+}
+.groupboxFull{
+    height: 100% !important;
+}
