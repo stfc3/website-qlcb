@@ -1,9 +1,11 @@
 package com.stfc.backend.email;
 
-import com.dvd.ckp.mailsend.common.Constant;
-import com.dvd.ckp.mailsend.entity.ConfigEntity;
-import com.dvd.ckp.mailsend.utils.DatetimeUtils;
+
+import com.stfc.website.backend.utils.Constant;
+import com.stfc.website.backend.utils.DatetimeUtils;
 import com.stfc.website.backend.utils.LoadProperties;
+import com.stfc.website.bean.ConfigEntity;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -85,18 +87,18 @@ public class MailSend {
                 multipart.addBodyPart(messageBodyPart);
 
                 // Add attachments
-                List<String> attachment = getListAttachment(entity.getAttachment());
-
-                if (!attachment.isEmpty()) {
-                    for (String fileAttachment : attachment) {
-                        messageBodyPart = new MimeBodyPart();
-                        DataSource source = new FileDataSource(fileAttachment);
-                        messageBodyPart.setDataHandler(new DataHandler(source));
-                        messageBodyPart.setFileName(source.getName());
-                        multipart.addBodyPart(messageBodyPart);
-                    }
-
-                }
+//                List<String> attachment = getListAttachment(entity.getAttachment());
+//
+//                if (!attachment.isEmpty()) {
+//                    for (String fileAttachment : attachment) {
+//                        messageBodyPart = new MimeBodyPart();
+//                        DataSource source = new FileDataSource(fileAttachment);
+//                        messageBodyPart.setDataHandler(new DataHandler(source));
+//                        messageBodyPart.setFileName(source.getName());
+//                        multipart.addBodyPart(messageBodyPart);
+//                    }
+//
+//                }
                 message.setContent(multipart);
 
                 // Conect to smtp server and send Email

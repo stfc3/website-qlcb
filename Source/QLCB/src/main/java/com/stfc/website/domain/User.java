@@ -122,7 +122,7 @@ public class User {
         this.createDate = createDate;
     }
 
-    @Transient
+    @Column(name = "status", unique = true, nullable = true, insertable = true, updatable = true)
     public Integer getStatus() {
         return status;
     }

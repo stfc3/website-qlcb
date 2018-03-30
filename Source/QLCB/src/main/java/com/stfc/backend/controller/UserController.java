@@ -47,13 +47,15 @@ public class UserController extends GenericForwardComposer<Component> {
     private ListModelList listSearch;
 
     private Window userManager;
-    private Window addUser;
+    
 
     @WireVariable
     private Textbox userName;
 
     @WireVariable
     private Textbox email;
+    
+
 
     public ListModelList<User> getListData() {
         return listData;
@@ -67,25 +69,28 @@ public class UserController extends GenericForwardComposer<Component> {
     public void doAfterCompose(Component comp) throws Exception {
         super.doAfterCompose(comp);
         userService = (UserService) SpringUtil.getBean(SpringConstant.USER_SERVICE);
-        onSearch();
+        search();
     }
 
-    private void onSearch() {
-        User user = new User();
-        if (userName != null) {
-            user.setUserName(userName.getValue());
-        }
-        if (email != null) {
-            user.setEmail(email.getValue());
-        }
-        List<User> listUser = userService.search(user);
-        if (listUser != null && !listUser.isEmpty()) {
-            listSearch = new ListModelList(listUser);
-            listSearch.setMultiple(true);
-            resultList.setModel(listSearch);
-        }
+    public void onSearch(ForwardEvent event) {
+        search();
     }
 
+    private void search(){
+    	 User user = new User();
+         if (userName != null) {
+             user.setUserName(userName.getValue());
+         }
+         if (email != null) {
+             user.setEmail(email.getValue());
+         }
+         List<User> listUser = userService.search(user);
+         if (listUser != null && !listUser.isEmpty()) {
+             listSearch = new ListModelList(listUser);
+             listSearch.setMultiple(true);
+             resultList.setModel(listSearch);
+         }
+    }
     public void onClick$btnAdd() {
         Map<String, Object> arguments = new HashMap();
         final Window windownUpload = (Window) Executions.createComponents("/backend/manager/include/add_user.zul", userManager,
@@ -95,10 +100,6 @@ public class UserController extends GenericForwardComposer<Component> {
         windownUpload.setBorder("normal");
         windownUpload.setClosable(true);
 
-    }
-
-    public void onClick$btnSearch() {
-        onSearch();
     }
 
     public void onClick$btnReset() {
@@ -131,7 +132,5 @@ public class UserController extends GenericForwardComposer<Component> {
         windownUpload.setClosable(true);
     }
 
-    public void onClick$btnCancel() {
-        addUser.detach();
-    }
+
 }

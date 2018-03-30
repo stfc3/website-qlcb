@@ -1,79 +1,138 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <zk xmlns:n="native">
-    <window id="userManager" apply="com.stfc.backend.controller.UserController">
-<!--        <ckeditor id="editor" width="850px">
-            
-        </ckeditor>
-        <button id="btnSave">Save</button>-->
-        <groupbox>
-            <caption label="${c:l('user.title')}" />
-            <hlayout spacing="10px" >
-                <hbox hflex="1"/>
-                <hbox hflex="2">
-                    <label hflex="1" value="${c:l('user.name')}"/>
-                    <textbox hflex="3"  id="userName"  onBlur="self.value=self.value.trim()"/>  
-                </hbox>
-                <hbox hflex="1"/>   
-                <hbox hflex="2">
-                    <label hflex="1" value="${c:l('user.email')}"/>
-                    <textbox hflex="3" id="email"  onBlur="self.value=self.value.trim()" />  
-                </hbox>                
-                <hbox hflex="1"/>                              
-            </hlayout>
-            <space height="20px"></space>
-            <div style="text-align:center">
-                <button class="btn btn-default" mold="trendy" id="btnSearch" label="${c:l('search')}" focus="true" iconSclass="z-icon-search"/>
-                <button class="btn btn-default" mold="trendy" id="btnAdd" label="${c:l('add')}" iconSclass="z-icon-plus-circle"/>                
-                <button class="btn btn-default" mold="trendy" id="btnReset" label="${c:l('reset')}" iconSclass="z-icon-refresh"/>
-            </div>
-        </groupbox>
-        <groupbox id="graction" visible="true" >
-            <caption id="lstActionId" visible="true" label="${c:l('user.list')}" />
-            <listbox visible="true" emptyMessage="${c:l('nodata')}"  id="resultList" model="${$composer.listData}" mold="paging" pageSize="20"   multiple="true" pagingPosition="both" sizedByContent="true">
-                <listhead sizable = "true">
-                    <listheader hflex="1" align="center" >STT</listheader>                    
-                    <listheader hflex="2" align="center" sort="auto(firstName)" >Họ đệm</listheader>  
-                    <listheader hflex="2" align="center" sort="auto(lastName)" >Tên</listheader>
-                    <listheader hflex="2" align="center" sort="auto(userName)" >Tên đăng nhập</listheader>                   
-                    <listheader hflex="2" align="center" sort="auto(password)" >Mật khẩu</listheader>                       
-                    <listheader hflex="3" align="center" sort="auto(email)" >Email</listheader>   
-                    <listheader hflex="2" align="center" sort="auto(birthday)" >Ngày sinh</listheader>   
-                    <listheader hflex="1" align="center"  >Hành động</listheader>  
-                    
-                </listhead>            
-                <template name="model">
-                    <listitem value="${each}">
-                        <listcell style="text-align:center">
-                            <label value="${forEachStatus.index+1}" />
-                        </listcell>
-                        <listcell style="text-align:left">
-                            <label value="${each.firstName}" />
-                        </listcell>
-                        <listcell style="text-align:left"> 
-                            <label value="${each.lastName}" />
-                        </listcell>   
-                        <listcell style="text-align:left"> 
-                            <label value="${each.userName}" />
-                        </listcell>   
-                        <listcell style="text-align:left"> 
-                            <label value="${each.password}" />
-                        </listcell>                     
-                        <listcell style="text-align:left">
-                            <label value="${each.email}" />
-                        </listcell>                        
-                        <listcell style="text-align:right"> 
-                            <datebox format="dd/MM/yyyy kk:mm:ss" width="100%" inplace="true" buttonVisible="false" readonly="true" value="${each.birthday}"/>                            
-                        </listcell>
-                        <listcell style="text-align:center">                                                         
-                            <a class="btn-cursor" iconSclass="z-icon-pencil" forward="onClick=onEdit" tooltiptext="Sửa"/>
-                            <a class="btn-cursor" iconSclass="z-icon-lock" forward="onClick=onEdit" tooltiptext="Khóa"/>
-                            <a class="btn-cursor" iconSclass="z-icon-refresh" forward="onClick=onReset" tooltiptext="Reset mật khẩu"/>
-                        </listcell> 
-                        
-                    </listitem>
-                </template>
-            </listbox>
-        </groupbox>
-    </window>
+	<window id="userManager"
+		apply="com.stfc.backend.controller.UserController">
+		<!--        <ckeditor id="editor" width="850px">
+			
+			</ckeditor>
+			<button id="btnSave">Save</button>-->
+		<groupbox>
+			<caption label="${c:l('user.title')}" />
+			<hlayout spacing="10px">
+				<hbox hflex="1" />
+				<hbox hflex="2">
+					<label hflex="1" value="${c:l('user.name')}" />
+					<textbox hflex="3" id="userName"
+						onBlur="self.value=self.value.trim()" />
+				</hbox>
+				<hbox hflex="1" />
+				<hbox hflex="2">
+					<label hflex="1" value="${c:l('user.email')}" />
+					<textbox hflex="3" id="email"
+						onBlur="self.value=self.value.trim()" />
+				</hbox>
+				<hbox hflex="1" />
+			</hlayout>
+			<hlayout>
+				<hbox hflex="1" />
+				<hbox hflex="4">
+					<combobox id="cbxStatus" autodrop="true"
+						buttonVisible="true" hflex="1" value="${c:l('option')}"
+						readonly="true">
+						<comboitem value="" label="${c:l('option')}" />
+						<comboitem value="0" label="${c:l('active')}" />
+						<comboitem value="1" label="${c:l('inactive')}" />
+					</combobox>
+				</hbox>
+				<hbox hflex="1" />
+			</hlayout>
+			<space height="20px"></space>
+			<div style="text-align:center">
+				<button class="btn btn-default" mold="trendy"
+					id="btnSearch" forward="onClick=onSearch" label="${c:l('search')}"
+					focus="true" iconSclass="z-icon-search" />
+				<button class="btn btn-default" mold="trendy"
+					id="btnAdd" label="${c:l('add')}" iconSclass="z-icon-plus-circle" />
+				<button class="btn btn-default" mold="trendy"
+					id="btnReset" label="${c:l('reset')}" iconSclass="z-icon-refresh" />
+			</div>
+		</groupbox>
+		<groupbox id="graction" visible="true">
+			<caption id="lstActionId" visible="true"
+				label="${c:l('user.list')}" />
+			<listbox visible="true" emptyMessage="${c:l('nodata')}"
+				id="resultList" model="${$composer.listData}" mold="paging"
+				pageSize="20" multiple="true" pagingPosition="both"
+				sizedByContent="true">
+				<listhead sizable="true">
+					<listheader hflex="1" align="center">
+						${c:l('user.index')}
+					</listheader>
+					<listheader hflex="2" align="center"
+						sort="auto(firstName)">
+						${c:l('user.firstName')}
+					</listheader>
+					<listheader hflex="2" align="center"
+						sort="auto(lastName)">
+						${c:l('user.lastName')}
+					</listheader>
+					<listheader hflex="2" align="center"
+						sort="auto(userName)">
+						${c:l('user.name')}
+					</listheader>
+					<!--<listheader hflex="2" align="center" sort="auto(password)" >${c:l('department')}</listheader>-->
+					<listheader hflex="3" align="center"
+						sort="auto(email)">
+						${c:l('user.email')}
+					</listheader>
+					<listheader hflex="2" align="center"
+						sort="auto(birthday)">
+						${c:l('user.birthday')}
+					</listheader>
+					<listheader hflex="2" align="center"
+						sort="auto(status)">
+						${c:l('user.status')}
+					</listheader>
+					<listheader hflex="1" align="center">
+						Hành động
+					</listheader>
+
+				</listhead>
+				<template name="model">
+					<listitem value="${each}">
+						<listcell style="text-align:center">
+							<label value="${forEachStatus.index+1}" />
+						</listcell>
+						<listcell style="text-align:left">
+							<label value="${each.firstName}" />
+						</listcell>
+						<listcell style="text-align:left">
+							<label value="${each.lastName}" />
+						</listcell>
+						<listcell style="text-align:left">
+							<label value="${each.userName}" />
+						</listcell>
+						<!--                        <listcell style="text-align:left"> 
+							<label value="${each.password}" />
+							</listcell>                     -->
+						<listcell style="text-align:left">
+							<label value="${each.email}" />
+						</listcell>
+						<listcell style="text-align:right">
+							<datebox format="dd/MM/yyyy kk:mm:ss"
+								width="100%" inplace="true" buttonVisible="false"
+								readonly="true" value="${each.birthday}" />
+						</listcell>
+						<listcell style="text-align:left">
+							<label
+								value="${(each.status == 1) ? c:l('active') : c:l('inactive')}" />
+						</listcell>
+						<listcell style="text-align:center">
+							<a class="btn-cursor"
+								iconSclass="z-icon-pencil" forward="onClick=onEdit"
+								tooltiptext="Sửa" />
+							<a class="btn-cursor"
+								iconSclass="z-icon-lock" forward="onClick=onEdit"
+								tooltiptext="Khóa" />
+							<a class="btn-cursor"
+								iconSclass="z-icon-refresh" forward="onClick=onReset"
+								tooltiptext="Reset mật khẩu" />
+						</listcell>
+
+					</listitem>
+				</template>
+			</listbox>
+		</groupbox>
+	</window>
 </zk>

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.dvd.ckp.mailsend.utils;
+package com.stfc.website.backend.utils;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

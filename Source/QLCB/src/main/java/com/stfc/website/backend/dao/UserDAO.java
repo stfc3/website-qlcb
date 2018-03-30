@@ -58,7 +58,7 @@ public class UserDAO {
         try {
             StringBuilder builder = new StringBuilder("select user_id as userId, user_name as userName, ");
             builder.append("first_name as firstName, last_name as lastName, email as email");
-            builder.append(", birthday as birthday, password as password, role as role, create_date as createDate");
+            builder.append(", birthday as birthday, password as password, role as role, create_date as createDate, status as status");
             builder.append(" from stfc_users where 1 = 1");
             if (StringUtils.valiString(user.getUserName())) {
                 builder.append(" and user_name = :userName");
@@ -77,6 +77,7 @@ public class UserDAO {
                     .addScalar("password", StandardBasicTypes.STRING)
                     .addScalar("role", StandardBasicTypes.LONG)
                     .addScalar("createDate", StandardBasicTypes.DATE)
+                    .addScalar("status", StandardBasicTypes.INTEGER)
                     .setResultTransformer(
                             Transformers.aliasToBean(User.class));
             if (StringUtils.valiString(user.getUserName())) {

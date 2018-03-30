@@ -5,6 +5,7 @@ import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
 import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.log4j.Logger;
 
 public class EncryptUtil {
@@ -51,7 +52,8 @@ public class EncryptUtil {
     }
 
     public static void main(String[] args) {
-
+    	
+   
         System.out.println("En:  " + encrypt("654321a@"));
 //        System.out.println(decrypt("E3GheFvuOgnDoWcJeA3gZg=="));
 //        System.out.println(new String(Base64.encodeBase64("654321a@".getBytes())));
