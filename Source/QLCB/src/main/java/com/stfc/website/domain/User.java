@@ -5,6 +5,7 @@
  */
 package com.stfc.website.domain;
 
+import com.stfc.website.backend.utils.FunctionUtil;
 import java.util.Date;
 import java.util.Objects;
 import javax.persistence.Column;
@@ -31,7 +32,8 @@ public class User {
     private Long userId;
     private String userName;
     private String password;
-    private Long role;
+    private Integer role;
+    private String roleName;
     private String firstName;
     private String lastName;
     private String email;
@@ -69,11 +71,11 @@ public class User {
     }
 
     @Column(name = "role", unique = true, nullable = true, insertable = true, updatable = true)
-    public Long getRole() {
+    public Integer getRole() {
         return role;
     }
 
-    public void setRole(Long role) {
+    public void setRole(Integer role) {
         this.role = role;
     }
 
@@ -130,6 +132,17 @@ public class User {
     public void setStatus(Integer status) {
         this.status = status;
     }
+
+    @Transient
+    public String getRoleName() {
+        return FunctionUtil.getRoleName(role);
+    }
+
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
+    }
+    
+    
 
     @Override
     public String toString() {

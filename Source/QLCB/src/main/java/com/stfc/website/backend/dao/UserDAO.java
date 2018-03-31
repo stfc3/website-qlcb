@@ -9,13 +9,11 @@ import com.stfc.website.backend.utils.StringUtils;
 import com.stfc.website.domain.User;
 import java.util.List;
 import org.apache.log4j.Logger;
-import org.hibernate.Hibernate;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.transform.Transformers;
 import org.hibernate.type.StandardBasicTypes;
-import org.hibernate.type.Type;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -66,6 +64,9 @@ public class UserDAO {
             if (StringUtils.valiString(user.getEmail())) {
                 builder.append(" and email = :email");
             }
+            if (user.getStatus() != null && user.getStatus() != -1) {
+                builder.append(" and status = :status");
+            }
             builder.append(" order by create_date desc");
             Query query = getCurrentSession().createSQLQuery(builder.toString())
                     .addScalar("userId", StandardBasicTypes.LONG)
@@ -75,7 +76,7 @@ public class UserDAO {
                     .addScalar("email", StandardBasicTypes.STRING)
                     .addScalar("birthday", StandardBasicTypes.DATE)
                     .addScalar("password", StandardBasicTypes.STRING)
-                    .addScalar("role", StandardBasicTypes.LONG)
+                    .addScalar("role", StandardBasicTypes.INTEGER)
                     .addScalar("createDate", StandardBasicTypes.DATE)
                     .addScalar("status", StandardBasicTypes.INTEGER)
                     .setResultTransformer(
@@ -85,6 +86,9 @@ public class UserDAO {
             }
             if (StringUtils.valiString(user.getEmail())) {
                 query.setParameter("email", user.getEmail());
+            }
+            if (user.getStatus() != null && user.getStatus() != -1) {
+                query.setParameter("status", user.getStatus());
             }
             List<User> listData = query.list();
             return listData;

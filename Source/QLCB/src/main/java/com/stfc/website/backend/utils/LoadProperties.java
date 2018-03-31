@@ -5,7 +5,6 @@
  */
 package com.stfc.website.backend.utils;
 
-
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -29,8 +28,8 @@ public class LoadProperties {
         ConfigEntity entity = new ConfigEntity();
         try {
             Properties properties = new Properties();
-//            String path = Sessions.getCurrent().getWebApp().getRealPath("") + "/WEB-INF/config/config.properties";
-            String path = "E:\\Source\\website-qlcb\\Source\\QLCB\\src\\main\\resources\\config.properties";
+            String path = Sessions.getCurrent().getWebApp().getRealPath("") + "WEB-INF/config.properties";
+//            String path = "E:\\Source\\website-qlcb\\Source\\QLCB\\src\\main\\resources\\config.properties";
             InputStream input = new FileInputStream(path);
             properties.load(new InputStreamReader(input, Charset.forName(Constant.UTF8)));
 

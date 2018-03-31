@@ -18,22 +18,32 @@ import com.stfc.website.backend.entity.Role;
  */
 public class FunctionUtil {
 
-	/**
-	 * 
-	 * @return
-	 */
-	public static List<Role> createDataRole() {
-		List<Role> listRole = new ArrayList();
+    /**
+     *
+     * @return
+     */
+    public static List<Role> createDataRole() {
+        List<Role> listRole = new ArrayList();
 
-		listRole.add(new Role(-1, Labels.getLabel("option")));
-		listRole.add(new Role(0, Labels.getLabel("user.role.super.admin")));
-		listRole.add(new Role(1, Labels.getLabel("user.role.admin")));
-		listRole.add(new Role(2, Labels.getLabel("user.role.editor")));
-		listRole.add(new Role(3, Labels.getLabel("user.role.author")));
-		listRole.add(new Role(4, Labels.getLabel("user.role.contributor")));
-		listRole.add(new Role(5, Labels.getLabel("user.role.subscriber")));
+        listRole.add(new Role(-1, Labels.getLabel("option")));
+        listRole.add(new Role(0, Labels.getLabel("user.role.super.admin")));
+        listRole.add(new Role(1, Labels.getLabel("user.role.admin")));
+        listRole.add(new Role(2, Labels.getLabel("user.role.editor")));
+        listRole.add(new Role(3, Labels.getLabel("user.role.author")));
+        listRole.add(new Role(4, Labels.getLabel("user.role.contributor")));
+        listRole.add(new Role(5, Labels.getLabel("user.role.subscriber")));
 
-		return listRole;
-	}
+        return listRole;
+    }
+
+    public static String getRoleName(Integer roleID) {
+        List<Role> listRole = createDataRole();
+        for (Role item : listRole) {
+            if (roleID.equals(item.getRoleID())) {
+                return item.getRoleName();
+            }
+        }
+        return "";
+    }
 
 }

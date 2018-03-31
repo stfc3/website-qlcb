@@ -12,28 +12,37 @@
 			<hlayout spacing="10px">
 				<hbox hflex="1" />
 				<hbox hflex="2">
-					<label hflex="1" value="${c:l('user.name')}" />
+					<label hflex="2" value="${c:l('user.name')}" />
 					<textbox hflex="3" id="userName"
 						onBlur="self.value=self.value.trim()" />
 				</hbox>
 				<hbox hflex="1" />
 				<hbox hflex="2">
-					<label hflex="1" value="${c:l('user.email')}" />
+					<label hflex="2" value="${c:l('user.email')}" />
 					<textbox hflex="3" id="email"
 						onBlur="self.value=self.value.trim()" />
 				</hbox>
 				<hbox hflex="1" />
 			</hlayout>
+                        <space height="20px"></space>
 			<hlayout>
-				<hbox hflex="1" />
-				<hbox hflex="4">
+                                <hbox hflex="1" />
+				
+				<hbox hflex="2">
+                                    <label hflex="2" value="${c:l('user.status')}" />
 					<combobox id="cbxStatus" autodrop="true"
-						buttonVisible="true" hflex="1" value="${c:l('option')}"
-						readonly="true">
-						<comboitem value="" label="${c:l('option')}" />
+						buttonVisible="true" hflex="3" value="${c:l('option')}"
+						readonly="false">
+						<comboitem value="-1" label="${c:l('option')}" />
 						<comboitem value="0" label="${c:l('active')}" />
 						<comboitem value="1" label="${c:l('inactive')}" />
 					</combobox>
+				</hbox>
+				<hbox hflex="1" />
+				<hbox hflex="2">
+<!--					<label hflex="1" value="${c:l('user.email')}" />
+					<textbox hflex="3" id="email"
+						onBlur="self.value=self.value.trim()" />-->
 				</hbox>
 				<hbox hflex="1" />
 			</hlayout>
@@ -51,11 +60,77 @@
 		<groupbox id="graction" visible="true">
 			<caption id="lstActionId" visible="true"
 				label="${c:l('user.list')}" />
-			<listbox visible="true" emptyMessage="${c:l('nodata')}"
-				id="resultList" model="${$composer.listData}" mold="paging"
-				pageSize="20" multiple="true" pagingPosition="both"
-				sizedByContent="true">
-				<listhead sizable="true">
+                <grid id="gridUser" mold="paging" pageSize="10" pagingPosition="both">
+                                     
+<!--                    <auxhead sclass="category-center">
+
+                        <auxheader colspan="6">
+                            <a iconSclass="z-icon-filter" />
+                            <combobox hflex="1" id="cbFilterName"
+                                                              placeholder="${c:l('location.filter')}" autodrop="true"
+                                                              buttonVisible="false">
+                                <template name="model">
+                                    <comboitem value="${each.locationID}"
+                                                                               label="${each.locationName}" />
+                                </template>
+                            </combobox>
+                        </auxheader>
+
+                    </auxhead>-->
+                    <columns style="text-align:center; ">
+                        <column hflex="1">${c:l('user.index')}</column>
+                        <column hflex="2">${c:l('user.firstName')}</column>
+                        <column hflex="4">${c:l('user.lastName')}</column>
+                        <column hflex="2">${c:l('user.name')}</column>
+                        <column hflex="2">${c:l('user.role')}</column>
+                        <column hflex="2">${c:l('user.email')}</column>
+                        <column hflex="2">${c:l('user.birthday')}</column>
+                        <column hflex="2">${c:l('user.status')}</column>
+                        <column hflex="2">${c:l('user.action')}</column>
+                    </columns>
+                    <template name="model">
+                        <row value="${each}">
+                            <cell style="text-align: center;">
+                                <label value="${forEachStatus.index+1}" />
+                            </cell>
+                            <cell style="text-align: left;">
+                                <label value="${each.firstName}" />
+                            </cell>
+                            <cell style="text-align: left;">
+                                <label value="${each.lastName}" />
+                            </cell>
+                            <cell style="text-align: left;">
+                                <label value="${each.userName}" />
+                            </cell>
+                            <cell style="text-align: left;">
+                               <label value="${each.roleName}" />
+                            </cell>
+                            <cell style="text-align: left;">
+                                <label value="${each.email}" />
+                            </cell>
+                            <cell style="text-align: right;">
+                                <datebox format="dd/MM/yyyy"
+                                    width="100%" inplace="true" buttonVisible="false"
+                                    readonly="true" value="${each.birthday}" />
+                            </cell>
+                            <cell style="text-align: center;">
+                                <label value="${(each.status == 0) ? c:l('active') : c:l('inactive')}" />
+                            </cell>
+                            <cell style="text-align: center;">
+                                <a class="btn-cursor"
+                                    iconSclass="z-icon-pencil" forward="onClick=onEdit"
+                                    tooltiptext="${c:l('edit')}" />
+                                <a class="btn-cursor"
+                                    iconSclass="z-icon-lock" forward="onClick=onLock"
+                                    tooltiptext="${(each.status == 0) ? c:l('active') : c:l('inactive')}" />
+                                <a class="btn-cursor"
+                                    iconSclass="z-icon-refresh" forward="onClick=onReset"
+                                    tooltiptext="${c:l('user.reset.password')}" />
+                            </cell>
+                            </row>
+                       </template>
+                    </grid>
+<!--				<listhead sizable="true">
 					<listheader hflex="1" align="center">
 						${c:l('user.index')}
 					</listheader>
@@ -71,7 +146,7 @@
 						sort="auto(userName)">
 						${c:l('user.name')}
 					</listheader>
-					<!--<listheader hflex="2" align="center" sort="auto(password)" >${c:l('department')}</listheader>-->
+					<listheader hflex="2" align="center" sort="auto(password)" >${c:l('department')}</listheader>
 					<listheader hflex="3" align="center"
 						sort="auto(email)">
 						${c:l('user.email')}
@@ -103,9 +178,9 @@
 						<listcell style="text-align:left">
 							<label value="${each.userName}" />
 						</listcell>
-						<!--                        <listcell style="text-align:left"> 
+						                        <listcell style="text-align:left"> 
 							<label value="${each.password}" />
-							</listcell>                     -->
+							</listcell>                     
 						<listcell style="text-align:left">
 							<label value="${each.email}" />
 						</listcell>
@@ -130,9 +205,9 @@
 								tooltiptext="Reset mật khẩu" />
 						</listcell>
 
-					</listitem>
-				</template>
-			</listbox>
-		</groupbox>
-	</window>
+                            </listitem>
+                    </template>
+            </listbox>-->
+        </groupbox>
+    </window>
 </zk>
