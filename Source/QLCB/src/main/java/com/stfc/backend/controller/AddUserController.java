@@ -95,7 +95,7 @@ public class AddUserController extends GenericForwardComposer<Component> {
 
         listModelRole = new ListModelList<>(listDataRole);
         cbRole.setModel(listModelRole);
-        cbRole.setValue(String.valueOf(txtRole.getValue()));
+        cbRole.setValue(FunctionUtil.getRoleName(txtRole.getValue()));
 
     }
 

@@ -129,7 +129,7 @@ public class UserController extends GenericForwardComposer<Component> {
 		MailSend mailSend = new MailSend();
 		User user = rowSelected.getValue();
 		Messagebox.show(Labels.getLabel("user.reset.comfirm", new String[] { user.getUserName() }),
-				Labels.getLabel("user.comfirm"), Messagebox.OK | Messagebox.NO, Messagebox.QUESTION,
+				Labels.getLabel("user.comfirm"), Messagebox.YES | Messagebox.NO, Messagebox.QUESTION,
 				new EventListener() {
 
 					String password = RandomStringUtils.randomAlphanumeric(6).toUpperCase();
@@ -137,21 +137,27 @@ public class UserController extends GenericForwardComposer<Component> {
 					@Override
 					public void onEvent(Event event) throws Exception {
 						// TODO Auto-generated method stub
-						user.setPassword(EncryptUtil.encrypt(password));
+						if (Messagebox.ON_YES.equals(event.getName())) {
+							user.setPassword(EncryptUtil.encrypt(password));
 
-						// StringBuilder content = new StringBuilder("<h1>Xin
-						// chào : " + userName + "! Quản trị viên đã reset lại
-						// mật khẩu tại hệ thống cho bạn.</h1>");
-						// content.append("<br><h3>Mật khẩu được thay đổi lại: "
-						// + password + ".</h3>");
-						// content.append(" <br> Hãy đăng nhập vào hệ thống và
-						// đổi lại mật khẩu để đảm bảo an toàn");
-						mailSend.sendMail(user.getEmail(), Labels.getLabel("user.reset.password.success.content",
-								new String[] { user.getUserName(), password }));
+							// StringBuilder content = new
+							// StringBuilder("<h1>Xin
+							// chào : " + userName + "! Quản trị viên đã reset
+							// lại
+							// mật khẩu tại hệ thống cho bạn.</h1>");
+							// content.append("<br><h3>Mật khẩu được thay đổi
+							// lại: "
+							// + password + ".</h3>");
+							// content.append(" <br> Hãy đăng nhập vào hệ thống
+							// và
+							// đổi lại mật khẩu để đảm bảo an toàn");
+							mailSend.sendMail(user.getEmail(), Labels.getLabel("user.reset.password.success.content",
+									new String[] { user.getUserName(), password }));
 
-						Messagebox.show(
-								Labels.getLabel("user.reset.password.success", new String[] { user.getUserName() }),
-								Labels.getLabel("NOTIFICATION"), Messagebox.OK, Messagebox.INFORMATION);
+							Messagebox.show(
+									Labels.getLabel("user.reset.password.success", new String[] { user.getUserName() }),
+									Labels.getLabel("NOTIFICATION"), Messagebox.OK, Messagebox.INFORMATION);
+						}
 					}
 				});
 
@@ -191,11 +197,13 @@ public class UserController extends GenericForwardComposer<Component> {
 					@Override
 					public void onEvent(Event event) throws Exception {
 						// TODO Auto-generated method stub
-						userService.save(user);
-						search();
-						Messagebox.show(
-								Labels.getLabel("user.comfirm.lock.success", new String[] { user.getUserName() }),
-								Labels.getLabel("NOTIFICATION"), Messagebox.OK, Messagebox.INFORMATION);
+						if (Messagebox.ON_YES.equals(event.getName())) {
+							userService.save(user);
+							search();
+							Messagebox.show(
+									Labels.getLabel("user.comfirm.lock.success", new String[] { user.getUserName() }),
+									Labels.getLabel("NOTIFICATION"), Messagebox.OK, Messagebox.INFORMATION);
+						}
 					}
 
 				});
