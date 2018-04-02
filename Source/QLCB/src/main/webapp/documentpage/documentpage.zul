@@ -3,17 +3,17 @@
 <?page title="Trường quản lý cán bộ Giao thông vận tải" href="images/faviconCKP.ico"?>
 <?link rel="shortcut icon" type="image/x-icon" href="images/faviconCKP.ico"?>
 
-<?link href="/css/font-awesome.css" rel="stylesheet" type="text/css"?>
-<?link href="/css/font-awesome.min.css" rel="stylesheet" type="text/css"?>
-<?link href="/css/font-awesome-animation.min.css" rel="stylesheet" type="text/css"?>
-<?link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css"?>
-<?link href="/css/style.css" rel="stylesheet" type="text/css"?>
-<?link href="/css/responsive.css" rel="stylesheet" type="text/css"?>
-<?link href="/css/style.css" rel="stylesheet" type="text/css"?>
+<?link href="../css/font-awesome.css" rel="stylesheet" type="text/css"?>
+<?link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css"?>
+<?link href="../css/font-awesome-animation.min.css" rel="stylesheet" type="text/css"?>
+<?link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css"?>
+<?link href="../css/style.css" rel="stylesheet" type="text/css"?>
+<?link href="../css/responsive.css" rel="stylesheet" type="text/css"?>
+<?link href="../css/style.css" rel="stylesheet" type="text/css"?>
 
 
 <zk xmlns:x="xhtml" xmlns:zk="zk">    
-    <div apply="com.stfc.internalpage.controller.InternalPageController">
+    <div apply="com.stfc.documentpage.controller.DocumentPageController">
         <include src="/header.zul"/>
         <!-- Main Header end -->
     
@@ -39,7 +39,7 @@
         </div>
         <!--End Slider -->
         <!-- HOT NEWS -->
-        <div id="internalPage">
+        <div id="documentPage">
             
         </div>
         <!-- HOT NEWS end -->

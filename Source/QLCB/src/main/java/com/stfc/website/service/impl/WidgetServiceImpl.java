@@ -29,7 +29,6 @@ public class WidgetServiceImpl implements WidgetService {
     @Autowired
     private WidgetDAO widgetDAO;
 
-
     @Transactional(readOnly = true)
     @Override
     public List<Widget> getAllWidget() {
@@ -41,7 +40,7 @@ public class WidgetServiceImpl implements WidgetService {
     public List<WidgetContent> getAllWidgetContent(List<Long> lstWidgetId) {
         return widgetDAO.getAllWidgetContent(lstWidgetId);
     }
-    
+
     @Transactional(readOnly = true)
     @Override
     public List<Post> getPost(List<Long> lstCategorytId, int isPrivate) {
@@ -59,6 +58,7 @@ public class WidgetServiceImpl implements WidgetService {
     public List<Post> getPostByCategoryId(Long categorytId, int limitPost, int isPrivate) {
         return widgetDAO.getPostByCategoryId(categorytId, limitPost, isPrivate);
     }
+
     @Transactional(readOnly = true)
     @Override
     public List<Param> getAllParam() {
@@ -94,5 +94,11 @@ public class WidgetServiceImpl implements WidgetService {
     public List<Document> getDocument() {
         return widgetDAO.getDocument();
     }
-    
+
+    @Transactional(readOnly = true)
+    @Override
+    public List<Category> getCategoryDocument() {
+        return widgetDAO.getCategoryDocument();
+    }
+
 }

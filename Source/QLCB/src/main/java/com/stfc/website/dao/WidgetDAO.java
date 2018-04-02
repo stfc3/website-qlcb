@@ -323,11 +323,11 @@ public class WidgetDAO {
         try {
             StringBuilder vstrSql = new StringBuilder();
             vstrSql.append("select d.document_id as documentId, d.document_name as documentName, d.document_type as documentType,");
-            vstrSql.append(" d.document_path as documentPath, d.category_id as categoryId, u.user_name as author");
-            vstrSql.append(" from stfc_document d inner join stfc_users u on d.user_id = u.user_id ");
+            vstrSql.append(" d.document_path as documentPath, d.category_id as categoryId, c.category_name as categoryName, d.author as author");
+            vstrSql.append(" from stfc_document d");
             vstrSql.append(" inner join stfc_categories c on d.category_id = c.category_id");
             vstrSql.append(" where d.status = 1 and c.category_status = 1");
-            vstrSql.append(" ORDER BY d.create_date ");
+            vstrSql.append(" ORDER BY d.document_order, d.modified_date, d.create_date ");
             Query query = getCurrentSession()
                     .createSQLQuery(vstrSql.toString())
                     .addScalar("documentId", StandardBasicTypes.LONG)
@@ -335,10 +335,36 @@ public class WidgetDAO {
                     .addScalar("documentType", StandardBasicTypes.INTEGER)
                     .addScalar("documentPath", StandardBasicTypes.STRING)
                     .addScalar("categoryId", StandardBasicTypes.LONG)
+                    .addScalar("categoryName", StandardBasicTypes.STRING)
                     .addScalar("author", StandardBasicTypes.STRING)
                     .setResultTransformer(
                             Transformers.aliasToBean(Document.class));
             return (List<Document>) query.list();
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+        }
+        return null;
+    }
+
+    public List<Category> getCategoryDocument() {
+        try {
+            StringBuilder vstrSql = new StringBuilder();
+            vstrSql.append("select category_id as categoryId, category_name categoryName, category_parent as categoryParent,");
+            vstrSql.append(" category_slug categorySlug, category_order as categoryOrder");
+            vstrSql.append(" from stfc_categories");
+            vstrSql.append(" where category_id in (");
+            vstrSql.append(" select distinct (category_id) from stfc_document");
+            vstrSql.append(" )");
+            Query query = getCurrentSession()
+                    .createSQLQuery(vstrSql.toString())
+                    .addScalar("categoryId", StandardBasicTypes.LONG)
+                    .addScalar("categoryName", StandardBasicTypes.STRING)
+                    .addScalar("categoryParent", StandardBasicTypes.LONG)
+                    .addScalar("categorySlug", StandardBasicTypes.STRING)
+                    .addScalar("categoryOrder", StandardBasicTypes.INTEGER)
+                    .setResultTransformer(
+                            Transformers.aliasToBean(Category.class));
+            return (List<Category>) query.list();
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
         }

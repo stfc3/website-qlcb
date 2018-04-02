@@ -15,6 +15,7 @@ public class Document {
     private int documentType;
     private String documentPath;
     private Long categoryId;
+    private String categoryName;
     private String author;
 
     public Long getDocumentId() {
@@ -57,6 +58,14 @@ public class Document {
         this.categoryId = categoryId;
     }
 
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
+    }
+
     public String getAuthor() {
         return author;
     }
@@ -64,6 +73,5 @@ public class Document {
     public void setAuthor(String author) {
         this.author = author;
     }
-            
     
 }
