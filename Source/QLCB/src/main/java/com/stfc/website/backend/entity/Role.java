@@ -38,11 +38,7 @@ public class Role {
 	/* (non-Javadoc)
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
-	@Override
-	public boolean equals(Object arg0) {
-		// TODO Auto-generated method stub
-		return super.equals(arg0);
-	}
+
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
