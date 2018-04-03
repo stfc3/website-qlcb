@@ -5,14 +5,15 @@ import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
 import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.log4j.Logger;
 
 public class EncryptUtil {
 
     private static final Logger logger = Logger.getLogger(EncryptUtil.class);
 
-    private static final String key = "websitesqlcb2018";
-    private static final String initVector = "websitesqlcb2018";
+    private static final String key = "CKPManagement1.0";
+    private static final String initVector = "CKPManagement1.0";
 
     public static String encrypt(String value) {
         try {
@@ -51,8 +52,9 @@ public class EncryptUtil {
     }
 
     public static void main(String[] args) {
-
-//        System.out.println("En:  "+encrypt("654321a@"));
+    	
+   
+        System.out.println("En:  " + encrypt("654321a@"));
 //        System.out.println(decrypt("E3GheFvuOgnDoWcJeA3gZg=="));
 //        System.out.println(new String(Base64.encodeBase64("654321a@".getBytes())));
 //        System.out.println(new String(Base64.decodeBase64("NjU0MzIxYUA=")));

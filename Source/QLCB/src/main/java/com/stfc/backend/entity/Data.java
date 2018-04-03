@@ -1,6 +1,6 @@
 package com.stfc.backend.entity;
 
-public class Object {
+public class Data {
 	private int value;
 	private String name;
 	private String key;
@@ -50,18 +50,18 @@ public class Object {
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
-	public Object(int value, String name, String key) {
+	public Data(int value, String name, String key) {
 		super();
 		this.value = value;
 		this.name = name;
 		this.key = key;
 	}
-	public Object(int value, String name) {
+	public Data(int value, String name) {
 		super();
 		this.value = value;
 		this.name = name;
 	}
-	public Object() {
+	public Data() {
 		super();
 	}
 	/* (non-Javadoc)
@@ -87,7 +87,7 @@ public class Object {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Object other = (Object) obj;
+		Data other = (Data) obj;
 		if (key == null) {
 			if (other.key != null)
 				return false;

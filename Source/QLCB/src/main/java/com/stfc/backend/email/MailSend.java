@@ -1,8 +1,8 @@
 package com.stfc.backend.email;
 
-import com.stfc.backend.utils.Constant;
-import com.stfc.backend.utils.DatetimeUtils;
-import com.stfc.backend.utils.LoadProperties;
+import com.stfc.utils.Constant;
+import com.stfc.utils.DatetimeUtils;
+import com.stfc.utils.LoadProperties;
 import com.stfc.website.bean.ConfigEntity;
 
 import java.io.BufferedReader;

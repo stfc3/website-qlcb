@@ -5,7 +5,7 @@
  */
 package com.stfc.backend.dao;
 
-import com.stfc.backend.utils.StringUtils;
+import com.stfc.utils.StringUtils;
 import com.stfc.website.domain.User;
 import java.util.List;
 import org.apache.log4j.Logger;

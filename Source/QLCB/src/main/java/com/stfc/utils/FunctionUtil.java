@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.stfc.backend.utils;
+package com.stfc.utils;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.zkoss.util.resource.Labels;
 
-import com.stfc.backend.entity.Object;
+import com.stfc.backend.entity.Data;
 import com.stfc.backend.entity.Role;
 
 /**
@@ -56,11 +56,11 @@ public class FunctionUtil {
 	 * 
 	 * @return
 	 */
-	public static List<Object> createListTypeBanner() {
-		List<Object> listObject = new ArrayList();
-		listObject.add(new Object(-1, Labels.getLabel("option")));
-		listObject.add(new Object(1, Labels.getLabel("banner.type.logo")));
-		listObject.add(new Object(2, Labels.getLabel("banner.type.banner")));
+	public static List<Data> createListTypeBanner() {
+		List<Data> listObject = new ArrayList();
+		listObject.add(new Data(-1, Labels.getLabel("option")));
+		listObject.add(new Data(1, Labels.getLabel("banner.type.logo")));
+		listObject.add(new Data(2, Labels.getLabel("banner.type.banner")));
 
 		return listObject;
 	}
@@ -71,8 +71,8 @@ public class FunctionUtil {
 	 * @return
 	 */
 	public static String getTypeName(Integer roleID) {
-		List<Object> listRole = createListTypeBanner();
-		for (Object item : listRole) {
+		List<Data> listRole = createListTypeBanner();
+		for (Data item : listRole) {
 			if (roleID.equals(item.getValue())) {
 				return item.getName();
 			}
