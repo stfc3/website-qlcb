@@ -1,4 +1,4 @@
-package com.stfc.website.backend.dao;
+package com.stfc.backend.dao;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ import org.hibernate.type.StandardBasicTypes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.stfc.website.backend.domain.Banner;
+import com.stfc.backend.domain.Banner;
 import com.stfc.website.backend.utils.StringUtils;
 
 /**

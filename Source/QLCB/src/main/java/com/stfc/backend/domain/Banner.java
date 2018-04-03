@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.stfc.website.backend.domain;
+package com.stfc.backend.domain;
 
 import java.util.Date;
 

@@ -1,4 +1,4 @@
-package com.stfc.website.backend.entity;
+package com.stfc.backend.entity;
 
 public class Role {
 	private int roleID;

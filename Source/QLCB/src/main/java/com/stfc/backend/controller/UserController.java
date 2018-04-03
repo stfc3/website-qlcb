@@ -6,7 +6,7 @@
 package com.stfc.backend.controller;
 
 import com.stfc.backend.email.MailSend;
-import com.stfc.website.backend.service.UserService;
+import com.stfc.backend.service.UserService;
 import com.stfc.utils.SpringConstant;
 import com.stfc.website.backend.utils.EncryptUtil;
 import com.stfc.website.domain.User;

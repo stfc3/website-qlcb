@@ -10,8 +10,8 @@ import java.util.List;
 
 import org.zkoss.util.resource.Labels;
 
-import com.stfc.website.backend.entity.Object;
-import com.stfc.website.backend.entity.Role;
+import com.stfc.backend.entity.Object;
+import com.stfc.backend.entity.Role;
 
 /**
  *

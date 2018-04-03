@@ -1,4 +1,4 @@
-package com.stfc.website.backend.service.impl;
+package com.stfc.backend.service.impl;
 
 import java.util.List;
 
@@ -6,9 +6,9 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.stfc.website.backend.dao.BannerDAO;
-import com.stfc.website.backend.domain.Banner;
-import com.stfc.website.backend.service.BannerService;
+import com.stfc.backend.dao.BannerDAO;
+import com.stfc.backend.domain.Banner;
+import com.stfc.backend.service.BannerService;
 
 @Service
 public class BannerServiceImpl implements BannerService {

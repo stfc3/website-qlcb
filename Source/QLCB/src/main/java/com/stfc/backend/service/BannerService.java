@@ -1,8 +1,8 @@
-package com.stfc.website.backend.service;
+package com.stfc.backend.service;
 
 import java.util.List;
 
-import com.stfc.website.backend.domain.Banner;
+import com.stfc.backend.domain.Banner;
 
 public interface BannerService {
 

@@ -5,11 +5,11 @@
  */
 package com.stfc.backend.controller;
 
+import com.stfc.backend.domain.Banner;
 import com.stfc.backend.email.MailSend;
-import com.stfc.website.backend.domain.Banner;
-import com.stfc.website.backend.entity.Role;
-import com.stfc.website.backend.service.BannerService;
-import com.stfc.website.backend.service.UserService;
+import com.stfc.backend.entity.Role;
+import com.stfc.backend.service.BannerService;
+import com.stfc.backend.service.UserService;
 import com.stfc.utils.SpringConstant;
 import com.stfc.website.backend.utils.EncryptUtil;
 import com.stfc.website.backend.utils.FunctionUtil;
@@ -78,12 +78,12 @@ public class BannerController extends GenericForwardComposer<Component> {
 	@WireVariable
 	private Combobox cbType;
 
-	private ListModelList<com.stfc.website.backend.entity.Object> listModelType = new ListModelList<>();
+	private ListModelList<com.stfc.backend.entity.Object> listModelType = new ListModelList<>();
 
 	/**
 	 * @return the listModelType
 	 */
-	public ListModelList<com.stfc.website.backend.entity.Object> getListModelType() {
+	public ListModelList<com.stfc.backend.entity.Object> getListModelType() {
 		return listModelType;
 	}
 
@@ -91,7 +91,7 @@ public class BannerController extends GenericForwardComposer<Component> {
 	 * @param listModelType
 	 *            the listModelType to set
 	 */
-	public void setListModelType(ListModelList<com.stfc.website.backend.entity.Object> listModelType) {
+	public void setListModelType(ListModelList<com.stfc.backend.entity.Object> listModelType) {
 		this.listModelType = listModelType;
 	}
 
@@ -109,7 +109,7 @@ public class BannerController extends GenericForwardComposer<Component> {
 		bannerService = (BannerService) SpringUtil.getBean(SpringConstant.BANNER_SERVICE);
 		search();
 
-		List<com.stfc.website.backend.entity.Object> listDataType = FunctionUtil.createListTypeBanner();
+		List<com.stfc.backend.entity.Object> listDataType = FunctionUtil.createListTypeBanner();
 
 		listModelType = new ListModelList<>(listDataType);
 		cbType.setModel(listModelType);

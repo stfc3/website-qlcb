@@ -27,7 +27,7 @@
 		separated -->
 
 	<context:annotation-config />
-	<context:component-scan base-package="com.stfc.website" />
+	<context:component-scan base-package="com.stfc.website,com.stfc.backend" />
 
 	<tx:annotation-driven transaction-manager="transactionManager" />
 	<!-- <tx:annotation-driven transaction-manager="transactionManager2" /> -->
@@ -40,8 +40,8 @@
 		class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
 	<!--Index Website -->
 	<bean id="WidgetService" class="com.stfc.website.service.impl.WidgetServiceImpl" />
-	<bean id="UserService" class="com.stfc.website.backend.service.impl.UserServiceImpl" />
-	<bean id="BannerService" class="com.stfc.website.backend.service.impl.BannerServiceImpl" />
+	<bean id="UserService" class="com.stfc.backend.service.impl.UserServiceImpl" />
+	<bean id="BannerService" class="com.stfc.backend.service.impl.BannerServiceImpl" />
 
 	<!--End Index Website -->
 </beans>
