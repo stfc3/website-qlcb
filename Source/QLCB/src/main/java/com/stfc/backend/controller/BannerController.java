@@ -145,7 +145,7 @@ public class BannerController extends GenericForwardComposer<Component> {
 		Banner banners = new Banner();
 		Map<String, Object> arguments = new HashMap();
 		arguments.put("banners", banners);
-		final Window windownUpload = (Window) Executions.createComponents("/backend/manager/include/add_user.zul",
+		final Window windownUpload = (Window) Executions.createComponents("/backend/manager/include/banner_add.zul",
 				bannerManager, arguments);
 		windownUpload.doModal();
 		windownUpload.setBorder(true);

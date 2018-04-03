@@ -1,180 +1,187 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <zk xmlns:n="native">
-    <window id="addUser"
-            apply="com.stfc.backend.controller.AddUserController"
-            position="center,center" closable="true"
-            action="show: slideDown;hide: slideUp" border="normal" width="40%"
-            height="90%" maximizable="false" title="${c:l('user.add')}"
-            onCancel="addUser.detach();" contentStyle="overflow:auto">
+	<window id="addUser"
+		apply="com.stfc.backend.controller.AddUserController"
+		position="center,center" closable="true"
+		action="show: slideDown;hide: slideUp" border="normal" width="40%"
+		height="90%" maximizable="false" title="${c:l('user.add')}"
+		onCancel="addUser.detach();" contentStyle="overflow:auto">
 
-        <groupbox class="groupboxFull">
-            <!--<caption label="Thêm mới người dùng" />-->
-            <longbox hflex="2" class="text-right" visible="false" value="${arg.users.userId}"
-                     id="txtUserId" onBlur="self.value=self.value.trim()" />
-            <intbox hflex="2" class="text-right" visible="false" value="${arg.users.role}"
-                    id="txtRole" onBlur="self.value=self.value.trim()" />
-            <vlayout>
-                <label class="labelNote" hflex="1"
-                       value="${c:l('user.note')}" />
-                <vlayout>
-                    <hlayout>
-                        <hbox hflex="1" />
-                        <hbox hflex="2">
-                            <label value="${c:l('user.name')}" />
-                            <span style="color:red">*</span>
+		<groupbox class="groupboxFull">
+			<!--<caption label="Thêm mới người dùng" />-->
+			<longbox hflex="2" class="text-right" visible="false"
+				value="${arg.users.userId}" id="txtUserId"
+				onBlur="self.value=self.value.trim()" />
+			<intbox hflex="2" class="text-right" visible="false"
+				value="${arg.users.role}" id="txtRole"
+				onBlur="self.value=self.value.trim()" />
+			<vlayout>
+				<label class="labelNote" hflex="1"
+					value="${c:l('user.note')}" />
+				<vlayout>
+					<hlayout>
+						<hbox hflex="1" />
+						<hbox hflex="2">
+							<label value="${c:l('user.name')}" />
+							<span style="color:red">*</span>
 
-                        </hbox>
-                        <hbox hflex="7">
-                            <textbox hflex="2" value="${arg.users.userName}" readonly="${(arg.users.userName != null)}"
-                                     id="txtUserName" onBlur="self.value=self.value.trim()" />
+						</hbox>
+						<hbox hflex="7">
+							<textbox hflex="2"
+								value="${arg.users.userName}"
+								readonly="${(arg.users.userName != null)}" id="txtUserName"
+								onBlur="self.value=self.value.trim()" />
 
-                        </hbox>
+						</hbox>
 
-                        <hbox hflex="1" />
-                    </hlayout>
-                    <hlayout>
-                        <hbox hflex="1" />
-                        <label hflex="2" visible="true" id="errUserName"
-                               style="color:red"/>
-                        <hbox hflex="1" />
-                    </hlayout>
-                </vlayout>
-                <vlayout>
-                    <hlayout>
-                        <hbox hflex="1" />
-                        <hbox hflex="2">
-                            <label value="${c:l('user.email')}" />
-                            <span style="color:red">*</span>
+						<hbox hflex="1" />
+					</hlayout>
+					<hlayout>
+						<hbox hflex="1" />
+						<label hflex="2" visible="true" id="errUserName"
+							style="color:red" />
+						<hbox hflex="1" />
+					</hlayout>
+				</vlayout>
+				<vlayout>
+					<hlayout>
+						<hbox hflex="1" />
+						<hbox hflex="2">
+							<label value="${c:l('user.email')}" />
+							<span style="color:red">*</span>
 
-                        </hbox>
-                        <hbox hflex="7">
-                            <textbox hflex="2" id="txtEmail" value="${arg.users.email}"
-                                     onBlur="self.value=self.value.trim()" />
-                        </hbox>
-                        <hbox hflex="1" />
+						</hbox>
+						<hbox hflex="7">
+							<textbox hflex="2" id="txtEmail"
+								value="${arg.users.email}"
+								onBlur="self.value=self.value.trim()" />
+						</hbox>
+						<hbox hflex="1" />
 
-                    </hlayout>
-                    <hlayout>
-                        <hbox hflex="1" />
-                        <label visible="false" id="errUserEmail"
-                               style="color:red"/>
-                        <hbox hflex="1" />
-                    </hlayout>
-                </vlayout>
-                <vlayout>
-                    <hlayout>
-                        <hbox hflex="1" />
-                        <hbox hflex="2">
-                            <label value="${c:l('user.role')}" />
-                            <span style="color:red">*</span>
-                        </hbox>
-                        <hbox hflex="7">
-                            <combobox id="cbRole"
-                                      model="${$composer.listModelRole}" autodrop="true"
-                                      buttonVisible="true" hflex="1" value="${arg.users.roleName}">
-                                <template name="model">
-                                    <comboitem value="${each.roleID}"
-                                               label="${each.roleName}" />
-                                </template>
-                            </combobox>
-                        </hbox>
-                        <hbox hflex="1" />
-                    </hlayout>
-                    <hlayout>
-                        <hbox hflex="1" />
-                        <label visible="false" id="errUserRole"
-                               style="color:red"/>
-                        <hbox hflex="1" />
-                    </hlayout>
-                </vlayout>
-                <vlayout>
-                    <hlayout>
-                        <hbox hflex="1" />
-                        <hbox hflex="2">
-                            <label value="${c:l('user.firstName')}" />
-                        </hbox>
-                        <hbox hflex="7">
-                            <textbox hflex="2" id="txtFirstName" value="${arg.users.firstName}"
-                                     onBlur="self.value=self.value.trim()" />
-                        </hbox>
-                        <hbox hflex="1" />
-                    </hlayout>
-                    <hlayout>
-                        <hbox hflex="1" />
-                        <span visible="false" style="color:red">
-							
-                        </span>
-                        <hbox hflex="1" />
-                    </hlayout>
-                </vlayout>
-                <vlayout>
-                    <hlayout>
-                        <hbox hflex="1" />
+					</hlayout>
+					<hlayout>
+						<hbox hflex="1" />
+						<label visible="false" id="errUserEmail"
+							style="color:red" />
+						<hbox hflex="1" />
+					</hlayout>
+				</vlayout>
+				<vlayout>
+					<hlayout>
+						<hbox hflex="1" />
+						<hbox hflex="2">
+							<label value="${c:l('user.role')}" />
+							<span style="color:red">*</span>
+						</hbox>
+						<hbox hflex="7">
+							<combobox id="cbRole"
+								model="${$composer.listModelRole}" autodrop="true"
+								buttonVisible="true" hflex="1" value="${arg.users.roleName}">
+								<template name="model">
+									<comboitem value="${each.roleID}"
+										label="${each.roleName}" />
+								</template>
+							</combobox>
+						</hbox>
+						<hbox hflex="1" />
+					</hlayout>
+					<hlayout>
+						<hbox hflex="1" />
+						<label visible="false" id="errUserRole"
+							style="color:red" />
+						<hbox hflex="1" />
+					</hlayout>
+				</vlayout>
+				<vlayout>
+					<hlayout>
+						<hbox hflex="1" />
+						<hbox hflex="2">
+							<label value="${c:l('user.firstName')}" />
+						</hbox>
+						<hbox hflex="7">
+							<textbox hflex="2" id="txtFirstName"
+								value="${arg.users.firstName}"
+								onBlur="self.value=self.value.trim()" />
+						</hbox>
+						<hbox hflex="1" />
+					</hlayout>
+					<hlayout>
+						<hbox hflex="1" />
+						<span visible="false" style="color:red">
 
-                        <hbox hflex="2">
-                            <label hflex="1" 
-                                   value="${c:l('user.lastName')}" style="text-align: right;" />
+						</span>
+						<hbox hflex="1" />
+					</hlayout>
+				</vlayout>
+				<vlayout>
+					<hlayout>
+						<hbox hflex="1" />
 
-                        </hbox>
-                        <hbox hflex="7">
-                            <textbox hflex="2" id="txtLastName" value="${arg.users.lastName}"
-                                     onBlur="self.value=self.value.trim()" />
+						<hbox hflex="2">
+							<label hflex="1"
+								value="${c:l('user.lastName')}" style="text-align: right;" />
 
-                        </hbox>
-                        <hbox hflex="1" />
-                    </hlayout>
-                    <hlayout>
-                        <hbox hflex="1" />
-                        <span visible="false" style="color:red">
-							
-                        </span>
-                        <hbox hflex="1" />
-                    </hlayout>
-                </vlayout>
-                <vlayout>
-                    <hlayout>
-                        <hbox hflex="1" />
-                        <hbox hflex="2">
-                            <label hflex="2"
-                                   value="${c:l('user.birthday')}" />
-                            <span style="color:red"></span>
-                        </hbox>
-                        <hbox hflex="7">
-                            <datebox id="dtBirthday" cols="12" value="${arg.users.birthday}"
-                                     format="dd/MM/yyyy" hflex="1"
-                                     constraint="before 99991231 : ${c:l('limit')} " />
-                        </hbox>
-                        <hbox hflex="1" />
-                    </hlayout>
-                    <hlayout>
-                        <hbox hflex="1" />
-                        <span visible="false" style="color:red">
-							
-                        </span>
-                        <hbox hflex="1" />
-                    </hlayout>
-                </vlayout>
-				
-                <vlayout>
-                    <hlayout>
-                        <hbox hflex="1" />
-                        <label visible="false" id="messSuccess"
-                               class="labelSucces"/>
-                        <hbox hflex="1" />
-                    </hlayout>
-                </vlayout>
-            </vlayout>
-            <space height="20px"></space>
-            <div style="text-align:center">
-                <button class="btn btn-default" mold="trendy"
-                        id="btnSave" forward="onClick=onSave" label="${c:l('save')}"
-                        focus="true" iconSclass="z-icon-floppy-o" />
-                <button class="btn btn-default" mold="trendy"
-                        id="btnCancel" label="${c:l('cancel')}" iconSclass="z-icon-ban" />
+						</hbox>
+						<hbox hflex="7">
+							<textbox hflex="2" id="txtLastName"
+								value="${arg.users.lastName}"
+								onBlur="self.value=self.value.trim()" />
 
-            </div>
-        </groupbox>
+						</hbox>
+						<hbox hflex="1" />
+					</hlayout>
+					<hlayout>
+						<hbox hflex="1" />
+						<span visible="false" style="color:red">
 
-    </window>
+						</span>
+						<hbox hflex="1" />
+					</hlayout>
+				</vlayout>
+				<vlayout>
+					<hlayout>
+						<hbox hflex="1" />
+						<hbox hflex="2">
+							<label hflex="2"
+								value="${c:l('user.birthday')}" />
+							<span style="color:red"></span>
+						</hbox>
+						<hbox hflex="7">
+							<datebox id="dtBirthday" cols="12"
+								value="${arg.users.birthday}" format="dd/MM/yyyy" hflex="1"
+								constraint="before 99991231 : ${c:l('limit')} " />
+						</hbox>
+						<hbox hflex="1" />
+					</hlayout>
+					<hlayout>
+						<hbox hflex="1" />
+						<span visible="false" style="color:red">
+
+						</span>
+						<hbox hflex="1" />
+					</hlayout>
+				</vlayout>
+
+				<vlayout>
+					<hlayout>
+						<hbox hflex="1" />
+						<label visible="false" id="messSuccess"
+							class="labelSucces" />
+						<hbox hflex="1" />
+					</hlayout>
+				</vlayout>
+			</vlayout>
+			<space height="20px"></space>
+			<div style="text-align:center">
+				<button class="btn btn-default" mold="trendy"
+					id="btnSave" forward="onClick=onSave" label="${c:l('save')}"
+					focus="true" iconSclass="z-icon-floppy-o" />
+				<button class="btn btn-default" mold="trendy"
+					id="btnCancel" label="${c:l('cancel')}" iconSclass="z-icon-ban" />
+
+			</div>
+		</groupbox>
+
+	</window>
 </zk>

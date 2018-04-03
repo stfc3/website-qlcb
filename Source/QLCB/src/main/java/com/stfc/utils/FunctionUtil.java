@@ -45,7 +45,7 @@ public class FunctionUtil {
 	public static String getRoleName(Integer roleID) {
 		List<Role> listRole = createDataRole();
 		for (Role item : listRole) {
-			if (roleID.equals(item.getRoleID())) {
+			if (roleID != null && roleID.equals(item.getRoleID())) {
 				return item.getRoleName();
 			}
 		}
@@ -70,10 +70,10 @@ public class FunctionUtil {
 	 * @param roleID
 	 * @return
 	 */
-	public static String getTypeName(Integer roleID) {
+	public static String getTypeName(Integer typeID) {
 		List<Data> listRole = createListTypeBanner();
 		for (Data item : listRole) {
-			if (roleID.equals(item.getValue())) {
+			if (typeID != null && typeID.equals(item.getValue())) {
 				return item.getName();
 			}
 		}
