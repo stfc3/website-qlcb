@@ -1,5 +1,152 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<zk xmlns="http://www.zkoss.org/2005/zul">
-    <div>Trang quản lý banner</div>
+<zk xmlns:n="native">
+	<window id="bannerManager"
+		apply="com.stfc.backend.controller.BannerController">
+
+		<groupbox>
+			<caption label="${c:l('banner.title')}" />
+			<hlayout spacing="10px">
+				<hbox hflex="1" />
+				<hbox hflex="2">
+					<label hflex="2" value="${c:l('banner.name')}" />
+					<textbox hflex="3" id="txtBannerName"
+						onBlur="self.value=self.value.trim()" />
+				</hbox>
+				<hbox hflex="1" />
+				<hbox hflex="2">
+					<label hflex="1" value="${c:l('banner.type')}" />
+					<combobox id="cbType" value="${c:l('option')}"
+						model="${$composer.listModelType}" autodrop="true"
+						buttonVisible="true" hflex="3">
+						<template name="model">
+							<comboitem value="${each.value}"
+								label="${each.name}" />
+						</template>
+					</combobox>
+				</hbox>
+				<hbox hflex="1" />
+			</hlayout>
+			<space height="20px"></space>
+			<hlayout>
+				<hbox hflex="1" />
+
+				<hbox hflex="2">
+					<label hflex="2" value="${c:l('banner.fromdate')}" />
+					<datebox id="dtFromdate" format="dd/MM/yyyy" hflex="3"
+						 inplace="false" buttonVisible="true"
+						readonly="false" />
+				</hbox>
+				<hbox hflex="1" />
+				<hbox hflex="2">
+					<label hflex="1" value="${c:l('banner.todate')}" />
+					<datebox id="dtTodate" format="dd/MM/yyyy"
+						hflex="3" inplace="false" buttonVisible="true"
+						readonly="false" />
+				</hbox>
+				<hbox hflex="1" />
+			</hlayout>
+			<space height="20px"></space>
+			<hlayout>
+				<hbox hflex="1" />
+
+				<hbox hflex="2">
+					<label hflex="2" value="${c:l('user.status')}" />
+					<combobox id="cbxStatus" autodrop="true"
+						buttonVisible="true" hflex="3" value="${c:l('option')}"
+						readonly="false">
+						<comboitem value="-1" label="${c:l('option')}" />
+						<comboitem value="1" label="${c:l('active')}" />
+						<comboitem value="0" label="${c:l('inactive')}" />
+					</combobox>
+				</hbox>
+				<hbox hflex="1" />
+				<hbox hflex="2">
+					<!--					<label hflex="1" value="${c:l('user.email')}" />
+						<textbox hflex="3" id="email"
+						onBlur="self.value=self.value.trim()" />-->
+				</hbox>
+				<hbox hflex="1" />
+			</hlayout>
+			<space height="20px"></space>
+			<div style="text-align:center">
+				<button class="btn btn-default" mold="trendy"
+					id="btnSearch" forward="onClick=onSearch" label="${c:l('search')}"
+					focus="true" iconSclass="z-icon-search" />
+				<button class="btn btn-default" mold="trendy"
+					id="btnAdd" label="${c:l('add')}" iconSclass="z-icon-plus-circle" />
+				<button class="btn btn-default" mold="trendy"
+					id="btnReset" label="${c:l('reset')}" iconSclass="z-icon-refresh" />
+			</div>
+		</groupbox>
+		<groupbox id="graction" visible="true">
+			<caption id="lstActionId" visible="true"
+				label="${c:l('banner.list')}" />
+			<grid id="gridBanner" mold="paging" pageSize="10"
+				pagingPosition="both">
+
+				<columns style="text-align:center; ">
+					<column hflex="1">${c:l('user.index')}</column>
+					<column hflex="2">${c:l('banner.name')}</column>
+					<column hflex="4">${c:l('banner.image')}</column>
+					<column hflex="2">${c:l('banner.url')}</column>
+					<column hflex="2">${c:l('banner.type')}</column>
+					<column hflex="2">${c:l('banner.order')}</column>
+					<column hflex="2">${c:l('banner.fromdate')}</column>
+					<column hflex="2">${c:l('banner.todate')}</column>
+					<column hflex="2">${c:l('banner.status')}</column>
+					<column hflex="2">${c:l('user.action')}</column>
+				</columns>
+				<template name="model">
+					<row value="${each}">
+						<cell style="text-align: center;">
+							<label value="${forEachStatus.index+1}" />
+						</cell>
+						<cell style="text-align: left;">
+							<label value="${each.bannerName}" />
+						</cell>
+						<cell style="text-align: center;">
+							<image class="image"
+								src="${each.bannerImage}" />
+						</cell>
+						<cell style="text-align: left;">
+							<label value="${each.bannerUrl}" />
+						</cell>
+						<cell style="text-align: left;">
+							<label value="${each.bannerTypeName}" />
+						</cell>
+						<cell style="text-align: right;">
+							<label value="${each.bannerOrder}" />
+						</cell>
+						<cell style="text-align: right;">
+							<datebox format="dd/MM/yyyy" width="100%"
+								inplace="true" buttonVisible="false" readonly="true"
+								value="${each.effectFromDate}" />
+						</cell>
+						<cell style="text-align: right;">
+							<datebox format="dd/MM/yyyy" width="100%"
+								inplace="true" buttonVisible="false" readonly="true"
+								value="${each.effectToDate}" />
+						</cell>
+						<cell style="text-align: center;">
+							<label
+								value="${(each.bannerStatus == 1) ? c:l('active') : c:l('inactive')}" />
+						</cell>
+						<cell style="text-align: center;">
+							<a class="btn-cursor"
+								iconSclass="z-icon-pencil" forward="onClick=onEdit"
+								tooltiptext="${c:l('edit')}" />
+							<a class="btn-cursor"
+								iconSclass="z-icon-lock" forward="onClick=onLock"
+								tooltiptext="${(each.bannerStatus == 0) ? c:l('active') : c:l('inactive')}" />
+							<!-- 							<a class="btn-cursor" -->
+							<!-- 								iconSclass="z-icon-refresh" forward="onClick=onReset" -->
+							<!-- 								tooltiptext="${c:l('user.reset.password')}" /> -->
+						</cell>
+					</row>
+				</template>
+			</grid>
+
+		</groupbox>
+	</window>
 </zk>
