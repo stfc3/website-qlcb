@@ -1,4 +1,4 @@
-package com.stfc.website.backend.utils;
+package com.stfc.backend.utils;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;

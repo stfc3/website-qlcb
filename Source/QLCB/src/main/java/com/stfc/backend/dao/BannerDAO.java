@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.stfc.backend.domain.Banner;
-import com.stfc.website.backend.utils.StringUtils;
+import com.stfc.backend.utils.StringUtils;
 
 /**
  * 

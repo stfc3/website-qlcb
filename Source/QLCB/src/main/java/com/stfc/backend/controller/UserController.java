@@ -7,8 +7,8 @@ package com.stfc.backend.controller;
 
 import com.stfc.backend.email.MailSend;
 import com.stfc.backend.service.UserService;
+import com.stfc.backend.utils.EncryptUtil;
 import com.stfc.utils.SpringConstant;
-import com.stfc.website.backend.utils.EncryptUtil;
 import com.stfc.website.domain.User;
 import java.util.HashMap;
 import java.util.List;

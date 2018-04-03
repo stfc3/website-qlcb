@@ -15,7 +15,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import com.stfc.website.backend.utils.FunctionUtil;
+import com.stfc.backend.utils.FunctionUtil;
 
 /**
  * @author admin

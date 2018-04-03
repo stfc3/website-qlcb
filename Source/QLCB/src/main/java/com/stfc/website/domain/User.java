@@ -5,7 +5,6 @@
  */
 package com.stfc.website.domain;
 
-import com.stfc.website.backend.utils.FunctionUtil;
 import java.util.Date;
 import java.util.Objects;
 import javax.persistence.Column;
@@ -17,6 +16,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+
+import com.stfc.backend.utils.FunctionUtil;
 
 /**
  *
