@@ -102,4 +102,8 @@ public class UserDAO {
     public void save(User user) {
         getCurrentSession().saveOrUpdate(user);
     }
+
+    public void update(User user) {
+        getCurrentSession().update(user);
+    }
 }

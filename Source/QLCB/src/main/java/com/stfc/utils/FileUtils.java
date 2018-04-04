@@ -1,5 +1,6 @@
 package com.stfc.utils;
 
+import com.stfc.website.bean.ConfigEntity;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -10,167 +11,158 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.Reader;
 import java.io.Writer;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import org.apache.log4j.Logger;
 import org.zkoss.util.media.Media;
-import org.zkoss.util.resource.Labels;
-import org.zkoss.zk.ui.Session;
-import org.zkoss.zk.ui.Sessions;
-import org.zkoss.zul.Messagebox;
 
 public class FileUtils {
 
-	private static final Logger logger = Logger.getLogger(FileUtils.class);
-	private String fileName;
-	private String filePath;
-	private String saveFilePath;
-	private String outFilePath;
-	private String filePathOutput;
-	private String fileNameOutput;
-	private static final String DATE_FORMAT = "yyyy_MM_dd";
-	private static final String DATE_FULL_FORMAT = "yyyyMMddHHmmss";
-	private static String SAVE_PATH;
-	private static String SAVE_PATH_REPORT;
+    private static final Logger logger = Logger.getLogger(FileUtils.class);
+    private String fileName;
+    private String filePath;
+    private String saveFilePath;
+    private String outFilePath;
+    private String filePathOutput;
+    private String fileNameOutput;
+    private String key;
+    private static String SAVE_PATH;
 
-	public String getOutFilePath() {
-		return outFilePath;
-	}
+    public String getKey() {
+        return key;
+    }
 
-	public void setOutFilePath(String outFilePath) {
-		this.outFilePath = outFilePath;
-	}
+    public void setKey(String key) {
+        this.key = key;
+    }
 
-	public String getSaveFilePath() {
-		return saveFilePath;
-	}
+    public String getOutFilePath() {
+        return outFilePath;
+    }
 
-	public void setSaveFilePath(String saveFilePath) {
-		this.saveFilePath = saveFilePath;
-	}
+    public void setOutFilePath(String outFilePath) {
+        this.outFilePath = outFilePath;
+    }
 
-	public String getFileName() {
-		return fileName;
-	}
+    public String getSaveFilePath() {
+        return saveFilePath;
+    }
 
-	public void setFileName(String fileName) {
-		this.fileName = fileName;
-	}
+    public void setSaveFilePath(String saveFilePath) {
+        this.saveFilePath = saveFilePath;
+    }
 
-	public String getFilePath() {
-		return filePath;
-	}
+    public String getFileName() {
+        return fileName;
+    }
 
-	public void setFilePath(String filePath) {
-		this.filePath = filePath;
-	}
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
 
-	public String getFilePathOutput() {
-		return filePathOutput;
-	}
+    public String getFilePath() {
+        return filePath;
+    }
 
-	public void setFilePathOutput(String filePathOutput) {
-		this.filePathOutput = filePathOutput;
-	}
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
+    }
 
-	public String getFileNameOutput() {
-		return fileNameOutput;
-	}
+    public String getFilePathOutput() {
+        return filePathOutput;
+    }
 
-	public void setFileNameOutput(String fileNameOutput) {
-		this.fileNameOutput = fileNameOutput;
-	}
+    public void setFilePathOutput(String filePathOutput) {
+        this.filePathOutput = filePathOutput;
+    }
 
-	public void saveFile(Media media) {
-		BufferedInputStream in = null;
-		BufferedOutputStream out = null;
-		Date nowDate;
-		DateFormat dateFormat;
-		DateFormat dateFullFormat;
-		File vfile;
-		File vbaseDirReport = null;
-		String userName;
-		String uploadPath;
-		String vstrReportPath;
-		try {
-			SAVE_PATH = Sessions.getCurrent().getWebApp().getRealPath("") + getSaveFilePath();
-			final String vstrfileName = media.getName();
+    public String getFileNameOutput() {
+        return fileNameOutput;
+    }
 
-			nowDate = new Date();
-			dateFormat = new SimpleDateFormat(DATE_FORMAT);
-			dateFullFormat = new SimpleDateFormat(DATE_FULL_FORMAT);
+    public void setFileNameOutput(String fileNameOutput) {
+        this.fileNameOutput = fileNameOutput;
+    }
 
-			uploadPath = SAVE_PATH + "banner";
-			File baseDir = new File(uploadPath);
-			if (!baseDir.exists()) {
-				baseDir.mkdirs();
-			}
-			vfile = new File(baseDir + "/" + vstrfileName);
+    public void saveFile(Media media) {
+        BufferedInputStream in = null;
+        BufferedOutputStream out = null;
+        File vfile;
+        String uploadPath;
+        try {
+            LoadProperties properties = new LoadProperties();
+            ConfigEntity entity = properties.loadConfig();
+            SAVE_PATH = entity.getPathUpload();
+            final String vstrfileName = media.getName();
 
-			if (!media.isBinary()) {
-				Reader reader = media.getReaderData();
+            uploadPath = SAVE_PATH;
+            File baseDir = new File(uploadPath);
+            if (!baseDir.exists()) {
+                baseDir.mkdirs();
+            }
+            vfile = new File(baseDir + File.separator + vstrfileName);
+            filePathOutput = baseDir + File.separator + vstrfileName;
+            if (!media.isBinary()) {
+                Reader reader = media.getReaderData();
 
-				Writer writer = new FileWriter(vfile);
-				copyCompletely(reader, writer);
-			} else {
-				InputStream fin = media.getStreamData();
-				in = new BufferedInputStream(fin);
-				OutputStream fout = new FileOutputStream(vfile);
-				out = new BufferedOutputStream(fout);
-				byte buffer[] = new byte[1024];
-				int ch = in.read(buffer);
-				while (ch != -1) {
-					out.write(buffer, 0, ch);
-					ch = in.read(buffer);
-				}
-			}
+                Writer writer = new FileWriter(vfile);
+                copyCompletely(reader, writer);
+            } else {
+                InputStream fin = media.getStreamData();
+                in = new BufferedInputStream(fin);
+                OutputStream fout = new FileOutputStream(vfile);
+                out = new BufferedOutputStream(fout);
+                byte buffer[] = new byte[1024];
+                int ch = in.read(buffer);
+                while (ch != -1) {
+                    out.write(buffer, 0, ch);
+                    ch = in.read(buffer);
+                }
+            }
 
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		} finally {
-			try {
-				if (out != null) {
-					out.close();
-				}
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                if (out != null) {
+                    out.close();
+                }
 
-				if (in != null) {
-					in.close();
-				}
+                if (in != null) {
+                    in.close();
+                }
 
-			} catch (IOException e) {
-				logger.error(e.getMessage(), e);
-				throw new RuntimeException(e);
-			}
-		}
+            } catch (IOException e) {
+                logger.error(e.getMessage(), e);
+                throw new RuntimeException(e);
+            }
+        }
 
-	}
-	/*
+    }
+
+    /*
 	 * Ham copy file
-	 */
+     */
+    private void copyCompletely(Reader input, Writer output) throws IOException {
+        char[] buf = new char[8192];
+        while (true) {
+            int length = input.read(buf);
+            if (length < 0) {
+                break;
+            }
+            output.write(buf, 0, length);
+        }
 
-	private void copyCompletely(Reader input, Writer output) throws IOException {
-		char[] buf = new char[8192];
-		while (true) {
-			int length = input.read(buf);
-			if (length < 0) {
-				break;
-			}
-			output.write(buf, 0, length);
-		}
-
-		try {
-			input.close();
-		} catch (IOException ignore) {
-			logger.error(ignore.getMessage(), ignore);
-		}
-		try {
-			output.close();
-		} catch (IOException ignore) {
-			logger.error(ignore.getMessage(), ignore);
-		}
-	}
+        try {
+            input.close();
+        } catch (IOException ignore) {
+            logger.error(ignore.getMessage(), ignore);
+        }
+        try {
+            output.close();
+        } catch (IOException ignore) {
+            logger.error(ignore.getMessage(), ignore);
+        }
+    }
 }

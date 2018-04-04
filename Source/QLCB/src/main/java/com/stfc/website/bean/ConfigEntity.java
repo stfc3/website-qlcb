@@ -23,6 +23,8 @@ public class ConfigEntity {
     private String starttls;
     private String cc;
     private String bcc;
+    
+    private String pathUpload;
 
     public Integer getTimeOut() {
         return timeOut;
@@ -118,6 +120,14 @@ public class ConfigEntity {
 
     public void setBcc(String bcc) {
         this.bcc = bcc;
+    }
+
+    public String getPathUpload() {
+        return pathUpload;
+    }
+
+    public void setPathUpload(String pathUpload) {
+        this.pathUpload = pathUpload;
     }
 
     @Override

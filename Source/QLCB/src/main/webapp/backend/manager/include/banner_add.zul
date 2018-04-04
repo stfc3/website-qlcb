@@ -1,215 +1,223 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <zk xmlns:n="native">
-	<window id="addUser"
-		apply="com.stfc.backend.controller.AddBannerController"
-		position="center,center" closable="true"
-		action="show: slideDown;hide: slideUp" border="normal" width="40%"
-		height="90%" maximizable="false" title="${c:l('user.add')}"
-		onCancel="addUser.detach();" contentStyle="overflow:auto">
+    <window id="addBanner"
+            apply="com.stfc.backend.controller.AddBannerController"
+            position="center,center" closable="true"
+            
+            action="show: slideDown;hide: slideUp" border="normal" width="60%"
+            maximizable="false" title="${c:l('user.add')}"
+            onCancel="addUser.detach();" contentStyle="overflow-y:auto">
 
-		<groupbox class="groupboxFull">
-			<longbox hflex="2" class="text-right" visible="false"
-				value="${arg.banners.bannerId}" id="txtBannerId"
-				onBlur="self.value=self.value.trim()" />
-			<intbox hflex="2" class="text-right" visible="false"
-				value="${arg.banners.bannerType}" id="txtType"
-				onBlur="self.value=self.value.trim()" />
-			<vlayout>
-				<label class="labelNote" hflex="1"
-					value="${c:l('user.note')}" />
-				<!--                        Ten banner -->
-				<vlayout>
-					<hlayout>
-						<hbox hflex="1" />
-						<hbox hflex="2">
-							<label value="${c:l('banner.name')}" />
-							<span style="color:red">*</span>
+        <groupbox class="groupboxFull">
+            <longbox hflex="2" class="text-right" visible="false"
+                     value="${arg.banners.bannerId}" id="txtBannerId"
+                     onBlur="self.value=self.value.trim()" />
+            <intbox hflex="2" class="text-right" visible="false"
+                    value="${arg.banners.bannerType}" id="txtType"
+                    onBlur="self.value=self.value.trim()" />
+            
+            <intbox hflex="2" class="text-right" visible="false"
+                    value="${arg.banners.bannerType}" id="txtStatus"
+                    onBlur="self.value=self.value.trim()" />
+            <textbox hflex="2" visible="false"
+                     id="linkImageHidden"
+                     onBlur="self.value=self.value.trim()" />
+            <vlayout class="groupboxFull">
+                <label class="labelNote" hflex="1"
+                       value="${c:l('user.note')}" />
+                <!--                        Ten banner -->
+                <vlayout>
+                    <hlayout>
+                        <hbox hflex="1" />
+                        <hbox hflex="2">
+                            <label value="${c:l('banner.name')}" />
+                            <span style="color:red">*</span>
 
-						</hbox>
-						<hbox hflex="7">
-							<textbox hflex="2"
-								value="${arg.banners.bannerName}" id="txtBannerName"
-								onBlur="self.value=self.value.trim()" />
+                        </hbox>
+                        <hbox hflex="7">
+                            <textbox hflex="2"
+                                     value="${arg.banners.bannerName}" id="txtBannerName"
+                                     onBlur="self.value=self.value.trim()" />
 
-						</hbox>
+                        </hbox>
 
-						<hbox hflex="1" />
-					</hlayout>
-					<hlayout>
-						<hbox hflex="1" />
-						<label hflex="2" visible="true"
-							id="errBannerName" style="color:red" />
-						<hbox hflex="1" />
-					</hlayout>
-				</vlayout>
-				<!-- 				anh banner -->
-				<vlayout>
-					<hlayout>
-						<hbox hflex="1" />
-						<hbox hflex="2">
-							<label value="${c:l('banner.image')}" />
-							<span style="color:red">*</span>
+                        <hbox hflex="1" />
+                    </hlayout>
+                    <hlayout>
+                        <hbox hflex="1" />
+                        <label hflex="2" visible="true"
+                               id="errBannerName" style="color:red" />
+                        <hbox hflex="1" />
+                    </hlayout>
+                </vlayout>
+                <!-- 				anh banner -->
+                <vlayout>
+                    <hlayout>
+                        <hbox hflex="1" />
+                        <hbox hflex="2">
+                            <label value="${c:l('banner.image')}" />
+                            <!--<span style="color:red">*</span>-->
 
-						</hbox>
-						<hbox hflex="7">
-							<button upload="true" id="uploadbtn" src="" iconSclass="z-icon-paperclip" label="${c:l('upload.image')}" hflex="1"/>
-						</hbox>
-						<hbox hflex="1" />
+                        </hbox>
+                        <hbox hflex="7">
+                            <button upload="true" id="uploadbtn" src="" iconSclass="z-icon-paperclip" label="${c:l('upload.image')}" hflex="1"/>
+                        </hbox>
+                        <hbox hflex="1" />
 
-					</hlayout>
-					<hlayout>
-						<hbox hflex="1" />
-						<label visible="false" id="errUserEmail"
-							style="color:red" />
-						<hbox hflex="1" />
-					</hlayout>
-				</vlayout>
-				<vlayout>
-					<hlayout>
-						<hbox hflex="1" />
-<!-- 						<vlayout id="pics" class="image-view" style="overflow:auto" /> -->
-						<image class="image-view" id="pics"></image>
-						<hbox hflex="1" />
+                    </hlayout>
+                    <hlayout>
+                        <hbox hflex="1" />
+                        <label visible="false" id="errUserEmail"
+                               style="color:red" />
+                        <hbox hflex="1" />
+                    </hlayout>
+                </vlayout>
+                <vlayout>
+                    <hlayout>
+                        <hbox hflex="1" />
+                        <!-- 						<vlayout id="pics" class="image-view" style="overflow:auto" /> -->
+                        <image class="image-view" src="${arg.banners.bannerImage}" id="pics"></image>
+                        <hbox hflex="1" />
 
-					</hlayout>
+                    </hlayout>
 
-				</vlayout>
-				<!-- 				duong dan -->
-				<vlayout>
-					<hlayout>
-						<hbox hflex="1" />
-						<hbox hflex="2">
-							<label value="${c:l('banner.url')}" />
-							<!--<span style="color:red">*</span>-->
-						</hbox>
-						<hbox hflex="7">
-							<textbox hflex="2"
-								value="${arg.banners.bannerName}" id="txtURL"
-								onBlur="self.value=self.value.trim()" />
-						</hbox>
-						<hbox hflex="1" />
-					</hlayout>
-					<hlayout>
-						<hbox hflex="1" />
-						<label visible="false" id="errURL"
-							style="color:red" />
-						<hbox hflex="1" />
-					</hlayout>
-				</vlayout>
-				<!-- 				loai banner -->
-				<vlayout>
-					<hlayout>
-						<hbox hflex="1" />
-						<hbox hflex="2">
-							<label value="${c:l('banner.type')}" />
-						</hbox>
-						<hbox hflex="7">
-							<combobox id="cbType"
-								model="${$composer.listModelType}" autodrop="true"
-								buttonVisible="true" hflex="1" value="${arg.banners.bannerTypeName}">
-								<template name="model">
-									<comboitem value="${each.value}"
-										label="${each.name}" />
-								</template>
-							</combobox>
-						</hbox>
-						<hbox hflex="1" />
-					</hlayout>
-					<hlayout>
-						<hbox hflex="1" />
-						<span visible="false" style="color:red">
+                </vlayout>
+                <!-- 				duong dan -->
+                <vlayout>
+                    <hlayout>
+                        <hbox hflex="1" />
+                        <hbox hflex="2">
+                            <label value="${c:l('banner.url')}" />
+                            <!--<span style="color:red">*</span>-->
+                        </hbox>
+                        <hbox hflex="7">
+                            <textbox hflex="2"
+                                     value="${arg.banners.bannerName}" id="txtURL"
+                                     onBlur="self.value=self.value.trim()" />
+                        </hbox>
+                        <hbox hflex="1" />
+                    </hlayout>
+                    <hlayout>
+                        <hbox hflex="1" />
+                        <label visible="false" id="errURL"
+                               style="color:red" />
+                        <hbox hflex="1" />
+                    </hlayout>
+                </vlayout>
+                <!-- 				loai banner -->
+                <vlayout>
+                    <hlayout>
+                        <hbox hflex="1" />
+                        <hbox hflex="2">
+                            <label value="${c:l('banner.type')}" />
+                        </hbox>
+                        <hbox hflex="7">
+                            <combobox id="cbType"
+                                      model="${$composer.listModelType}" autodrop="true"
+                                      buttonVisible="true" hflex="1" value="${arg.banners.bannerTypeName}">
+                                <template name="model">
+                                    <comboitem value="${each.value}"
+                                               label="${each.name}" />
+                                </template>
+                            </combobox>
+                        </hbox>
+                        <hbox hflex="1" />
+                    </hlayout>
+                    <hlayout>
+                        <hbox hflex="1" />
+                        <label visible="false" id="errType"
+                               style="color:red" />
 
-						</span>
-						<hbox hflex="1" />
-					</hlayout>
-				</vlayout>
-				<!-- 				vi tri banner -->
-				<vlayout>
-					<hlayout>
-						<hbox hflex="1" />
+                        <hbox hflex="1" />
+                    </hlayout>
+                </vlayout>
+                <!-- 				vi tri banner -->
+                <vlayout>
+                    <hlayout>
+                        <hbox hflex="1" />
 
-						<hbox hflex="2">
-							<label hflex="1"
-								value="${c:l('banner.order')}" />
+                        <hbox hflex="2">
+                            <label hflex="1"
+                                   value="${c:l('banner.order')}" />
 
-						</hbox>
-						<hbox hflex="7">
-							<textbox hflex="2" id="txtOrder"
-								value="${arg.banners.bannerOrder}"
-								onBlur="self.value=self.value.trim()" />
+                        </hbox>
+                        <hbox hflex="7">
+                            <intbox hflex="2" id="txtOrder"
+                                    value="${arg.banners.bannerOrder}"
+                                    onBlur="self.value=self.value.trim()" />
 
-						</hbox>
-						<hbox hflex="1" />
-					</hlayout>
-					<hlayout>
-						<hbox hflex="1" />
-						<span visible="false" style="color:red">
+                        </hbox>
+                        <hbox hflex="1" />
+                    </hlayout>
+                    <hlayout>
+                        <hbox hflex="1" />
+                        <span visible="false" style="color:red">
 
-						</span>
-						<hbox hflex="1" />
-					</hlayout>
-				</vlayout>
-				<!-- 				tu ngay -->
-				<vlayout>
-					<hlayout>
-						<hbox hflex="1" />
-						<hbox hflex="2">
-							<label hflex="2"
-								value="${c:l('banner.fromdate')}" />
-							<span style="color:red"></span>
-						</hbox>
-						<hbox hflex="7">
-							<datebox id="dtFromdate" cols="12"
-								value="${arg.banners.effectFromDate}" format="dd/MM/yyyy"
-								hflex="1" constraint="before 99991231 : ${c:l('limit')} " />
-						</hbox>
-						<hbox hflex="1" />
-					</hlayout>
-					<hlayout>
-						<hbox hflex="1" />
-						<span visible="false" style="color:red">
+                        </span>
+                        <hbox hflex="1" />
+                    </hlayout>
+                </vlayout>
+                <!-- 				tu ngay -->
+                <vlayout>
+                    <hlayout>
+                        <hbox hflex="1" />
+                        <hbox hflex="2">
+                            <label hflex="2"
+                                   value="${c:l('banner.fromdate')}" />
+                            <span style="color:red"></span>
+                        </hbox>
+                        <hbox hflex="7">
+                            <datebox id="dtFromdate" cols="12"
+                                     value="${arg.banners.effectFromDate}" format="dd/MM/yyyy"
+                                     hflex="1" constraint="before 99991231 : ${c:l('limit')} " />
+                        </hbox>
+                        <hbox hflex="1" />
+                    </hlayout>
+                    <hlayout>
+                        <hbox hflex="1" />
+                        <span visible="false" style="color:red">
 
-						</span>
-						<hbox hflex="1" />
-					</hlayout>
-				</vlayout>
-				<!-- 				den ngay -->
-				<vlayout>
-					<hlayout>
-						<hbox hflex="1" />
-						<hbox hflex="2">
-							<label hflex="2"
-								value="${c:l('banner.todate')}" />
-							<span style="color:red"></span>
-						</hbox>
-						<hbox hflex="7">
-							<datebox id="dtToDate" cols="12"
-								value="${arg.banners.effectToDate}" format="dd/MM/yyyy"
-								hflex="1" constraint="before 99991231 : ${c:l('limit')} " />
-						</hbox>
-						<hbox hflex="1" />
-					</hlayout>
-					<hlayout>
-						<hbox hflex="1" />
-						<span visible="false" style="color:red">
+                        </span>
+                        <hbox hflex="1" />
+                    </hlayout>
+                </vlayout>
+                <!-- 				den ngay -->
+                <vlayout>
+                    <hlayout>
+                        <hbox hflex="1" />
+                        <hbox hflex="2">
+                            <label hflex="2"
+                                   value="${c:l('banner.todate')}" />
+                            <span style="color:red"></span>
+                        </hbox>
+                        <hbox hflex="7">
+                            <datebox id="dtToDate" cols="12"
+                                     value="${arg.banners.effectToDate}" format="dd/MM/yyyy"
+                                     hflex="1" constraint="before 99991231 : ${c:l('limit')} " />
+                        </hbox>
+                        <hbox hflex="1" />
+                    </hlayout>
+                    <hlayout>
+                        <hbox hflex="1" />
+                        <span visible="false" style="color:red">
 
-						</span>
-						<hbox hflex="1" />
-					</hlayout>
-				</vlayout>
+                        </span>
+                        <hbox hflex="1" />
+                    </hlayout>
+                </vlayout>
 
-			</vlayout>
-			<space height="20px"></space>
-			<div style="text-align:center">
-				<button class="btn btn-default" mold="trendy"
-					id="btnSave" forward="onClick=onSave" label="${c:l('save')}"
-					focus="true" iconSclass="z-icon-floppy-o" />
-				<button class="btn btn-default" mold="trendy"
-					id="btnCancel" label="${c:l('cancel')}" iconSclass="z-icon-ban" />
+            </vlayout>
+            <space height="20px"></space>
+            <div style="text-align:center">
+                <button class="btn btn-default" mold="trendy"
+                        id="btnSave" forward="onClick=onSave" label="${c:l('save')}"
+                        focus="true" iconSclass="z-icon-floppy-o" />
+                <button class="btn btn-default" mold="trendy"
+                        id="btnCancel" label="${c:l('cancel')}" iconSclass="z-icon-ban" />
 
-			</div>
-		</groupbox>
+            </div>
+        </groupbox>
 
-	</window>
+    </window>
 </zk>

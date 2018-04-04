@@ -6,9 +6,11 @@ import com.stfc.backend.domain.Banner;
 
 public interface BannerService {
 
-	List<Banner> getAllBanner();
-	
-	List<Banner> search(Banner banner);
-	
-	void save(Banner banner);
+    List<Banner> getAllBanner();
+
+    List<Banner> search(Banner banner);
+
+    void save(Banner banner);
+
+    void update(Banner banner);
 }
