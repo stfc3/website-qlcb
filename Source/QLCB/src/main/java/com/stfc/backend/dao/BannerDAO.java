@@ -133,10 +133,10 @@ public class BannerDAO {
                 sql.append(" and banner_status = :status");
             }
             if (banner.getEffectFromDate() != null) {
-                sql.append(" and effect_from_date >= :fromDate");
+                sql.append(" and STR_TO_DATE(effect_from_date, '%Y-%m-%d %H:%i:%s') <= STR_TO_DATE(:fromDate , '%Y-%m-%d %H:%i:%s')");
             }
             if (banner.getEffectToDate() != null) {
-                sql.append(" and effect_to_date <= :toDate");
+                sql.append(" and STR_TO_DATE(effect_to_date, '%Y-%m-%d %H:%i:%s') >= STR_TO_DATE(:toDate, '%Y-%m-%d %H:%i:%s')");
             }
             sql.append(" order by modified_date desc ");
             Query query = getCurrentSession().createSQLQuery(sql.toString())

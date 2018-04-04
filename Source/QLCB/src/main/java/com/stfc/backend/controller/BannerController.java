@@ -133,11 +133,11 @@ public class BannerController extends GenericForwardComposer<Component> {
             banner.setBannerStatus(Integer.valueOf(cbxStatus.getSelectedItem().getValue()));
         }
         List<Banner> listBanner = bannerService.search(banner);
-        if (listBanner != null && !listBanner.isEmpty()) {
-            listSearch = new ListModelList(listBanner);
-            listSearch.setMultiple(true);
-            gridBanner.setModel(listSearch);
-        }
+
+        listSearch = new ListModelList(listBanner);
+        listSearch.setMultiple(true);
+        gridBanner.setModel(listSearch);
+
     }
 
     public void onClick$btnAdd() {
