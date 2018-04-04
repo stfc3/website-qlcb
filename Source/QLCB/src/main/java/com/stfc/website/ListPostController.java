@@ -40,7 +40,7 @@ import org.zkoss.zul.Image;
  */
 public class ListPostController extends SelectorComposer<Div> {
 
-    private static final Logger logger = Logger.getLogger(PostController.class);
+    private static final Logger logger = Logger.getLogger(ListPostController.class);
     @Wire
     Div indexSlider;
 
@@ -153,7 +153,7 @@ public class ListPostController extends SelectorComposer<Div> {
                 Image imgPost = new Image();
                 String srcPost = "";
                 if (p.getFeaturedImage() != null && !"".equals(p.getFeaturedImage())) {
-                    srcPost = p.getFeaturedImage();
+                    srcPost = urlImage + p.getFeaturedImage();
                 }
                 imgPost.setClass("img-responsive");
                 imgPost.setSrc(srcPost);

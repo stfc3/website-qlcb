@@ -29,6 +29,7 @@ public interface Constants {
 
     //Position widget
     public static final String WIDGET_POSITION_CONTENT = "CONTENT";
+    public static final String WIDGET_POSITION_RIGHT_CONTENT = "RIGHT_CONTENT";
     public static final String WIDGET_POSITION_FOOTER = "FOOTER";
 
     public static final String PARAM_KEY_CATEGORY_NOTICE_BANNER = "CATEGORY_NOTICE_BANNER";
@@ -55,5 +56,6 @@ public interface Constants {
     public static final int POST_IS_PUBLIC = 0;
     public static final int POST_IS_PRIVATE = 1;
     public static final int POST_IS_PUBLIC_AND_PRIVATE = 2;
+    public static final String HOME_NEWS_ADVERT_URL_IMAGE = "HOME_NEWS_ADVERT_URL_IMAGE";
 
 }

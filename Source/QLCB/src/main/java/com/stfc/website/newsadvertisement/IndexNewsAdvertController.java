@@ -3,16 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.stfc.website;
+package com.stfc.website.newsadvertisement;
 
 import com.stfc.utils.Common;
 import com.stfc.utils.Constants;
 import com.stfc.utils.SpringConstant;
+import com.stfc.website.Memory;
 import com.stfc.website.bean.Banner;
 import com.stfc.website.bean.Post;
 import com.stfc.website.bean.WidgetContent;
 import com.stfc.website.bean.WidgetMapContent;
-import com.stfc.website.domain.Category;
 import com.stfc.website.service.WidgetService;
 import com.stfc.website.widget.WidgetBuilder;
 import java.text.SimpleDateFormat;
@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.apache.log4j.Logger;
 import org.zkoss.zhtml.H2;
+import org.zkoss.zhtml.H3;
 import org.zkoss.zhtml.P;
 import org.zkoss.zk.ui.select.SelectorComposer;
 import org.zkoss.zk.ui.select.annotation.Wire;
@@ -27,6 +28,7 @@ import org.zkoss.zk.ui.select.annotation.WireVariable;
 import org.zkoss.zkplus.spring.SpringUtil;
 import org.zkoss.zul.A;
 import org.zkoss.zul.Div;
+import org.zkoss.zul.Html;
 import org.zkoss.zul.Image;
 import org.zkoss.zul.Label;
 import org.zkoss.zul.Span;
@@ -35,9 +37,9 @@ import org.zkoss.zul.Span;
  *
  * @author dmin
  */
-public class IndexController extends SelectorComposer<Div> {
+public class IndexNewsAdvertController extends SelectorComposer<Div> {
 
-    private static final Logger logger = Logger.getLogger(IndexController.class);
+    private static final Logger logger = Logger.getLogger(IndexNewsAdvertController.class);
 
     @Wire
     Div indexSlider;
@@ -46,7 +48,10 @@ public class IndexController extends SelectorComposer<Div> {
     Div indexNotice;
 
     @Wire
-    Div addWidgetIndex;
+    Div addWidgetIndexLeft;
+
+    @Wire
+    Div addWidgetIndexRight;
 
     @Wire
     Div addWidgetFooter;
@@ -57,6 +62,7 @@ public class IndexController extends SelectorComposer<Div> {
     private SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm:ss dd/mm/yyyy");
     private WidgetBuilder widgetBuilder = new WidgetBuilder();
     private String urlImage;
+    private Common com = new Common();
 
     @Override
     public void doAfterCompose(Div comp) throws Exception {
@@ -65,31 +71,16 @@ public class IndexController extends SelectorComposer<Div> {
         List<WidgetMapContent> vlstWidget = new ArrayList<>(Memory.getListWidgetMapContentCache().values());
         List<Post> lstPost = widgetService.getPost(Memory.getLstCategoryId(), Constants.POST_IS_PUBLIC);
         List<Banner> lstBanner = new ArrayList<>(Memory.getListBannerCache().values());
-        urlImage = Common.getParamByKey(Constants.HOME_PAGE_URL_IMAGE).getParamValue();
-        //Get list Post notice banner
-        List<Post> lstPostNotice = new ArrayList<>();
-        try {
-            lstPostNotice = widgetService.getPostByCategoryId(Memory.getLngCategoryNotice(), 0, Constants.POST_IS_PUBLIC);
-        } catch (Exception e) {
-            logger.error(e.getMessage(), e);
-        }
-        if (lstPostNotice != null && !lstPostNotice.isEmpty()) {
-            List<Category> lstCategory = new ArrayList<>(Memory.getListCategoryCache().values());
-            if (lstCategory != null && !lstCategory.isEmpty()) {
-                for (Category c : lstCategory) {
-                    if (Memory.getLngCategoryNotice() == c.getCategoryId()) {
-                        widgetBuilder.buildBannerIndex(lstBanner, indexSlider, indexNotice, c.getCategoryName(), lstPostNotice);
-                    }
-                }
-            }
-        } else if (lstBanner != null && !lstBanner.isEmpty()) {
+        urlImage = Common.getParamByKey(Constants.HOME_NEWS_ADVERT_URL_IMAGE).getParamValue();
+        if (lstBanner != null && !lstBanner.isEmpty()) {
             widgetBuilder.buildBanner(lstBanner, indexSlider, urlImage);
         }
-        buildWidget(vlstWidget, lstPost);
+        buildWidgetLeft(vlstWidget, lstPost);
+        buildWidgetRight(vlstWidget, lstPost);
 
     }
 
-    private void buildWidget(List<WidgetMapContent> plstWidget, List<Post> plstPost) {
+    private void buildWidgetLeft(List<WidgetMapContent> plstWidget, List<Post> plstPost) {
         if (plstWidget != null && !plstWidget.isEmpty()) {
 
             for (WidgetMapContent wg : plstWidget) {
@@ -110,11 +101,108 @@ public class IndexController extends SelectorComposer<Div> {
         }
     }
 
+    private void buildWidgetRight(List<WidgetMapContent> plstWidget, List<Post> plstPost) {
+        if (plstWidget != null && !plstWidget.isEmpty()) {
+
+            for (WidgetMapContent wg : plstWidget) {
+                if (Constants.WIDGET_POSITION_RIGHT_CONTENT.equalsIgnoreCase(wg.getWidgetPosition())) {
+                    buildWidgetRightCategory(wg, plstPost);
+                }
+            }
+        }
+    }
+
+    private void buildWidgetRightCategory(WidgetMapContent wg, List<Post> lstPost) {
+        //Build tin tuc noi bat
+        if (wg.getListContent() != null && !wg.getListContent().isEmpty()) {
+            List<WidgetContent> wgContent = wg.getListContent();
+            for (WidgetContent wc : wgContent) {
+                Div divColMd4 = new Div();
+                divColMd4.setClass("");
+                divColMd4.setParent(addWidgetIndexRight);
+
+                Div irsSideBar = new Div();
+                irsSideBar.setClass("irs-side-bar");
+                irsSideBar.setParent(divColMd4);
+
+                Div irsPost = new Div();
+                irsPost.setClass("irs-post");
+                irsPost.setParent(irsSideBar);
+
+                H3 newPost = new H3();
+                newPost.setParent(irsPost);
+
+                try {
+                    Span spanNewPost = new Span();
+                    spanNewPost.setClass("irs-sidebar-title-right");
+                    spanNewPost.setParent(newPost);
+                    String postNewPos = wc.getWidgetContentName();
+                    Label lblNewPos = new Label(postNewPos);
+                    lblNewPos.setParent(spanNewPost);
+                    if (wc != null && wc.getWidgetContent() != null && Constants.WIDGET_CONTENT_TYPE_CATEGORY.equalsIgnoreCase(wc.getWidgetType())) {
+                        List<Post> lstPost1 = com.getPostByContent(wg, lstPost);
+                        int maxPost = 5;
+                        if (lstPost1.size() <= 5) {
+                            maxPost = lstPost1.size();
+                        }
+                        if (lstPost1 != null && !lstPost1.isEmpty()) {
+                            for (int i = 0; i < maxPost; i++) {
+                                Post p1 = lstPost1.get(i);
+                                Div divPostItem = new Div();
+                                divPostItem.setClass("irs-post-item-post-detail");
+                                divPostItem.setParent(irsPost);
+
+                                Div divPostTitle = new Div();
+                                divPostTitle.setClass("irs-post-item-post-detail-title-right");
+                                divPostTitle.setParent(divPostItem);
+
+                                A aPostItemTitle = new A();
+                                aPostItemTitle.setHref(p1.getPostSlug());
+                                aPostItemTitle.setParent(divPostTitle);
+                                String p1Title = "";
+                                if (p1.getPostTitle() != null && !"".equals(p1.getPostTitle())) {
+                                    p1Title = p1.getPostTitle();
+                                }
+
+                                Label lblPostTitleItem = new Label(p1Title);
+                                lblPostTitleItem.setClass("post-title");
+                                lblPostTitleItem.setParent(aPostItemTitle);
+
+                                P spanPostTime = new P();
+                                spanPostTime.setParent(divPostItem);
+
+                                String dateP1 = "";
+                                if (p1.getPostDate() != null && !"".equals(p1.getPostDate())) {
+                                    dateP1 = dateFormat.format(p1.getPostDate());
+                                }
+                                Label lblPostItemTime = new Label(dateP1);
+                                lblPostItemTime.setClass("time-post");
+                                lblPostItemTime.setParent(spanPostTime);
+                            }
+                        }
+                    } else if (wc != null && wc.getWidgetContent() != null && Constants.WIDGET_CONTENT_TYPE_TEXT.equalsIgnoreCase(wc.getWidgetType())) {
+                        Html htmPostItemTime = new Html();
+                        String strContent = "";
+                        if (wc.getWidgetContent() != null && !"".equals(wc.getWidgetContent())) {
+                            strContent = wc.getWidgetContent();
+                        }
+                        htmPostItemTime.setContent(strContent);
+                        htmPostItemTime.setParent(irsPost);
+                    }
+                } catch (Exception e) {
+                    logger.error(e.getMessage(), e);
+                }
+            }
+
+        }
+    }
+
+
     /*
     /*Build HOT NEWS
      */
     private void buildWidgetHotNews(WidgetMapContent wg, List<Post> lstPost) {
-        List<Post> lstPostByContent = getPostByContent(wg, lstPost);
+        List<Post> lstPostByContent = com.getPostByContent(wg, lstPost);
         int postNumber;
         if (lstPostByContent.size() >= 4) {
             postNumber = 4;
@@ -123,10 +211,10 @@ public class IndexController extends SelectorComposer<Div> {
         }
         Div hotNewMain = new Div();
         hotNewMain.setClass("irs-blog-field");
-        hotNewMain.setParent(addWidgetIndex);
+        hotNewMain.setParent(addWidgetIndexLeft);
 
         Div container = new Div();
-        container.setClass("container");
+        container.setClass("");
         container.setParent(hotNewMain);
 
         Div rowTitle = new Div();
@@ -238,19 +326,19 @@ public class IndexController extends SelectorComposer<Div> {
 
     private void buildWidgetNewsPost(WidgetMapContent wg, List<Post> lstPost) {
         if (wg != null && wg.getListContent() != null && !wg.getListContent().isEmpty() && lstPost != null && !lstPost.isEmpty()) {
-            List<Post> lstPostByContent = getPostByContent(wg, lstPost);
+            List<Post> lstPostByContent = com.getPostByContent(wg, lstPost);
             int postNumber;
-            if (lstPostByContent.size() >= 6) {
-                postNumber = 6;
+            if (lstPostByContent.size() >= 4) {
+                postNumber = 4;
             } else {
                 postNumber = lstPostByContent.size();
             }
             Div hotNewMain = new Div();
             hotNewMain.setClass("irs-blog-field irs-blog-single-field");
-            hotNewMain.setParent(addWidgetIndex);
+            hotNewMain.setParent(addWidgetIndexLeft);
 
             Div container = new Div();
-            container.setClass("container");
+            container.setClass("");
             container.setParent(hotNewMain);
 
             Div rowTitle = new Div();
@@ -413,14 +501,14 @@ public class IndexController extends SelectorComposer<Div> {
 
     private void buildMultiCategory(WidgetMapContent wg, List<Post> lstPost) {
         if (wg.getListContent() != null && !wg.getListContent().isEmpty()) {
-            List<Post> lstPostByContent = getPostByContent(wg, lstPost);
+            List<Post> lstPostByContent = com.getPostByContent(wg, lstPost);
             int intWidgetContent = wg.getListContent().size();
             Div hotNewMain = new Div();
             hotNewMain.setClass("irs-blog-field irs-blog-single-field");
-            hotNewMain.setParent(addWidgetIndex);
+            hotNewMain.setParent(addWidgetIndexLeft);
 
             Div container = new Div();
-            container.setClass("container");
+            container.setClass("");
             container.setParent(hotNewMain);
 
             Div rowTitle = new Div();
@@ -497,7 +585,7 @@ public class IndexController extends SelectorComposer<Div> {
                 Image imgPostItem = new Image();
                 String srcPostItem = "";
                 if (wc.getWidgetImage() != null && !"".equals(wc.getWidgetImage())) {
-                    srcPostItem = wc.getWidgetImage();
+                    srcPostItem = urlImage + wc.getWidgetImage();
                 }
                 imgPostItem.setSrc(srcPostItem);
                 imgPostItem.setParent(divContentPostTitle);
@@ -529,7 +617,7 @@ public class IndexController extends SelectorComposer<Div> {
                             Div divContentPostItemTitle = new Div();
                             divContentPostItemTitle.setClass("irs-post-item-3-column-height");
                             divContentPostItemTitle.setParent(divContentPostItem);
-                            
+
                             Div divTitle = new Div();
                             divTitle.setClass("post-title-over-mutil-cate");
                             divTitle.setParent(divContentPostItemTitle);
@@ -566,22 +654,6 @@ public class IndexController extends SelectorComposer<Div> {
             }
         }
 
-    }
-
-    private List<Post> getPostByContent(WidgetMapContent wg, List<Post> lstPost) {
-        List<Post> lstPostByContent = new ArrayList<>();
-        if (wg != null && wg.getListContent() != null && !wg.getListContent().isEmpty() && lstPost != null && !lstPost.isEmpty()) {
-            for (WidgetContent wc : wg.getListContent()) {
-                for (Post p : lstPost) {
-                    if (Constants.WIDGET_CONTENT_TYPE_CATEGORY.equals(wc.getWidgetType())
-                            && Long.parseLong(wc.getWidgetContent()) == p.getCategoryId()) {
-                        lstPostByContent.add(p);
-                    }
-
-                }
-            }
-        }
-        return lstPostByContent;
     }
 
 }

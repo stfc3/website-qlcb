@@ -6,8 +6,13 @@
 package com.stfc.utils;
 
 import com.stfc.website.Memory;
+import com.stfc.website.bean.Post;
+import com.stfc.website.bean.WidgetContent;
+import com.stfc.website.bean.WidgetMapContent;
 import com.stfc.website.domain.Category;
 import com.stfc.website.domain.Param;
+import java.util.ArrayList;
+import java.util.List;
 import org.apache.log4j.Logger;
 
 /**
@@ -30,5 +35,21 @@ public class Common {
             return Memory.getListCategoryCache().get(categoryId);
         }
         return null;
+    }
+
+    public List<Post> getPostByContent(WidgetMapContent wg, List<Post> lstPost) {
+        List<Post> lstPostByContent = new ArrayList<>();
+        if (wg != null && wg.getListContent() != null && !wg.getListContent().isEmpty() && lstPost != null && !lstPost.isEmpty()) {
+            for (WidgetContent wc : wg.getListContent()) {
+                for (Post p : lstPost) {
+                    if (Constants.WIDGET_CONTENT_TYPE_CATEGORY.equals(wc.getWidgetType())
+                            && Long.parseLong(wc.getWidgetContent()) == p.getCategoryId()) {
+                        lstPostByContent.add(p);
+                    }
+
+                }
+            }
+        }
+        return lstPostByContent;
     }
 }
