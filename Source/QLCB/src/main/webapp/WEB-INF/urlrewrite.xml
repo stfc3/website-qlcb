@@ -3,15 +3,19 @@
 <urlrewrite>
     <rule match-type="wildcard">
         <from>/post/**</from>
-        <to>/post.zul</to>
+        <to>/newsadvertisement/post.zul</to>
     </rule>
     
     <rule match-type="wildcard">
         <from>/category/**</from>
-        <to>/listpost.zul</to>
+        <to>/newsadvertisement/listpost.zul</to>
     </rule>
     <rule match-type="wildcard">
         <from>/admin</from>
         <to>/backend/index.zul</to>
+    </rule>
+    <rule match-type="wildcard">
+        <from>/</from>
+        <to>/newsadvertisement/index.zul</to>
     </rule>
 </urlrewrite>

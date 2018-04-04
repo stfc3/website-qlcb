@@ -65,3 +65,7 @@ body {
 	max-width: 100px;
 	max-height: 100px;
 }
+.z-button, .z-button:focus, .z-button:hover{
+    background-color: #438eb9;
+    border: none;
+}
