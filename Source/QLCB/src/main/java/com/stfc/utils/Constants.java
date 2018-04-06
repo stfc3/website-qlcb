@@ -57,5 +57,6 @@ public interface Constants {
     public static final int POST_IS_PRIVATE = 1;
     public static final int POST_IS_PUBLIC_AND_PRIVATE = 2;
     public static final String HOME_NEWS_ADVERT_URL_IMAGE = "HOME_NEWS_ADVERT_URL_IMAGE";
+    public static final String ENROLL_STUDENTS_URL_IMAGE = "ENROLL_STUDENTS_URL_IMAGE";
 
 }

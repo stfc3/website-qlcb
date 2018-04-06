@@ -77,8 +77,7 @@ public class ListPostNewsAdvertController extends SelectorComposer<Div> {
             widgetBuilder.buildBanner(lstBanner, indexSlider, urlImage);
         }
 
-//        String categorySlug = String.valueOf(Executions.getCurrent().getAttribute(Constants.STFC_URL_ATTRIBUTE));
-        String categorySlug = "/category/tin-tuc-su-kien";
+        String categorySlug = String.valueOf(Executions.getCurrent().getAttribute(Constants.STFC_URL_ATTRIBUTE));
         List<Post> lstPost = widgetService.getPostByCategorySlug(categorySlug, 0);
 
         buildPostDetail(lstPost);

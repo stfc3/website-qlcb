@@ -86,10 +86,12 @@ public class WidgetDAO {
                 vstrSql.append(" INNER JOIN stfc_categories c ON m.category_id = c.category_id");
                 vstrSql.append(" WHERE m.category_id IN (:lstCategoryId)");
                 vstrSql.append(" AND p.post_status = 3");
+                vstrSql.append(" AND m.post_status = 1");
                 vstrSql.append(" AND c.category_status = 1");
                 vstrSql.append(" AND p.is_private IN (:isPrivate, 2)");
                 vstrSql.append(" and p.effect_from_date <= sysdate()");
                 vstrSql.append(" and (effect_to_date >= sysdate() or effect_to_date is null)");
+                vstrSql.append(" and p.post_date <= sysdate()");
                 vstrSql.append(" ORDER BY p.is_pin desc, p.post_order, p.create_date ");
                 Query query = getCurrentSession()
                         .createSQLQuery(vstrSql.toString())
@@ -127,10 +129,12 @@ public class WidgetDAO {
             vstrSql.append(" INNER JOIN stfc_categories c ON m.category_id = c.category_id");
             vstrSql.append(" WHERE m.category_id IN (:categoryId)");
             vstrSql.append(" AND p.post_status = 3");
+            vstrSql.append(" AND m.post_status = 1");
             vstrSql.append(" AND c.category_status = 1");
             vstrSql.append(" AND p.is_private IN (:isPrivate, 2)");
             vstrSql.append(" and p.effect_from_date <= sysdate()");
             vstrSql.append(" and (effect_to_date >= sysdate() or effect_to_date is null)");
+            vstrSql.append(" and p.post_date <= sysdate()");
             vstrSql.append(" ORDER BY p.is_pin desc, p.post_order, p.create_date ");
             if (limitPost > 0) {
                 vstrSql.append(" LIMIT " + String.valueOf(limitPost));
@@ -207,9 +211,11 @@ public class WidgetDAO {
             vstrSql.append(" INNER JOIN stfc_categories c ON m.category_id = c.category_id");
             vstrSql.append(" WHERE p.post_slug = :postSlug");
             vstrSql.append(" AND p.post_status = 3");
+            vstrSql.append(" AND m.post_status = 1");
             vstrSql.append(" AND c.category_status = 1");
             vstrSql.append(" and p.effect_from_date <= sysdate()");
             vstrSql.append(" and (effect_to_date >= sysdate() or effect_to_date is null)");
+            vstrSql.append(" and p.post_date <= sysdate()");
             vstrSql.append(" ORDER BY p.is_pin desc, p.post_order, p.create_date ");
             Query query = getCurrentSession()
                     .createSQLQuery(vstrSql.toString())
@@ -245,9 +251,11 @@ public class WidgetDAO {
             vstrSql.append(" INNER JOIN stfc_categories c on c.category_id = m.category_id");
             vstrSql.append(" WHERE c.category_slug = :categorySlug");
             vstrSql.append(" AND p.post_status = 3");
+            vstrSql.append(" AND m.post_status = 1");
             vstrSql.append(" AND c.category_status = 1");
             vstrSql.append(" and p.effect_from_date <= sysdate()");
             vstrSql.append(" and (effect_to_date >= sysdate() or effect_to_date is null)");
+            vstrSql.append(" and p.post_date <= sysdate()");
             vstrSql.append(" ORDER BY p.is_pin desc, p.post_order, p.create_date ");
             if (limitPost > 0) {
                 vstrSql.append(" LIMIT " + String.valueOf(limitPost));
@@ -286,10 +294,12 @@ public class WidgetDAO {
             vstrSql.append(" INNER JOIN stfc_categories c ON m.category_id = c.category_id");
             vstrSql.append(" WHERE m.category_id IN (:categoryId)");
             vstrSql.append(" AND p.post_status = 3");
+            vstrSql.append(" AND m.post_status = 1");
             vstrSql.append(" AND c.category_status = 1");
             vstrSql.append(" AND p.post_id NOT IN (:postId)");
             vstrSql.append(" and p.effect_from_date <= sysdate()");
             vstrSql.append(" and (effect_to_date >= sysdate() or effect_to_date is null)");
+            vstrSql.append(" and p.post_date <= sysdate()");
             vstrSql.append(" ORDER BY p.is_pin desc, p.post_order, p.create_date ");
             if (limitPost > 0) {
                 vstrSql.append(" LIMIT " + String.valueOf(limitPost));
