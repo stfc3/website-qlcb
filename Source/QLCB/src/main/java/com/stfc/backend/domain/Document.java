@@ -15,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 /**
  *
@@ -37,6 +38,7 @@ public class Document implements Serializable {
     private String documentName;
     private int documentType;
     private String documentPath;
+    private String fileName;
     private int categoryId;
     private String author;
     private int documentOrder;
@@ -135,5 +137,21 @@ public class Document implements Serializable {
     public void setModifiedDate(Date modifiedDate) {
         this.modifiedDate = modifiedDate;
     }
+
+	/**
+	 * @return the fileName
+	 */
+    @Transient
+	public String getFileName() {
+		return fileName;
+	}
+
+	/**
+	 * @param fileName the fileName to set
+	 */
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+    
 
 }

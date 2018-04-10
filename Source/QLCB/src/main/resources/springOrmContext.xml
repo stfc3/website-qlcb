@@ -42,6 +42,7 @@
 	<bean id="WidgetService" class="com.stfc.website.service.impl.WidgetServiceImpl" />
 	<bean id="UserService" class="com.stfc.backend.service.impl.UserServiceImpl" />
 	<bean id="BannerService" class="com.stfc.backend.service.impl.BannerServiceImpl" />
+	<bean id="DocumentService" class="com.stfc.backend.service.impl.DocumentServiceImpl" />
 
 	<!--End Index Website -->
 </beans>

@@ -1,5 +1,132 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<zk xmlns="http://www.zkoss.org/2005/zul">
-    <div>Trang quản lý tài liệu: Thời khóa biểu, văn bản,...</div>
+<zk xmlns:n="native">
+    <window id="bannerManager"
+                apply="com.stfc.backend.controller.BannerController">
+
+        <groupbox>
+            <caption label="${c:l('document.title')}" />
+            <hlayout spacing="10px">
+                <hbox hflex="1" />
+                <hbox hflex="2">
+                    <label hflex="1" value="${c:l('document.name')}" />
+                    <textbox hflex="3" id="txtDocName"
+                                                 onBlur="self.value=self.value.trim()" />
+                </hbox>
+                <hbox hflex="1" />
+                <hbox hflex="2">
+                    <label hflex="1" value="${c:l('document.type')}" />
+                    <combobox id="cbType" value="${c:l('option')}"
+                                                  model="${$composer.listModelType}" autodrop="true"
+                                                  buttonVisible="true" hflex="3">
+                        <template name="model">
+                            <comboitem value="${each.value}"
+                                                                   label="${each.name}" />
+                        </template>
+                    </combobox>
+                </hbox>
+                <hbox hflex="1" />
+            </hlayout>
+            <space height="20px"></space>
+            <hlayout>
+                <hbox hflex="1" />
+                <hbox hflex="2">
+                    <label hflex="1"
+                                               value="${c:l('document.category')}" />
+                    <combobox id="cbCategory" value="${c:l('option')}"
+                                                  model="${$composer.listModelType}" autodrop="true"
+                                                  buttonVisible="true" hflex="3">
+                        <template name="model">
+                            <comboitem value="${each.value}"
+                                                                   label="${each.name}" />
+                        </template>
+                    </combobox>
+                </hbox>
+                <hbox hflex="1" />
+                <hbox hflex="2">
+                    <label hflex="1" value="${c:l('document.status')}" />
+                    <combobox id="cbxStatus" autodrop="true"
+                                                  buttonVisible="true" hflex="3" value="${c:l('option')}"
+                                                  readonly="false">
+                        <comboitem value="-1" label="${c:l('option')}" />
+                        <comboitem value="1" label="${c:l('active')}" />
+                        <comboitem value="0" label="${c:l('inactive')}" />
+                    </combobox>
+                </hbox>
+                <hbox hflex="1" />
+            </hlayout>
+            <space height="20px"></space>
+
+            <space height="20px"></space>
+            <div style="text-align:center">
+                <button class="btn btn-default" mold="trendy"
+                                        id="btnSearch" forward="onClick=onSearch" label="${c:l('search')}"
+                                        focus="true" iconSclass="z-icon-search" />
+                <button class="btn btn-default" mold="trendy"
+                                        id="btnAdd" label="${c:l('add')}" iconSclass="z-icon-plus-circle" />
+                <button class="btn btn-default" mold="trendy"
+                                        id="btnReset" label="${c:l('reset')}" iconSclass="z-icon-refresh" />
+            </div>
+        </groupbox>
+        <groupbox id="graction" visible="true">
+            <caption id="lstActionId" visible="true"
+                                 label="${c:l('document.list')}" />
+            <grid id="gridDocument" mold="paging" pageSize="10"
+                              pagingPosition="both">
+
+                <columns style="text-align:center; ">
+                    <column hflex="1">${c:l('user.index')}</column>
+                    <column hflex="2">${c:l('document.name')}</column>
+                    <column hflex="4">${c:l('document.type')}</column>
+                    <column hflex="2">${c:l('document.path')}</column>
+                    <column hflex="2">
+                        ${c:l('document.category')}
+                    </column>
+                    <column hflex="2">${c:l('document.author')}</column>
+                    <column hflex="2">${c:l('document.order')}</column>
+                    <column hflex="2">${c:l('document.status')}</column>
+                    <column hflex="2">${c:l('user.action')}</column>
+                </columns>
+                <template name="model">
+                    <row value="${each}">
+                        <cell style="text-align: center;">
+                            <label value="${forEachStatus.index+1}" />
+                        </cell>
+                        <cell style="text-align: left;">
+                            <label value="${each.documentName}" />
+                        </cell>
+                        <cell style="text-align: center;">
+                            <image class="image"
+                                                               src="${each.documentType}" />
+                        </cell>
+                        <cell style="text-align: left;">
+                            <label value="${each.documentPath}" />
+                        </cell>
+                        <cell style="text-align: left;">
+                            <label value="${each.categoryId}" />
+                        </cell>
+                        <cell style="text-align: right;">
+                            <label value="${each.author}" />
+                        </cell>
+                        <cell style="text-align: right;">
+                            <label value="${each.documentOrder}" />
+                        </cell>
+                        <cell style="text-align: center;">
+                            <label
+                                value="${(each.status == 1) ? c:l('active') : c:l('inactive')}" />
+                        </cell>
+                        <cell style="text-align: center;">
+                            <a class="btn-cursor"
+                                                           iconSclass="z-icon-pencil" forward="onClick=onEdit"
+                                                           tooltiptext="${c:l('edit')}" />
+                            <a class="btn-cursor"
+                                                           iconSclass="z-icon-lock" forward="onClick=onLock"
+                                                           tooltiptext="${(each.status == 1) ? c:l('active') : c:l('inactive')}" />
+                        </cell>
+                    </row>
+                </template>
+            </grid>
+
+        </groupbox>
+    </window>
 </zk>
