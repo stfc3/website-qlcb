@@ -89,4 +89,12 @@ public class FunctionUtil {
         }
     }
 
+    public static List<Data> createListTypeDocument() {
+        List<Data> listObject = new ArrayList();
+        listObject.add(new Data(-1, Labels.getLabel("option")));
+        listObject.add(new Data(1, Labels.getLabel("document.type.subject")));
+        listObject.add(new Data(2, Labels.getLabel("document.type.document")));
+
+        return listObject;
+    }
 }

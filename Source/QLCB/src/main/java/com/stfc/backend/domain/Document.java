@@ -39,10 +39,10 @@ public class Document implements Serializable {
     private int documentType;
     private String documentPath;
     private String fileName;
-    private int categoryId;
+    private Integer categoryId;
     private String author;
-    private int documentOrder;
-    private int status;
+    private Integer documentOrder;
+    private Integer status;
     private Date createDate;
     private Date modifiedDate;
 
@@ -71,7 +71,7 @@ public class Document implements Serializable {
         return documentType;
     }
 
-    public void setDocumentType(int documentType) {
+    public void setDocumentType(Integer documentType) {
         this.documentType = documentType;
     }
 
@@ -89,7 +89,7 @@ public class Document implements Serializable {
         return categoryId;
     }
 
-    public void setCategoryId(int categoryId) {
+    public void setCategoryId(Integer categoryId) {
         this.categoryId = categoryId;
     }
 
@@ -107,7 +107,7 @@ public class Document implements Serializable {
         return documentOrder;
     }
 
-    public void setDocumentOrder(int documentOrder) {
+    public void setDocumentOrder(Integer documentOrder) {
         this.documentOrder = documentOrder;
     }
 
@@ -116,7 +116,7 @@ public class Document implements Serializable {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 
@@ -138,20 +138,19 @@ public class Document implements Serializable {
         this.modifiedDate = modifiedDate;
     }
 
-	/**
-	 * @return the fileName
-	 */
+    /**
+     * @return the fileName
+     */
     @Transient
-	public String getFileName() {
-		return fileName;
-	}
+    public String getFileName() {
+        return fileName;
+    }
 
-	/**
-	 * @param fileName the fileName to set
-	 */
-	public void setFileName(String fileName) {
-		this.fileName = fileName;
-	}
-    
+    /**
+     * @param fileName the fileName to set
+     */
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
 
 }

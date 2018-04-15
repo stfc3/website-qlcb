@@ -9,6 +9,7 @@ import com.stfc.backend.domain.Banner;
 import com.stfc.backend.domain.Document;
 import com.stfc.utils.FunctionUtil;
 import com.stfc.utils.StringUtils;
+import java.util.ArrayList;
 import java.util.List;
 import org.apache.log4j.Logger;
 import org.hibernate.Query;
@@ -51,26 +52,27 @@ public class DocumentDAO {
     }
 
     public List<Document> search(Document document) {
+        List<Document> listData = new ArrayList<>();
         try {
-            StringBuilder sql = new StringBuilder("select documentId, ");
-            sql.append("documentName, documentType, documentPath, categoryId");
-            sql.append("author, documentOrder, status, createDate");
-            sql.append("modifiedDate from Document where 1=1");
+            StringBuilder sql = new StringBuilder("select d ");
+//            sql.append("documentName, documentType, documentPath, categoryId");
+//            sql.append("author, documentOrder, status, createDate,");
+//            sql.append("modifiedDate from Document d where 1=1");
+            sql.append(" from Document d where 1=1");
             if (StringUtils.valiString(document.getDocumentName())) {
-                sql.append(" and documentName like :name escape '/'");
+                sql.append(" and d.documentName like :name escape '/'");
             }
             if (document.getDocumentType() != -1) {
-                sql.append(" and documentType = :type");
+                sql.append(" and d.documentType = :type");
             }
             if (document.getCategoryId() != -1) {
-                sql.append(" and categoryId = :category");
+                sql.append(" and d.categoryId = :category");
             }
             if (document.getStatus() != -1) {
-                sql.append(" and status = :status");
+                sql.append(" and d.status = :status");
             }
-            sql.append(" order by createDate, modifiedDate");
-            Query query = getCurrentSession().createQuery(sql.toString())
-                    .setResultTransformer(Transformers.aliasToBean(Document.class));
+            sql.append(" order by d.createDate, d.modifiedDate");
+            Query query = getCurrentSession().createQuery(sql.toString());
 
             if (StringUtils.valiString(document.getDocumentName())) {
                 query.setParameter("name", "%" + FunctionUtil.escapeCharacter(document.getDocumentName()) + "%");
@@ -84,17 +86,16 @@ public class DocumentDAO {
             if (document.getStatus() != -1) {
                 query.setParameter("status", document.getStatus());
             }
-            List<Document> listData = query.list();
-            return listData;
+            listData = query.list();
+            
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
         }
-        return null;
+        return listData;
     }
-    
+
     public void save(Document document) {
         getCurrentSession().saveOrUpdate(document);
     }
-    
-    
+
 }
