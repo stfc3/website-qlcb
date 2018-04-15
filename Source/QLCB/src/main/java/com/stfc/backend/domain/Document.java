@@ -5,6 +5,8 @@
  */
 package com.stfc.backend.domain;
 
+import com.stfc.utils.StringUtils;
+import java.io.File;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
@@ -36,10 +38,12 @@ public class Document implements Serializable {
      */
     private Long documentId;
     private String documentName;
-    private int documentType;
+    private Integer documentType;
+    private String documentTypeName;
     private String documentPath;
     private String fileName;
-    private Integer categoryId;
+    private Long categoryId;
+    private String categoryName;
     private String author;
     private Integer documentOrder;
     private Integer status;
@@ -67,7 +71,7 @@ public class Document implements Serializable {
     }
 
     @Column(name = "document_type", unique = true, nullable = false, insertable = true, updatable = true)
-    public int getDocumentType() {
+    public Integer getDocumentType() {
         return documentType;
     }
 
@@ -85,11 +89,11 @@ public class Document implements Serializable {
     }
 
     @Column(name = "category_id", unique = true, nullable = false, insertable = true, updatable = true)
-    public int getCategoryId() {
+    public Long getCategoryId() {
         return categoryId;
     }
 
-    public void setCategoryId(Integer categoryId) {
+    public void setCategoryId(Long categoryId) {
         this.categoryId = categoryId;
     }
 
@@ -103,7 +107,7 @@ public class Document implements Serializable {
     }
 
     @Column(name = "document_order", unique = false, nullable = true, insertable = true, updatable = true)
-    public int getDocumentOrder() {
+    public Integer getDocumentOrder() {
         return documentOrder;
     }
 
@@ -112,7 +116,7 @@ public class Document implements Serializable {
     }
 
     @Column(name = "status", unique = false, nullable = false, insertable = true, updatable = true)
-    public int getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
@@ -120,7 +124,7 @@ public class Document implements Serializable {
         this.status = status;
     }
 
-    @Column(name = "create_date", unique = false, nullable = false, insertable = true, updatable = true)
+    @Column(name = "create_date", unique = false, nullable = true, insertable = true, updatable = true)
     public Date getCreateDate() {
         return createDate;
     }
@@ -129,7 +133,7 @@ public class Document implements Serializable {
         this.createDate = createDate;
     }
 
-    @Column(name = "modified_date", unique = false, nullable = false, insertable = true, updatable = true)
+    @Column(name = "modified_date", unique = false, nullable = true, insertable = true, updatable = true)
     public Date getModifiedDate() {
         return modifiedDate;
     }
@@ -143,6 +147,11 @@ public class Document implements Serializable {
      */
     @Transient
     public String getFileName() {
+        if (StringUtils.valiString(documentPath)) {
+            String[] arr = documentPath.split(File.separator);
+            fileName = arr[arr.length - 1];
+        }
+
         return fileName;
     }
 
@@ -152,5 +161,30 @@ public class Document implements Serializable {
     public void setFileName(String fileName) {
         this.fileName = fileName;
     }
+
+    @Transient
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
+    }
+
+    @Transient
+    public String getDocumentTypeName() {
+        return documentTypeName;
+    }
+
+    public void setDocumentTypeName(String documentTypeName) {
+        this.documentTypeName = documentTypeName;
+    }
+
+    @Override
+    public String toString() {
+        return "Document{" + "documentId=" + documentId + ", documentName=" + documentName + ", documentType=" + documentType + ", documentTypeName=" + documentTypeName + ", documentPath=" + documentPath + ", fileName=" + fileName + ", categoryId=" + categoryId + ", categoryName=" + categoryName + ", author=" + author + ", documentOrder=" + documentOrder + ", status=" + status + ", createDate=" + createDate + ", modifiedDate=" + modifiedDate + '}';
+    }
+    
+    
 
 }

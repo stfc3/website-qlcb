@@ -11,11 +11,13 @@ import com.stfc.utils.FunctionUtil;
 import com.stfc.utils.StringUtils;
 import java.util.ArrayList;
 import java.util.List;
+import javax.xml.transform.Result;
 import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.transform.Transformers;
+import org.hibernate.type.StandardBasicTypes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -52,42 +54,57 @@ public class DocumentDAO {
     }
 
     public List<Document> search(Document document) {
+        logger.info("Document: " + document.toString());
         List<Document> listData = new ArrayList<>();
         try {
-            StringBuilder sql = new StringBuilder("select d ");
-//            sql.append("documentName, documentType, documentPath, categoryId");
-//            sql.append("author, documentOrder, status, createDate,");
-//            sql.append("modifiedDate from Document d where 1=1");
-            sql.append(" from Document d where 1=1");
+            StringBuilder sql = new StringBuilder("select d.document_id as documentId, ");
+            sql.append("d.document_name as documentName, d.document_type as documentType, d.document_path as documentPath, d.category_id as categoryId,");
+            sql.append("c.category_name as categoryName,");
+            sql.append("d.author as author, d.document_order as documentOrder,d.status as status,d.create_date as createDate,");
+            sql.append("d.modified_date as modifiedDate ");
+            sql.append(" from stfc_document d left join stfc_categories c ");
+            sql.append(" on d.category_id = c.category_id  where 1=1 ");
             if (StringUtils.valiString(document.getDocumentName())) {
-                sql.append(" and d.documentName like :name escape '/'");
+                sql.append(" and d.document_name like :name escape '/'");
             }
-            if (document.getDocumentType() != -1) {
-                sql.append(" and d.documentType = :type");
+            if (document.getDocumentType() != null && document.getDocumentType() != -1) {
+                sql.append(" and d.document_type = :type");
             }
-            if (document.getCategoryId() != -1) {
-                sql.append(" and d.categoryId = :category");
+            if (document.getCategoryId() != null && document.getCategoryId() != -1) {
+                sql.append(" and d.category_id = :category");
             }
-            if (document.getStatus() != -1) {
+            if (document.getStatus() != null && document.getStatus() != -1) {
                 sql.append(" and d.status = :status");
             }
-            sql.append(" order by d.createDate, d.modifiedDate");
-            Query query = getCurrentSession().createQuery(sql.toString());
+            sql.append(" order by d.create_date, d.modified_date");
+            Query query = getCurrentSession().createSQLQuery(sql.toString())
+                    .addScalar("documentId", StandardBasicTypes.LONG)
+                    .addScalar("documentName", StandardBasicTypes.STRING)
+                    .addScalar("documentType", StandardBasicTypes.INTEGER)
+                    .addScalar("documentPath", StandardBasicTypes.STRING)
+                    .addScalar("categoryId", StandardBasicTypes.LONG)
+                    .addScalar("categoryName", StandardBasicTypes.STRING)
+                    .addScalar("author", StandardBasicTypes.STRING)
+                    .addScalar("documentOrder", StandardBasicTypes.INTEGER)
+                    .addScalar("status", StandardBasicTypes.INTEGER)
+                    .addScalar("createDate", StandardBasicTypes.DATE)
+                    .addScalar("modifiedDate", StandardBasicTypes.DATE)
+                    .setResultTransformer(Transformers.aliasToBean(Document.class));
 
             if (StringUtils.valiString(document.getDocumentName())) {
                 query.setParameter("name", "%" + FunctionUtil.escapeCharacter(document.getDocumentName()) + "%");
             }
-            if (document.getDocumentType() != -1) {
+            if (document.getDocumentType() != null && document.getDocumentType() != -1) {
                 query.setParameter("type", document.getDocumentType());
             }
-            if (document.getCategoryId() != -1) {
+            if (document.getCategoryId() != null && document.getCategoryId() != -1) {
                 query.setParameter("category", document.getCategoryId());
             }
-            if (document.getStatus() != -1) {
+            if (document.getStatus() != null && document.getStatus() != -1) {
                 query.setParameter("status", document.getStatus());
             }
             listData = query.list();
-            
+
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
         }
@@ -95,7 +112,9 @@ public class DocumentDAO {
     }
 
     public void save(Document document) {
+
         getCurrentSession().saveOrUpdate(document);
+        logger.info("Document DAO: " + document.toString());
     }
 
 }

@@ -23,8 +23,9 @@ public class ConfigEntity {
     private String starttls;
     private String cc;
     private String bcc;
-    
+
     private String pathUpload;
+    private String uploadDocument;
 
     public Integer getTimeOut() {
         return timeOut;
@@ -129,6 +130,16 @@ public class ConfigEntity {
     public void setPathUpload(String pathUpload) {
         this.pathUpload = pathUpload;
     }
+
+    public String getUploadDocument() {
+        return uploadDocument;
+    }
+
+    public void setUploadDocument(String uploadDocument) {
+        this.uploadDocument = uploadDocument;
+    }
+    
+    
 
     @Override
     public String toString() {

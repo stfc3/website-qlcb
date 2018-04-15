@@ -95,14 +95,14 @@
                         <cell style="text-align: left;">
                             <label value="${each.documentName}" />
                         </cell>
-                        <cell style="text-align: center;">
-                            <label value="${each.documentType}" />
+                        <cell style="text-align: left;">
+                            <label value="${(each.documentType == 1) ? c:l('document.type.subject') : c:l('document.type.document')}" />
                         </cell>
                         <cell style="text-align: left;">
                             <label value="${each.documentPath}" />
                         </cell>
                         <cell style="text-align: left;">
-                            <label value="${each.categoryId}" />
+                            <label value="${each.categoryName}" />
                         </cell>
                         <cell style="text-align: right;">
                             <label value="${each.author}" />

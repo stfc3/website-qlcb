@@ -21,7 +21,6 @@ import org.zkoss.zk.ui.select.annotation.WireVariable;
 import org.zkoss.zk.ui.util.GenericForwardComposer;
 import org.zkoss.zkplus.spring.SpringUtil;
 import org.zkoss.zul.Combobox;
-import org.zkoss.zul.Datebox;
 import org.zkoss.zul.Grid;
 import org.zkoss.zul.ListModelList;
 import org.zkoss.zul.Messagebox;
@@ -34,9 +33,9 @@ import com.stfc.backend.domain.Document;
 import com.stfc.backend.entity.Data;
 import com.stfc.backend.service.BannerService;
 import com.stfc.backend.service.DocumentService;
+import com.stfc.utils.Constant;
 import com.stfc.utils.FunctionUtil;
 import com.stfc.utils.SpringConstant;
-import com.stfc.website.dao.WidgetDAO;
 import com.stfc.website.domain.Category;
 import com.stfc.website.service.WidgetService;
 
@@ -48,9 +47,6 @@ import com.stfc.website.service.WidgetService;
 public class DocumentController extends GenericForwardComposer<Component> {
 
     private static final Logger logger = Logger.getLogger(DocumentController.class);
-
-    @WireVariable
-    protected BannerService bannerService;
 
     @WireVariable
     protected DocumentService documentService;
@@ -108,13 +104,16 @@ public class DocumentController extends GenericForwardComposer<Component> {
     @Override
     public void doAfterCompose(Component comp) throws Exception {
         super.doAfterCompose(comp);
-        bannerService = (BannerService) SpringUtil.getBean(SpringConstant.BANNER_SERVICE);
         documentService = (DocumentService) SpringUtil.getBean(SpringConstant.DOCUMENT_SERVICE);
         widgetService = (WidgetService) SpringUtil.getBean(SpringConstant.WIDGET_SERVICE);
         search();
         //
         List<Data> listDataType = FunctionUtil.createListTypeDocument();
         List<Category> listDataCategory = widgetService.getAllCategory();
+        Category catDefault = new Category();
+        catDefault.setCategoryId(-1l);
+        catDefault.setCategoryName(Labels.getLabel("option"));
+        listDataCategory.add(0, catDefault);
         listModelCategory = new ListModelList<>(listDataCategory);
         cbCategory.setModel(listModelCategory);
 
@@ -127,23 +126,22 @@ public class DocumentController extends GenericForwardComposer<Component> {
     }
 
     private void search() {
-        Banner banner = new Banner();
         Document document = new Document();
         if (txtDocName != null) {
             document.setDocumentName(txtDocName.getValue());
         }
-        if (cbType != null && cbType.getSelectedItem() != null && !"-1".equals(cbType.getSelectedItem().getValue())) {
+        if (cbType != null && cbType.getSelectedItem() != null && !Constant.DEFAULT_VALUE.equals(cbType.getSelectedItem().getValue())) {
             document.setDocumentType(cbType.getSelectedItem().getValue());
         }
         if (cbCategory != null && cbCategory.getSelectedItem() != null
-                && !"-1".equals(cbCategory.getSelectedItem().getValue())) {
+                && !Constant.DEFAULT_VALUE.equals(cbCategory.getSelectedItem().getValue())) {
             document.setCategoryId(cbCategory.getSelectedItem().getValue());
         }
-        if (!"-1".equals(cbxStatus.getSelectedItem().getValue())) {
-            banner.setBannerStatus(Integer.valueOf(cbxStatus.getSelectedItem().getValue()));
+        if (cbxStatus != null && !Constant.DEFAULT_VALUE.equals(cbxStatus.getSelectedItem().getValue())) {
+            document.setStatus(Integer.valueOf(cbxStatus.getSelectedItem().getValue()));
         }
         List<Document> listDocument = documentService.search(document);
-        
+
         listSearch = new ListModelList(listDocument);
         listSearch.setMultiple(true);
         gridDocument.setModel(listSearch);
@@ -151,10 +149,10 @@ public class DocumentController extends GenericForwardComposer<Component> {
     }
 
     public void onClick$btnAdd() {
-        Banner banners = new Banner();
+        Document document = new Document();
         Map<String, Object> arguments = new HashMap();
-        arguments.put("banners", banners);
-        final Window windownUpload = (Window) Executions.createComponents("/backend/manager/include/banner_add.zul",
+        arguments.put("document", document);
+        final Window windownUpload = (Window) Executions.createComponents("/backend/manager/include/document_add.zul",
                 documentManager, arguments);
         windownUpload.doModal();
         windownUpload.setBorder(true);
@@ -173,11 +171,11 @@ public class DocumentController extends GenericForwardComposer<Component> {
     public void onEdit(ForwardEvent event) {
         Row rowSelected = (Row) event.getOrigin().getTarget().getParent().getParent();
 
-        Banner banners = rowSelected.getValue();
+        Document document = rowSelected.getValue();
 
         Map<String, Object> arguments = new HashMap();
-        arguments.put("banners", banners);
-        final Window windownUpload = (Window) Executions.createComponents("/backend/manager/include/banner_add.zul",
+        arguments.put("document", document);
+        final Window windownUpload = (Window) Executions.createComponents("/backend/manager/include/document_add.zul",
                 documentManager, arguments);
         windownUpload.doModal();
         windownUpload.setBorder(true);
@@ -187,17 +185,18 @@ public class DocumentController extends GenericForwardComposer<Component> {
 
     public void onLock(ForwardEvent event) {
         Row rowSelected = (Row) event.getOrigin().getTarget().getParent().getParent();
-        Banner banner = rowSelected.getValue();
+        Document document = rowSelected.getValue();
+
         String status;
-        if (banner.getBannerStatus() == 1) {
+        if (document.getStatus() == 1) {
             status = Labels.getLabel("user.lock").toLowerCase();
-            banner.setBannerStatus(0);
+            document.setStatus(0);
         } else {
             status = Labels.getLabel("user.unlock").toLowerCase();
-            banner.setBannerStatus(1);
+            document.setStatus(1);
         }
 
-        Messagebox.show(Labels.getLabel("user.comfirm.lock", new String[]{status, banner.getBannerName()}),
+        Messagebox.show(Labels.getLabel("document.comfirm.lock", new String[]{status, document.getDocumentName()}),
                 Labels.getLabel("user.comfirm"), Messagebox.YES | Messagebox.NO, Messagebox.QUESTION,
                 new EventListener() {
 
@@ -206,12 +205,14 @@ public class DocumentController extends GenericForwardComposer<Component> {
                 // TODO Auto-generated method stub
                 if (Messagebox.ON_YES.equals(event.getName())) {
                     // userService.save(user);
-                    bannerService.update(banner);
+//                    bannerService.update(banner);
+                    logger.info("Document controller: " + document.toString());
+                    documentService.save(document);
                     search();
                     String mess = status.substring(0, 1).toUpperCase() + status.substring(1);
                     Messagebox.show(
-                            Labels.getLabel("banner.comfirm.lock.success",
-                                    new String[]{mess, banner.getBannerName()}),
+                            Labels.getLabel("document.comfirm.lock.success",
+                                    new String[]{mess, document.getDocumentName()}),
                             Labels.getLabel("NOTIFICATION"), Messagebox.OK, Messagebox.INFORMATION);
                 }
             }

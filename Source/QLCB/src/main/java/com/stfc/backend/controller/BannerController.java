@@ -53,7 +53,7 @@ public class BannerController extends GenericForwardComposer<Component> {
     private ListModelList listSearch;
 
     @Wire
-    private Grid gridDocument;
+    private Grid gridBanner;
 
     private Window bannerManager;
 
@@ -136,7 +136,7 @@ public class BannerController extends GenericForwardComposer<Component> {
 
         listSearch = new ListModelList(listBanner);
         listSearch.setMultiple(true);
-        gridDocument.setModel(listSearch);
+        gridBanner.setModel(listSearch);
 
     }
 

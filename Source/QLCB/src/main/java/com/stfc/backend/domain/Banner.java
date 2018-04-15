@@ -33,7 +33,6 @@ public class Banner {
 	 * int(11) banner_status int(11) effect_from_date datetime effect_to_date
 	 * datetime create_date timestamp modified_date timestamp
      */
-
     private Long bannerId;
     private String bannerName;
     private String bannerImage;

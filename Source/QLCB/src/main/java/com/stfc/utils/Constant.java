@@ -37,5 +37,7 @@ public class Constant {
     public static final String MAIL_CC = "mail.cc";
     public static final String MAIL_BCC = "mail.bcc";
     public static final String PATH_UPLOAD = "path.upload.banners";
+    public static final String UPLOAD_DOCUMENT = "path.upload.document";
+    public static final String DEFAULT_VALUE = "-1";
 
 }

@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<zk xmlns:n="native">
+    <window id="addDocument"
+            apply="com.stfc.backend.controller.AddDocumentController"
+            position="center,center" closable="true"
+            
+            action="show: slideDown;hide: slideUp" border="normal" width="60%"
+            maximizable="false" title="${c:l('document.add')}"
+            onCancel="addDocument.detach();" contentStyle="overflow-y:auto">
+
+        <groupbox class="groupboxFull">
+            <longbox hflex="2" class="text-right" visible="false"
+                     value="${arg.document.documentId}" id="txtDocumentId"
+                     onBlur="self.value=self.value.trim()" />
+            <intbox hflex="2" class="text-right" visible="false"
+                    value="${arg.document.documentType}" id="txtType"
+                    onBlur="self.value=self.value.trim()" />            
+            <textbox hflex="2" class="text-right" visible="false"
+                     value="${arg.document.categoryName}" id="txtCategory"
+                     onBlur="self.value=self.value.trim()" />
+            <intbox hflex="2" class="text-right" visible="false"
+                    value="${arg.document.status}" id="txtStatus"
+                    onBlur="self.value=self.value.trim()" />
+            <textbox hflex="2" visible="false"
+                     id="linkHidden" value="${arg.document.documentPath}"
+                     onBlur="self.value=self.value.trim()" />
+            
+            <vlayout class="groupboxFull">
+                <label class="labelNote" hflex="1"
+                       value="${c:l('user.note')}" />
+                <!--                        Ten doc -->
+                <vlayout>
+                    <hlayout>
+                        <hbox hflex="1" />
+                        <hbox hflex="2">
+                            <label value="${c:l('document.name')}" />
+                            <span style="color:red">*</span>
+                        </hbox>
+                        <hbox hflex="7">
+                            <textbox hflex="2"
+                                     value="${arg.document.documentName}" id="txtDocumentName"
+                                     onBlur="self.value=self.value.trim()" />
+                        </hbox>
+                        <hbox hflex="1" />
+                    </hlayout>
+                    <hlayout>
+                        <hbox hflex="1" />
+                        <label hflex="2" visible="true" 
+                               id="errDocumentName" style="color:red" />
+                        <hbox hflex="1" />
+                    </hlayout>
+                </vlayout>
+                <!-- 				doc type -->
+                <vlayout>
+                    <hlayout>
+                        <hbox hflex="1" />
+                        <hbox hflex="2">
+                            <label value="${c:l('document.type')}" />
+                            <span style="color:red">*</span>
+
+                        </hbox>
+                        <hbox hflex="7">
+                            
+                            <combobox id="cbType" 
+                                      value="${c:l('option')}"
+                                      model="${$composer.listModelType}" autodrop="true"
+                                      buttonVisible="true" hflex="3">
+                                <template name="model">
+                                    <comboitem value="${each.value}"
+                                               label="${each.name}" />
+                                </template>
+                            </combobox>
+                        </hbox>
+                        <hbox hflex="1" />
+
+                    </hlayout>
+                    <hlayout>
+                        <hbox hflex="1" />
+                        <label visible="false" id="errType"
+                               style="color:red" />
+                        <hbox hflex="1" />
+                    </hlayout>
+                </vlayout>
+
+                <!-- 				duong dan -->
+                <vlayout>
+                    <hlayout>
+                        <hbox hflex="1" />
+                        <hbox hflex="2">
+                            <label value="${c:l('document.path')}" />
+                            <span style="color:red">*</span>
+                        </hbox>
+                        <hbox hflex="7">
+                            <button upload="true" id="uploadbtn" src="" iconSclass="z-icon-paperclip" label="${c:l('upload.file')}" hflex="1"/>
+                            <label id="fileName" hflex="6" value="${c:l('arg.document.fileName')}" />
+                        </hbox>
+                        <hbox hflex="1" />
+                    </hlayout>
+                    <hlayout>
+                        <hbox hflex="1" />
+                        <label visible="false" id="errPath"
+                               style="color:red" />
+                        <hbox hflex="1" />
+                    </hlayout>
+                </vlayout>
+                <!-- 				the loai -->
+                <vlayout>
+                    <hlayout>
+                        <hbox hflex="1" />
+                        <hbox hflex="2">
+                            <label value="${c:l('document.category')}" />
+                            <span style="color:red">*</span>
+                        </hbox>
+                        <hbox hflex="7">
+                            <combobox id="cbCategory" 
+                                      value="${c:l('option')}"
+                                      model="${$composer.listModelCategory}" autodrop="true"
+                                      buttonVisible="true" hflex="3">
+                                <template name="model">
+                                    <comboitem value="${each.categoryId}"
+                                               label="${each.categoryName}" />
+                                </template>
+                            </combobox>
+                        </hbox>
+                        <hbox hflex="1" />
+                    </hlayout>
+                    <hlayout>
+                        <hbox hflex="1" />
+                        <label visible="false" id="errCategory"
+                               style="color:red" />
+
+                        <hbox hflex="1" />
+                    </hlayout>
+                </vlayout>
+                <!-- 				vi tri banner -->
+                <vlayout>
+                    <hlayout>
+                        <hbox hflex="1" />
+
+                        <hbox hflex="2">
+                            <label hflex="1"
+                                   value="${c:l('document.author')}" />
+                        </hbox>
+                        <hbox hflex="7">
+                            <textbox hflex="2" id="txtAuthor"
+                                     value="${arg.document.author}"
+                                     onBlur="self.value=self.value.trim()" />
+
+                        </hbox>
+                        <hbox hflex="1" />
+                    </hlayout>
+                    <hlayout>
+                        <hbox hflex="1" />
+                        <span visible="false" style="color:red">
+
+                        </span>
+                        <hbox hflex="1" />
+                    </hlayout>
+                </vlayout>
+                <!-- 				tu ngay -->
+                <vlayout>
+                    <hlayout>
+                        <hbox hflex="1" />
+                        <hbox hflex="2">
+                            <label hflex="2"
+                                   value="${c:l('document.order')}" />
+                        </hbox>
+                        <hbox hflex="7">
+                            <intbox hflex="2" id="txtOrder"
+                                    value="${arg.document.documentOrder}" />
+                        </hbox>
+                        <hbox hflex="1" />
+                    </hlayout>
+                    <hlayout>
+                        <hbox hflex="1" />
+                        <span visible="false" style="color:red">
+
+                        </span>
+                        <hbox hflex="1" />
+                    </hlayout>
+                </vlayout>
+                
+
+            </vlayout>
+            <space height="20px"></space>
+            <div style="text-align:center">
+                <button class="btn btn-default" mold="trendy"
+                        id="btnSave" forward="onClick=onSave" label="${c:l('save')}"
+                        focus="true" iconSclass="z-icon-floppy-o" />
+                <button class="btn btn-default" mold="trendy"
+                        id="btnCancel" label="${c:l('cancel')}" iconSclass="z-icon-ban" />
+
+            </div>
+        </groupbox>
+
+    </window>
+</zk>

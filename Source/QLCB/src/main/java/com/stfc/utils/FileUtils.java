@@ -18,12 +18,9 @@ import org.zkoss.util.media.Media;
 public class FileUtils {
 
     private static final Logger logger = Logger.getLogger(FileUtils.class);
-    private String fileName;
-    private String filePath;
-    private String saveFilePath;
-    private String outFilePath;
+
+    private String filePathConfig;
     private String filePathOutput;
-    private String fileNameOutput;
     private String key;
     private static String SAVE_PATH;
 
@@ -35,36 +32,12 @@ public class FileUtils {
         this.key = key;
     }
 
-    public String getOutFilePath() {
-        return outFilePath;
+    public String getFilePathConfig() {
+        return filePathConfig;
     }
 
-    public void setOutFilePath(String outFilePath) {
-        this.outFilePath = outFilePath;
-    }
-
-    public String getSaveFilePath() {
-        return saveFilePath;
-    }
-
-    public void setSaveFilePath(String saveFilePath) {
-        this.saveFilePath = saveFilePath;
-    }
-
-    public String getFileName() {
-        return fileName;
-    }
-
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
-    }
-
-    public String getFilePath() {
-        return filePath;
-    }
-
-    public void setFilePath(String filePath) {
-        this.filePath = filePath;
+    public void setFilePathConfig(String filePathConfig) {
+        this.filePathConfig = filePathConfig;
     }
 
     public String getFilePathOutput() {
@@ -75,14 +48,6 @@ public class FileUtils {
         this.filePathOutput = filePathOutput;
     }
 
-    public String getFileNameOutput() {
-        return fileNameOutput;
-    }
-
-    public void setFileNameOutput(String fileNameOutput) {
-        this.fileNameOutput = fileNameOutput;
-    }
-
     public void saveFile(Media media) {
         BufferedInputStream in = null;
         BufferedOutputStream out = null;
@@ -91,7 +56,11 @@ public class FileUtils {
         try {
             LoadProperties properties = new LoadProperties();
             ConfigEntity entity = properties.loadConfig();
-            SAVE_PATH = entity.getPathUpload();
+            if (!StringUtils.valiString(filePathConfig)) {
+                SAVE_PATH = entity.getPathUpload();
+            } else {
+                SAVE_PATH = filePathConfig;
+            }
             final String vstrfileName = media.getName();
 
             uploadPath = SAVE_PATH;

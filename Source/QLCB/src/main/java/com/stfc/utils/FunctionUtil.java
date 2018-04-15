@@ -97,4 +97,14 @@ public class FunctionUtil {
 
         return listObject;
     }
+
+    public static String getTypeDocument(Integer type) {
+        List<Data> listRole = createListTypeDocument();
+        for (Data item : listRole) {
+            if (type != null && type.equals(item.getValue())) {
+                return item.getName();
+            }
+        }
+        return "";
+    }
 }
