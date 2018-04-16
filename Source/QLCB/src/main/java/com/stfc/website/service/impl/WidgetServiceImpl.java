@@ -10,8 +10,10 @@ import com.stfc.website.bean.Document;
 import com.stfc.website.bean.Post;
 import com.stfc.website.dao.WidgetDAO;
 import com.stfc.website.domain.Widget;
+import com.stfc.website.domain.Class;
 import com.stfc.website.bean.WidgetContent;
 import com.stfc.website.domain.Category;
+import com.stfc.website.domain.EnrollStudent;
 import com.stfc.website.domain.Param;
 import com.stfc.website.service.WidgetService;
 import java.util.List;
@@ -99,6 +101,18 @@ public class WidgetServiceImpl implements WidgetService {
     @Override
     public List<Category> getCategoryDocument() {
         return widgetDAO.getCategoryDocument();
+    }
+
+    @Transactional(readOnly = true)
+    @Override
+    public List<Class> getAllClass() {
+        return widgetDAO.getAllClass();
+    }
+
+    @Transactional
+    @Override
+    public void insertStudent(EnrollStudent student) {
+        widgetDAO.insertStudent(student);
     }
 
 }

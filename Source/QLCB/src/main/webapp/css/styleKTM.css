@@ -801,4 +801,32 @@ form[role=login] > div {
     text-transform: uppercase;
     font-weight: bold;
 }
+.register-birthday{
+    width: 100%;
+    font-size: 18px;
+    margin: 16px 0;
+}
+.register-birthday .z-datebox-input {
+    width: calc(100% - 45px);
+    margin: 0;
+    height: 45px;
+}
+.register-birthday .z-combobox-input {
+    width: calc(100% - 45px);
+    margin: 0;
+    height: 45px;
+}
+.register-birthday .z-datebox-button {
+    height: 45px;
+    width: 45px;
+    line-height: 37px;
+}
+.register-birthday .z-combobox-button {
+    height: 45px;
+    width: 45px;
+    line-height: 37px;
+    font-size: 21px;
+    text-align: center;
+}
+
 /*End tuyen sinh*/

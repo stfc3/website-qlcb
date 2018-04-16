@@ -9,8 +9,10 @@ import com.stfc.website.bean.Banner;
 import com.stfc.website.bean.Document;
 import com.stfc.website.bean.Post;
 import com.stfc.website.domain.Widget;
+import com.stfc.website.domain.Class;
 import com.stfc.website.bean.WidgetContent;
 import com.stfc.website.domain.Category;
+import com.stfc.website.domain.EnrollStudent;
 import com.stfc.website.domain.Param;
 import java.util.List;
 import org.apache.log4j.Logger;
@@ -379,6 +381,24 @@ public class WidgetDAO {
             logger.error(e.getMessage(), e);
         }
         return null;
+    }
+
+    public List<Class> getAllClass() {
+        try {
+            Query query = getCurrentSession().getNamedQuery("Class.getAllClass");
+            return (List<Class>) query.list();
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+        }
+        return null;
+    }
+
+    public void insertStudent(EnrollStudent student) {
+        try {
+            getCurrentSession().saveOrUpdate(student);
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+        }
     }
 
 }

@@ -13,6 +13,8 @@ import com.stfc.website.bean.WidgetContent;
 import com.stfc.website.domain.Category;
 import com.stfc.website.domain.Param;
 import java.util.List;
+import com.stfc.website.domain.Class;
+import com.stfc.website.domain.EnrollStudent;
 
 /**
  *
@@ -32,4 +34,6 @@ public interface WidgetService {
     List<Post> getPostByCategoryIdRelated(Long categorytId, int limitPost, Long postId);
     List<Document> getDocument();
     List<Category> getCategoryDocument();
+    List<Class> getAllClass();
+    void insertStudent(EnrollStudent student);
 }

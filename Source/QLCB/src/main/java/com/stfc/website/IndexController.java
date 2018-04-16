@@ -240,7 +240,7 @@ public class IndexController extends SelectorComposer<Div> {
         if (wg != null && wg.getListContent() != null && !wg.getListContent().isEmpty() && lstPost != null && !lstPost.isEmpty()) {
             List<Post> lstPostByContent = getPostByContent(wg, lstPost);
             int postNumber;
-            if (lstPostByContent.size() >= 6) {
+            if (lstPostByContent.size() > 6) {
                 postNumber = 6;
             } else {
                 postNumber = lstPostByContent.size();
@@ -357,7 +357,7 @@ public class IndexController extends SelectorComposer<Div> {
             irsPost.setClass("irs-post");
             irsPost.setParent(divPostSide);
             if (!lstPostByContent.isEmpty()) {
-                for (int i = 1; i <= postNumber; i++) {
+                for (int i = 1; i < postNumber; i++) {
                     Post p = lstPostByContent.get(i);
                     Div divPostItem = new Div();
                     divPostItem.setClass("irs-post-item post-item-padding");

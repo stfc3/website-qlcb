@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c" ?>
-<?page title="Công ty TNHH KTM" href="/images/favicon.ico"?>
-<?link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico"?>
+<?page title="Trường quản lý cán bộ Giao thông vận tải" href=""?>
+<?link rel="shortcut icon" type="image/x-icon" href=""?>
 
 <?link href="css/font-awesome.css" rel="stylesheet" type="text/css"?>
 <?link href="css/font-awesome.min.css" rel="stylesheet" type="text/css"?>
@@ -44,48 +44,80 @@
                         <div class="col-md-12">
                             <div class="login-form">
                                 <x:form method="post" action="#" role="login">
-                                    <label value="THÔNG TIN TUYỂN SINH" class="enrollstudents-title"></label>
+                                    <label value="${c:l('enrollstudents.title')} " class="enrollstudents-title"></label>
                                     <div class="row">
                                         <div class="col-md-2"></div>
                                         <div class="col-md-2 div-title-margin-input">
-                                            <label value="Họ và tên: " class="title-input"></label>
+                                            <label value="${c:l('enrollstudents.name')}: " class="title-input"></label>
+                                            <label style="color:red" value="*"/>
                                         </div>
                                         <div class="col-md-6">
-                                            <x:input type="text" name="name" placeholder="Họ và tên" required="" class="form-control input-lg" />
+                                            <textbox id="name" placeholder="${c:l('enrollstudents.name')}" type="text" class="form-control input-lg"/>
                                         </div>
                                         <div class="col-md-2"></div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-2"></div>
                                         <div class="col-md-2 div-title-margin-input">
-                                            <label value="Email: " class="title-input"></label>
+                                            <label value="${c:l('enrollstudents.birthday')}: " class="title-input"></label>
+                                            <label style="color:red" value="*"/>
                                         </div>
                                         <div class="col-md-6">
-                                            <x:input type="email" name="email" placeholder="Email" required="" class="form-control input-lg"  />
+                                            <datebox id="birthday" format="dd/MM/yyyy" placeholder="${c:l('enrollstudents.birthday')}" class="register-birthday "/>
                                         </div>
                                         <div class="col-md-2"></div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-2"></div>
                                         <div class="col-md-2 div-title-margin-input">
-                                            <label value="Địa chỉ: " class="title-input"></label>
+                                            <label value="${c:l('enrollstudents.email')}: " class="title-input"></label>
+                                            <label style="color:red" value="*"/>
                                         </div>
                                         <div class="col-md-6">
-                                            <x:input type="text" name="address" placeholder="Địa chỉ" required="" class="form-control input-lg" />
+                                            <textbox id="email" placeholder="${c:l('enrollstudents.email')}" type="text" class="form-control input-lg"/>
                                         </div>
                                         <div class="col-md-2"></div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-2"></div>
                                         <div class="col-md-2 div-title-margin-input">
-                                            <label value="Số điện thoại: " class="title-input"></label>
+                                            <label value="${c:l('enrollstudents.address')}: " class="title-input"></label>
+                                            <label style="color:red" value="*"/>
                                         </div>
                                         <div class="col-md-6">
-                                            <x:input type="text" name="phone" placeholder="Số điện thoại" required="" class="form-control input-lg" />
+                                            <textbox id="address" placeholder="${c:l('enrollstudents.address')}" type="text" class="form-control input-lg"/>
                                         </div>
                                         <div class="col-md-2"></div>
                                     </div>
-<!--                                    <div class="row">
+                                    <div class="row">
+                                        <div class="col-md-2"></div>
+                                        <div class="col-md-2 div-title-margin-input">
+                                            <label value="${c:l('enrollstudents.phone')}: " class="title-input"></label>
+                                            <label style="color:red" value="*"/>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <textbox id="phone" placeholder="${c:l('enrollstudents.phone')}" type="text" class="form-control input-lg"/>
+                                        </div>
+                                        <div class="col-md-2"></div>
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <div class="col-md-2"></div>
+                                        <div class="col-md-2 div-title-margin-input">
+                                            <label value="${c:l('enrollstudents.class')}: " class="title-input"></label>
+                                            <label style="color:red" value="*"/>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <combobox  hflex="1" id="cbxClass" autodrop="true" placeholder="${c:l('enrollstudents.class')}"
+                                                       buttonVisible="true" class="register-birthday ">
+                                                <template name="model">
+                                                    <comboitem value="${each.classId}" label="${each.className}" />
+                                                </template>
+                                            </combobox>
+                                        </div>
+                                        <div class="col-md-2"></div>
+                                    </div>
+                                    <!--                                    <div class="row">
                                         <div class="col-md-2"></div>
                                         <div class="col-md-2 div-title-margin-input">
                                             <label value="Password: " class="title-input"></label>
@@ -97,8 +129,15 @@
                                     </div>-->
                                     <div class="row">
                                         <div class="col-md-4"></div>
+                                        <div class="col-md-6" style="text-align:left;">
+                                            <label id="mesg" style="color:red;"/>
+                                        </div>
+                                        <div class="col-md-2"></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4"></div>
                                         <div class="col-md-6">
-                                            <x:button type="submit" name="go" class="btn btn-lg btn-primary btn-block">Đăng ký</x:button>
+                                            <a id ="btnRegisterStudent" class="btn btn-lg btn-primary btn-block">Đăng ký</a>
                                         </div>
                                         <div class="col-md-2"></div>
                                     </div>
