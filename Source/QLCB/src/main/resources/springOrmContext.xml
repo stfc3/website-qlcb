@@ -43,6 +43,9 @@
 	<bean id="UserService" class="com.stfc.backend.service.impl.UserServiceImpl" />
 	<bean id="BannerService" class="com.stfc.backend.service.impl.BannerServiceImpl" />
 	<bean id="DocumentService" class="com.stfc.backend.service.impl.DocumentServiceImpl" />
+        
+        
+	<bean id="MenuService" class="com.stfc.backend.service.impl.MenuServiceImpl" />
 
 	<!--End Index Website -->
 </beans>

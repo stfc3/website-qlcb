@@ -1,5 +1,129 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <zk xmlns="http://www.zkoss.org/2005/zul">
-    <div>Trang quản lý menu</div>
+    <div apply="com.stfc.backend.controller.MenuComposer">
+        <div class="row">
+            <div class="col-xs-2" >
+                <label value="${c:l('menu.select')}"/>
+            </div>
+            <div class="col-xs-10" >
+                <combobox id="menuType" buttonVisible="true" autocomplete="true" value="${c:l('menu.public')}" >
+                    <comboitem value="1" label="${c:l('menu.public')}"/>
+                    <comboitem value="2" label="${c:l('menu.private')}"/>
+                </combobox>
+            </div>
+        </div>
+        <space height="5px"/>
+        <div class="row">
+        
+            <div class="col-xs-4">
+                <groupbox>
+                    <caption label="${c:l('menu.manager')}"/>
+                    <!--                <div class="row">
+                        <div class="col-xs-4">
+                            <button id="btnAddMenu" label="${c:l('menu.add')}"/>
+                        </div>
+                    </div>
+                    <space height="5px"/>-->
+                    <div class="row">
+                        <div class="col-xs-4">
+                            <label value="${c:l('menu.name')}"/>
+                        </div>
+                        <div class="col-xs-8">
+                            <textbox id="menuName" placeholder="${c:l('menu.name')}" width="100%"/>
+                        </div>
+                    </div>
+                    <space height="5px"/>
+                    <div class="row">
+                        <div class="col-xs-4">
+                            <label value="${c:l('menu.parent')}"/>
+                        </div>
+                        <div class="col-xs-8">
+                            <combobox id="menuParent" buttonVisible="true" autocomplete="true" width="100%" value="${c:l('option')}">
+                                <template name="model">
+                                    <comboitem value="${each.menuId}" label="${each.menuName}" />
+                                </template>
+                            </combobox>
+                        </div>
+                    </div>
+                    <space height="5px"/>
+                    <div class="row">
+                        <div class="col-xs-4"/>
+                        <div class="col-xs-8">
+                            <combobox id="menuDataType" buttonVisible="true" autocomplete="true" value="${c:l('menu.category')}" width="100%" >
+                                <comboitem value="1" label="${c:l('menu.category')}"/>
+                                <comboitem value="2" label="${c:l('menu.post')}"/>
+                            </combobox>
+                        </div>
+                    </div>
+                    <space height="5px"/>
+                    <div class="row">
+                        <div class="col-xs-4">
+                            <label value="${c:l('menu.category')}"/>
+                        </div>
+                        <div class="col-xs-8">
+                            <combobox id="menuCategory" buttonVisible="true" autocomplete="true"  width="100%">
+                                <template name="model">
+                                    <comboitem value="${each.categorySlug}" label="${each.categoryName}" />
+                                </template>
+                            </combobox>
+                        </div>
+                    </div>
+                    <div class="row" visible="false">
+                        <div class="col-xs-4">
+                            <label value="${c:l('menu.post')}"/>
+                        </div>
+                        <div class="col-xs-8">
+                            <combobox id="menuPost" buttonVisible="true" autocomplete="true" width="100%">
+                                <!--                            <comboitem value="1" label="Post 1"/>
+                                <comboitem value="2" label="Post 2"/>
+                                <comboitem value="2" label="Post 3"/>-->
+                            </combobox>
+                        </div>
+                    </div>
+                    <space height="5px"/>
+                    <div class="row" >
+                        <div class="col-xs-4">
+                            <button id="btnSaveMenu" label="Save"/>
+                        </div>
+                    </div>
+                </groupbox>
+            </div>
+        
+            <div class="col-xs-8">
+                <groupbox>
+                    <caption label="${c:l('menu.list')}"/>
+                    <grid id="listMenu" mold="paging" pageSize="10" pagingPosition="both">
+                        <columns style="text-align:center; ">
+                            <column hflex="1">${c:l('menu.index')}</column>
+                            <column hflex="3">${c:l('menu.name')}</column>
+                            <column hflex="3">${c:l('menu.parent')}</column>
+                            <column hflex="6">${c:l('menu.slug')}</column>
+                            <column hflex="2"></column>
+                        </columns>
+                        <template name="model">
+                            <row  value="${each}">
+                                <cell>
+                                    <label value="${forEachStatus.index+1}" />
+                                </cell>
+                                <cell>
+                                    <label value="${each.menuName}" tooltiptext="${each.menuName}" />
+                                </cell>
+                                <cell>
+                                    <label value="${each.menuParentName}" tooltiptext="${each.menuParentName}" />
+                                </cell>
+                                <cell>
+                                    <label value="${each.menuSlug}" tooltiptext="${each.menuSlug}" />
+                                </cell>
+                                <cell>
+                                    <a class="btn-cursor" iconSclass="z-icon-arrow-circle-up" forward="onClick=onUp" tooltiptext="${c:l('up')}"/>
+                                    <a class="btn-cursor" iconSclass="z-icon-arrow-circle-down" forward="onClick=onDown" tooltiptext="${c:l('down')}"/>
+                                </cell>
+                            </row>
+                        </template>
+                    </grid>
+                </groupbox>
+            </div>
+        </div>
+    </div>
 </zk>

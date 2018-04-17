@@ -958,8 +958,10 @@ a:focus {
    ${ t:borderRadius('0') };
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
   min-height: 0;
+/* dongdv
   color: #FFF !important;
    ${ t:applyCSS3('transition', 'all ease 0.15s 0') };
+*/
 }
 .z-button:active {
   top: 1px;
@@ -982,9 +984,11 @@ a:focus {
   text-align: center;
   padding: 0;
 }
+/*
 .btn {
   color: #FFF !important;
 }
+*/
 .btn-sm {
   border-width: 4px;
   font-size: 13px;
@@ -2013,10 +2017,12 @@ a:focus {
 .ie8 .z-listitem.z-listitem-selected:hover > .z-listcell {
   background-color: transparent;
 }
+/*dongdv
 .z-grid,
 .z-listbox {
   border: 0;
 }
+*/
 .z-listbox-odd.z-listitem,
 .z-listbox-odd.z-listitem:hover {
   background-color: transparent;
