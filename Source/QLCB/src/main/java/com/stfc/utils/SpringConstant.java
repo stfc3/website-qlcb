@@ -21,5 +21,6 @@ public interface SpringConstant {
     String DOCUMENT_SERVICE = "DocumentService";
     
     String MENU_SERVICE = "MenuService";
+    String CATEGORY_SERVICE = "CategoryService";
 
 }

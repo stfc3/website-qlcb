@@ -5,6 +5,7 @@
  */
 package com.stfc.website.domain;
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,7 +21,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "stfc_widget")
 @NamedQuery(name = "Widget.getAllWidget", query = "FROM Widget u WHERE status = 1 ORDER BY order")
-public class Widget {
+public class Widget implements Serializable {
 
     private Long widgetId;
     private String widgetCode;
