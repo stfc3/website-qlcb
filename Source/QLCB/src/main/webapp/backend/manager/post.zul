@@ -2,7 +2,4 @@
 
 <zk xmlns="http://www.zkoss.org/2005/zul">
     <div>Trang quản lý bài viết</div>
-    <ckeditor width="80%" height="100%" filebrowserImageBrowseUrl="images" filebrowserImageUploadUrl="images"
-              customConfigurationsPath="/js/ckeditorConfig.js">
-    </ckeditor>
 </zk>

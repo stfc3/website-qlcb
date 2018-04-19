@@ -19,7 +19,5 @@ public interface SpringConstant {
     String USER_SERVICE = "UserService";
     String BANNER_SERVICE = "BannerService";
     String DOCUMENT_SERVICE = "DocumentService";
-    
-    String MENU_SERVICE = "MenuService";
 
 }
