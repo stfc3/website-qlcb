@@ -5,13 +5,11 @@
  */
 package com.stfc.backend.dao;
 
-import com.stfc.backend.domain.Banner;
 import com.stfc.backend.domain.Document;
 import com.stfc.utils.FunctionUtil;
 import com.stfc.utils.StringUtils;
 import java.util.ArrayList;
 import java.util.List;
-import javax.xml.transform.Result;
 import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -41,6 +39,7 @@ public class DocumentDAO {
      *
      * @return
      */
+    @SuppressWarnings("unchecked")
     public List<Document> getAllBanner() {
         try {
             Query query = getCurrentSession().getNamedQuery("Document.GetAllDocument");
@@ -53,6 +52,7 @@ public class DocumentDAO {
         return null;
     }
 
+    @SuppressWarnings("unchecked")
     public List<Document> search(Document document) {
         logger.info("Document: " + document.toString());
         List<Document> listData = new ArrayList<>();
@@ -111,10 +111,19 @@ public class DocumentDAO {
         return listData;
     }
 
+    @SuppressWarnings("unchecked")
     public void save(Document document) {
+        try {
+            getCurrentSession().saveOrUpdate(document);
+            logger.info("Document DAO: " + document.toString());
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+        }
 
-        getCurrentSession().saveOrUpdate(document);
-        logger.info("Document DAO: " + document.toString());
+    }
+
+    public void insert(Document document) {
+
     }
 
 }

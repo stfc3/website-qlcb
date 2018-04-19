@@ -52,7 +52,7 @@ public class Document implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "document_id", unique = true, nullable = true, insertable = true, updatable = true)
+    @Column(name = "document_id", unique = true, nullable = true)
     public Long getDocumentId() {
         return documentId;
     }
@@ -61,7 +61,7 @@ public class Document implements Serializable {
         this.documentId = documentId;
     }
 
-    @Column(name = "document_name", unique = false, nullable = false, insertable = true, updatable = true)
+    @Column(name = "document_name", unique = false, nullable = false)
     public String getDocumentName() {
         return documentName;
     }
@@ -70,7 +70,7 @@ public class Document implements Serializable {
         this.documentName = documentName;
     }
 
-    @Column(name = "document_type", unique = true, nullable = false, insertable = true, updatable = true)
+    @Column(name = "document_type", unique = true, nullable = false)
     public Integer getDocumentType() {
         return documentType;
     }
@@ -79,7 +79,7 @@ public class Document implements Serializable {
         this.documentType = documentType;
     }
 
-    @Column(name = "document_path", unique = true, nullable = true, insertable = true, updatable = true)
+    @Column(name = "document_path", unique = true, nullable = true)
     public String getDocumentPath() {
         return documentPath;
     }
@@ -88,7 +88,7 @@ public class Document implements Serializable {
         this.documentPath = documentPath;
     }
 
-    @Column(name = "category_id", unique = true, nullable = false, insertable = true, updatable = true)
+    @Column(name = "category_id", unique = true, nullable = false)
     public Long getCategoryId() {
         return categoryId;
     }
@@ -97,7 +97,7 @@ public class Document implements Serializable {
         this.categoryId = categoryId;
     }
 
-    @Column(name = "author", unique = true, nullable = true, insertable = true, updatable = true)
+    @Column(name = "author", unique = true, nullable = true)
     public String getAuthor() {
         return author;
     }
@@ -106,7 +106,7 @@ public class Document implements Serializable {
         this.author = author;
     }
 
-    @Column(name = "document_order", unique = false, nullable = true, insertable = true, updatable = true)
+    @Column(name = "document_order", unique = false, nullable = true)
     public Integer getDocumentOrder() {
         return documentOrder;
     }
@@ -115,7 +115,7 @@ public class Document implements Serializable {
         this.documentOrder = documentOrder;
     }
 
-    @Column(name = "status", unique = false, nullable = false, insertable = true, updatable = true)
+    @Column(name = "status", unique = false, nullable = false)
     public Integer getStatus() {
         return status;
     }
@@ -124,7 +124,7 @@ public class Document implements Serializable {
         this.status = status;
     }
 
-    @Column(name = "create_date", unique = false, nullable = true, insertable = true, updatable = true)
+    @Column(name = "create_date", unique = false, nullable = true)
     public Date getCreateDate() {
         return createDate;
     }
@@ -133,7 +133,7 @@ public class Document implements Serializable {
         this.createDate = createDate;
     }
 
-    @Column(name = "modified_date", unique = false, nullable = true, insertable = true, updatable = true)
+    @Column(name = "modified_date", unique = false, nullable = true)
     public Date getModifiedDate() {
         return modifiedDate;
     }
@@ -182,9 +182,15 @@ public class Document implements Serializable {
 
     @Override
     public String toString() {
-        return "Document{" + "documentId=" + documentId + ", documentName=" + documentName + ", documentType=" + documentType + ", documentTypeName=" + documentTypeName + ", documentPath=" + documentPath + ", fileName=" + fileName + ", categoryId=" + categoryId + ", categoryName=" + categoryName + ", author=" + author + ", documentOrder=" + documentOrder + ", status=" + status + ", createDate=" + createDate + ", modifiedDate=" + modifiedDate + '}';
+        return "Document{" + "documentId=" + documentId + ", documentName="
+                + documentName + ", documentType=" + documentType
+                + ", documentTypeName=" + documentTypeName
+                + ", documentPath=" + documentPath + ", fileName="
+                + fileName + ", categoryId=" + categoryId
+                + ", categoryName=" + categoryName + ", author="
+                + author + ", documentOrder=" + documentOrder
+                + ", status=" + status + ", createDate="
+                + createDate + ", modifiedDate=" + modifiedDate + '}';
     }
-    
-    
 
 }

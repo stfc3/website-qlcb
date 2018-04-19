@@ -12,6 +12,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -29,6 +30,7 @@ public class DocumentServiceImpl implements DocumentService {
         documentDAO.save(document);
     }
 
+    @Transactional(readOnly = true)
     @Override
     public List<Document> search(Document document) {
         try {
@@ -40,6 +42,7 @@ public class DocumentServiceImpl implements DocumentService {
 
     }
 
+    @Transactional(readOnly = true)
     @Override
     public List<Document> getAllBanner() {
         try {

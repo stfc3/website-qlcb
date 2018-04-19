@@ -20,11 +20,11 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class UserServiceImpl implements UserService {
-    
+
     private static final Logger logger = Logger.getLogger(UserServiceImpl.class);
     @Autowired
     UserDAO userDAO;
-    
+
     @Override
     public List<User> getAllUser() {
         try {
@@ -34,7 +34,7 @@ public class UserServiceImpl implements UserService {
         }
         return null;
     }
-    
+
     @Override
     public void save(User user) {
         try {
@@ -43,7 +43,7 @@ public class UserServiceImpl implements UserService {
             logger.error(e.getMessage(), e);
         }
     }
-    
+
     @Override
     public List<User> search(User user) {
         try {
@@ -53,10 +53,10 @@ public class UserServiceImpl implements UserService {
         }
         return null;
     }
-    
+
     @Override
     public void update(User user) {
         userDAO.update(user);
     }
-    
+
 }

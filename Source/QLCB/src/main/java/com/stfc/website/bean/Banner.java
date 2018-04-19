@@ -10,6 +10,7 @@ package com.stfc.website.bean;
  * @author daond
  */
 public class Banner {
+
     private long postId;
     private String bannerName;
     private String bannerImage;

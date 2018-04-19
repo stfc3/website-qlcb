@@ -375,7 +375,7 @@ public class IndexController extends SelectorComposer<Div> {
                     Div divTitle = new Div();
                     divTitle.setClass("post-title-over-new-post");
                     divTitle.setParent(divPostItem);
-                    
+
                     A aPostItemTitle = new A();
                     aPostItemTitle.setHref(p.getPostSlug());
                     aPostItemTitle.setParent(divTitle);
@@ -529,7 +529,7 @@ public class IndexController extends SelectorComposer<Div> {
                             Div divContentPostItemTitle = new Div();
                             divContentPostItemTitle.setClass("irs-post-item-3-column-height");
                             divContentPostItemTitle.setParent(divContentPostItem);
-                            
+
                             Div divTitle = new Div();
                             divTitle.setClass("post-title-over-mutil-cate");
                             divTitle.setParent(divContentPostItemTitle);
