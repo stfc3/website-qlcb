@@ -84,7 +84,7 @@
                     <space height="5px"/>
                     <div class="row" >
                         <div class="col-xs-4">
-                            <button id="btnSaveMenu" label="Save"/>
+                            <button id="btnSaveMenu" label="${c:l('save')}"/>
                         </div>
                     </div>
                 </groupbox>

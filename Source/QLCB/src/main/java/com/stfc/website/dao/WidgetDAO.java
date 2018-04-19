@@ -54,7 +54,7 @@ public class WidgetDAO {
                 vstrSql.append(" , COALESCE(stfc_categories.category_slug,'') as detailMoreSlug ");
                 vstrSql.append(" FROM stfc_widget_content left join stfc_categories on stfc_widget_content.widget_content = stfc_categories.category_id ");
 //                vstrSql.append(" FROM stfc_widget_content");
-                vstrSql.append(" WHERE status = 1 AND widget_id IN (:lstWidgetId)");
+                vstrSql.append(" WHERE stfc_widget_content.status = 1 AND widget_id IN (:lstWidgetId)");
                 vstrSql.append(" ORDER BY widget_content_order ");
                 Query query = getCurrentSession()
                         .createSQLQuery(vstrSql.toString())
@@ -89,7 +89,7 @@ public class WidgetDAO {
                 vstrSql.append(" WHERE m.category_id IN (:lstCategoryId)");
                 vstrSql.append(" AND p.post_status = 3");
                 vstrSql.append(" AND m.post_status = 1");
-                vstrSql.append(" AND c.category_status = 1");
+                vstrSql.append(" AND c.status = 1");
                 vstrSql.append(" AND p.is_private IN (:isPrivate, 2)");
                 vstrSql.append(" and p.effect_from_date <= sysdate()");
                 vstrSql.append(" and (effect_to_date >= sysdate() or effect_to_date is null)");
@@ -132,7 +132,7 @@ public class WidgetDAO {
             vstrSql.append(" WHERE m.category_id IN (:categoryId)");
             vstrSql.append(" AND p.post_status = 3");
             vstrSql.append(" AND m.post_status = 1");
-            vstrSql.append(" AND c.category_status = 1");
+            vstrSql.append(" AND c.status = 1");
             vstrSql.append(" AND p.is_private IN (:isPrivate, 2)");
             vstrSql.append(" and p.effect_from_date <= sysdate()");
             vstrSql.append(" and (effect_to_date >= sysdate() or effect_to_date is null)");
@@ -214,7 +214,7 @@ public class WidgetDAO {
             vstrSql.append(" WHERE p.post_slug = :postSlug");
             vstrSql.append(" AND p.post_status = 3");
             vstrSql.append(" AND m.post_status = 1");
-            vstrSql.append(" AND c.category_status = 1");
+            vstrSql.append(" AND c.status = 1");
             vstrSql.append(" and p.effect_from_date <= sysdate()");
             vstrSql.append(" and (effect_to_date >= sysdate() or effect_to_date is null)");
             vstrSql.append(" and p.post_date <= sysdate()");
@@ -254,7 +254,7 @@ public class WidgetDAO {
             vstrSql.append(" WHERE c.category_slug = :categorySlug");
             vstrSql.append(" AND p.post_status = 3");
             vstrSql.append(" AND m.post_status = 1");
-            vstrSql.append(" AND c.category_status = 1");
+            vstrSql.append(" AND c.status = 1");
             vstrSql.append(" and p.effect_from_date <= sysdate()");
             vstrSql.append(" and (effect_to_date >= sysdate() or effect_to_date is null)");
             vstrSql.append(" and p.post_date <= sysdate()");
@@ -297,7 +297,7 @@ public class WidgetDAO {
             vstrSql.append(" WHERE m.category_id IN (:categoryId)");
             vstrSql.append(" AND p.post_status = 3");
             vstrSql.append(" AND m.post_status = 1");
-            vstrSql.append(" AND c.category_status = 1");
+            vstrSql.append(" AND c.status = 1");
             vstrSql.append(" AND p.post_id NOT IN (:postId)");
             vstrSql.append(" and p.effect_from_date <= sysdate()");
             vstrSql.append(" and (effect_to_date >= sysdate() or effect_to_date is null)");
@@ -338,7 +338,7 @@ public class WidgetDAO {
             vstrSql.append(" d.document_path as documentPath, d.category_id as categoryId, c.category_name as categoryName, d.author as author");
             vstrSql.append(" from stfc_document d");
             vstrSql.append(" inner join stfc_categories c on d.category_id = c.category_id");
-            vstrSql.append(" where d.status = 1 and c.category_status = 1");
+            vstrSql.append(" where d.status = 1 and c.status = 1");
             vstrSql.append(" ORDER BY d.document_order, d.modified_date, d.create_date ");
             Query query = getCurrentSession()
                     .createSQLQuery(vstrSql.toString())

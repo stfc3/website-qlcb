@@ -5,6 +5,8 @@
  */
 package com.stfc.website.domain;
 
+import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,6 +14,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.Transient;
 
 /**
  *
@@ -19,14 +23,18 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "stfc_categories")
-@NamedQuery(name = "Category.getAllCategory", query = "FROM Category u WHERE category_status = 1")
-public class Category {
+@NamedQuery(name = "Category.getAllCategory", query = "FROM Category c WHERE c.categoryStatus = 1")
+public class Category implements Serializable {
 
     private Long categoryId;
     private String categoryName;
     private Long categoryParent;
     private String categorySlug;
-    private int categoryOrder;
+    private Integer categoryOrder;
+    private Integer categoryStatus;
+    private Date createDate;
+    private Date modifiedDate;
+    private String categoryParentName;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -67,12 +75,50 @@ public class Category {
     }
 
     @Column(name = "category_order")
-    public int getCategoryOrder() {
+    public Integer getCategoryOrder() {
         return categoryOrder;
     }
 
-    public void setCategoryOrder(int categoryOrder) {
+    public void setCategoryOrder(Integer categoryOrder) {
         this.categoryOrder = categoryOrder;
+    }
+
+    @Column(name = "status")
+    public Integer getCategoryStatus() {
+        return categoryStatus;
+    }
+
+    public void setCategoryStatus(Integer categoryStatus) {
+        this.categoryStatus = categoryStatus;
+    }
+
+    @Column(name = "create_date")
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
+    @Column(name = "modified_date")
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    public Date getModifiedDate() {
+        return modifiedDate;
+    }
+
+    public void setModifiedDate(Date modifiedDate) {
+        this.modifiedDate = modifiedDate;
+    }
+
+    @Transient
+    public String getCategoryParentName() {
+        return categoryParentName;
+    }
+
+    public void setCategoryParentName(String categoryParentName) {
+        this.categoryParentName = categoryParentName;
     }
 
 }

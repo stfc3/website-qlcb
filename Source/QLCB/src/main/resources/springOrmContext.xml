@@ -46,6 +46,7 @@
         
         
 	<bean id="MenuService" class="com.stfc.backend.service.impl.MenuServiceImpl" />
+	<bean id="CategoryService" class="com.stfc.backend.service.impl.CategoryServiceImpl" />
 
 	<!--End Index Website -->
 </beans>

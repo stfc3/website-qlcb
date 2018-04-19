@@ -1,5 +1,85 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <zk xmlns="http://www.zkoss.org/2005/zul">
-    <div>Trang quản lý category</div>
+    <div apply="com.stfc.backend.controller.CategoryComposer">
+        
+        <div class="row">
+        
+            <div class="col-xs-4">
+                <groupbox>
+                    <caption label="${c:l('category.manager')}"/>
+                    <div class="row">
+                        <div class="col-xs-4">
+                            <label value="${c:l('category.name')}"/>
+                        </div>
+                        <div class="col-xs-8">
+                            <textbox id="categoryName" placeholder="${c:l('category.name')}" width="100%"/>
+                        </div>
+                    </div>
+                    <space height="5px"/>
+                    <div class="row">
+                        <div class="col-xs-4">
+                            <label value="${c:l('category.slug')}"/>
+                        </div>
+                        <div class="col-xs-8">
+                            <textbox id="categorySlug" placeholder="${c:l('category.slug')}" width="100%"/>
+                        </div>
+                    </div>
+                    <space height="5px"/>
+                    <div class="row">
+                        <div class="col-xs-4">
+                            <label value="${c:l('category.parent')}"/>
+                        </div>
+                        <div class="col-xs-8">
+                            <combobox id="categoryParent" buttonVisible="true" autocomplete="true" width="100%" value="${c:l('option')}">
+                                <template name="model">
+                                    <comboitem value="${each.categoryId}" label="${each.categoryName}" />
+                                </template>
+                            </combobox>
+                        </div>
+                    </div>
+                    <div class="row" >
+                        <div class="col-xs-4">
+                            <button id="btnSave" label="${c:l('save')}"/>
+                        </div>
+                    </div>
+                </groupbox>
+            </div>
+        
+            <div class="col-xs-8">
+                <groupbox>
+                    <caption label="${c:l('category.list')}"/>
+                    <grid id="listCategory" mold="paging" pageSize="10" pagingPosition="both">
+                        <columns style="text-align:center; ">
+                            <column hflex="1">${c:l('category.index')}</column>
+                            <column hflex="3">${c:l('category.name')}</column>
+                            <column hflex="3">${c:l('category.parent')}</column>
+                            <column hflex="6">${c:l('category.slug')}</column>
+                            <column hflex="2"></column>
+                        </columns>
+                        <template name="model">
+                            <row  value="${each}">
+                                <cell>
+                                    <label value="${forEachStatus.index+1}" />
+                                </cell>
+                                <cell>
+                                    <label value="${each.categoryName}" tooltiptext="${each.categoryName}" />
+                                </cell>
+                                <cell>
+                                    <label value="${each.categoryParentName}" tooltiptext="${each.categoryParentName}" />
+                                </cell>
+                                <cell>
+                                    <label value="${each.categorySlug}" tooltiptext="${each.categorySlug}" />
+                                </cell>
+                                <cell>
+                                    <a class="btn-cursor" iconSclass="z-icon-arrow-circle-up" forward="onClick=onUp" tooltiptext="${c:l('up')}"/>
+                                    <a class="btn-cursor" iconSclass="z-icon-arrow-circle-down" forward="onClick=onDown" tooltiptext="${c:l('down')}"/>
+                                </cell>
+                            </row>
+                        </template>
+                    </grid>
+                </groupbox>
+            </div>
+        </div>
+    </div>
 </zk>
