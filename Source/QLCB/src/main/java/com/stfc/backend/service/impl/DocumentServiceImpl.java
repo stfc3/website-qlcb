@@ -25,6 +25,7 @@ public class DocumentServiceImpl implements DocumentService {
     @Autowired
     DocumentDAO documentDAO;
 
+    @Transactional
     @Override
     public void save(Document document) {
         documentDAO.save(document);
