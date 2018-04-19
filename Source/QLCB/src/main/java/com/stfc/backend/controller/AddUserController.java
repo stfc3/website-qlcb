@@ -182,24 +182,22 @@ public class AddUserController extends GenericForwardComposer<Component> {
         user.setFirstName(firstName);
         user.setLastName(lastName);
         user.setUserName(userName);
-        user.setPassword(EncryptUtil.encrypt(password));
+
         user.setRole(role);
         user.setUserId(id);
         user.setStatus(0);
         user.setCreateDate(new Date());
 
-        userService.save(user);
         if (!txtUserName.isReadonly()) {
+            user.setPassword(EncryptUtil.encrypt(password));
             MailSend mailSend = new MailSend();
-//        StringBuilder content = new StringBuilder("<h1>Hệ thống đăng kí cho bạn với tài khoản : " + userName + "</h1>");
-//        content.append("<br><h3>Mật khẩu của bạn là:" + password + ".</h3>");
-//        content.append(" <br> Hãy đổi lại mật khẩu sau lần đăng nhập đầu tiên");
             mailSend.sendMail(email, Labels.getLabel("user.register.password.success.content", new String[]{userName, password}));
             reset();
             messSuccess.setVisible(!messSuccess.isVisible());
             messSuccess.setValue(Labels.getLabel("user.register.password.success", new String[]{userName}));
 
         }
+        userService.save(user);
 
     }
 
