@@ -1,5 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<zk xmlns="http://www.zkoss.org/2005/zul">
-    <div>Trang quản lý widget</div>
+<zk xmlns:x="xhtml" xmlns="http://www.zkoss.org/2005/zul">
+    <div apply="com.stfc.backend.controller.WidgetComposer">
+        <groupbox>
+            <caption label="${c:l('widget.listcaption')}"/>
+            <grid id="listWidget" mold="paging" pageSize="10" pagingPosition="both">
+                <auxhead sclass="category-center">
+                    <auxheader colspan="8">
+                        <a id="add" class="btn-cursor" iconSclass="z-icon-plus-circle" label="${c:l('add')}" />
+                    </auxheader>
+                </auxhead>
+                <columns style="text-align:center; ">
+                    <column hflex="1">${c:l('widget.index')}</column>
+                    <column hflex="6">${c:l('widget.name')}</column>
+                    <column hflex="2">${c:l('widget.type')}</column>
+                    <column hflex="2">${c:l('widget.position')}</column>
+                    <column hflex="2">${c:l('widget.action')}</column>
+                </columns>
+                <template name="model">
+                    <row  value="${each}">
+                        <cell>
+                            <label value="${forEachStatus.index+1}" />
+                        </cell>
+                        <cell>
+                            <label value="${each.widgetName}" tooltiptext="${each.widgetName}" />
+                        </cell>
+                        <cell>
+                            <label value="${each.widgetType}" tooltiptext="${each.widgetType}" />
+                        </cell>
+                        <cell>
+                            <label value="${each.widgetPosition}" tooltiptext="${each.widgetPosition}" />
+                        </cell>
+                        <cell style="text-align:center">
+                            <a class="btn-cursor" iconSclass="z-icon-pencil" forward="onClick=onEdit" tooltiptext="${c:l('edit')}"/>
+                            <a class="btn-cursor" iconSclass="z-icon-trash-o" forward="onClick=onDelete" tooltiptext="${c:l('delete')}"/>
+                        </cell>
+                    </row>
+                </template>
+            </grid>
+        </groupbox>
+    </div>
 </zk>

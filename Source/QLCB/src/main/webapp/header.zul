@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <zk xmlns:x="xhtml" xmlns:zk="zk">
-    <div class="irs-main-header">
+    <div class="irs-main-header" apply="com.stfc.website.MenuController">
         <div class="container">
             <div class="col-md-3"></div>
         </div>
@@ -27,70 +27,7 @@
                                 </div>
                                 <!-- Menu -->
                                 <div class="collapse navbar-collapse bs-example-navbar-collapse-1">
-                                    <x:ul class="nav navbar-nav navbar-right" data-hover="dropdown" data-animations="flipInY">
-                                        <x:li class="active">
-                                            <a href="">
-                                                <x:i class="fa fa-home" aria-hidden="true" style="font-size: 20px"></x:i>
-                                            </a>
-                                        </x:li>
-                                        <x:li>
-                                            <a href="">Trang chủ</a>
-                                        </x:li>
-                                        <x:li>
-                                            <x:a href="#" class="dropdown-toggle" data-toggle="dropdown">Tin tức<x:b class="caret"></x:b></x:a>
-                                            <x:ul class="dropdown-menu multi-level">
-                                                <x:li>
-                                                    <a href="#">Tin công ty</a>
-                                                </x:li>
-                                                <x:li>
-                                                    <a href="#">Tin khác</a>
-                                                </x:li>
-                                                <!--<x:li class="divider"></x:li>-->
-                                                <x:li class="dropdown-submenu">
-                                                    <a href="#" class="dropdown-toggle" >Thời sự, VH-XH, pháp luật</a>
-                                                    <x:ul class="dropdown-menu">
-                                                        <x:li>
-                                                            <a href="#">Tin thời sự</a>
-                                                        </x:li>
-                                                        <x:li class="dropdown-submenu">
-                                                            <a href="#" class="dropdown-toggle">Văn hóa xã hội</a>
-                                                            <x:ul class="dropdown-menu">
-                                                                <x:li>
-                                                                    <a href="#">Văn hóa</a>
-                                                                </x:li>
-                                                                <x:li>
-                                                                    <a href="#">Xã hội</a>
-                                                                </x:li>
-                                                            </x:ul>
-                                                        </x:li>
-                                                        <x:li>
-                                                            <a href="#">Tin pháp luật</a>
-                                                        </x:li>
-                                                    </x:ul>
-                                                </x:li>
-                                            </x:ul>
-                                        </x:li>
-                                        <x:li>
-                                            <a href="">Giới thiệu</a>
-                                        </x:li>
-                                        <x:li>
-                                            <x:a href="#" class="dropdown-toggle" data-toggle="dropdown">Du học<x:b class="caret"></x:b></x:a>
-                                            <x:ul class="dropdown-menu multi-level">
-                                                <x:li>
-                                                    <a href="#">Nhật bản</a>
-                                                </x:li>
-                                                <x:li>
-                                                    <a href="#">Nước khác</a>
-                                                </x:li>
-                                                
-                                            </x:ul>
-                                        </x:li>
-                                        <x:li>
-                                            <a href="">Cẩm nang</a>
-                                        </x:li>
-                                        <x:li>
-                                            <a href="">Liên hệ</a>
-                                        </x:li>
+                                    <x:ul id="menu" class="nav navbar-nav navbar-right" data-hover="dropdown" data-animations="flipInY">
                                     </x:ul>
                                 </div>
                             </div>

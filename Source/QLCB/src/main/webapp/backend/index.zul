@@ -25,7 +25,7 @@
                     </div>
             
                 </div>
-                <include id="content"/>
+                <include id="content" style="padding:20px"/>
             </div>
         </div>
     </div>
