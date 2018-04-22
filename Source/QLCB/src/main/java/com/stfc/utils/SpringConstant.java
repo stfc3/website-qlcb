@@ -22,5 +22,6 @@ public interface SpringConstant {
     
     String MENU_SERVICE = "MenuService";
     String CATEGORY_SERVICE = "CategoryService";
+    String POST_SERVICE = "PostService";
 
 }

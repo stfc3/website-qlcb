@@ -30,7 +30,7 @@
                             <label value="${c:l('menu.name')}"/>
                         </div>
                         <div class="col-xs-8">
-                            <textbox id="menuName" placeholder="${c:l('menu.name')}" width="100%"/>
+                            <textbox id="menuName" placeholder="${c:l('menu.name')}" width="100%" />
                         </div>
                     </div>
                     <space height="5px"/>

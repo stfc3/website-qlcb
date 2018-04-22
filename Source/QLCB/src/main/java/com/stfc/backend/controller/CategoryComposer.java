@@ -2,6 +2,7 @@ package com.stfc.backend.controller;
 
 import com.stfc.backend.service.CategoryService;
 import com.stfc.utils.SpringConstant;
+import com.stfc.utils.StringUtils;
 import com.stfc.website.domain.Category;
 import java.util.ArrayList;
 import java.util.Date;
@@ -51,6 +52,10 @@ public class CategoryComposer extends SelectorComposer<Component> {
         listCategory.setModel(modelCategoryGrid);
         ListModelList modelCategoryParent = new ListModelList(lstCategoryParent);
         categoryParent.setModel(modelCategoryParent);
+    }
+    @Listen("onChange = #categoryName")
+    public void fillSlug() {
+        categorySlug.setValue(StringUtils.convertSlug(categoryName.getValue()));
     }
 
     @Listen("onClick = #btnSave")
