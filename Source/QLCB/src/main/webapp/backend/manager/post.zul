@@ -1,8 +1,98 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<zk xmlns="http://www.zkoss.org/2005/zul">
-    <div>Trang quản lý bài viết</div>
-    <ckeditor width="80%" height="100%" filebrowserImageBrowseUrl="images" filebrowserImageUploadUrl="images"
-              customConfigurationsPath="/js/ckeditorConfig.js">
-    </ckeditor>
+<zk xmlns:x="xhtml" >
+    <div class="row" apply="com.stfc.backend.controller.PostComposer">
+        <div class="col-md-9">
+            <groupbox>
+                <caption label="${c:l('post.post')}"/>
+                <div class="row">
+                    <div class="col-md-12">
+                        <textbox id="postTitle" placeholder="${c:l('post.title')}" width="100%" />
+                    </div>
+                </div>
+                <space height="5px"/>
+                <div class="row">
+                    <div class="col-md-12">
+                        <textbox id="postSlug" placeholder="${c:l('post.slug')}" width="100%"/>
+                    </div>
+                </div>
+                <space height="5px"/>
+                <div class="row">
+                    <div class="col-md-12">
+                        <ckeditor width="100%" height="250px" id="postContent"
+                                  filebrowserImageBrowseUrl="images" 
+                                  filebrowserImageUploadUrl="images"
+                                  customConfigurationsPath="/js/ckeditorConfig.js">
+                        </ckeditor>
+                    </div>
+                </div>
+            </groupbox>
+        </div>
+        
+        
+        <div class="col-md-3">
+            <groupbox>
+                <caption label="${c:l('post.config')}"/>
+                <div class="row">
+                    <div class="col-md-6">
+                        <button id="btnSave" label="${c:l('post.save')}"/>
+                    </div>
+                    <div class="col-md-6">
+                        <button id="btnPreview" label="${c:l('post.preview')}"/>
+                    </div>
+                </div>
+                <space height="5px"/>
+                <div class="row">
+                    <div class="col-md-6">
+                        <checkbox id="isPrivate" label="${c:l('post.isPrivate')}" checked="false"/>
+                    </div>
+                    <div class="col-md-6">
+                        <checkbox id="isPin" label="${c:l('post.isPin')}" checked="false"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <x:h5>${c:l('post.time')}</x:h5>
+                    <div class="row">
+                        <div class="col-md-5">
+                            <label value="${c:l('post.fromDate')}"/>
+                        </div>
+                        <div class="col-md-5">
+                            <datebox id="fromDate" onCreate="self.value = new Date()" format="dd/MM/yyyy"/>
+                        </div>
+                    </div>
+                    <space height="5px"/>
+                    <div class="row">
+                        <div class="col-md-5">
+                            <label value="${c:l('post.toDate')}"/>
+                        </div>
+                        <div class="col-md-5">
+                            <datebox id="toDate" format="dd/MM/yyyy"/>
+                        </div>
+                    </div>
+                </div>
+                <space height="5px"/>
+                <div class="row">
+                    <div class="col-md-12">
+                        <button id="btnPublish" label="${c:l('post.publish')}"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <x:h5>${c:l('post.category')}</x:h5>
+                    <div class="col-md-12">
+                        <listbox id="category" model="${modelCategory}" width="100%" height="150px" multiple="true" checkmark="true">
+                            <template name="model">
+                                <listitem value="${each.categoryId}" label="${each.categoryName}" />
+                            </template>
+                        </listbox>
+                    </div>
+                </div>
+                <div class="row">
+                    <x:h5>${c:l('post.image')}</x:h5>
+                    <div class="col-md-12">
+                        <image id="image" width="100%" height="150px" src="/images/notice.jpg"/>
+                    </div>
+                </div>
+            </groupbox>
+        </div>
+    </div>
 </zk>

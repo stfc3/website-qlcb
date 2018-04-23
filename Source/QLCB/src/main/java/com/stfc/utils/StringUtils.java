@@ -5,6 +5,7 @@
  */
 package com.stfc.utils;
 
+import java.text.Normalizer;
 import java.util.regex.Pattern;
 
 /**
@@ -31,11 +32,24 @@ public class StringUtils {
         java.util.regex.Matcher m = p.matcher(email);
         return m.matches();
     }
+    
+    /*
+     * Hàm convert tieng viet khong dau
+     */
+
+    public static String unAccent(String s) {
+        String temp = Normalizer.normalize(s.toLowerCase(), Normalizer.Form.NFD);
+        Pattern pattern = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
+        return pattern.matcher(temp).replaceAll("").replaceAll("Đ", "D").replace("đ", "d");
+    }
+    public static String convertSlug(String input){
+        String strReturn=unAccent(input);
+        return strReturn.replaceAll(" ", "-");
+    }
   
 
     public static void main(String[] arg) {
-        String s = "viettx_06@gmail.com@vnpay.vn";
-        System.out.println(isValidEmailAddress(s));
+        System.out.println(convertSlug("Tôi là đông"));
     }
 
 }
