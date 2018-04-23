@@ -95,7 +95,11 @@ public class AddUserController extends GenericForwardComposer<Component> {
 
         listModelRole = new ListModelList<>(listDataRole);
         cbRole.setModel(listModelRole);
-        cbRole.setValue(FunctionUtil.getRoleName(txtRole.getValue()));
+        if (txtRole.getValue() != null) {
+            cbRole.setValue(FunctionUtil.getRoleName(txtRole.getValue()));
+        } else {
+            cbRole.setValue(FunctionUtil.getRoleName(-1));
+        }
 
     }
 
@@ -115,23 +119,25 @@ public class AddUserController extends GenericForwardComposer<Component> {
         String email = txtEmail.getValue().trim();
         Long id = txtUserId.getValue();
         Integer role = cbRole.getSelectedItem().getValue();
+        boolean isError = false;
         if (!StringUtils.valiString(userName)) {
             errUserName.setVisible(true);
             errUserName.setValue(Labels.getLabel("user.error.username"));
             txtUserName.focus();
-            return;
+            isError = true;
+//            return;
         }
         if (!StringUtils.validatePattern(userName)) {
             errUserName.setVisible(true);
             errUserName.setValue(Labels.getLabel("user.error.username.match"));
             txtUserName.focus();
-            return;
+            isError = true;
         }
         if (userName.length() > 100) {
             errUserName.setVisible(true);
             errUserName.setValue(Labels.getLabel("user.error.username.leght"));
             txtUserName.focus();
-            return;
+            isError = true;
         }
         if (!txtUserName.isReadonly()) {
             if (exitsUserName(userName)) {
@@ -139,42 +145,44 @@ public class AddUserController extends GenericForwardComposer<Component> {
 
                 errUserName.setValue(Labels.getLabel("user.error.username.duplicate"));
                 txtUserName.focus();
-                return;
+                isError = true;
             }
         }
         if (!StringUtils.valiString(email)) {
             errUserEmail.setVisible(true);
             errUserEmail.setValue(Labels.getLabel("user.error.email"));
             txtEmail.focus();
-            return;
+            isError = true;
         }
         if (!StringUtils.isValidEmailAddress(email)) {
             errUserEmail.setVisible(true);
             errUserEmail.setValue(Labels.getLabel("user.error.email.format"));
             txtEmail.focus();
-            return;
+            isError = true;
         }
         if (email.length() > 255) {
             errUserEmail.setVisible(true);
             errUserEmail.setValue(Labels.getLabel("user.error.email.length"));
             txtEmail.focus();
-            return;
+            isError = true;
         }
         if (!txtUserName.isReadonly()) {
             if (exitsEmail(email)) {
                 errUserEmail.setVisible(true);
                 errUserEmail.setValue(Labels.getLabel("user.error.email.duplicate"));
                 txtEmail.focus();
-                return;
+                isError = true;
             }
         }
         if (role == -1) {
             errUserRole.setVisible(true);
             errUserRole.setValue(Labels.getLabel("user.error.role"));
             cbRole.focus();
+            isError = true;
+        }
+        if (isError) {
             return;
         }
-
         String password = RandomStringUtils.randomAlphanumeric(6).toUpperCase();
         User user = new User();
         user.setEmail(email);
@@ -198,7 +206,7 @@ public class AddUserController extends GenericForwardComposer<Component> {
 
         }
         userService.save(user);
-
+        addUser.detach();
     }
 
     /**
