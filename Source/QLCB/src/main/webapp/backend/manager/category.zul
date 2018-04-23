@@ -38,9 +38,13 @@
                             </combobox>
                         </div>
                     </div>
+                    <space height="5px"/>
                     <div class="row" >
                         <div class="col-xs-4">
-                            <button id="btnSave" label="${c:l('save')}"/>
+                            <button id="btnSave" label="${c:l('save')}" />
+                        </div>
+                        <div class="col-xs-4">
+                            <button id="btnReset" label="${c:l('reset')}"/>
                         </div>
                     </div>
                 </groupbox>
@@ -49,7 +53,7 @@
             <div class="col-xs-8">
                 <groupbox>
                     <caption label="${c:l('category.list')}"/>
-                    <grid id="listCategory" mold="paging" pageSize="10" pagingPosition="both">
+                    <grid id="listCategory" mold="paging" pageSize="10" pagingPosition="both" >
                         <columns style="text-align:center; ">
                             <column hflex="1">${c:l('category.index')}</column>
                             <column hflex="3">${c:l('category.name')}</column>
@@ -71,9 +75,11 @@
                                 <cell>
                                     <label value="${each.categorySlug}" tooltiptext="${each.categorySlug}" />
                                 </cell>
-                                <cell>
-                                    <a class="btn-cursor" iconSclass="z-icon-arrow-circle-up" forward="onClick=onUp" tooltiptext="${c:l('up')}"/>
-                                    <a class="btn-cursor" iconSclass="z-icon-arrow-circle-down" forward="onClick=onDown" tooltiptext="${c:l('down')}"/>
+                                <cell style="text-align: center;">
+                                    <a class="btn-cursor" iconSclass="z-icon-pencil" forward="onClick=onEdit" tooltiptext="${c:l('edit')}"/>
+                                    <a class="btn-cursor" iconSclass="z-icon-trash-o" forward="onClick=onDelete" tooltiptext="${c:l('delete')}"/>
+<!--                                    <a class="btn-cursor" iconSclass="z-icon-arrow-circle-up" forward="onClick=onUp" tooltiptext="${c:l('up')}"/>
+                                    <a class="btn-cursor" iconSclass="z-icon-arrow-circle-down" forward="onClick=onDown" tooltiptext="${c:l('down')}"/>-->
                                 </cell>
                             </row>
                         </template>
