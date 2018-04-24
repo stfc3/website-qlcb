@@ -34,6 +34,13 @@ public class PostDAO {
         return sessionFactory.getCurrentSession();
     }
 
+    public List<Post> getPostByType(int isPrivate) {
+            Query query = getCurrentSession().getNamedQuery("Post.getPostByType");
+            query.setParameter("isPrivate", isPrivate);
+            List<Post> listReturnData = query.list();
+            return listReturnData;
+
+    }
 //    public List<Menu> getMenuByType(Integer menuType) {
 //        try {
 //            StringBuilder sql= new StringBuilder("SELECT m.menu_id as menuId, m.menu_parent as menuParent, m.menu_name as menuName,");

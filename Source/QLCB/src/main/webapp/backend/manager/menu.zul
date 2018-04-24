@@ -8,8 +8,8 @@
             </div>
             <div class="col-xs-10" >
                 <combobox id="menuType" buttonVisible="true" autocomplete="true" value="${c:l('menu.public')}" >
-                    <comboitem value="1" label="${c:l('menu.public')}"/>
-                    <comboitem value="2" label="${c:l('menu.private')}"/>
+                    <comboitem value="0" label="${c:l('menu.public')}"/>
+                    <comboitem value="1" label="${c:l('menu.private')}"/>
                 </combobox>
             </div>
         </div>
@@ -57,7 +57,7 @@
                         </div>
                     </div>
                     <space height="5px"/>
-                    <div class="row">
+                    <div class="row" id="divCategory">
                         <div class="col-xs-4">
                             <label value="${c:l('menu.category')}"/>
                         </div>
@@ -69,15 +69,15 @@
                             </combobox>
                         </div>
                     </div>
-                    <div class="row" visible="false">
+                    <div class="row" id="divPost" visible="false">
                         <div class="col-xs-4">
                             <label value="${c:l('menu.post')}"/>
                         </div>
                         <div class="col-xs-8">
                             <combobox id="menuPost" buttonVisible="true" autocomplete="true" width="100%">
-                                <!--                            <comboitem value="1" label="Post 1"/>
-                                <comboitem value="2" label="Post 2"/>
-                                <comboitem value="2" label="Post 3"/>-->
+                               <template name="model">
+                                    <comboitem value="${each.postSlug}" label="${each.postTitle}" />
+                                </template>
                             </combobox>
                         </div>
                     </div>

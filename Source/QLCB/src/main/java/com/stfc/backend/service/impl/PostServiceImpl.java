@@ -9,6 +9,7 @@ import com.stfc.backend.domain.CategoryPost;
 import com.stfc.backend.domain.Post;
 import com.stfc.backend.service.PostService;
 import java.math.BigInteger;
+import java.util.List;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
@@ -39,6 +40,12 @@ public class PostServiceImpl implements PostService {
     @Override
     public BigInteger getId() {
         return postDAO.getId();
+    }
+
+    @Transactional(readOnly = true)
+    @Override
+    public List<Post> getPostByType(int isPrivate) {
+        return postDAO.getPostByType(isPrivate);
     }
 
 }

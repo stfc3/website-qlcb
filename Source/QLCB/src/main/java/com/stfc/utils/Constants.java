@@ -52,14 +52,17 @@ public interface Constants {
     public static final String HOME_PAGE_URL_IMAGE = "HOME_PAGE_URL_IMAGE";
     public static final String INTERNAL_PAGE_URL_IMAGE = "INTERNAL_PAGE_URL_IMAGE";
     public static final String DOCUMENT_PAGE_URL_IMAGE = "DOCUMENT_PAGE_URL_IMAGE";
-    
+
     public static final int POST_IS_PUBLIC = 0;
     public static final int POST_IS_PRIVATE = 1;
     public static final int POST_IS_PUBLIC_AND_PRIVATE = 2;
     public static final String HOME_NEWS_ADVERT_URL_IMAGE = "HOME_NEWS_ADVERT_URL_IMAGE";
     public static final String ENROLL_STUDENTS_URL_IMAGE = "ENROLL_STUDENTS_URL_IMAGE";
-    
-    Integer STATUS_ACTIVE=1;
-    Integer STATUS_INACTIVE=0;
+
+    Integer STATUS_ACTIVE = 1;
+    Integer STATUS_INACTIVE = 0;
+
+    String MESSAGE_POSTION_END_CENTER = "end_center";
+    Integer MESSAGE_TIME_CLOSE = 3000;
 
 }
