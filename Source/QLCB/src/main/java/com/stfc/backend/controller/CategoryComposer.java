@@ -16,6 +16,7 @@ import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zk.ui.event.ForwardEvent;
 import org.zkoss.zk.ui.select.annotation.Wire;
 import org.zkoss.zk.ui.select.annotation.WireVariable;
+import org.zkoss.zk.ui.util.Clients;
 import org.zkoss.zk.ui.util.GenericForwardComposer;
 import org.zkoss.zkplus.spring.SpringUtil;
 import org.zkoss.zul.Combobox;
@@ -67,22 +68,23 @@ public class CategoryComposer extends GenericForwardComposer<Component> {
 
     public void onClick$btnSave() {
 
-        if (categorySelected == null) {
-            categorySelected = new Category();
+        if (validateInput()) {
+            if (categorySelected == null) {
+                categorySelected = new Category();
+            }
+            categorySelected.setCategoryName(categoryName.getValue());
+            if (!Labels.getLabel("option").equals(categoryParent.getValue())) {
+                categorySelected.setCategoryParent(categoryParent.getSelectedItem().getValue());
+            }
+            categorySelected.setCategorySlug(prefixSlug + categorySlug.getValue());
+            if (isAdd) {
+                categorySelected.setCategoryStatus(Constants.STATUS_ACTIVE);
+                categorySelected.setCreateDate(new Date());
+            }
+            categorySelected.setModifiedDate(new Date());
+            categoryService.saveOrUpdate(categorySelected);
+            clearInput();
         }
-        categorySelected.setCategoryName(categoryName.getValue());
-        if (!Labels.getLabel("option").equals(categoryParent.getValue())) {
-            categorySelected.setCategoryParent(categoryParent.getSelectedItem().getValue());
-        }
-        categorySelected.setCategorySlug(prefixSlug + categorySlug.getValue());
-        if (isAdd) {
-            categorySelected.setCategoryStatus(Constants.STATUS_ACTIVE);
-            categorySelected.setCreateDate(new Date());
-        }
-        categorySelected.setModifiedDate(new Date());
-        categoryService.saveOrUpdate(categorySelected);
-        clearInput();
-
     }
 
     public void onClick$btnReset() {
@@ -125,5 +127,17 @@ public class CategoryComposer extends GenericForwardComposer<Component> {
                 }
             }
         });
+    }
+
+    private boolean validateInput() {
+        if (!StringUtils.valiString(categoryName.getValue())) {
+            Clients.showNotification(Labels.getLabel("category.name.empty"), Clients.NOTIFICATION_TYPE_ERROR, categoryName, Constants.MESSAGE_POSTION_END_CENTER, Constants.MESSAGE_TIME_CLOSE, Boolean.TRUE);
+            return false;
+        }
+        if (!StringUtils.valiString(categorySlug.getValue())) {
+            Clients.showNotification(Labels.getLabel("category.slug.empty"), Clients.NOTIFICATION_TYPE_ERROR, categorySlug, Constants.MESSAGE_POSTION_END_CENTER, Constants.MESSAGE_TIME_CLOSE, Boolean.TRUE);
+            return false;
+        }
+        return true;
     }
 }

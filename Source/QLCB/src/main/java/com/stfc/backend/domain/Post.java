@@ -12,6 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 
@@ -21,6 +22,7 @@ import javax.persistence.Temporal;
  */
 @Entity
 @Table(name = "stfc_posts")
+@NamedQuery(name = "Post.getPostByType", query = "FROM Post p WHERE p.postStatus = 3 AND isPrivate = :isPrivate")
 public class Post implements Serializable {
     
     @Id
