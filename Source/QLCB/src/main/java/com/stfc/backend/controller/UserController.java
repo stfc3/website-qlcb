@@ -208,4 +208,9 @@ public class UserController extends GenericForwardComposer<Component> {
 
         });
     }
+
+    public void onClick$reloadData() {
+        search();
+//        onChange$cbBillCode();
+    }
 }

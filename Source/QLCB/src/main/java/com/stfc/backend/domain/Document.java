@@ -147,7 +147,7 @@ public class Document implements Serializable {
      */
     @Transient
     public String getFileName() {
-        if (StringUtils.valiString(documentPath)) {
+        if (!StringUtils.valiString(documentPath)) {
             String[] arr = documentPath.split(File.separator);
             fileName = arr[arr.length - 1];
         }

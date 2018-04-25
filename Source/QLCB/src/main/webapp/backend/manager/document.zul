@@ -127,5 +127,6 @@
             </grid>
 
         </groupbox>
+        <button id="reloadData" visible="false" />
     </window>
 </zk>

@@ -28,10 +28,8 @@ import org.zkoss.zul.Row;
 import org.zkoss.zul.Textbox;
 import org.zkoss.zul.Window;
 
-import com.stfc.backend.domain.Banner;
 import com.stfc.backend.domain.Document;
 import com.stfc.backend.entity.Data;
-import com.stfc.backend.service.BannerService;
 import com.stfc.backend.service.DocumentService;
 import com.stfc.utils.Constant;
 import com.stfc.utils.FunctionUtil;
@@ -226,5 +224,9 @@ public class DocumentController extends GenericForwardComposer<Component> {
 
     public void setListModelCategory(ListModelList<Category> listModelCategory) {
         this.listModelCategory = listModelCategory;
+    }
+
+    public void onClick$reloadData() {
+        search();
     }
 }

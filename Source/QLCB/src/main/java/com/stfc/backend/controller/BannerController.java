@@ -61,9 +61,6 @@ public class BannerController extends GenericForwardComposer<Component> {
     private Textbox txtBannerName;
 
     @WireVariable
-    private Textbox email;
-
-    @WireVariable
     private Combobox cbxStatus;
 
     @WireVariable
@@ -208,5 +205,9 @@ public class BannerController extends GenericForwardComposer<Component> {
             }
 
         });
+    }
+
+    public void onClick$reloadData() {
+        search();
     }
 }

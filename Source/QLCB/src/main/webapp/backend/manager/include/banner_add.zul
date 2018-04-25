@@ -21,6 +21,7 @@
                     value="${arg.banners.bannerType}" id="txtStatus"
                     onBlur="self.value=self.value.trim()" />
             <textbox hflex="2" visible="false"
+                     value="${arg.banners.bannerImage}"
                      id="linkImageHidden"
                      onBlur="self.value=self.value.trim()" />
             <vlayout class="groupboxFull">

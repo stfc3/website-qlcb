@@ -19,7 +19,6 @@ import org.zkoss.zul.Textbox;
 import org.zkoss.zul.Window;
 
 import com.stfc.backend.entity.Data;
-import com.stfc.backend.service.BannerService;
 import com.stfc.backend.service.DocumentService;
 import com.stfc.utils.FileUtils;
 import com.stfc.utils.FunctionUtil;
@@ -31,7 +30,8 @@ import com.stfc.website.domain.Category;
 import com.stfc.website.service.WidgetService;
 import java.util.Date;
 import org.zkoss.util.resource.Labels;
-import org.zkoss.zul.Messagebox;
+import org.zkoss.zk.ui.event.Events;
+import org.zkoss.zul.Button;
 
 public class AddDocumentController extends GenericForwardComposer<Component> {
 
@@ -210,10 +210,12 @@ public class AddDocumentController extends GenericForwardComposer<Component> {
 //
             }
             documentService.save(document);
-            Messagebox.show(
-                    Labels.getLabel("document.action.success", new String[]{titile}),
-                    Labels.getLabel("notification"), Messagebox.OK, Messagebox.INFORMATION);
+//            Messagebox.show(
+//                    Labels.getLabel("document.action.success", new String[]{titile}),
+//                    Labels.getLabel("notification"), Messagebox.OK, Messagebox.INFORMATION);
             reset();
+            Events.sendEvent("onClick", (Button) ((Window) addDocument.getParent()).getFellow("reloadData"), null);
+            addDocument.detach();
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
         }

@@ -76,138 +76,62 @@
                             </combobox>
                         </auxheader>
 
-                    </auxhead>-->
-                    <columns style="text-align:center; ">
-                        <column hflex="1">${c:l('user.index')}</column>
-                        <column hflex="2">${c:l('user.firstName')}</column>
-                        <column hflex="4">${c:l('user.lastName')}</column>
-                        <column hflex="2">${c:l('user.name')}</column>
-                        <column hflex="2">${c:l('user.role')}</column>
-                        <column hflex="2">${c:l('user.email')}</column>
-                        <column hflex="2">${c:l('user.birthday')}</column>
-                        <column hflex="2">${c:l('user.status')}</column>
-                        <column hflex="2">${c:l('user.action')}</column>
-                    </columns>
-                    <template name="model">
-                        <row value="${each}">
-                            <cell style="text-align: center;">
-                                <label value="${forEachStatus.index+1}" />
-                            </cell>
-                            <cell style="text-align: left;">
-                                <label value="${each.firstName}" />
-                            </cell>
-                            <cell style="text-align: left;">
-                                <label value="${each.lastName}" />
-                            </cell>
-                            <cell style="text-align: left;">
-                                <label value="${each.userName}" />
-                            </cell>
-                            <cell style="text-align: left;">
-                               <label value="${each.roleName}" />
-                            </cell>
-                            <cell style="text-align: left;">
-                                <label value="${each.email}" />
-                            </cell>
-                            <cell style="text-align: right;">
-                                <datebox format="dd/MM/yyyy"
-                                    width="100%" inplace="true" buttonVisible="false"
-                                    readonly="true" value="${each.birthday}" />
-                            </cell>
-                            <cell style="text-align: center;">
-                                <label value="${(each.status == 0) ? c:l('active') : c:l('inactive')}" />
-                            </cell>
-                            <cell style="text-align: center;">
-                                <a class="btn-cursor"
-                                    iconSclass="z-icon-pencil" forward="onClick=onEdit"
-                                    tooltiptext="${c:l('edit')}" />
-                                <a class="btn-cursor"
-                                    iconSclass="z-icon-lock" forward="onClick=onLock"
-                                    tooltiptext="${(each.status == 0) ? c:l('active') : c:l('inactive')}" />
-                                <a class="btn-cursor"
-                                    iconSclass="z-icon-refresh" forward="onClick=onReset"
-                                    tooltiptext="${c:l('user.reset.password')}" />
-                            </cell>
-                            </row>
-                       </template>
-                    </grid>
-<!--				<listhead sizable="true">
-					<listheader hflex="1" align="center">
-						${c:l('user.index')}
-					</listheader>
-					<listheader hflex="2" align="center"
-						sort="auto(firstName)">
-						${c:l('user.firstName')}
-					</listheader>
-					<listheader hflex="2" align="center"
-						sort="auto(lastName)">
-						${c:l('user.lastName')}
-					</listheader>
-					<listheader hflex="2" align="center"
-						sort="auto(userName)">
-						${c:l('user.name')}
-					</listheader>
-					<listheader hflex="2" align="center" sort="auto(password)" >${c:l('department')}</listheader>
-					<listheader hflex="3" align="center"
-						sort="auto(email)">
-						${c:l('user.email')}
-					</listheader>
-					<listheader hflex="2" align="center"
-						sort="auto(birthday)">
-						${c:l('user.birthday')}
-					</listheader>
-					<listheader hflex="2" align="center"
-						sort="auto(status)">
-						${c:l('user.status')}
-					</listheader>
-					<listheader hflex="1" align="center">
-						Hành động
-					</listheader>
+                </auxhead>-->
+                <columns style="text-align:center; ">
+                    <column hflex="1">${c:l('user.index')}</column>
+                    <column hflex="2">${c:l('user.firstName')}</column>
+                    <column hflex="4">${c:l('user.lastName')}</column>
+                    <column hflex="2">${c:l('user.name')}</column>
+                    <column hflex="2">${c:l('user.role')}</column>
+                    <column hflex="2">${c:l('user.email')}</column>
+                    <column hflex="2">${c:l('user.birthday')}</column>
+                    <column hflex="2">${c:l('user.status')}</column>
+                    <column hflex="2">${c:l('user.action')}</column>
+                </columns>
+                <template name="model">
+                    <row value="${each}">
+                        <cell style="text-align: center;">
+                            <label value="${forEachStatus.index+1}" />
+                        </cell>
+                        <cell style="text-align: left;">
+                            <label value="${each.firstName}" />
+                        </cell>
+                        <cell style="text-align: left;">
+                            <label value="${each.lastName}" />
+                        </cell>
+                        <cell style="text-align: left;">
+                            <label value="${each.userName}" />
+                        </cell>
+                        <cell style="text-align: left;">
+                            <label value="${each.roleName}" />
+                        </cell>
+                        <cell style="text-align: left;">
+                            <label value="${each.email}" />
+                        </cell>
+                        <cell style="text-align: right;">
+                            <datebox format="dd/MM/yyyy"
+                                         width="100%" inplace="true" buttonVisible="false"
+                                         readonly="true" value="${each.birthday}" />
+                        </cell>
+                        <cell style="text-align: center;">
+                            <label value="${(each.status == 0) ? c:l('active') : c:l('inactive')}" />
+                        </cell>
+                        <cell style="text-align: center;">
+                            <a class="btn-cursor"
+                                   iconSclass="z-icon-pencil" forward="onClick=onEdit"
+                                   tooltiptext="${c:l('edit')}" />
+                            <a class="btn-cursor"
+                                   iconSclass="z-icon-lock" forward="onClick=onLock"
+                                   tooltiptext="${(each.status == 0) ? c:l('active') : c:l('inactive')}" />
+                            <a class="btn-cursor"
+                                   iconSclass="z-icon-refresh" forward="onClick=onReset"
+                                   tooltiptext="${c:l('user.reset.password')}" />
+                        </cell>
+                    </row>
+                </template>
+            </grid>
 
-				</listhead>
-				<template name="model">
-					<listitem value="${each}">
-						<listcell style="text-align:center">
-							<label value="${forEachStatus.index+1}" />
-						</listcell>
-						<listcell style="text-align:left">
-							<label value="${each.firstName}" />
-						</listcell>
-						<listcell style="text-align:left">
-							<label value="${each.lastName}" />
-						</listcell>
-						<listcell style="text-align:left">
-							<label value="${each.userName}" />
-						</listcell>
-						                        <listcell style="text-align:left"> 
-							<label value="${each.password}" />
-							</listcell>                     
-						<listcell style="text-align:left">
-							<label value="${each.email}" />
-						</listcell>
-						<listcell style="text-align:right">
-							<datebox format="dd/MM/yyyy kk:mm:ss"
-								width="100%" inplace="true" buttonVisible="false"
-								readonly="true" value="${each.birthday}" />
-						</listcell>
-						<listcell style="text-align:left">
-							<label
-								value="${(each.status == 1) ? c:l('active') : c:l('inactive')}" />
-						</listcell>
-						<listcell style="text-align:center">
-							<a class="btn-cursor"
-								iconSclass="z-icon-pencil" forward="onClick=onEdit"
-								tooltiptext="Sửa" />
-							<a class="btn-cursor"
-								iconSclass="z-icon-lock" forward="onClick=onEdit"
-								tooltiptext="Khóa" />
-							<a class="btn-cursor"
-								iconSclass="z-icon-refresh" forward="onClick=onReset"
-								tooltiptext="Reset mật khẩu" />
-						</listcell>
-
-                            </listitem>
-                    </template>
-            </listbox>-->
         </groupbox>
+        <button id="reloadData" visible="false" />
     </window>
 </zk>

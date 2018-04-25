@@ -28,6 +28,8 @@ import com.stfc.utils.FunctionUtil;
 import com.stfc.utils.SpringConstant;
 import com.stfc.utils.StringUtils;
 import com.stfc.website.domain.User;
+import org.zkoss.zk.ui.event.Events;
+import org.zkoss.zul.Button;
 
 public class AddUserController extends GenericForwardComposer<Component> {
 
@@ -126,59 +128,71 @@ public class AddUserController extends GenericForwardComposer<Component> {
             txtUserName.focus();
             isError = true;
 //            return;
-        }
-        if (!StringUtils.validatePattern(userName)) {
-            errUserName.setVisible(true);
-            errUserName.setValue(Labels.getLabel("user.error.username.match"));
-            txtUserName.focus();
-            isError = true;
-        }
-        if (userName.length() > 100) {
-            errUserName.setVisible(true);
-            errUserName.setValue(Labels.getLabel("user.error.username.leght"));
-            txtUserName.focus();
-            isError = true;
-        }
-        if (!txtUserName.isReadonly()) {
-            if (exitsUserName(userName)) {
+        } else {
+            if (!StringUtils.validatePattern(userName)) {
                 errUserName.setVisible(true);
-
-                errUserName.setValue(Labels.getLabel("user.error.username.duplicate"));
+                errUserName.setValue(Labels.getLabel("user.error.username.match"));
                 txtUserName.focus();
                 isError = true;
+            } else if (userName.length() > 100) {
+                errUserName.setVisible(true);
+                errUserName.setValue(Labels.getLabel("user.error.username.leght"));
+                txtUserName.focus();
+                isError = true;
+            } else if (!txtUserName.isReadonly()) {
+                if (exitsUserName(userName)) {
+                    errUserName.setVisible(true);
+
+                    errUserName.setValue(Labels.getLabel("user.error.username.duplicate"));
+                    txtUserName.focus();
+                    isError = true;
+                }
+            } else {
+                errUserName.setVisible(false);
+                isError = false;
             }
+
         }
+
         if (!StringUtils.valiString(email)) {
             errUserEmail.setVisible(true);
             errUserEmail.setValue(Labels.getLabel("user.error.email"));
             txtEmail.focus();
             isError = true;
-        }
-        if (!StringUtils.isValidEmailAddress(email)) {
-            errUserEmail.setVisible(true);
-            errUserEmail.setValue(Labels.getLabel("user.error.email.format"));
-            txtEmail.focus();
-            isError = true;
-        }
-        if (email.length() > 255) {
-            errUserEmail.setVisible(true);
-            errUserEmail.setValue(Labels.getLabel("user.error.email.length"));
-            txtEmail.focus();
-            isError = true;
-        }
-        if (!txtUserName.isReadonly()) {
-            if (exitsEmail(email)) {
+        } else {
+            if (!StringUtils.isValidEmailAddress(email)) {
                 errUserEmail.setVisible(true);
-                errUserEmail.setValue(Labels.getLabel("user.error.email.duplicate"));
+                errUserEmail.setValue(Labels.getLabel("user.error.email.format"));
                 txtEmail.focus();
                 isError = true;
+            } else if (email.length() > 255) {
+                errUserEmail.setVisible(true);
+                errUserEmail.setValue(Labels.getLabel("user.error.email.length"));
+                txtEmail.focus();
+                isError = true;
+            } else {
+                if (!txtUserName.isReadonly()) {
+                    if (exitsEmail(email)) {
+                        errUserEmail.setVisible(true);
+                        errUserEmail.setValue(Labels.getLabel("user.error.email.duplicate"));
+                        txtEmail.focus();
+                        isError = true;
+                    }
+                } else {
+                    errUserEmail.setVisible(false);
+                    isError = false;
+                }
             }
         }
+
         if (role == -1) {
             errUserRole.setVisible(true);
             errUserRole.setValue(Labels.getLabel("user.error.role"));
             cbRole.focus();
             isError = true;
+        } else {
+            errUserRole.setVisible(false);
+            isError = false;
         }
         if (isError) {
             return;
@@ -206,6 +220,7 @@ public class AddUserController extends GenericForwardComposer<Component> {
 
         }
         userService.save(user);
+        Events.sendEvent("onClick", (Button) ((Window) addUser.getParent()).getFellow("reloadData"), null);
         addUser.detach();
     }
 

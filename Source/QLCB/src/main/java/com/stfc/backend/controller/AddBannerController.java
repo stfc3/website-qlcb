@@ -28,6 +28,8 @@ import com.stfc.utils.FunctionUtil;
 import com.stfc.utils.SpringConstant;
 import com.stfc.utils.StringUtils;
 import org.zkoss.util.resource.Labels;
+import org.zkoss.zk.ui.event.Events;
+import org.zkoss.zul.Button;
 import org.zkoss.zul.Messagebox;
 
 public class AddBannerController extends GenericForwardComposer<Component> {
@@ -176,9 +178,11 @@ public class AddBannerController extends GenericForwardComposer<Component> {
 
             }
             bannerService.save(banner);
-            Messagebox.show(
-                    Labels.getLabel("banner.action.success", new String[]{titile}),
-                    Labels.getLabel("notification"), Messagebox.OK, Messagebox.INFORMATION);
+//            Messagebox.show(
+//                    Labels.getLabel("banner.action.success", new String[]{titile}),
+//                    Labels.getLabel("notification"), Messagebox.OK, Messagebox.INFORMATION);
+            Events.sendEvent("onClick", (Button) ((Window) addBanner.getParent()).getFellow("reloadData"), null);
+            addBanner.detach();
             reset();
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
