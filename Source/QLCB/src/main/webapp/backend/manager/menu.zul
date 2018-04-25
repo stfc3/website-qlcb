@@ -75,7 +75,7 @@
                         </div>
                         <div class="col-xs-8">
                             <combobox id="menuPost" buttonVisible="true" autocomplete="true" width="100%">
-                               <template name="model">
+                                <template name="model">
                                     <comboitem value="${each.postSlug}" label="${each.postTitle}" />
                                 </template>
                             </combobox>
@@ -85,6 +85,9 @@
                     <div class="row" >
                         <div class="col-xs-4">
                             <button id="btnSaveMenu" label="${c:l('save')}"/>
+                        </div>
+                        <div class="col-xs-4">
+                            <button id="btnReset" label="${c:l('reset')}"/>
                         </div>
                     </div>
                 </groupbox>
@@ -116,8 +119,10 @@
                                     <label value="${each.menuSlug}" tooltiptext="${each.menuSlug}" />
                                 </cell>
                                 <cell>
-                                    <a class="btn-cursor" iconSclass="z-icon-arrow-circle-up" forward="onClick=onUp" tooltiptext="${c:l('up')}"/>
-                                    <a class="btn-cursor" iconSclass="z-icon-arrow-circle-down" forward="onClick=onDown" tooltiptext="${c:l('down')}"/>
+                                    <a class="btn-cursor" iconSclass="z-icon-pencil" forward="listMenu.onEdit" tooltiptext="${c:l('edit')}" />
+                                    <a class="btn-cursor" iconSclass="z-icon-trash-o" forward="listMenu.onDelete" tooltiptext="${c:l('delete')}"/>
+                                    <!--                                    <a class="btn-cursor" iconSclass="z-icon-arrow-circle-up" forward="onClick=onUp" tooltiptext="${c:l('up')}"/>
+                                    <a class="btn-cursor" iconSclass="z-icon-arrow-circle-down" forward="onClick=onDown" tooltiptext="${c:l('down')}"/>-->
                                 </cell>
                             </row>
                         </template>

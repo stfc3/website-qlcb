@@ -64,5 +64,7 @@ public interface Constants {
 
     String MESSAGE_POSTION_END_CENTER = "end_center";
     Integer MESSAGE_TIME_CLOSE = 3000;
+    String prefixSlugCategory = "/category/";
+    String prefixSlugPost = "/post/";
 
 }

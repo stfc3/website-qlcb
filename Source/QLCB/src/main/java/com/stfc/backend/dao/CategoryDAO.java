@@ -9,7 +9,6 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.stfc.backend.domain.Menu;
 import com.stfc.website.domain.Category;
 import org.hibernate.transform.Transformers;
 import org.hibernate.type.StandardBasicTypes;
@@ -38,7 +37,8 @@ public class CategoryDAO {
             sql.append(" c.category_slug as categorySlug, c.category_order categoryOrder,  c.status as categoryStatus,");
             sql.append(" c.create_date as createDate, c.modified_date as modifiedDate, cp.category_name as categoryParentName");
             sql.append(" FROM stfc_categories c LEFT JOIN stfc_categories cp");
-            sql.append(" ON c.category_parent=cp.category_id AND c.status=1 AND cp.status=1");
+            sql.append(" ON c.category_parent=cp.category_id AND cp.status=1");
+            sql.append(" WHERE c.status=1");
             sql.append(" ORDER BY c.category_order");
             Query query = getCurrentSession().createSQLQuery(sql.toString())
                     .addScalar("categoryId", StandardBasicTypes.LONG)

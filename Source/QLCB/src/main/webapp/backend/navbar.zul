@@ -19,10 +19,11 @@
         <menubar sclass="user-menu light-blue">
             <menu tooltiptext="daond" label="Welcome, daond" image="assets/avatars/user.jpg">
                 <menupopup>
+                    <menuitem label="Reload" id="reloadCache" iconSclass="z-icon-retweet"/>
                     <menuitem label="Settings" iconSclass="z-icon-cog"/>
                     <menuitem label="Profile" iconSclass="z-icon-user"/>
                     <menuseparator/>
-                    <menuitem label="Logout" iconSclass="z-icon-off"/>
+                    <menuitem label="Logout" iconSclass="z-icon-sign-out"/>
                 </menupopup>
             </menu>
         </menubar>

@@ -3,6 +3,7 @@ package com.stfc.backend.controller;
 import com.stfc.backend.domain.CategoryPost;
 import com.stfc.backend.domain.Post;
 import com.stfc.backend.service.PostService;
+import com.stfc.utils.Constants;
 import com.stfc.utils.SpringConstant;
 import com.stfc.utils.StringUtils;
 import com.stfc.website.Memory;
@@ -42,7 +43,6 @@ public class PostComposer extends SelectorComposer<Component> {
     Datebox fromDate, toDate;
     @Wire
     Image image;
-    private final String prefixSlug = "/post/";
     private Session session;
     private boolean isPublish;
     private ListModelList<Category> modelCategory;
@@ -117,7 +117,7 @@ public class PostComposer extends SelectorComposer<Component> {
         post.setIsPin(vintIsPin);
         post.setIsPrivate(vintPrivate);
         post.setFeaturedImage(image.getSrc());
-        post.setPostSlug(prefixSlug + postSlug.getValue());
+        post.setPostSlug(Constants.prefixSlugPost + postSlug.getValue());
         post.setPostStatus(status);
         if (isPublish) {
             post.setPostDate(new Date());

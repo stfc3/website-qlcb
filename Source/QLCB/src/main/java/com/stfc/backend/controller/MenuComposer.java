@@ -1,17 +1,23 @@
 package com.stfc.backend.controller;
 
 import com.stfc.backend.domain.Menu;
+import com.stfc.backend.domain.Post;
 import com.stfc.backend.service.MenuService;
 import com.stfc.backend.service.PostService;
 import com.stfc.utils.Constants;
 import com.stfc.utils.SpringConstant;
 import com.stfc.utils.StringUtils;
 import com.stfc.website.Memory;
+import com.stfc.website.domain.Category;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import org.zkoss.util.resource.Labels;
+import org.zkoss.zhtml.Messagebox;
 import org.zkoss.zk.ui.Component;
+import org.zkoss.zk.ui.event.Event;
+import org.zkoss.zk.ui.event.EventListener;
+import org.zkoss.zk.ui.event.ForwardEvent;
 import org.zkoss.zk.ui.select.SelectorComposer;
 import org.zkoss.zk.ui.select.annotation.Listen;
 import org.zkoss.zk.ui.select.annotation.Wire;
@@ -19,9 +25,11 @@ import org.zkoss.zk.ui.select.annotation.WireVariable;
 import org.zkoss.zk.ui.util.Clients;
 import org.zkoss.zkplus.spring.SpringUtil;
 import org.zkoss.zul.Combobox;
+import org.zkoss.zul.Comboitem;
 import org.zkoss.zul.Div;
 import org.zkoss.zul.Grid;
 import org.zkoss.zul.ListModelList;
+import org.zkoss.zul.Row;
 import org.zkoss.zul.Textbox;
 
 public class MenuComposer extends SelectorComposer<Component> {
@@ -47,7 +55,10 @@ public class MenuComposer extends SelectorComposer<Component> {
 
     private Menu menuOption;
 
+    private Menu menuSelected;
+
     private boolean dataCategory = true;
+    private boolean isAdd = true;
 
     @Override
     public void doAfterCompose(Component comp) throws Exception {
@@ -87,22 +98,29 @@ public class MenuComposer extends SelectorComposer<Component> {
     public void saveMenu() {
 
         if (validateInput()) {
-            Menu menu = new Menu();
-            menu.setMenuName(menuName.getValue());
+            if (menuSelected == null) {
+                menuSelected = new Menu();
+            }
+            menuSelected.setMenuName(menuName.getValue());
             if (!Labels.getLabel("option").equals(menuParent.getValue())) {
-                menu.setMenuParent(menuParent.getSelectedItem().getValue());
+                menuSelected.setMenuParent(menuParent.getSelectedItem().getValue());
+            } else {
+                menuSelected.setMenuParent(null);
             }
             if (dataCategory) {
-                menu.setMenuSlug(menuCategory.getSelectedItem().getValue());
+                menuSelected.setMenuSlug(menuCategory.getSelectedItem().getValue());
             } else {
-                menu.setMenuSlug(menuPost.getSelectedItem().getValue());
+                menuSelected.setMenuSlug(menuPost.getSelectedItem().getValue());
             }
-            menu.setMenuStatus(Constants.STATUS_ACTIVE);
-            menu.setMenuType(intMenuType);
-            menu.setCreateDate(new Date());
-            menu.setModifiedDate(new Date());
-            menuService.saveOrUpdate(menu);
-            loadMenu();
+            if (isAdd) {
+                menuSelected.setMenuStatus(Constants.STATUS_ACTIVE);
+                menuSelected.setCreateDate(new Date());
+            }
+
+            menuSelected.setMenuType(intMenuType);
+            menuSelected.setModifiedDate(new Date());
+            menuService.saveOrUpdate(menuSelected);
+            clearInput();
         }
     }
 
@@ -118,6 +136,50 @@ public class MenuComposer extends SelectorComposer<Component> {
             divPost.setVisible(true);
             dataCategory = false;
         }
+    }
+
+    @Listen("onDelete = #listMenu")
+    public void onDelete(ForwardEvent event) {
+        Messagebox.show(Labels.getLabel("message.confirm.delete.content"), Labels.getLabel("message.confirm.delete.title"), Messagebox.YES | Messagebox.NO, Messagebox.QUESTION, new EventListener() {
+            @Override
+            public void onEvent(Event e) {
+                if (Messagebox.ON_YES.equals(e.getName())) {
+                    Row rowSelected = (Row) event.getOrigin().getTarget().getParent().getParent();
+                    Menu menu = rowSelected.getValue();
+                    menu.setMenuStatus(Constants.STATUS_INACTIVE);
+                    menu.setModifiedDate(new Date());
+                    menuService.saveOrUpdate(menu);
+                    loadMenu();
+                }
+            }
+        });
+    }
+
+    @Listen("onEdit = #listMenu")
+    public void onEdit(ForwardEvent event) {
+        isAdd = false;
+        Row rowSelected = (Row) event.getOrigin().getTarget().getParent().getParent();
+        menuSelected = rowSelected.getValue();
+        menuName.setValue(menuSelected.getMenuName());
+        if (StringUtils.valiString(menuSelected.getMenuParentName())) {
+            menuParent.setValue(menuSelected.getMenuParentName());
+        } else {
+            menuParent.setValue(Labels.getLabel("option"));
+        }
+        if (menuSelected.getMenuSlug().startsWith(Constants.prefixSlugCategory)) {
+            menuDataType.setSelectedIndex(0);
+            setSelectedCombo(menuCategory, menuSelected.getMenuSlug());
+            loadTypeData();
+        } else if (menuSelected.getMenuSlug().startsWith(Constants.prefixSlugPost)) {
+            setSelectedCombo(menuPost, menuSelected.getMenuSlug());
+            menuDataType.setSelectedIndex(1);
+            loadTypeData();
+        }
+    }
+
+    @Listen("onClick = #btnReset")
+    public void reset() {
+        clearInput();
     }
 
     private boolean validateInput() {
@@ -138,5 +200,27 @@ public class MenuComposer extends SelectorComposer<Component> {
             }
         }
         return true;
+    }
+
+    private void setSelectedCombo(Combobox combo, String slug) {
+        List<Comboitem> lstComboitem = combo.getItems();
+        if (lstComboitem != null && !lstComboitem.isEmpty()) {
+            for (Comboitem comboitem : lstComboitem) {
+                if (slug.equals(comboitem.getValue())) {
+                    combo.setSelectedItem(comboitem);
+                    break;
+                }
+            }
+        }
+    }
+
+    private void clearInput() {
+        isAdd = true;
+        menuSelected = null;
+        menuName.setValue("");
+        menuCategory.setValue("");
+        menuPost.setValue("");
+        loadMenu();
+        loadTypeData();
     }
 }

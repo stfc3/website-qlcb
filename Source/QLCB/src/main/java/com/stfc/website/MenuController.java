@@ -43,7 +43,7 @@ public class MenuController extends SelectorComposer<Div> {
         super.doAfterCompose(comp);
         menuService = (MenuService) SpringUtil.getBean(SpringConstant.MENU_SERVICE);
         //Menu public
-        listMenu = menuService.getMenuByType(1);
+        listMenu = menuService.getMenuByType(0);
         createMenu();
     }
 

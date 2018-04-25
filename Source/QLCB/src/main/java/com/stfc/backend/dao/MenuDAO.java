@@ -37,8 +37,8 @@ public class MenuDAO {
             sql.append(" m.menu_slug as menuSlug, m.menu_order menuOrder, m.menu_type as menuType, m.status as menuStatus,");
             sql.append(" m.create_date as createDate, m.modified_date as modifiedDate, mp.menu_name as menuParentName");
             sql.append(" FROM stfc_menu m LEFT JOIN stfc_menu mp");
-            sql.append(" ON m.menu_parent=mp.menu_id AND m.menu_type=mp.menu_type AND m.status=1 AND mp.status=1");
-            sql.append(" WHERE m.menu_type = :menuType");
+            sql.append(" ON m.menu_parent=mp.menu_id AND m.menu_type=mp.menu_type AND mp.status=1");
+            sql.append(" WHERE m.menu_type = :menuType AND m.status=1");
             sql.append(" ORDER BY m.menu_order");
             Query query = getCurrentSession().createSQLQuery(sql.toString())
                     .addScalar("menuId", StandardBasicTypes.LONG)

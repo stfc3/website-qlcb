@@ -14,10 +14,11 @@ import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zk.ui.event.ForwardEvent;
+import org.zkoss.zk.ui.select.SelectorComposer;
+import org.zkoss.zk.ui.select.annotation.Listen;
 import org.zkoss.zk.ui.select.annotation.Wire;
 import org.zkoss.zk.ui.select.annotation.WireVariable;
 import org.zkoss.zk.ui.util.Clients;
-import org.zkoss.zk.ui.util.GenericForwardComposer;
 import org.zkoss.zkplus.spring.SpringUtil;
 import org.zkoss.zul.Combobox;
 import org.zkoss.zul.Grid;
@@ -25,7 +26,7 @@ import org.zkoss.zul.ListModelList;
 import org.zkoss.zul.Row;
 import org.zkoss.zul.Textbox;
 
-public class CategoryComposer extends GenericForwardComposer<Component> {
+public class CategoryComposer extends SelectorComposer<Component> {
 
     @WireVariable
     CategoryService categoryService;
@@ -35,7 +36,6 @@ public class CategoryComposer extends GenericForwardComposer<Component> {
     Textbox categoryName, categorySlug;
     @Wire
     Grid listCategory;
-    private final String prefixSlug = "/category/";
     private Category categorySelected;
     private boolean isAdd = true;
 
@@ -62,11 +62,13 @@ public class CategoryComposer extends GenericForwardComposer<Component> {
         categoryParent.setValue(Labels.getLabel("option"));
     }
 
-    public void onChange$categoryName() {
+    @Listen("onChange = #categoryName")
+    public void changeCategory() {
         categorySlug.setValue(StringUtils.convertSlug(categoryName.getValue()));
     }
 
-    public void onClick$btnSave() {
+    @Listen("onClick = #btnSave")
+    public void save() {
 
         if (validateInput()) {
             if (categorySelected == null) {
@@ -76,7 +78,10 @@ public class CategoryComposer extends GenericForwardComposer<Component> {
             if (!Labels.getLabel("option").equals(categoryParent.getValue())) {
                 categorySelected.setCategoryParent(categoryParent.getSelectedItem().getValue());
             }
-            categorySelected.setCategorySlug(prefixSlug + categorySlug.getValue());
+            else{
+                categorySelected.setCategoryParent(null);
+            }
+            categorySelected.setCategorySlug(Constants.prefixSlugCategory + categorySlug.getValue());
             if (isAdd) {
                 categorySelected.setCategoryStatus(Constants.STATUS_ACTIVE);
                 categorySelected.setCreateDate(new Date());
@@ -87,18 +92,19 @@ public class CategoryComposer extends GenericForwardComposer<Component> {
         }
     }
 
-    public void onClick$btnReset() {
-        categorySelected = null;
+    @Listen("onClick = #btnReset")
+    public void reset() {
         clearInput();
     }
 
+    @Listen("onEdit = #listCategory")
     public void onEdit(ForwardEvent event) {
         isAdd = false;
         Row rowSelected = (Row) event.getOrigin().getTarget().getParent().getParent();
         categorySelected = rowSelected.getValue();
         categoryName.setValue(categorySelected.getCategoryName());
-        categorySlug.setValue(categorySelected.getCategorySlug().replace(prefixSlug, ""));
-        if (categorySelected.getCategoryParent() != null) {
+        categorySlug.setValue(categorySelected.getCategorySlug().replace(Constants.prefixSlugCategory, ""));
+        if (StringUtils.valiString(categorySelected.getCategoryParentName())) {
             categoryParent.setValue(categorySelected.getCategoryParentName());
         } else {
             categoryParent.setValue(Labels.getLabel("option"));
@@ -108,11 +114,13 @@ public class CategoryComposer extends GenericForwardComposer<Component> {
 
     private void clearInput() {
         isAdd = true;
+        categorySelected = null;
         categoryName.setValue("");
         categorySlug.setValue("");
         loadCategory();
     }
 
+    @Listen("onDelete = #listCategory")
     public void onDelete(ForwardEvent event) {
         Messagebox.show(Labels.getLabel("message.confirm.delete.content"), Labels.getLabel("message.confirm.delete.title"), Messagebox.YES | Messagebox.NO, Messagebox.QUESTION, new EventListener() {
             @Override
@@ -121,7 +129,7 @@ public class CategoryComposer extends GenericForwardComposer<Component> {
                     Row rowSelected = (Row) event.getOrigin().getTarget().getParent().getParent();
                     Category category = rowSelected.getValue();
                     category.setCategoryStatus(Constants.STATUS_INACTIVE);
-                    category.setCreateDate(new Date());
+                    category.setModifiedDate(new Date());
                     categoryService.saveOrUpdate(category);
                     loadCategory();
                 }
