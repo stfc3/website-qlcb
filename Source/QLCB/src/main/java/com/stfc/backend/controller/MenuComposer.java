@@ -1,14 +1,12 @@
 package com.stfc.backend.controller;
 
 import com.stfc.backend.domain.Menu;
-import com.stfc.backend.domain.Post;
+import com.stfc.backend.service.CategoryService;
 import com.stfc.backend.service.MenuService;
 import com.stfc.backend.service.PostService;
 import com.stfc.utils.Constants;
 import com.stfc.utils.SpringConstant;
 import com.stfc.utils.StringUtils;
-import com.stfc.website.Memory;
-import com.stfc.website.domain.Category;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -38,6 +36,8 @@ public class MenuComposer extends SelectorComposer<Component> {
     MenuService menuService;
     @WireVariable
     PostService postService;
+    @WireVariable
+    CategoryService categoryService;
     @Wire
     Combobox menuType, menuParent, menuDataType, menuCategory, menuPost;
     @Wire
@@ -65,9 +65,10 @@ public class MenuComposer extends SelectorComposer<Component> {
         super.doAfterCompose(comp);
         menuService = (MenuService) SpringUtil.getBean(SpringConstant.MENU_SERVICE);
         postService = (PostService) SpringUtil.getBean(SpringConstant.POST_SERVICE);
+        categoryService = (CategoryService) SpringUtil.getBean(SpringConstant.CATEGORY_SERVICE);
         loadMenu();
 
-        modelCategory = new ListModelList(Memory.listCategoryCache.values());
+        modelCategory = new ListModelList(categoryService.getCategory());
         menuCategory.setModel(modelCategory);
 
         loadTypeData();
@@ -196,6 +197,12 @@ public class MenuComposer extends SelectorComposer<Component> {
         } else {
             if (!StringUtils.valiString(menuPost.getValue())) {
                 Clients.showNotification(Labels.getLabel("menu.post.empty"), Clients.NOTIFICATION_TYPE_ERROR, menuPost, Constants.MESSAGE_POSTION_END_CENTER, Constants.MESSAGE_TIME_CLOSE, Boolean.TRUE);
+                return false;
+            }
+        }
+        if (!isAdd) {
+            if (menuSelected.getMenuId().equals(menuParent.getSelectedItem().getValue())) {
+                Clients.showNotification(Labels.getLabel("menu.parent.myself"), Clients.NOTIFICATION_TYPE_ERROR, menuParent, Constants.MESSAGE_POSTION_END_CENTER, Constants.MESSAGE_TIME_CLOSE, Boolean.TRUE);
                 return false;
             }
         }

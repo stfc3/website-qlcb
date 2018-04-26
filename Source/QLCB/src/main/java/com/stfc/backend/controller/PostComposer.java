@@ -91,6 +91,7 @@ public class PostComposer extends SelectorComposer<Component> {
         isPublish = false;
         Long postId = savePost(1);
         saveCategoryPost(postId);
+        clearInput();
     }
 
     @Listen("onClick = #btnPublish")
@@ -98,6 +99,7 @@ public class PostComposer extends SelectorComposer<Component> {
         isPublish = true;
         Long postId = savePost(3);
         saveCategoryPost(postId);
+        clearInput();
     }
 
     private Long savePost(int status) {
@@ -127,7 +129,6 @@ public class PostComposer extends SelectorComposer<Component> {
         post.setCreateDate(new Date());
         post.setModifiedDate(new Date());
         postService.saveOrUpdate(post);
-        clearInput();
         return postService.getId().longValue();
     }
 

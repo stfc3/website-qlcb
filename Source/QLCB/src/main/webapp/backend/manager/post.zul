@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <zk xmlns:x="xhtml" >
-    <div class="row" apply="com.stfc.backend.controller.PostComposer">
+    <div id="main" class="row" apply="com.stfc.backend.controller.PostComposer">
         <div class="col-md-9">
             <groupbox>
                 <caption label="${c:l('post.post')}"/>
@@ -79,7 +79,7 @@
                 <div class="row">
                     <x:h5>${c:l('post.category')}</x:h5>
                     <div class="col-md-12">
-                        <listbox id="category" model="${modelCategory}" width="100%" height="150px" multiple="true" checkmark="true">
+                        <listbox id="category" width="100%" height="150px" multiple="true" checkmark="true">
                             <template name="model">
                                 <listitem value="${each.categoryId}" label="${each.categoryName}" />
                             </template>
