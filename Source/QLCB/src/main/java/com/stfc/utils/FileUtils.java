@@ -11,6 +11,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.Reader;
 import java.io.Writer;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.zkoss.util.media.Media;
@@ -133,5 +135,33 @@ public class FileUtils {
         } catch (IOException ignore) {
             logger.error(ignore.getMessage(), ignore);
         }
+    }
+
+    /**
+     * Ham tra ve danh sach ten file anh
+     *
+     * @param path: duong dan thu muc
+     * @return
+     */
+    public static List<String> getImages(String path) {
+        List<String> listFileExtend = new ArrayList<>();
+        listFileExtend.add("jpg");
+        listFileExtend.add("png");
+        listFileExtend.add("gif");
+        List<String> listFileImage = new ArrayList<>();
+        File directoryImage = new File(path);
+        File[] files = directoryImage.listFiles();
+        if (files != null && files.length > 0) {
+            for (File file : files) {
+                if (file.isFile()) {
+                    String[] tmp = file.getName().split("\\.");
+                    String fileExtend = tmp[tmp.length - 1];
+                    if (listFileExtend.contains(fileExtend.toLowerCase())) {
+                        listFileImage.add(file.getName());
+                    }
+                }
+            }
+        }
+        return listFileImage;
     }
 }
