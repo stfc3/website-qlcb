@@ -54,19 +54,26 @@ body {
     overflow: auto;
 }
 .labelSucces{
-	font-size: 20px;
-	color: blue;
-	font-weight: bold;
+    font-size: 20px;
+    color: blue;
+    font-weight: bold;
 }
 .image{
-	max-width: 50px;
-	max-height: 50px;
+    max-width: 50px;
+    max-height: 50px;
 }
 .image-view{
-	max-width: 100px;
-	max-height: 100px;
+    max-width: 100px;
+    max-height: 100px;
 }
-.z-button, .z-button:focus, .z-button:hover{
+.z-button, .z-button:focus {
+    color: white;
     background-color: #438eb9;
     border: none;
+}
+.z-button:hover{
+    background-color: #2b7dbc;
+    border: none;
+    color: white;
+    /*color: #c4313d;*/
 }
