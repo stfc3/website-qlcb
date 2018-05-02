@@ -77,3 +77,18 @@ body {
     color: white;
     /*color: #c4313d;*/
 }
+.gallery {
+    margin: 0px 30px;
+}
+ 
+.imageDiv {
+    display: inline-block;
+    position: relative;
+    width: 125px;
+    height: 75px;
+    margin: 30px 30px 0 0;
+    border: 3px solid #DDDDDD;  
+} 
+.imageDiv:active {
+    border: 3px solid blue;  
+} 
