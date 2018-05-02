@@ -47,9 +47,16 @@ public class StringUtils {
         return strReturn.replaceAll(" ", "-");
     }
   
-
-    public static void main(String[] arg) {
-        System.out.println(convertSlug("Tôi là đông"));
-    }
+//    public static boolean validateString(String value,  String vstrPattern) {
+//        Pattern pattern = Pattern.compile(vstrPattern);
+//        return pattern.matcher(value).matches();
+//
+//    }
+//
+//    public static void main(String[] arg) {
+//        System.out.println(convertSlug("Tôi là đông"));
+////        ["<>#%{}|\^~\\\[\\\]`]
+//        System.out.println(validateString("gdgh","[\"<>#%{}|\\^~\\\\\\[\\\\\\]`]"));
+//    }
 
 }

@@ -77,8 +77,7 @@ public class CategoryComposer extends SelectorComposer<Component> {
             categorySelected.setCategoryName(categoryName.getValue());
             if (!Labels.getLabel("option").equals(categoryParent.getValue())) {
                 categorySelected.setCategoryParent(categoryParent.getSelectedItem().getValue());
-            }
-            else{
+            } else {
                 categorySelected.setCategoryParent(null);
             }
             categorySelected.setCategorySlug(Constants.prefixSlugCategory + categorySlug.getValue());
@@ -145,6 +144,12 @@ public class CategoryComposer extends SelectorComposer<Component> {
         if (!StringUtils.valiString(categorySlug.getValue())) {
             Clients.showNotification(Labels.getLabel("category.slug.empty"), Clients.NOTIFICATION_TYPE_ERROR, categorySlug, Constants.MESSAGE_POSTION_END_CENTER, Constants.MESSAGE_TIME_CLOSE, Boolean.TRUE);
             return false;
+        }
+        if (!isAdd) {
+            if (categorySelected.getCategoryId().equals(categoryParent.getSelectedItem().getValue())) {
+                Clients.showNotification(Labels.getLabel("category.parent.myself"), Clients.NOTIFICATION_TYPE_ERROR, categoryParent, Constants.MESSAGE_POSTION_END_CENTER, Constants.MESSAGE_TIME_CLOSE, Boolean.TRUE);
+                return false;
+            }
         }
         return true;
     }

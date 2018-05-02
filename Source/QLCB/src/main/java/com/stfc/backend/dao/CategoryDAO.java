@@ -39,7 +39,7 @@ public class CategoryDAO {
             sql.append(" FROM stfc_categories c LEFT JOIN stfc_categories cp");
             sql.append(" ON c.category_parent=cp.category_id AND cp.status=1");
             sql.append(" WHERE c.status=1");
-            sql.append(" ORDER BY c.category_order");
+            sql.append(" ORDER BY c.category_name COLLATE utf8_persian_ci");
             Query query = getCurrentSession().createSQLQuery(sql.toString())
                     .addScalar("categoryId", StandardBasicTypes.LONG)
                     .addScalar("categoryParent", StandardBasicTypes.LONG)

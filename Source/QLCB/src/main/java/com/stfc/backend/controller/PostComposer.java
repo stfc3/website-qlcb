@@ -12,20 +12,25 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import org.zkforge.ckez.CKeditor;
+import org.zkoss.util.resource.Labels;
 import org.zkoss.zk.ui.Component;
+import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.Session;
 import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zk.ui.select.SelectorComposer;
 import org.zkoss.zk.ui.select.annotation.Listen;
 import org.zkoss.zk.ui.select.annotation.Wire;
 import org.zkoss.zk.ui.select.annotation.WireVariable;
+import org.zkoss.zk.ui.util.Clients;
 import org.zkoss.zkplus.spring.SpringUtil;
 import org.zkoss.zul.Checkbox;
 import org.zkoss.zul.Datebox;
+import org.zkoss.zul.Div;
 import org.zkoss.zul.Image;
 import org.zkoss.zul.ListModelList;
 import org.zkoss.zul.Listbox;
 import org.zkoss.zul.Textbox;
+import org.zkoss.zul.Window;
 
 public class PostComposer extends SelectorComposer<Component> {
 
@@ -34,7 +39,7 @@ public class PostComposer extends SelectorComposer<Component> {
     @Wire
     Listbox category;
     @Wire
-    Textbox postTitle, postSlug;
+    Textbox postTitle, postSlug, postExcerpt;
     @Wire
     CKeditor postContent;
     @Wire
@@ -42,10 +47,13 @@ public class PostComposer extends SelectorComposer<Component> {
     @Wire
     Datebox fromDate, toDate;
     @Wire
-    Image image;
+    Image imageFeature;
+    @Wire
+    Div main;
     private Session session;
     private boolean isPublish;
     private ListModelList<Category> modelCategory;
+    private Long ERROR = -1l;
 
     public ListModelList<Category> getModelCategory() {
         return modelCategory;
@@ -54,8 +62,6 @@ public class PostComposer extends SelectorComposer<Component> {
     public void setModelCategory(ListModelList<Category> modelCategory) {
         this.modelCategory = modelCategory;
     }
-    
-    
 
     @Override
     public void doAfterCompose(Component comp) throws Exception {
@@ -90,45 +96,54 @@ public class PostComposer extends SelectorComposer<Component> {
     public void save() {
         isPublish = false;
         Long postId = savePost(1);
-        saveCategoryPost(postId);
+        if (!ERROR.equals(postId)) {
+            saveCategoryPost(postId);
+            clearInput();
+        }
+        
     }
 
     @Listen("onClick = #btnPublish")
     public void publish() {
         isPublish = true;
         Long postId = savePost(3);
-        saveCategoryPost(postId);
+        if (!ERROR.equals(postId)) {
+            saveCategoryPost(postId);
+            clearInput();
+        }
     }
 
     private Long savePost(int status) {
-        int vintIsPin = 0;
-        int vintPrivate = 0;
-        if (isPin.isChecked()) {
-            vintIsPin = 1;
+        if (validateInput()) {
+            int vintIsPin = 0;
+            int vintPrivate = 0;
+            if (isPin.isChecked()) {
+                vintIsPin = 1;
+            }
+            if (isPrivate.isChecked()) {
+                vintPrivate = 1;
+            }
+            Post post = new Post();
+            post.setAuthor("guest");
+            post.setPostTitle(postTitle.getValue());
+            post.setPostExcerpt(postExcerpt.getValue());
+            post.setPostContent(postContent.getValue());
+            post.setIsPin(vintIsPin);
+            post.setIsPrivate(vintPrivate);
+            post.setFeaturedImage(imageFeature.getSrc());
+            post.setPostSlug(Constants.prefixSlugPost + postSlug.getValue());
+            post.setPostStatus(status);
+            if (isPublish) {
+                post.setPostDate(new Date());
+            }
+            post.setFromDate(fromDate.getValue());
+            post.setToDate(toDate.getValue());
+            post.setCreateDate(new Date());
+            post.setModifiedDate(new Date());
+            postService.saveOrUpdate(post);
+            return postService.getId().longValue();
         }
-        if (isPrivate.isChecked()) {
-            vintPrivate = 1;
-        }
-        Post post = new Post();
-        post.setAuthor("guest");
-        post.setPostTitle(postTitle.getValue());
-        post.setPostExcerpt("");
-        post.setPostContent(postContent.getValue());
-        post.setIsPin(vintIsPin);
-        post.setIsPrivate(vintPrivate);
-        post.setFeaturedImage(image.getSrc());
-        post.setPostSlug(Constants.prefixSlugPost + postSlug.getValue());
-        post.setPostStatus(status);
-        if (isPublish) {
-            post.setPostDate(new Date());
-        }
-        post.setFromDate(fromDate.getValue());
-        post.setToDate(toDate.getValue());
-        post.setCreateDate(new Date());
-        post.setModifiedDate(new Date());
-        postService.saveOrUpdate(post);
-        clearInput();
-        return postService.getId().longValue();
+        return ERROR;
     }
 
     private void saveCategoryPost(Long postId) {
@@ -148,13 +163,51 @@ public class PostComposer extends SelectorComposer<Component> {
     private void clearInput() {
         postTitle.setValue("");
         postSlug.setValue("");
+        postExcerpt.setValue("");
         postContent.setValue("");
         isPrivate.setChecked(false);
         isPin.setChecked(false);
         fromDate.setValue(new Date());
         toDate.setValue(null);
         loadCategory();
-        image.setSrc("");
+        imageFeature.setSrc("");
+    }
+
+    @Listen("onClick = #addImage")
+    public void addImage() {
+        final Window windownUpload = (Window) Executions.createComponents("/backend/manager/browserImage.zul", main, null);
+        windownUpload.doModal();
+        windownUpload.setBorder(true);
+        windownUpload.setBorder("normal");
+        windownUpload.setClosable(true);
+    }
+
+    private boolean validateInput() {
+        if (!StringUtils.valiString(postTitle.getValue())) {
+            Clients.showNotification(Labels.getLabel("post.title.empty"), Clients.NOTIFICATION_TYPE_ERROR, postTitle, Constants.MESSAGE_POSTION_END_CENTER, Constants.MESSAGE_TIME_CLOSE, Boolean.TRUE);
+            return false;
+        }
+        if (!StringUtils.valiString(postSlug.getValue())) {
+            Clients.showNotification(Labels.getLabel("post.slug.empty"), Clients.NOTIFICATION_TYPE_ERROR, postSlug, Constants.MESSAGE_POSTION_END_CENTER, Constants.MESSAGE_TIME_CLOSE, Boolean.TRUE);
+            return false;
+        }
+        if (!StringUtils.valiString(postContent.getValue())) {
+            Clients.showNotification(Labels.getLabel("post.content.empty"), Clients.NOTIFICATION_TYPE_ERROR, postContent, Constants.MESSAGE_POSTION_END_CENTER, Constants.MESSAGE_TIME_CLOSE, Boolean.TRUE);
+            return false;
+        }
+        if (fromDate.getValue() == null) {
+            Clients.showNotification(Labels.getLabel("post.fromdate.empty"), Clients.NOTIFICATION_TYPE_ERROR, fromDate, Constants.MESSAGE_POSTION_END_CENTER, Constants.MESSAGE_TIME_CLOSE, Boolean.TRUE);
+            return false;
+        }
+        if (toDate.getValue() != null && toDate.getValue().before(fromDate.getValue())) {
+            Clients.showNotification(Labels.getLabel("post.fromdate.todate"), Clients.NOTIFICATION_TYPE_ERROR, fromDate, Constants.MESSAGE_POSTION_END_CENTER, Constants.MESSAGE_TIME_CLOSE, Boolean.TRUE);
+            return false;
+        }
+        if (modelCategory.getSelection().isEmpty()) {
+            Clients.showNotification(Labels.getLabel("post.category.empty"), Clients.NOTIFICATION_TYPE_ERROR, category, Constants.MESSAGE_POSTION_END_CENTER, Constants.MESSAGE_TIME_CLOSE, Boolean.TRUE);
+            return false;
+        }
+        return true;
     }
 
 }

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?link href="../css/backend.css" rel="stylesheet" type="text/css"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c" ?>
+<zk xmlns="http://www.zkoss.org/2005/zul">
+    <window id="winImage"
+            apply="com.stfc.backend.controller.BrowserImage"
+            position="center,center" closable="true"
+            action="show: slideDown;hide: slideUp" border="normal" width="80%" height="80%"
+            maximizable="false" title="${c:l('browse.image.title')}"
+            onCancel="winImage.detach();" contentStyle="overflow:auto">
+        <div sclass="gallery">
+            <div sclass="imageDiv" forEach="${listImage}">
+                <image src="/images/${each}" width="100%" height="100%" forward="winImage.onSelectImage"/>               
+            </div>
+        </div>
+        <space height="5px"/>
+        <div class="row">
+            <div class="col-md-5">
+            </div>
+            <div class="col-md-2">
+                <button label="${c:l('select')}" id="btnOK"/> 
+            </div>
+            <div class="col-md-5"/>
+        </div>
+         
+    </window>  
+</zk>

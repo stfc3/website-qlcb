@@ -41,10 +41,10 @@
                     <space height="5px"/>
                     <div class="row" >
                         <div class="col-xs-4">
-                            <button id="btnSave" label="${c:l('save')}" />
+                            <button id="btnSave" class="btn btn-default" iconSclass="z-icon-save" label="${c:l('save')}" />
                         </div>
                         <div class="col-xs-4">
-                            <button id="btnReset" label="${c:l('reset')}"/>
+                            <button id="btnReset" class="btn btn-default" iconSclass="z-icon-refresh" label="${c:l('reset')}"/>
                         </div>
                     </div>
                 </groupbox>
