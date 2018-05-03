@@ -11,7 +11,7 @@
             <div class="col-md-4">
                 <div class="login-form">
                     <x:form role="login">
-                        <label value="${c:l('enrollstudents.title')} " class="login-title"></label>
+                        <label value="${c:l('main.login.title')} " class="login-title"></label>
                         <textbox id="username" focus="true" placeholder="${c:l('main.username')}" class="form-control input-lg" constraint="no empty: ${c:l('main.username.empty')}"/>
                         <textbox id="password" type="password" placeholder="${c:l('main.password')}" class="form-control input-lg" constraint="no empty: ${c:l('main.password.empty')}"/>
                         <label id="error" style="color:red"/>
