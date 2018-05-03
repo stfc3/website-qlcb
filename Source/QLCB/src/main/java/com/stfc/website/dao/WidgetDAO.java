@@ -8,6 +8,7 @@ package com.stfc.website.dao;
 import com.stfc.website.bean.Banner;
 import com.stfc.website.bean.Document;
 import com.stfc.website.bean.Post;
+import com.stfc.website.bean.UserToken;
 import com.stfc.website.domain.Widget;
 import com.stfc.website.domain.Class;
 import com.stfc.website.bean.WidgetContent;
@@ -83,7 +84,7 @@ public class WidgetDAO {
                 StringBuilder vstrSql = new StringBuilder();
                 vstrSql.append("SELECT p.post_id as postId, p.author as author, p.post_title as postTitle, p.post_excerpt as postExcerpt,");
                 vstrSql.append(" p.post_content as postContent, p.post_tag as postTag, m.category_id as categoryId, p.is_pin as isPin,");
-                vstrSql.append(" p.featured_image as featuredImage, p.post_slug as postSlug, p.post_order as postOrder, p.post_date as postDate");
+                vstrSql.append(" p.featured_image as featuredImage, p.post_slug as postSlug, coalesce(p.post_order,0) as postOrder, p.post_date as postDate");
                 vstrSql.append(" FROM stfc_posts p INNER JOIN stfc_category_post m ON p.post_id = m.post_id");
                 vstrSql.append(" INNER JOIN stfc_categories c ON m.category_id = c.category_id");
                 vstrSql.append(" WHERE m.category_id IN (:lstCategoryId)");
@@ -94,7 +95,7 @@ public class WidgetDAO {
                 vstrSql.append(" and p.effect_from_date <= sysdate()");
                 vstrSql.append(" and (effect_to_date >= sysdate() or effect_to_date is null)");
                 vstrSql.append(" and p.post_date <= sysdate()");
-                vstrSql.append(" ORDER BY p.is_pin desc, p.post_order, p.create_date ");
+                vstrSql.append(" ORDER BY p.is_pin desc, p.post_date desc");
                 Query query = getCurrentSession()
                         .createSQLQuery(vstrSql.toString())
                         .addScalar("postId", StandardBasicTypes.LONG)
@@ -126,7 +127,7 @@ public class WidgetDAO {
             StringBuilder vstrSql = new StringBuilder();
             vstrSql.append("SELECT p.post_id as postId, p.author as author, p.post_title as postTitle, p.post_excerpt as postExcerpt,");
             vstrSql.append(" p.post_content as postContent, p.post_tag as postTag, m.category_id as categoryId, p.is_pin as isPin,");
-            vstrSql.append(" p.featured_image as featuredImage, p.post_slug as postSlug, p.post_order as postOrder, p.post_date as postDate");
+            vstrSql.append(" p.featured_image as featuredImage, p.post_slug as postSlug, coalesce(p.post_order,0) as postOrder, p.post_date as postDate");
             vstrSql.append(" FROM stfc_posts p INNER JOIN stfc_category_post m ON p.post_id = m.post_id");
             vstrSql.append(" INNER JOIN stfc_categories c ON m.category_id = c.category_id");
             vstrSql.append(" WHERE m.category_id IN (:categoryId)");
@@ -137,7 +138,7 @@ public class WidgetDAO {
             vstrSql.append(" and p.effect_from_date <= sysdate()");
             vstrSql.append(" and (effect_to_date >= sysdate() or effect_to_date is null)");
             vstrSql.append(" and p.post_date <= sysdate()");
-            vstrSql.append(" ORDER BY p.is_pin desc, p.post_order, p.create_date ");
+            vstrSql.append(" ORDER BY p.is_pin desc, p.post_date desc ");
             if (limitPost > 0) {
                 vstrSql.append(" LIMIT " + String.valueOf(limitPost));
             }
@@ -208,7 +209,7 @@ public class WidgetDAO {
             StringBuilder vstrSql = new StringBuilder();
             vstrSql.append("SELECT p.post_id as postId, p.author as author, p.post_title as postTitle, p.post_excerpt as postExcerpt,");
             vstrSql.append(" p.post_content as postContent, p.post_tag as postTag, m.category_id as categoryId, p.is_pin as isPin,");
-            vstrSql.append(" p.featured_image as featuredImage, p.post_slug as postSlug, p.post_order as postOrder, p.post_date as postDate");
+            vstrSql.append(" p.featured_image as featuredImage, p.post_slug as postSlug, coalesce(p.post_order,0) as postOrder, p.post_date as postDate");
             vstrSql.append(" FROM stfc_posts p INNER JOIN stfc_category_post m ON p.post_id = m.post_id");
             vstrSql.append(" INNER JOIN stfc_categories c ON m.category_id = c.category_id");
             vstrSql.append(" WHERE p.post_slug = :postSlug");
@@ -218,7 +219,7 @@ public class WidgetDAO {
             vstrSql.append(" and p.effect_from_date <= sysdate()");
             vstrSql.append(" and (effect_to_date >= sysdate() or effect_to_date is null)");
             vstrSql.append(" and p.post_date <= sysdate()");
-            vstrSql.append(" ORDER BY p.is_pin desc, p.post_order, p.create_date ");
+            vstrSql.append(" ORDER BY p.is_pin desc, p.post_date desc ");
             Query query = getCurrentSession()
                     .createSQLQuery(vstrSql.toString())
                     .addScalar("postId", StandardBasicTypes.LONG)
@@ -248,7 +249,7 @@ public class WidgetDAO {
             StringBuilder vstrSql = new StringBuilder();
             vstrSql.append("SELECT p.post_id as postId, p.author as author, p.post_title as postTitle, p.post_excerpt as postExcerpt,");
             vstrSql.append(" p.post_content as postContent, p.post_tag as postTag, m.category_id as categoryId, p.is_pin as isPin,");
-            vstrSql.append(" p.featured_image as featuredImage, p.post_slug as postSlug, p.post_order as postOrder, p.post_date as postDate");
+            vstrSql.append(" p.featured_image as featuredImage, p.post_slug as postSlug, coalesce(p.post_order,0) as postOrder, p.post_date as postDate");
             vstrSql.append(" FROM stfc_posts p INNER JOIN stfc_category_post m ON p.post_id = m.post_id");
             vstrSql.append(" INNER JOIN stfc_categories c on c.category_id = m.category_id");
             vstrSql.append(" WHERE c.category_slug = :categorySlug");
@@ -258,7 +259,7 @@ public class WidgetDAO {
             vstrSql.append(" and p.effect_from_date <= sysdate()");
             vstrSql.append(" and (effect_to_date >= sysdate() or effect_to_date is null)");
             vstrSql.append(" and p.post_date <= sysdate()");
-            vstrSql.append(" ORDER BY p.is_pin desc, p.post_order, p.create_date ");
+            vstrSql.append(" ORDER BY p.is_pin desc, p.post_date desc ");
             if (limitPost > 0) {
                 vstrSql.append(" LIMIT " + String.valueOf(limitPost));
             }
@@ -291,7 +292,7 @@ public class WidgetDAO {
             StringBuilder vstrSql = new StringBuilder();
             vstrSql.append("SELECT p.post_id as postId, p.author as author, p.post_title as postTitle, p.post_excerpt as postExcerpt,");
             vstrSql.append(" p.post_content as postContent, p.post_tag as postTag, m.category_id as categoryId, p.is_pin as isPin,");
-            vstrSql.append(" p.featured_image as featuredImage, p.post_slug as postSlug, p.post_order as postOrder, p.post_date as postDate");
+            vstrSql.append(" p.featured_image as featuredImage, p.post_slug as postSlug, coalesce(p.post_order,0) as postOrder, p.post_date as postDate");
             vstrSql.append(" FROM stfc_posts p INNER JOIN stfc_category_post m ON p.post_id = m.post_id");
             vstrSql.append(" INNER JOIN stfc_categories c ON m.category_id = c.category_id");
             vstrSql.append(" WHERE m.category_id IN (:categoryId)");
@@ -302,7 +303,7 @@ public class WidgetDAO {
             vstrSql.append(" and p.effect_from_date <= sysdate()");
             vstrSql.append(" and (effect_to_date >= sysdate() or effect_to_date is null)");
             vstrSql.append(" and p.post_date <= sysdate()");
-            vstrSql.append(" ORDER BY p.is_pin desc, p.post_order, p.create_date ");
+            vstrSql.append(" ORDER BY p.is_pin desc, p.post_date desc ");
             if (limitPost > 0) {
                 vstrSql.append(" LIMIT " + String.valueOf(limitPost));
             }
@@ -401,4 +402,32 @@ public class WidgetDAO {
         }
     }
 
+    public UserToken getUserByUserName(String userName) {
+        if (userName != null) {
+            try {
+                StringBuilder vstrSql = new StringBuilder();
+                vstrSql.append("SELECT user_name as userName, first_name as firstName, last_name as lastName, password as password, email as email, role as role");
+                vstrSql.append(" FROM stfc_users");
+                vstrSql.append(" WHERE user_name = :userName ");
+                Query query = getCurrentSession()
+                        .createSQLQuery(vstrSql.toString())
+                        .addScalar("userName", StandardBasicTypes.STRING)
+                        .addScalar("firstName", StandardBasicTypes.STRING)
+                        .addScalar("lastName", StandardBasicTypes.STRING)
+                        .addScalar("password", StandardBasicTypes.STRING)
+                        .addScalar("email", StandardBasicTypes.STRING)
+                        .addScalar("role", StandardBasicTypes.INTEGER)
+                        .setResultTransformer(
+                                Transformers.aliasToBean(UserToken.class));
+                query.setParameter("userName", userName);
+                List lstUsers = query.list();
+                if (lstUsers != null && !lstUsers.isEmpty()) {
+                    return (UserToken) lstUsers.get(0);
+                }
+            } catch (Exception e) {
+                logger.error(e.getMessage(), e);
+            }
+        }
+        return null;
+    }
 }

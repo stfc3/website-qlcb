@@ -17,6 +17,7 @@ public interface Constants {
     //Page
     String PAGE_HOME = "/index.zul";
     String PAGE_LOGIN = "/login.zul";
+    String BACKEND_PAGE_HOME = "/backend/index.zul";
 
     public static final String WIDGET_TYPE_HOTNEWS = "1";
     public static final String WIDGET_TYPE_NEWS_EVENT = "2";
@@ -66,5 +67,7 @@ public interface Constants {
     Integer MESSAGE_TIME_CLOSE = 3000;
     String prefixSlugCategory = "/category/";
     String prefixSlugPost = "/post/";
+
+    String USER_TOKEN = "userToken";
 
 }

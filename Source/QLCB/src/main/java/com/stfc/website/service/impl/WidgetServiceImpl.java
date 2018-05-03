@@ -8,6 +8,7 @@ package com.stfc.website.service.impl;
 import com.stfc.website.bean.Banner;
 import com.stfc.website.bean.Document;
 import com.stfc.website.bean.Post;
+import com.stfc.website.bean.UserToken;
 import com.stfc.website.dao.WidgetDAO;
 import com.stfc.website.domain.Widget;
 import com.stfc.website.domain.Class;
@@ -113,6 +114,12 @@ public class WidgetServiceImpl implements WidgetService {
     @Override
     public void insertStudent(EnrollStudent student) {
         widgetDAO.insertStudent(student);
+    }
+
+    @Transactional(readOnly = true)
+    @Override
+    public UserToken getUserByUserName(String userName) {
+        return widgetDAO.getUserByUserName(userName);
     }
 
 }
