@@ -34,8 +34,8 @@
 						buttonVisible="true" hflex="3" value="${c:l('option')}"
 						readonly="false">
 						<comboitem value="-1" label="${c:l('option')}" />
-						<comboitem value="0" label="${c:l('active')}" />
-						<comboitem value="1" label="${c:l('inactive')}" />
+						<comboitem value="1" label="${c:l('active')}" />
+						<comboitem value="0" label="${c:l('inactive')}" />
 					</combobox>
 				</hbox>
 				<hbox hflex="1" />
@@ -110,22 +110,22 @@
                         </cell>
                         <cell style="text-align: right;">
                             <datebox format="dd/MM/yyyy"
-                                         width="100%" inplace="true" buttonVisible="false"
-                                         readonly="true" value="${each.birthday}" />
+                                     width="100%" inplace="true" buttonVisible="false"
+                                     readonly="true" value="${each.birthday}" />
                         </cell>
                         <cell style="text-align: center;">
-                            <label value="${(each.status == 0) ? c:l('active') : c:l('inactive')}" />
+                            <label value="${(each.status == 1) ? c:l('active') : c:l('inactive')}" />
                         </cell>
                         <cell style="text-align: center;">
                             <a class="btn-cursor"
-                                   iconSclass="z-icon-pencil" forward="onClick=onEdit"
-                                   tooltiptext="${c:l('edit')}" />
+                               iconSclass="z-icon-pencil" forward="onClick=onEdit"
+                               tooltiptext="${c:l('edit')}" />
                             <a class="btn-cursor"
-                                   iconSclass="z-icon-lock" forward="onClick=onLock"
-                                   tooltiptext="${(each.status == 0) ? c:l('active') : c:l('inactive')}" />
+                               iconSclass="z-icon-lock" forward="onClick=onLock"
+                               tooltiptext="${(each.status == 1) ? c:l('active') : c:l('inactive')}" />
                             <a class="btn-cursor"
-                                   iconSclass="z-icon-refresh" forward="onClick=onReset"
-                                   tooltiptext="${c:l('user.reset.password')}" />
+                               iconSclass="z-icon-refresh" forward="onClick=onReset"
+                               tooltiptext="${c:l('user.reset.password')}" />
                         </cell>
                     </row>
                 </template>

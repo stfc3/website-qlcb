@@ -16,6 +16,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import com.stfc.utils.FunctionUtil;
+import javax.persistence.Temporal;
 
 /**
  * @author admin
@@ -157,6 +158,7 @@ public class Banner {
      * @return the effectFromDate
      */
     @Column(name = "effect_from_date", unique = true, nullable = true, insertable = true, updatable = true)
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     public Date getEffectFromDate() {
         return effectFromDate;
     }
@@ -172,6 +174,7 @@ public class Banner {
      * @return the effectToDate
      */
     @Column(name = "effect_to_date", unique = true, nullable = true, insertable = true, updatable = true)
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     public Date getEffectToDate() {
         return effectToDate;
     }
@@ -187,6 +190,7 @@ public class Banner {
      * @return the createDate
      */
     @Column(name = "create_date", unique = true, nullable = true, insertable = true, updatable = true)
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     public Date getCreateDate() {
         return createDate;
     }
@@ -202,6 +206,7 @@ public class Banner {
      * @return the modifiedDate
      */
     @Column(name = "modified_date", unique = true, nullable = true, insertable = true, updatable = true)
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     public Date getModifiedDate() {
         return modifiedDate;
     }

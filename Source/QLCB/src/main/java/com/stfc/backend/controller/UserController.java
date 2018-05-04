@@ -118,6 +118,7 @@ public class UserController extends GenericForwardComposer<Component> {
     public void onClick$btnReset() {
         userName.setValue("");
         email.setValue("");
+        cbxStatus.setSelectedIndex(0);
     }
 
     /**
@@ -152,11 +153,12 @@ public class UserController extends GenericForwardComposer<Component> {
                     // và
                     // đổi lại mật khẩu để đảm bảo an toàn");
                     mailSend.sendMail(user.getEmail(), Labels.getLabel("user.reset.password.success.content",
-                            new String[]{user.getUserName(), password}));
+                            new String[]{user.getUserName(), password}), Labels.getLabel("user.reset.title.reset"));
 
                     Messagebox.show(
                             Labels.getLabel("user.reset.password.success", new String[]{user.getUserName()}),
                             Labels.getLabel("NOTIFICATION"), Messagebox.OK, Messagebox.INFORMATION);
+                    userService.save(user);
                 }
             }
         });
@@ -182,12 +184,12 @@ public class UserController extends GenericForwardComposer<Component> {
         Row rowSelected = (Row) event.getOrigin().getTarget().getParent().getParent();
         User user = rowSelected.getValue();
         String status;
-        if (user.getStatus() == 0) {
-            status = Labels.getLabel("user.lock").toLowerCase();
-            user.setStatus(1);
-        } else {
-            status = Labels.getLabel("user.unlock").toLowerCase();
+        if (user.getStatus() == 1) {
+            status = Labels.getLabel("user.lock");
             user.setStatus(0);
+        } else {
+            status = Labels.getLabel("user.unlock");
+            user.setStatus(1);
         }
 
         Messagebox.show(Labels.getLabel("user.comfirm.lock", new String[]{status, user.getUserName()}),

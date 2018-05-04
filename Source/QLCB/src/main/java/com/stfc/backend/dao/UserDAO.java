@@ -5,6 +5,7 @@
  */
 package com.stfc.backend.dao;
 
+import com.stfc.utils.FunctionUtil;
 import com.stfc.utils.StringUtils;
 import com.stfc.website.domain.User;
 import java.util.List;
@@ -59,7 +60,7 @@ public class UserDAO {
             builder.append(", birthday as birthday, password as password, role as role, create_date as createDate, status as status");
             builder.append(" from stfc_users where 1 = 1");
             if (StringUtils.valiString(user.getUserName())) {
-                builder.append(" and user_name = :userName");
+                builder.append(" and user_name like :userName escape '/'");
             }
             if (StringUtils.valiString(user.getEmail())) {
                 builder.append(" and email = :email");
@@ -82,7 +83,7 @@ public class UserDAO {
                     .setResultTransformer(
                             Transformers.aliasToBean(User.class));
             if (StringUtils.valiString(user.getUserName())) {
-                query.setParameter("userName", user.getUserName());
+                query.setParameter("userName", "%" + FunctionUtil.escapeCharacter(user.getUserName()) + "%");
             }
             if (StringUtils.valiString(user.getEmail())) {
                 query.setParameter("email", user.getEmail());

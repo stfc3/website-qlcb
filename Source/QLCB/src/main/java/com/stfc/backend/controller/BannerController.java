@@ -34,6 +34,7 @@ import com.stfc.backend.entity.Data;
 import com.stfc.backend.service.BannerService;
 import com.stfc.utils.FunctionUtil;
 import com.stfc.utils.SpringConstant;
+import java.util.Date;
 
 /**
  *
@@ -184,7 +185,7 @@ public class BannerController extends GenericForwardComposer<Component> {
             status = Labels.getLabel("user.unlock").toLowerCase();
             banner.setBannerStatus(1);
         }
-
+        
         Messagebox.show(Labels.getLabel("user.comfirm.lock", new String[]{status, banner.getBannerName()}),
                 Labels.getLabel("user.comfirm"), Messagebox.YES | Messagebox.NO, Messagebox.QUESTION,
                 new EventListener() {
@@ -194,6 +195,7 @@ public class BannerController extends GenericForwardComposer<Component> {
                 // TODO Auto-generated method stub
                 if (Messagebox.ON_YES.equals(event.getName())) {
                     // userService.save(user);
+                    banner.setModifiedDate(new Date());
                     bannerService.update(banner);
                     search();
                     String mess = status.substring(0, 1).toUpperCase() + status.substring(1);

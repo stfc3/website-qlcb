@@ -23,12 +23,12 @@ import com.stfc.utils.FunctionUtil;
  */
 @Repository
 public class BannerDAO {
-
+    
     private static final Logger logger = Logger.getLogger(BannerDAO.class);
-
+    
     @Autowired
     SessionFactory sessionFactory;
-
+    
     protected final Session getCurrentSession() {
         return sessionFactory.getCurrentSession();
     }
@@ -45,7 +45,7 @@ public class BannerDAO {
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
         }
-
+        
         return null;
     }
 
@@ -114,7 +114,7 @@ public class BannerDAO {
 //        return null;
 //    }
     public List<Banner> search(Banner banner) {
-
+        
         try {
             StringBuilder sql = new StringBuilder("select banner_id as bannerId, ");
             sql.append("banner_name as bannerName, banner_image as bannerImage, ");
@@ -133,12 +133,17 @@ public class BannerDAO {
                 sql.append(" and banner_status = :status");
             }
             if (banner.getEffectFromDate() != null) {
-                sql.append(" and STR_TO_DATE(effect_from_date, '%Y-%m-%d %H:%i:%s') <= STR_TO_DATE(:fromDate , '%Y-%m-%d %H:%i:%s')");
+                sql.append(" and DATE(effect_from_date) >= STR_TO_DATE(:fromDate , '%Y-%m-%d %H:%i:%s') ");
+//                sql.append(" and STR_TO_DATE(effect_from_date, '%Y-%m-%d %H:%i:%s') <= STR_TO_DATE(:fromDate , '%Y-%m-%d %H:%i:%s')");
             }
             if (banner.getEffectToDate() != null) {
-                sql.append(" and STR_TO_DATE(effect_to_date, '%Y-%m-%d %H:%i:%s') >= STR_TO_DATE(:toDate, '%Y-%m-%d %H:%i:%s')");
+                sql.append(" and DATE(effect_to_date) <= STR_TO_DATE(:toDate, '%Y-%m-%d %H:%i:%s') ");
+//                sql.append(" and STR_TO_DATE(effect_to_date, '%Y-%m-%d %H:%i:%s') >= STR_TO_DATE(:toDate, '%Y-%m-%d %H:%i:%s')");
             }
             sql.append(" order by modified_date desc ");
+            logger.info("SQL:" +sql.toString());
+            logger.info("Param FromDate: " + banner.getEffectFromDate());
+            logger.info("Param ToDate: " + banner.getEffectToDate());
             Query query = getCurrentSession().createSQLQuery(sql.toString())
                     .addScalar("bannerId", StandardBasicTypes.LONG).addScalar("bannerName", StandardBasicTypes.STRING)
                     .addScalar("bannerImage", StandardBasicTypes.STRING)
@@ -165,7 +170,7 @@ public class BannerDAO {
             if (banner.getEffectToDate() != null) {
                 query.setParameter("toDate", banner.getEffectToDate());
             }
-
+            
             List<Banner> listDataReturn = query.list();
             return listDataReturn;
         } catch (Exception e) {
@@ -181,9 +186,9 @@ public class BannerDAO {
     public void save(Banner banner) {
         getCurrentSession().saveOrUpdate(banner);
     }
-
+    
     public void update(Banner banner) {
         getCurrentSession().update(banner);
     }
-
+    
 }

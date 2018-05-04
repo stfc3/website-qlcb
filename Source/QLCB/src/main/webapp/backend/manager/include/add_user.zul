@@ -16,6 +16,12 @@
             <intbox hflex="2" class="text-right" visible="false"
                     value="${arg.users.role}" id="txtRole"
                     onBlur="self.value=self.value.trim()" />
+            <textbox visible="false"
+                     value="${arg.users.password}" id="txtPass"
+                     onBlur="self.value=self.value.trim()"/>
+            <intbox hflex="2" class="text-right" visible="false"
+                    value="${arg.users.status}" id="txtStatus"
+                    onBlur="self.value=self.value.trim()" />
             <vlayout>
                 <label class="labelNote" hflex="1"
                        value="${c:l('user.note')}" />

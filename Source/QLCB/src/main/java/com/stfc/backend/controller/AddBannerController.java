@@ -23,14 +23,15 @@ import org.zkoss.zul.Window;
 
 import com.stfc.backend.entity.Data;
 import com.stfc.backend.service.BannerService;
+import com.stfc.utils.Constants;
 import com.stfc.utils.FileUtils;
 import com.stfc.utils.FunctionUtil;
 import com.stfc.utils.SpringConstant;
 import com.stfc.utils.StringUtils;
 import org.zkoss.util.resource.Labels;
 import org.zkoss.zk.ui.event.Events;
+import org.zkoss.zk.ui.util.Clients;
 import org.zkoss.zul.Button;
-import org.zkoss.zul.Messagebox;
 
 public class AddBannerController extends GenericForwardComposer<Component> {
 
@@ -85,6 +86,9 @@ public class AddBannerController extends GenericForwardComposer<Component> {
     @WireVariable
     private Image pics;
 
+//    @WireVariable
+//    private Intbox txtStatus;
+
     /**
      * @return the listModelType
      */
@@ -134,28 +138,39 @@ public class AddBannerController extends GenericForwardComposer<Component> {
             Banner banner = new Banner();
 
             if (!StringUtils.valiString(name)) {
-                errBannerName.setValue(Labels.getLabel("banner.error.empty.name"));
-                errBannerName.setVisible(false);
+//                errBannerName.setValue(Labels.getLabel("banner.error.empty.name"));
+//                errBannerName.setVisible(false);
                 txtBannerName.focus();
+                Clients.showNotification(Labels.getLabel("banner.error.empty.name"), Clients.NOTIFICATION_TYPE_ERROR, txtBannerName, Constants.MESSAGE_POSTION_END_CENTER, Constants.MESSAGE_TIME_CLOSE, Boolean.TRUE);
                 return;
             }
             if (name.getBytes().length > 2000) {
-                errBannerName.setValue(Labels.getLabel("banner.error.max.name"));
-                errBannerName.setVisible(false);
+//                errBannerName.setValue(Labels.getLabel("banner.error.max.name"));
+//                errBannerName.setVisible(false);
+                Clients.showNotification(Labels.getLabel("banner.error.max.name"), Clients.NOTIFICATION_TYPE_ERROR, txtBannerName, Constants.MESSAGE_POSTION_END_CENTER, Constants.MESSAGE_TIME_CLOSE, Boolean.TRUE);
                 txtBannerName.focus();
                 return;
             }
             if (type == -1) {
-                errType.setVisible(true);
-                errType.setValue(Labels.getLabel("banner.error.type.select"));
+//                errType.setVisible(true);
+//                errType.setValue(Labels.getLabel("banner.error.type.select"));
+                Clients.showNotification(Labels.getLabel("banner.error.type.select"), Clients.NOTIFICATION_TYPE_ERROR, cbType, Constants.MESSAGE_POSTION_END_CENTER, Constants.MESSAGE_TIME_CLOSE, Boolean.TRUE);
                 cbType.focus();
                 return;
             }
             if (url.length() > 2000) {
-                errURL.setValue(Labels.getLabel("banner.error.max.url"));
-                errURL.setVisible(false);
+//                errURL.setValue(Labels.getLabel("banner.error.max.url"));
+//                errURL.setVisible(false);
+                Clients.showNotification(Labels.getLabel("banner.error.max.url"), Clients.NOTIFICATION_TYPE_ERROR, txtURL, Constants.MESSAGE_POSTION_END_CENTER, Constants.MESSAGE_TIME_CLOSE, Boolean.TRUE);
                 txtURL.focus();
                 return;
+            }
+            if(fromDate != null && toDate != null){
+                if(fromDate.after(toDate)){
+                    Clients.showNotification(Labels.getLabel("banner.error.date"), Clients.NOTIFICATION_TYPE_ERROR, dtFromdate, Constants.MESSAGE_POSTION_END_CENTER, Constants.MESSAGE_TIME_CLOSE, Boolean.TRUE);
+                    dtFromdate.focus();
+                    return;
+                }
             }
             banner.setBannerImage(pathImage);
             banner.setBannerName(name);
@@ -172,6 +187,7 @@ public class AddBannerController extends GenericForwardComposer<Component> {
                 banner.setBannerStatus(status);
                 titile = Labels.getLabel("common.edit");
             } else {
+                banner.setModifiedDate(new Date());
                 banner.setCreateDate(new Date());
                 banner.setBannerStatus(1);
                 titile = Labels.getLabel("add");

@@ -20,6 +20,7 @@ import org.zkoss.zul.Window;
 
 import com.stfc.backend.entity.Data;
 import com.stfc.backend.service.DocumentService;
+import com.stfc.utils.Constants;
 import com.stfc.utils.FileUtils;
 import com.stfc.utils.FunctionUtil;
 import com.stfc.utils.LoadProperties;
@@ -31,6 +32,7 @@ import com.stfc.website.service.WidgetService;
 import java.util.Date;
 import org.zkoss.util.resource.Labels;
 import org.zkoss.zk.ui.event.Events;
+import org.zkoss.zk.ui.util.Clients;
 import org.zkoss.zul.Button;
 
 public class AddDocumentController extends GenericForwardComposer<Component> {
@@ -148,16 +150,25 @@ public class AddDocumentController extends GenericForwardComposer<Component> {
 
 //
             if (!StringUtils.valiString(txtDocumentName.getValue())) {
-                errDocumentName.setValue(Labels.getLabel("document.error.empty.name"));
-                errDocumentName.setVisible(false);
+//                errDocumentName.setValue(Labels.getLabel("document.error.empty.name"));
+//                errDocumentName.setVisible(false);
+                Clients.showNotification(Labels.getLabel("document.error.empty.name"), Clients.NOTIFICATION_TYPE_ERROR, txtDocumentName, Constants.MESSAGE_POSTION_END_CENTER, Constants.MESSAGE_TIME_CLOSE, Boolean.TRUE);
                 txtDocumentName.focus();
                 return;
             }
 
             if (txtDocumentName.getValue().getBytes().length > 255) {
-                errDocumentName.setValue(Labels.getLabel("document.error.max.name"));
-                errDocumentName.setVisible(false);
+//                errDocumentName.setValue(Labels.getLabel("document.error.max.name"));
+                Clients.showNotification(Labels.getLabel("document.error.max.name"), Clients.NOTIFICATION_TYPE_ERROR, txtDocumentName, Constants.MESSAGE_POSTION_END_CENTER, Constants.MESSAGE_TIME_CLOSE, Boolean.TRUE);
+//                errDocumentName.setVisible(false);
                 txtDocumentName.focus();
+                return;
+            }
+             if (cbType.getSelectedItem() == null) {
+//                errType.setVisible(true);
+//                errType.setValue(Labels.getLabel("document.error.empty.type"));
+                Clients.showNotification(Labels.getLabel("document.error.empty.type"), Clients.NOTIFICATION_TYPE_ERROR, cbType, Constants.MESSAGE_POSTION_END_CENTER, Constants.MESSAGE_TIME_CLOSE, Boolean.TRUE);
+                cbType.focus();
                 return;
             }
             if (!StringUtils.valiString(linkHidden.getValue())) {
@@ -165,29 +176,23 @@ public class AddDocumentController extends GenericForwardComposer<Component> {
                 errPath.setVisible(false);
                 return;
             }
-            if (cbType.getSelectedItem() == null) {
-                errType.setVisible(true);
-                errType.setValue(Labels.getLabel("document.error.empty.type"));
-                cbType.focus();
-                return;
-            }
+           
             if (cbCategory.getSelectedItem() == null) {
-                errCategory.setVisible(true);
-                errCategory.setValue(Labels.getLabel("document.error.empty.category"));
-                errCategory.focus();
+//                errCategory.setVisible(true);
+//                errCategory.setValue(Labels.getLabel("document.error.empty.category"));
+                Clients.showNotification(Labels.getLabel("document.error.empty.category"), Clients.NOTIFICATION_TYPE_ERROR, cbCategory, Constants.MESSAGE_POSTION_END_CENTER, Constants.MESSAGE_TIME_CLOSE, Boolean.TRUE);
+                cbCategory.focus();
                 return;
             }
-//            if (url.length() > 2000) {
-//                errURL.setValue(Labels.getLabel("banner.error.max.url"));
-//                errURL.setVisible(false);
-//                txtURL.focus();
-//                return;
-//            }
+
             String documentName = txtDocumentName.getValue().trim();
             Integer type = cbType.getSelectedItem().getValue();
             String path = linkHidden.getValue().trim();
             Long category = cbCategory.getSelectedItem().getValue();
             String author = txtAuthor.getValue().trim();
+            if (!StringUtils.valiString(author)) {
+                author = String.valueOf(session.getAttribute(Constants.USER_TOKEN));
+            }
             Integer order = txtOrder.getValue();
             Integer status = txtStatus.getValue();
             Long id = txtDocumentId.getValue();
