@@ -38,7 +38,7 @@ public class WebsiteFilter implements Filter {
         }
         if (req != null) {
             logger.info("ServletPath: " + req.getServletPath());
-            req.setAttribute("stfc-url", req.getServletPath());
+            req.setAttribute(Constants.STFC_URL_ATTRIBUTE, req.getServletPath());
         }
 
         chain.doFilter(request, response);

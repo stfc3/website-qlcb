@@ -1,7 +1,6 @@
 package com.stfc.backend.controller;
 
 import com.stfc.utils.Constants;
-import com.stfc.website.bean.UserToken;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.select.annotation.Wire;
@@ -13,7 +12,7 @@ import org.zkoss.zul.Label;
 public class MainComposer extends GenericForwardComposer<Component> {
 
     @Wire
-    Navitem category, document, user, menu, post, widget, banner;
+    Navitem category, document, user, menu, addPost, listPost, widget, banner;
     @Wire
     Label breadcrumb;
     @Wire
@@ -32,9 +31,13 @@ public class MainComposer extends GenericForwardComposer<Component> {
         breadcrumb.setValue(category.getLabel());
     }
 
-    public void onClick$post() {
-        content.setSrc(Constants.PAGE_POST);
-        breadcrumb.setValue(post.getLabel());
+    public void onClick$addPost() {
+        content.setSrc(Constants.PAGE_ADD_POST);
+        breadcrumb.setValue(addPost.getLabel());
+    }
+    public void onClick$listPost() {
+        content.setSrc(Constants.PAGE_LIST_POST);
+        breadcrumb.setValue(listPost.getLabel());
     }
 
     public void onClick$user() {

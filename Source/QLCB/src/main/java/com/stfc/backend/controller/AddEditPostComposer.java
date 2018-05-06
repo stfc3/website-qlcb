@@ -7,6 +7,7 @@ import com.stfc.utils.Constants;
 import com.stfc.utils.SpringConstant;
 import com.stfc.utils.StringUtils;
 import com.stfc.website.Memory;
+import com.stfc.website.bean.UserToken;
 import com.stfc.website.domain.Category;
 import java.util.ArrayList;
 import java.util.Date;
@@ -32,7 +33,7 @@ import org.zkoss.zul.Listbox;
 import org.zkoss.zul.Textbox;
 import org.zkoss.zul.Window;
 
-public class PostComposer extends SelectorComposer<Component> {
+public class AddEditPostComposer extends SelectorComposer<Component> {
 
     @WireVariable
     PostService postService;
@@ -54,6 +55,7 @@ public class PostComposer extends SelectorComposer<Component> {
     private boolean isPublish;
     private ListModelList<Category> modelCategory;
     private Long ERROR = -1l;
+    UserToken userToken;
 
     public ListModelList<Category> getModelCategory() {
         return modelCategory;
@@ -67,13 +69,9 @@ public class PostComposer extends SelectorComposer<Component> {
     public void doAfterCompose(Component comp) throws Exception {
         super.doAfterCompose(comp);
         session = Sessions.getCurrent();
-//        if (session.getAttribute(Constants.USER_TOKEN) == null) {
-//            Executions.sendRedirect(Constants.PAGE_LOGIN);
-//        } else {
-//            UserToken userToken = (UserToken) session.getAttribute(Constants.USER_TOKEN);
-//            if (userToken != null) {
-//            }
-//        }
+        if (session.getAttribute(Constants.USER_TOKEN) != null) {
+            userToken = (UserToken) session.getAttribute(Constants.USER_TOKEN);
+        } 
         postService = (PostService) SpringUtil.getBean(SpringConstant.POST_SERVICE);
         loadCategory();
 
@@ -124,7 +122,7 @@ public class PostComposer extends SelectorComposer<Component> {
                 vintPrivate = 1;
             }
             Post post = new Post();
-            post.setAuthor("guest");
+            post.setAuthor(userToken.getUserName());
             post.setPostTitle(postTitle.getValue());
             post.setPostExcerpt(postExcerpt.getValue());
             post.setPostContent(postContent.getValue());

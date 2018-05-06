@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <zk xmlns:x="xhtml" >
-    <div id="main" class="row" apply="com.stfc.backend.controller.PostComposer">
+    <div id="main" class="row" apply="com.stfc.backend.controller.AddEditPostComposer">
         <div class="col-md-9">
             <groupbox>
                 <caption label="${c:l('post.post')}"/>

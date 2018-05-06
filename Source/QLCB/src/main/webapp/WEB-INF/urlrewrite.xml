@@ -10,12 +10,12 @@
         <from>/category/**</from>
         <to>/listpost.zul</to>
     </rule>
-<!--    <rule match-type="wildcard">
-        <from>/admin</from>
-        <to>/backend/index.zul</to>
-    </rule>-->
     <rule match-type="wildcard">
         <from>/admin</from>
+        <to>/backend/index.zul</to>
+    </rule>
+    <rule match-type="wildcard">
+        <from>/login</from>
         <to>/login.zul</to>
     </rule>
 <!--    <rule match-type="wildcard">

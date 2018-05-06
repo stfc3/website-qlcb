@@ -5,7 +5,6 @@
  */
 package com.stfc.website;
 
-import com.stfc.backend.service.UserService;
 import com.stfc.utils.Constants;
 import com.stfc.utils.EncryptUtil;
 import com.stfc.utils.SpringConstant;
@@ -69,13 +68,6 @@ public class LoginController extends SelectorComposer<Component> {
             } else if (!EncryptUtil.encrypt(vstrPassword).equals(vuser.getPassword())) {
                 error.setValue(Labels.getLabel("login.error"));
             } else {
-//                UserToken userToken = new UserToken();
-//                userToken.setUserName(vuser.getUserName());
-//                userToken.setFirstName(vuser.getFirstName());
-//                userToken.setLastName(vuser.getLastName());
-//                userToken.setEmail(vuser.getEmail());
-//                userToken.setRole(vuser.getRole());
-
                 session.setAttribute(Constants.USER_TOKEN, vuser);
                 Executions.sendRedirect(Constants.BACKEND_PAGE_HOME);
             }

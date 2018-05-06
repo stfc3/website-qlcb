@@ -15,9 +15,8 @@ public interface Constants {
     String TOKEN = "token";
 
     //Page
-    String PAGE_HOME = "/index.zul";
-    String PAGE_LOGIN = "/login.zul";
-    String BACKEND_PAGE_HOME = "/backend/index.zul";
+    String PAGE_LOGIN = "/login";
+    String BACKEND_PAGE_HOME = "/admin";
 
     public static final String WIDGET_TYPE_HOTNEWS = "1";
     public static final String WIDGET_TYPE_NEWS_EVENT = "2";
@@ -41,7 +40,8 @@ public interface Constants {
 
     String STFC_URL_ATTRIBUTE = "stfc-url";
     String PAGE_CATEGORY = "manager/category.zul";
-    String PAGE_POST = "manager/post.zul";
+    String PAGE_ADD_POST = "manager/addEditPost.zul";
+    String PAGE_LIST_POST = "manager/listPost.zul";
     String PAGE_USER = "manager/user.zul";
     String PAGE_WIDGET = "manager/widget.zul";
     String PAGE_MENU = "manager/menu.zul";

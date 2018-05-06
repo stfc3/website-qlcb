@@ -14,7 +14,21 @@
         </div>
         <div zclass="backend-main" apply="com.stfc.backend.controller.MainComposer">
             <div zclass="backend-main-left">
-                <include src="sidebar.zul"/>
+                <div id="sidebar" sclass="sidebar">
+                    <navbar id="navbar" sclass="nav-list" orient="vertical">
+                        <navitem id="category" label="Category" iconSclass="z-icon-folder-o"/>
+                        <navitem id="document" label="Document" iconSclass="z-icon-file-o"/>
+                        <navitem id="user"  label="Users" iconSclass="z-icon-users"/>
+                        <navitem id="menu"  label="Menu" iconSclass="z-icon-bars"/>
+                        <nav label="Post" iconSclass="z-icon-edit">
+                            <navitem id="listPost"  label="List post" />
+                            <navitem id="addPost"  label="Add new post" />
+                        </nav>
+        
+                        <navitem id="widget"  label="Widgets" iconSclass="z-icon-list-alt" />
+                        <navitem id="banner"  label="Banner" iconSclass="z-icon-picture-o" />
+                    </navbar>
+                </div>
             </div>
             <div sclass="backend-main-right">
                 <div sclass="breadcrumbs">
