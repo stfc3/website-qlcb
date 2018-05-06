@@ -17,7 +17,7 @@
         </a>-->
         <!-- User menu -->
         <menubar sclass="user-menu light-blue">
-            <menu tooltiptext="daond" label="Welcome, daond" image="assets/avatars/user.jpg">
+            <menu id="menuTitle" image="assets/avatars/user.jpg">
                 <menupopup>
                     <menuitem label="Reload" id="reloadCache" iconSclass="z-icon-retweet"/>
                     <!--<menuitem label="Settings" iconSclass="z-icon-cog"/>-->

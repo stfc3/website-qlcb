@@ -80,7 +80,7 @@ public class CategoryComposer extends SelectorComposer<Component> {
             } else {
                 categorySelected.setCategoryParent(null);
             }
-            categorySelected.setCategorySlug(Constants.prefixSlugCategory + categorySlug.getValue());
+            categorySelected.setCategorySlug(Constants.PREFIX_SLUG_CATEGORY + categorySlug.getValue());
             if (isAdd) {
                 categorySelected.setCategoryStatus(Constants.STATUS_ACTIVE);
                 categorySelected.setCreateDate(new Date());
@@ -102,7 +102,7 @@ public class CategoryComposer extends SelectorComposer<Component> {
         Row rowSelected = (Row) event.getOrigin().getTarget().getParent().getParent();
         categorySelected = rowSelected.getValue();
         categoryName.setValue(categorySelected.getCategoryName());
-        categorySlug.setValue(categorySelected.getCategorySlug().replace(Constants.prefixSlugCategory, ""));
+        categorySlug.setValue(categorySelected.getCategorySlug().replace(Constants.PREFIX_SLUG_CATEGORY, ""));
         if (StringUtils.valiString(categorySelected.getCategoryParentName())) {
             categoryParent.setValue(categorySelected.getCategoryParentName());
         } else {

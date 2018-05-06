@@ -1,10 +1,12 @@
 package com.stfc.backend.controller;
 
 import com.stfc.utils.Constants;
+import com.stfc.website.bean.UserToken;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.select.annotation.Wire;
 import org.zkoss.zk.ui.util.GenericForwardComposer;
+import org.zkoss.zkmax.zul.Nav;
 import org.zkoss.zkmax.zul.Navitem;
 import org.zkoss.zul.Include;
 import org.zkoss.zul.Label;
@@ -14,15 +16,45 @@ public class MainComposer extends GenericForwardComposer<Component> {
     @Wire
     Navitem category, document, user, menu, addPost, listPost, widget, banner;
     @Wire
+    Nav post;
+    @Wire
     Label breadcrumb;
     @Wire
     Include content;
+    UserToken userToken;
 
     @Override
     public void doAfterCompose(Component comp) throws Exception {
         super.doAfterCompose(comp);
         if (session.getAttribute(Constants.USER_TOKEN) == null) {
             Executions.sendRedirect(Constants.PAGE_LOGIN);
+        } else {
+            userToken = (UserToken) session.getAttribute(Constants.USER_TOKEN);
+            loadMenu();
+        }
+        
+    }
+
+    private void loadMenu() {
+        if (Constants.ROLE_EDITOR.equals(userToken.getRole()) || Constants.ROLE_AUTHOR.equals(userToken.getRole())
+                || Constants.ROLE_CONTRIBUTOR.equals(userToken.getRole())) {
+            post.setVisible(true);
+            addPost.setVisible(true);
+            listPost.setVisible(true);
+        }
+        if (Constants.ROLE_EDITOR.equals(userToken.getRole())) {
+            category.setVisible(true);
+        }
+        if (Constants.ROLE_ADMIN.equals(userToken.getRole())) {
+            category.setVisible(true);
+            document.setVisible(true);
+            user.setVisible(true);
+            menu.setVisible(true);
+            post.setVisible(true);
+            addPost.setVisible(true);
+            listPost.setVisible(true);
+            widget.setVisible(true);
+            banner.setVisible(true);
         }
     }
 
@@ -35,6 +67,7 @@ public class MainComposer extends GenericForwardComposer<Component> {
         content.setSrc(Constants.PAGE_ADD_POST);
         breadcrumb.setValue(addPost.getLabel());
     }
+
     public void onClick$listPost() {
         content.setSrc(Constants.PAGE_LIST_POST);
         breadcrumb.setValue(listPost.getLabel());

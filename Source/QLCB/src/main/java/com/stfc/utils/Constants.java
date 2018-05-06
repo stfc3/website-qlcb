@@ -11,9 +11,6 @@ package com.stfc.utils;
  */
 public interface Constants {
 
-    //Session
-    String TOKEN = "token";
-
     //Page
     String PAGE_LOGIN = "/login";
     String BACKEND_PAGE_HOME = "/admin";
@@ -65,9 +62,14 @@ public interface Constants {
 
     String MESSAGE_POSTION_END_CENTER = "end_center";
     Integer MESSAGE_TIME_CLOSE = 3000;
-    String prefixSlugCategory = "/category/";
-    String prefixSlugPost = "/post/";
+    String PREFIX_SLUG_CATEGORY = "/category/";
+    String PREFIX_SLUG_POST = "/post/";
 
     String USER_TOKEN = "userToken";
+
+    Integer ROLE_ADMIN = 1;
+    Integer ROLE_EDITOR = 2;
+    Integer ROLE_AUTHOR = 3;
+    Integer ROLE_CONTRIBUTOR = 4;
 
 }

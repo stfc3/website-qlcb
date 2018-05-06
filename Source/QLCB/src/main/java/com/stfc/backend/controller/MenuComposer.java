@@ -167,11 +167,11 @@ public class MenuComposer extends SelectorComposer<Component> {
         } else {
             menuParent.setValue(Labels.getLabel("option"));
         }
-        if (menuSelected.getMenuSlug().startsWith(Constants.prefixSlugCategory)) {
+        if (menuSelected.getMenuSlug().startsWith(Constants.PREFIX_SLUG_CATEGORY)) {
             menuDataType.setSelectedIndex(0);
             setSelectedCombo(menuCategory, menuSelected.getMenuSlug());
             loadTypeData();
-        } else if (menuSelected.getMenuSlug().startsWith(Constants.prefixSlugPost)) {
+        } else if (menuSelected.getMenuSlug().startsWith(Constants.PREFIX_SLUG_POST)) {
             setSelectedCombo(menuPost, menuSelected.getMenuSlug());
             menuDataType.setSelectedIndex(1);
             loadTypeData();

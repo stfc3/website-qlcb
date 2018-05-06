@@ -408,7 +408,7 @@ public class WidgetDAO {
                 StringBuilder vstrSql = new StringBuilder();
                 vstrSql.append("SELECT user_name as userName, first_name as firstName, last_name as lastName, password as password, email as email, role as role");
                 vstrSql.append(" FROM stfc_users");
-                vstrSql.append(" WHERE user_name = :userName ");
+                vstrSql.append(" WHERE status=1 AND user_name = :userName ");
                 Query query = getCurrentSession()
                         .createSQLQuery(vstrSql.toString())
                         .addScalar("userName", StandardBasicTypes.STRING)

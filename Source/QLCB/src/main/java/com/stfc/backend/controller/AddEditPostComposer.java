@@ -129,7 +129,7 @@ public class AddEditPostComposer extends SelectorComposer<Component> {
             post.setIsPin(vintIsPin);
             post.setIsPrivate(vintPrivate);
             post.setFeaturedImage(imageFeature.getSrc());
-            post.setPostSlug(Constants.prefixSlugPost + postSlug.getValue());
+            post.setPostSlug(Constants.PREFIX_SLUG_POST + postSlug.getValue());
             post.setPostStatus(status);
             if (isPublish) {
                 post.setPostDate(new Date());

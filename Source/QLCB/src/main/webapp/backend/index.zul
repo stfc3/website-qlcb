@@ -15,18 +15,18 @@
         <div zclass="backend-main" apply="com.stfc.backend.controller.MainComposer">
             <div zclass="backend-main-left">
                 <div id="sidebar" sclass="sidebar">
-                    <navbar id="navbar" sclass="nav-list" orient="vertical">
-                        <navitem id="category" label="Category" iconSclass="z-icon-folder-o"/>
-                        <navitem id="document" label="Document" iconSclass="z-icon-file-o"/>
-                        <navitem id="user"  label="Users" iconSclass="z-icon-users"/>
-                        <navitem id="menu"  label="Menu" iconSclass="z-icon-bars"/>
-                        <nav label="Post" iconSclass="z-icon-edit">
-                            <navitem id="listPost"  label="List post" />
-                            <navitem id="addPost"  label="Add new post" />
+                    <navbar id="navbar" sclass="nav-list" orient="vertical"  >
+                        <navitem id="category" label="Category" iconSclass="z-icon-folder-o" visible="false"/>
+                        <navitem id="document" label="Document" iconSclass="z-icon-file-o" visible="false"/>
+                        <navitem id="user"  label="Users" iconSclass="z-icon-users" visible="false"/>
+                        <navitem id="menu"  label="Menu" iconSclass="z-icon-bars" visible="false"/>
+                        <nav id="post"  label="Post" iconSclass="z-icon-edit" visible="false">
+                            <navitem id="listPost"  label="List post" visible="false"/>
+                            <navitem id="addPost"  label="Add new post" visible="false"/>
                         </nav>
         
-                        <navitem id="widget"  label="Widgets" iconSclass="z-icon-list-alt" />
-                        <navitem id="banner"  label="Banner" iconSclass="z-icon-picture-o" />
+                        <navitem id="widget"  label="Widgets" iconSclass="z-icon-list-alt" visible="false"/>
+                        <navitem id="banner"  label="Banner" iconSclass="z-icon-picture-o" visible="false"/>
                     </navbar>
                 </div>
             </div>
