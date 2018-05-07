@@ -43,37 +43,37 @@ import com.stfc.website.service.WidgetService;
  * @since 27/03/2018
  */
 public class DocumentController extends GenericForwardComposer<Component> {
-
+    
     private static final Logger logger = Logger.getLogger(DocumentController.class);
-
+    
     @WireVariable
     protected DocumentService documentService;
-
+    
     @WireVariable
     protected WidgetService widgetService;
 
     // private Listbox resultList;
     private ListModelList<Document> listData = new ListModelList<>();
-
+    
     private ListModelList listSearch;
-
+    
     @Wire
     private Grid gridDocument;
-
+    
     private Window documentManager;
-
+    
     @WireVariable
     private Textbox txtDocName;
-
+    
     @WireVariable
     private Combobox cbxStatus;
-
+    
     @WireVariable
     private Combobox cbCategory;
-
+    
     @WireVariable
     private Combobox cbType;
-
+    
     private ListModelList<Object> listModelType = new ListModelList<>();
     private ListModelList<Category> listModelCategory = new ListModelList<>();
 
@@ -90,15 +90,15 @@ public class DocumentController extends GenericForwardComposer<Component> {
     public void setListModelType(ListModelList<Object> listModelType) {
         this.listModelType = listModelType;
     }
-
+    
     public ListModelList<Document> getListData() {
         return listData;
     }
-
+    
     public void setListData(ListModelList<Document> listData) {
         this.listData = listData;
     }
-
+    
     @Override
     public void doAfterCompose(Component comp) throws Exception {
         super.doAfterCompose(comp);
@@ -114,15 +114,15 @@ public class DocumentController extends GenericForwardComposer<Component> {
         listDataCategory.add(0, catDefault);
         listModelCategory = new ListModelList<>(listDataCategory);
         cbCategory.setModel(listModelCategory);
-
+        
         listModelType = new ListModelList<>(listDataType);
         cbType.setModel(listModelType);
     }
-
+    
     public void onSearch(ForwardEvent event) {
         search();
     }
-
+    
     private void search() {
         Document document = new Document();
         if (txtDocName != null) {
@@ -139,13 +139,13 @@ public class DocumentController extends GenericForwardComposer<Component> {
             document.setStatus(Integer.valueOf(cbxStatus.getSelectedItem().getValue()));
         }
         List<Document> listDocument = documentService.search(document);
-
+        
         listSearch = new ListModelList(listDocument);
         listSearch.setMultiple(true);
         gridDocument.setModel(listSearch);
-
+        
     }
-
+    
     public void onClick$btnAdd() {
         Document document = new Document();
         Map<String, Object> arguments = new HashMap();
@@ -156,21 +156,21 @@ public class DocumentController extends GenericForwardComposer<Component> {
         windownUpload.setBorder(true);
         windownUpload.setBorder("normal");
         windownUpload.setClosable(true);
-
+        
     }
-
+    
     public void onClick$btnReset() {
         txtDocName.setValue("");
         cbCategory.setSelectedIndex(0);
         cbType.setSelectedIndex(0);
         cbxStatus.setSelectedIndex(0);
     }
-
+    
     public void onEdit(ForwardEvent event) {
         Row rowSelected = (Row) event.getOrigin().getTarget().getParent().getParent();
-
+        
         Document document = rowSelected.getValue();
-
+        logger.info("Document: " + document.toString());
         Map<String, Object> arguments = new HashMap();
         arguments.put("document", document);
         final Window windownUpload = (Window) Executions.createComponents("/backend/manager/include/document_add.zul",
@@ -180,11 +180,11 @@ public class DocumentController extends GenericForwardComposer<Component> {
         windownUpload.setBorder("normal");
         windownUpload.setClosable(true);
     }
-
+    
     public void onLock(ForwardEvent event) {
         Row rowSelected = (Row) event.getOrigin().getTarget().getParent().getParent();
         Document document = rowSelected.getValue();
-
+        
         String status;
         if (document.getStatus() == 1) {
             status = Labels.getLabel("user.lock").toLowerCase();
@@ -193,11 +193,11 @@ public class DocumentController extends GenericForwardComposer<Component> {
             status = Labels.getLabel("user.unlock").toLowerCase();
             document.setStatus(1);
         }
-
+        
         Messagebox.show(Labels.getLabel("document.comfirm.lock", new String[]{status, document.getDocumentName()}),
                 Labels.getLabel("user.comfirm"), Messagebox.YES | Messagebox.NO, Messagebox.QUESTION,
                 new EventListener() {
-
+            
             @Override
             public void onEvent(Event event) throws Exception {
                 // TODO Auto-generated method stub
@@ -214,18 +214,18 @@ public class DocumentController extends GenericForwardComposer<Component> {
                             Labels.getLabel("NOTIFICATION"), Messagebox.OK, Messagebox.INFORMATION);
                 }
             }
-
+            
         });
     }
-
+    
     public ListModelList<Category> getListModelCategory() {
         return listModelCategory;
     }
-
+    
     public void setListModelCategory(ListModelList<Category> listModelCategory) {
         this.listModelCategory = listModelCategory;
     }
-
+    
     public void onClick$reloadData() {
         search();
     }

@@ -61,7 +61,8 @@ public class DocumentDAO {
             sql.append("d.document_name as documentName, d.document_type as documentType, d.document_path as documentPath, d.category_id as categoryId,");
             sql.append("c.category_name as categoryName,");
             sql.append("d.author as author, d.document_order as documentOrder,d.status as status,d.create_date as createDate,");
-            sql.append("d.modified_date as modifiedDate ");
+            sql.append("d.modified_date as modifiedDate, ");
+            sql.append("d.file_name as fileName ");
             sql.append(" from stfc_document d left join stfc_categories c ");
             sql.append(" on d.category_id = c.category_id  where 1=1 ");
             if (StringUtils.valiString(document.getDocumentName())) {
@@ -89,6 +90,7 @@ public class DocumentDAO {
                     .addScalar("status", StandardBasicTypes.INTEGER)
                     .addScalar("createDate", StandardBasicTypes.DATE)
                     .addScalar("modifiedDate", StandardBasicTypes.DATE)
+                    .addScalar("fileName", StandardBasicTypes.STRING)
                     .setResultTransformer(Transformers.aliasToBean(Document.class));
 
             if (StringUtils.valiString(document.getDocumentName())) {

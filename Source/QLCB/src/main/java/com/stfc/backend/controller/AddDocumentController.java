@@ -27,6 +27,7 @@ import com.stfc.utils.LoadProperties;
 import com.stfc.utils.SpringConstant;
 import com.stfc.utils.StringUtils;
 import com.stfc.website.bean.ConfigEntity;
+import com.stfc.website.bean.UserToken;
 import com.stfc.website.domain.Category;
 import com.stfc.website.service.WidgetService;
 import java.util.Date;
@@ -56,7 +57,7 @@ public class AddDocumentController extends GenericForwardComposer<Component> {
     @WireVariable
     private Intbox txtType;
     @WireVariable
-    private Textbox txtCategory;
+    private Longbox txtCategory;
     @WireVariable
     private Intbox txtStatus;
 
@@ -125,8 +126,9 @@ public class AddDocumentController extends GenericForwardComposer<Component> {
         listDataCategory.add(0, catDefault);
         listModelCategory = new ListModelList<>(listDataCategory);
         cbCategory.setModel(listModelCategory);
-        cbCategory.setValue(txtCategory.getValue());
-
+        if (txtCategory.getValue() != null) {
+            cbCategory.setValue(getCatName(listDataCategory, txtCategory.getValue()));
+        }
         listModelType = new ListModelList<>(listDataType);
         cbType.setModel(listModelType);
         if (txtType.getValue() != null) {
@@ -164,7 +166,7 @@ public class AddDocumentController extends GenericForwardComposer<Component> {
                 txtDocumentName.focus();
                 return;
             }
-             if (cbType.getSelectedItem() == null) {
+            if (cbType.getSelectedItem() == null || cbType.getSelectedItem().getValue().equals(-1)) {
 //                errType.setVisible(true);
 //                errType.setValue(Labels.getLabel("document.error.empty.type"));
                 Clients.showNotification(Labels.getLabel("document.error.empty.type"), Clients.NOTIFICATION_TYPE_ERROR, cbType, Constants.MESSAGE_POSTION_END_CENTER, Constants.MESSAGE_TIME_CLOSE, Boolean.TRUE);
@@ -172,12 +174,13 @@ public class AddDocumentController extends GenericForwardComposer<Component> {
                 return;
             }
             if (!StringUtils.valiString(linkHidden.getValue())) {
-                errPath.setValue(Labels.getLabel("document.error.empty.upload"));
-                errPath.setVisible(false);
+                Clients.showNotification(Labels.getLabel("document.error.empty.upload"), Clients.NOTIFICATION_TYPE_ERROR, fileName, Constants.MESSAGE_POSTION_END_CENTER, Constants.MESSAGE_TIME_CLOSE, Boolean.TRUE);
+//                errPath.setValue(Labels.getLabel("document.error.empty.upload"));
+//                errPath.setVisible(false);
                 return;
             }
-           
-            if (cbCategory.getSelectedItem() == null) {
+
+            if (cbCategory.getSelectedItem() == null || cbCategory.getSelectedItem().getValue().equals(-1l)) {
 //                errCategory.setVisible(true);
 //                errCategory.setValue(Labels.getLabel("document.error.empty.category"));
                 Clients.showNotification(Labels.getLabel("document.error.empty.category"), Clients.NOTIFICATION_TYPE_ERROR, cbCategory, Constants.MESSAGE_POSTION_END_CENTER, Constants.MESSAGE_TIME_CLOSE, Boolean.TRUE);
@@ -191,24 +194,27 @@ public class AddDocumentController extends GenericForwardComposer<Component> {
             Long category = cbCategory.getSelectedItem().getValue();
             String author = txtAuthor.getValue().trim();
             if (!StringUtils.valiString(author)) {
-                author = String.valueOf(session.getAttribute(Constants.USER_TOKEN));
+                UserToken userToken = (UserToken) session.getAttribute(Constants.USER_TOKEN);
+                author = userToken.getUserName();
             }
             Integer order = txtOrder.getValue();
             Integer status = txtStatus.getValue();
             Long id = txtDocumentId.getValue();
-            document.setDocumentId(category);
+            document.setDocumentId(id);
             document.setDocumentName(documentName);
             document.setDocumentType(type);
             document.setDocumentPath(path);
             document.setCategoryId(category);
             document.setAuthor(author);
             document.setDocumentOrder(order);
+            document.setFileName(fileName.getValue());
             String titile = "";
             if (status != null) {
                 document.setModifiedDate(new Date());
                 document.setStatus(status);
                 titile = Labels.getLabel("common.edit");
             } else {
+                document.setModifiedDate(new Date());
                 document.setCreateDate(new Date());
                 document.setStatus(1);
                 titile = Labels.getLabel("add");
@@ -256,6 +262,18 @@ public class AddDocumentController extends GenericForwardComposer<Component> {
         fileUtils.setFilePathConfig(entity.getUploadDocument());
         fileUtils.saveFile(media);
         fileName.setValue(media.getName());
+
         linkHidden.setValue(fileUtils.getFilePathOutput());
+    }
+
+    private String getCatName(List<Category> lstCat, Long catID) {
+        if (lstCat != null && !lstCat.isEmpty()) {
+            for (Category category : lstCat) {
+                if (catID.equals(category.getCategoryId())) {
+                    return category.getCategoryName();
+                }
+            }
+        }
+        return "";
     }
 }

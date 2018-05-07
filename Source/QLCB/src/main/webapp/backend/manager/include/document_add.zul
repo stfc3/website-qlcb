@@ -16,15 +16,15 @@
             <intbox hflex="2" class="text-right" visible="false"
                     value="${arg.document.documentType}" id="txtType"
                     onBlur="self.value=self.value.trim()" />            
-            <textbox hflex="2" class="text-right" visible="false"
-                     value="${arg.document.categoryName}" id="txtCategory"
-                     onBlur="self.value=self.value.trim()" />
+            <longbox hflex="2" class="text-right" visible="false"
+                     value="${arg.document.categoryId}" id="txtCategory" />
             <intbox hflex="2" class="text-right" visible="false"
                     value="${arg.document.status}" id="txtStatus"
                     onBlur="self.value=self.value.trim()" />
             <textbox hflex="2" visible="false"
                      id="linkHidden" value="${arg.document.documentPath}"
                      onBlur="self.value=self.value.trim()" />
+        
             
             <vlayout class="groupboxFull">
                 <label class="labelNote" hflex="1"
@@ -92,8 +92,8 @@
                             <span style="color:red">*</span>
                         </hbox>
                         <hbox hflex="7">
-                            <button upload="true" id="uploadbtn" src="" iconSclass="z-icon-paperclip" label="${c:l('upload.file')}" hflex="1"/>
-                            <label id="fileName" hflex="6" value="${c:l('arg.document.fileName')}" />
+                            <button upload="true" id="uploadbtn" src="" iconSclass="z-icon-paperclip" label="${c:l('upload.file')}" hflex="2"/>
+                            <label id="fileName" hflex="5" value="${arg.document.fileName}" />
                         </hbox>
                         <hbox hflex="1" />
                     </hlayout>

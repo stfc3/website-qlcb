@@ -5,8 +5,6 @@
  */
 package com.stfc.backend.domain;
 
-import com.stfc.utils.StringUtils;
-import java.io.File;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
@@ -145,13 +143,8 @@ public class Document implements Serializable {
     /**
      * @return the fileName
      */
-    @Transient
+    @Column(name = "file_name", unique = false, nullable = true)
     public String getFileName() {
-        if (!StringUtils.valiString(documentPath)) {
-            String[] arr = documentPath.split(File.separator);
-            fileName = arr[arr.length - 1];
-        }
-
         return fileName;
     }
 
