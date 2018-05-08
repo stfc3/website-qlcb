@@ -430,4 +430,33 @@ public class WidgetDAO {
         }
         return null;
     }
+
+    public List<Document> getDocumentById(Long documentId) {
+        try {
+            StringBuilder vstrSql = new StringBuilder();
+            vstrSql.append("select d.document_id as documentId, d.document_name as documentName, d.document_type as documentType,");
+            vstrSql.append(" d.document_path as documentPath, d.category_id as categoryId, c.category_name as categoryName, d.author as author");
+            vstrSql.append(" from stfc_document d");
+            vstrSql.append(" inner join stfc_categories c on d.category_id = c.category_id");
+            vstrSql.append(" where d.status = 1 and c.status = 1");
+            vstrSql.append(" and d.document_id = :documentId");
+            vstrSql.append(" ORDER BY d.modified_date, d.create_date ");
+            Query query = getCurrentSession()
+                    .createSQLQuery(vstrSql.toString())
+                    .addScalar("documentId", StandardBasicTypes.LONG)
+                    .addScalar("documentName", StandardBasicTypes.STRING)
+                    .addScalar("documentType", StandardBasicTypes.INTEGER)
+                    .addScalar("documentPath", StandardBasicTypes.STRING)
+                    .addScalar("categoryId", StandardBasicTypes.LONG)
+                    .addScalar("categoryName", StandardBasicTypes.STRING)
+                    .addScalar("author", StandardBasicTypes.STRING)
+                    .setResultTransformer(
+                            Transformers.aliasToBean(Document.class));
+            query.setParameter("documentId", documentId);
+            return (List<Document>) query.list();
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+        }
+        return null;
+    }
 }

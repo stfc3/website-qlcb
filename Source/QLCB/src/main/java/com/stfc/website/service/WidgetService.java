@@ -52,4 +52,6 @@ public interface WidgetService {
     void insertStudent(EnrollStudent student);
 
     UserToken getUserByUserName(String userName);
+    
+    List<Document> getDocumentById(Long documentId);
 }

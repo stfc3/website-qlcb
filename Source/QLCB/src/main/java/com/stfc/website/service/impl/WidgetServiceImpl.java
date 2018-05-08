@@ -122,4 +122,10 @@ public class WidgetServiceImpl implements WidgetService {
         return widgetDAO.getUserByUserName(userName);
     }
 
+    @Transactional(readOnly = true)
+    @Override
+    public List<Document> getDocumentById(Long documentId) {
+        return widgetDAO.getDocumentById(documentId);
+    }
+
 }

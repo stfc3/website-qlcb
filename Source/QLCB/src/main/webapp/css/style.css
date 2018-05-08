@@ -781,3 +781,11 @@ form[role=login] > div {
     text-decoration: none;
 }
 /*End login*/
+.documentIframe {
+    width: 100%;
+    min-height: 500px;
+}
+.documentIframe .z-iframe {
+    width: 100%;
+    min-height: 500px;
+}
