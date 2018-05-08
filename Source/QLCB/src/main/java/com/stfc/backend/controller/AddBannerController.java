@@ -16,7 +16,6 @@ import org.zkoss.zul.Datebox;
 import org.zkoss.zul.Image;
 import org.zkoss.zul.Intbox;
 import org.zkoss.zul.Longbox;
-import org.zkoss.zul.Label;
 import org.zkoss.zul.ListModelList;
 import org.zkoss.zul.Textbox;
 import org.zkoss.zul.Window;
@@ -29,6 +28,7 @@ import com.stfc.utils.FunctionUtil;
 import com.stfc.utils.SpringConstant;
 import com.stfc.utils.StringUtils;
 import org.zkoss.util.resource.Labels;
+import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zk.ui.util.Clients;
 import org.zkoss.zul.Button;
@@ -66,17 +66,16 @@ public class AddBannerController extends GenericForwardComposer<Component> {
     @WireVariable
     private Datebox dtToDate;
 
-    @WireVariable
-    private Label errBannerName;
-
-    @WireVariable
-    private Label errURL;
+//    @WireVariable
+//    private Label errBannerName;
+//    @WireVariable
+//    private Label errURL;
 //    
 //    @WireVariable
 //    private Label errUserRole;
 //    
-    @WireVariable
-    private Label errType;
+//    @WireVariable
+//    private Label errType;
     @WireVariable
     private Intbox txtStatus;
 
@@ -88,7 +87,6 @@ public class AddBannerController extends GenericForwardComposer<Component> {
 
 //    @WireVariable
 //    private Intbox txtStatus;
-
     /**
      * @return the listModelType
      */
@@ -165,8 +163,8 @@ public class AddBannerController extends GenericForwardComposer<Component> {
                 txtURL.focus();
                 return;
             }
-            if(fromDate != null && toDate != null){
-                if(fromDate.after(toDate)){
+            if (fromDate != null && toDate != null) {
+                if (fromDate.after(toDate)) {
                     Clients.showNotification(Labels.getLabel("banner.error.date"), Clients.NOTIFICATION_TYPE_ERROR, dtFromdate, Constants.MESSAGE_POSTION_END_CENTER, Constants.MESSAGE_TIME_CLOSE, Boolean.TRUE);
                     dtFromdate.focus();
                     return;
@@ -220,12 +218,12 @@ public class AddBannerController extends GenericForwardComposer<Component> {
     }
 
     public void onUpload$uploadbtn(UploadEvent evt) {
-
+        session = Sessions.getCurrent();
         org.zkoss.util.media.Media media = evt.getMedia();
 //		org.zkoss.zul.Image image = new org.zkoss.zul.Image();
         pics.setContent((org.zkoss.image.Image) media);
         FileUtils fileUtils = new FileUtils();
-        fileUtils.saveFile(media);
+        fileUtils.saveFile(media, session,0);
         linkImageHidden.setValue(fileUtils.getFilePathOutput());
     }
 }

@@ -32,6 +32,7 @@ import com.stfc.website.domain.Category;
 import com.stfc.website.service.WidgetService;
 import java.util.Date;
 import org.zkoss.util.resource.Labels;
+import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zk.ui.util.Clients;
 import org.zkoss.zul.Button;
@@ -249,7 +250,7 @@ public class AddDocumentController extends GenericForwardComposer<Component> {
     }
 
     public void onUpload$uploadbtn(UploadEvent evt) {
-
+        session = Sessions.getCurrent();
         org.zkoss.util.media.Media media = evt.getMedia();
         if (StringUtils.validatePattern(media.getName())) {
             errPath.setValue(Labels.getLabel("document.error.empty.pattern"));
@@ -260,7 +261,7 @@ public class AddDocumentController extends GenericForwardComposer<Component> {
         LoadProperties properties = LoadProperties.getInstant();
         ConfigEntity entity = properties.loadConfig();
         fileUtils.setFilePathConfig(entity.getUploadDocument());
-        fileUtils.saveFile(media);
+        fileUtils.saveFile(media, session, 1);
         fileName.setValue(media.getName());
 
         linkHidden.setValue(fileUtils.getFilePathOutput());

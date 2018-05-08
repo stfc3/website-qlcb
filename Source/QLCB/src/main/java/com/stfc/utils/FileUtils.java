@@ -16,6 +16,7 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.zkoss.util.media.Media;
+import org.zkoss.zk.ui.Session;
 
 public class FileUtils {
 
@@ -25,6 +26,7 @@ public class FileUtils {
     private String filePathOutput;
     private String key;
     private static String SAVE_PATH;
+    private String IMAGE_FORDER = "images/";
 
     public String getKey() {
         return key;
@@ -50,7 +52,7 @@ public class FileUtils {
         this.filePathOutput = filePathOutput;
     }
 
-    public void saveFile(Media media) {
+    public void saveFile(Media media, Session session, int isImage) {
         BufferedInputStream in = null;
         BufferedOutputStream out = null;
         File vfile;
@@ -64,14 +66,23 @@ public class FileUtils {
                 SAVE_PATH = filePathConfig;
             }
             final String vstrfileName = media.getName();
-
-            uploadPath = SAVE_PATH;
+            if (isImage == 0) {
+                uploadPath = session.getWebApp().getRealPath(IMAGE_FORDER);
+            } else {
+                uploadPath = SAVE_PATH;
+            }
             File baseDir = new File(uploadPath);
             if (!baseDir.exists()) {
                 baseDir.mkdirs();
             }
-            vfile = new File(baseDir + File.separator + vstrfileName);
-            filePathOutput = baseDir + File.separator + vstrfileName;
+
+            if (isImage == 0) {
+                vfile = new File(baseDir + File.separator + StringUtils.convertSlug(vstrfileName));
+                filePathOutput = IMAGE_FORDER + StringUtils.convertSlug(vstrfileName);
+            } else {
+                vfile = new File(baseDir + File.separator + StringUtils.convertSlug(vstrfileName));
+                filePathOutput = baseDir + File.separator + StringUtils.convertSlug(vstrfileName);
+            }
             if (!media.isBinary()) {
                 Reader reader = media.getReaderData();
 

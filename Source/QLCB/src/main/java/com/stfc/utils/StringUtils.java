@@ -32,21 +32,21 @@ public class StringUtils {
         java.util.regex.Matcher m = p.matcher(email);
         return m.matches();
     }
-    
+
     /*
      * Hàm convert tieng viet khong dau
      */
-
     public static String unAccent(String s) {
         String temp = Normalizer.normalize(s.toLowerCase(), Normalizer.Form.NFD);
         Pattern pattern = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
         return pattern.matcher(temp).replaceAll("").replaceAll("Đ", "D").replace("đ", "d");
     }
-    public static String convertSlug(String input){
-        String strReturn=unAccent(input);
+
+    public static String convertSlug(String input) {
+        String strReturn = unAccent(input);
         return strReturn.replaceAll(" ", "-");
     }
-  
+
 //    public static boolean validateString(String value,  String vstrPattern) {
 //        Pattern pattern = Pattern.compile(vstrPattern);
 //        return pattern.matcher(value).matches();
@@ -58,5 +58,4 @@ public class StringUtils {
 ////        ["<>#%{}|\^~\\\[\\\]`]
 //        System.out.println(validateString("gdgh","[\"<>#%{}|\\^~\\\\\\[\\\\\\]`]"));
 //    }
-
 }
