@@ -42,37 +42,37 @@ import java.util.Date;
  * @since 27/03/2018
  */
 public class BannerController extends GenericForwardComposer<Component> {
-
+    
     private static final Logger logger = Logger.getLogger(BannerController.class);
-
+    
     @WireVariable
     protected BannerService bannerService;
 
     // private Listbox resultList;
     private ListModelList<Banner> listData = new ListModelList<>();
-
+    
     private ListModelList listSearch;
-
+    
     @Wire
     private Grid gridBanner;
-
+    
     private Window bannerManager;
-
+    
     @WireVariable
     private Textbox txtBannerName;
-
+    
     @WireVariable
     private Combobox cbxStatus;
-
+    
     @WireVariable
     private Datebox dtFromdate;
-
+    
     @WireVariable
     private Datebox dtTodate;
-
+    
     @WireVariable
     private Combobox cbType;
-
+    
     private ListModelList<Object> listModelType = new ListModelList<>();
 
     /**
@@ -88,31 +88,31 @@ public class BannerController extends GenericForwardComposer<Component> {
     public void setListModelType(ListModelList<Object> listModelType) {
         this.listModelType = listModelType;
     }
-
+    
     public ListModelList<Banner> getListData() {
         return listData;
     }
-
+    
     public void setListData(ListModelList<Banner> listData) {
         this.listData = listData;
     }
-
+    
     @Override
     public void doAfterCompose(Component comp) throws Exception {
         super.doAfterCompose(comp);
         bannerService = (BannerService) SpringUtil.getBean(SpringConstant.BANNER_SERVICE);
         search();
-
+        
         List<Data> listDataType = FunctionUtil.createListTypeBanner();
-
+        
         listModelType = new ListModelList<>(listDataType);
         cbType.setModel(listModelType);
     }
-
+    
     public void onSearch(ForwardEvent event) {
         search();
     }
-
+    
     private void search() {
         Banner banner = new Banner();
         if (txtBannerName != null) {
@@ -131,15 +131,16 @@ public class BannerController extends GenericForwardComposer<Component> {
             banner.setBannerStatus(Integer.valueOf(cbxStatus.getSelectedItem().getValue()));
         }
         List<Banner> listBanner = bannerService.search(banner);
-
+        
         listSearch = new ListModelList(listBanner);
         listSearch.setMultiple(true);
         gridBanner.setModel(listSearch);
-
+        
     }
-
+    
     public void onClick$btnAdd() {
         Banner banners = new Banner();
+        banners.setBannerType(-1);
         Map<String, Object> arguments = new HashMap();
         arguments.put("banners", banners);
         final Window windownUpload = (Window) Executions.createComponents("/backend/manager/include/banner_add.zul",
@@ -148,9 +149,9 @@ public class BannerController extends GenericForwardComposer<Component> {
         windownUpload.setBorder(true);
         windownUpload.setBorder("normal");
         windownUpload.setClosable(true);
-
+        
     }
-
+    
     public void onClick$btnReset() {
         txtBannerName.setValue("");
         dtFromdate.setValue(null);
@@ -158,12 +159,12 @@ public class BannerController extends GenericForwardComposer<Component> {
         cbType.setSelectedIndex(0);
         cbxStatus.setSelectedIndex(0);
     }
-
+    
     public void onEdit(ForwardEvent event) {
         Row rowSelected = (Row) event.getOrigin().getTarget().getParent().getParent();
-
+        
         Banner banners = rowSelected.getValue();
-
+        
         Map<String, Object> arguments = new HashMap();
         arguments.put("banners", banners);
         final Window windownUpload = (Window) Executions.createComponents("/backend/manager/include/banner_add.zul",
@@ -173,7 +174,7 @@ public class BannerController extends GenericForwardComposer<Component> {
         windownUpload.setBorder("normal");
         windownUpload.setClosable(true);
     }
-
+    
     public void onLock(ForwardEvent event) {
         Row rowSelected = (Row) event.getOrigin().getTarget().getParent().getParent();
         Banner banner = rowSelected.getValue();
@@ -189,7 +190,7 @@ public class BannerController extends GenericForwardComposer<Component> {
         Messagebox.show(Labels.getLabel("user.comfirm.lock", new String[]{status, banner.getBannerName()}),
                 Labels.getLabel("user.comfirm"), Messagebox.YES | Messagebox.NO, Messagebox.QUESTION,
                 new EventListener() {
-
+            
             @Override
             public void onEvent(Event event) throws Exception {
                 // TODO Auto-generated method stub
@@ -205,10 +206,10 @@ public class BannerController extends GenericForwardComposer<Component> {
                             Labels.getLabel("NOTIFICATION"), Messagebox.OK, Messagebox.INFORMATION);
                 }
             }
-
+            
         });
     }
-
+    
     public void onClick$reloadData() {
         search();
     }

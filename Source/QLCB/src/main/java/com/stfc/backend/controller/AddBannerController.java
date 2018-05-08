@@ -109,7 +109,9 @@ public class AddBannerController extends GenericForwardComposer<Component> {
 
         listModelType = new ListModelList<>(listDataType);
         cbType.setModel(listModelType);
-        cbType.setValue(FunctionUtil.getTypeName(txtType.getValue()));
+        if (txtType.getValue() != null) {
+            cbType.setValue(FunctionUtil.getTypeName(txtType.getValue()));
+        }
 
     }
 
@@ -223,7 +225,7 @@ public class AddBannerController extends GenericForwardComposer<Component> {
 //		org.zkoss.zul.Image image = new org.zkoss.zul.Image();
         pics.setContent((org.zkoss.image.Image) media);
         FileUtils fileUtils = new FileUtils();
-        fileUtils.saveFile(media, session,0);
+        fileUtils.saveFile(media, session, 0);
         linkImageHidden.setValue(fileUtils.getFilePathOutput());
     }
 }
