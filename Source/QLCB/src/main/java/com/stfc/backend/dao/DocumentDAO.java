@@ -59,12 +59,12 @@ public class DocumentDAO {
         try {
             StringBuilder sql = new StringBuilder("select d.document_id as documentId, ");
             sql.append("d.document_name as documentName, d.document_type as documentType, d.document_path as documentPath, d.category_id as categoryId,");
-            sql.append("c.category_name as categoryName,");
+            sql.append("case when d.document_type = 1 then cl.class_name else c.category_name end  as categoryName, ");
             sql.append("d.author as author, d.document_order as documentOrder,d.status as status,d.create_date as createDate,");
             sql.append("d.modified_date as modifiedDate, ");
             sql.append("d.file_name as fileName ");
             sql.append(" from stfc_document d left join stfc_categories c ");
-            sql.append(" on d.category_id = c.category_id  where 1=1 ");
+            sql.append(" on d.category_id = c.category_id  left join stfc_class cl on d.category_id = cl.class_id where 1=1 ");
             if (StringUtils.valiString(document.getDocumentName())) {
                 sql.append(" and d.document_name like :name escape '/'");
             }
@@ -77,7 +77,7 @@ public class DocumentDAO {
             if (document.getStatus() != null && document.getStatus() != -1) {
                 sql.append(" and d.status = :status");
             }
-            sql.append(" order by d.create_date, d.modified_date");
+            sql.append(" order by d.create_date, d.modified_date desc");
             Query query = getCurrentSession().createSQLQuery(sql.toString())
                     .addScalar("documentId", StandardBasicTypes.LONG)
                     .addScalar("documentName", StandardBasicTypes.STRING)

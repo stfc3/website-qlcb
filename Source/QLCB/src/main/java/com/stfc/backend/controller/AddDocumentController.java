@@ -29,11 +29,13 @@ import com.stfc.utils.StringUtils;
 import com.stfc.website.bean.ConfigEntity;
 import com.stfc.website.bean.UserToken;
 import com.stfc.website.domain.Category;
+import com.stfc.website.domain.Class;
 import com.stfc.website.service.WidgetService;
 import java.util.Date;
 import org.zkoss.util.resource.Labels;
 import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zk.ui.event.Events;
+import org.zkoss.zk.ui.select.annotation.Listen;
 import org.zkoss.zk.ui.util.Clients;
 import org.zkoss.zul.Button;
 
@@ -49,6 +51,7 @@ public class AddDocumentController extends GenericForwardComposer<Component> {
 
     private ListModelList<Object> listModelType = new ListModelList<>();
     private ListModelList<Category> listModelCategory = new ListModelList<>();
+    private ListModelList<com.stfc.website.domain.Class> listModelClass = new ListModelList<>();
 
     @WireVariable
     private Textbox linkHidden;
@@ -72,6 +75,9 @@ public class AddDocumentController extends GenericForwardComposer<Component> {
     private Combobox cbCategory;
 
     @WireVariable
+    private Combobox cbClass;
+
+    @WireVariable
     private Label fileName;
 
     @WireVariable
@@ -81,16 +87,7 @@ public class AddDocumentController extends GenericForwardComposer<Component> {
     private Textbox txtAuthor;
 
     @WireVariable
-    private Label errDocumentName;
-
-    @WireVariable
     private Label errPath;
-
-    @WireVariable
-    private Label errType;
-
-    @WireVariable
-    private Label errCategory;
 
     public ListModelList<Object> getListModelType() {
         return listModelType;
@@ -108,6 +105,14 @@ public class AddDocumentController extends GenericForwardComposer<Component> {
         this.listModelCategory = listModelCategory;
     }
 
+    public ListModelList<Class> getListModelClass() {
+        return listModelClass;
+    }
+
+    public void setListModelClass(ListModelList<Class> listModelClass) {
+        this.listModelClass = listModelClass;
+    }
+
     @Override
     public void doAfterCompose(Component comp) throws Exception {
         super.doAfterCompose(comp);
@@ -121,19 +126,34 @@ public class AddDocumentController extends GenericForwardComposer<Component> {
 
         List<Data> listDataType = FunctionUtil.createListTypeDocument();
         List<Category> listDataCategory = widgetService.getAllCategory();
+        List<com.stfc.website.domain.Class> listClass = widgetService.getAllClass();
         Category catDefault = new Category();
         catDefault.setCategoryId(-1l);
         catDefault.setCategoryName(Labels.getLabel("option"));
         listDataCategory.add(0, catDefault);
         listModelCategory = new ListModelList<>(listDataCategory);
-        cbCategory.setModel(listModelCategory);
-        if (txtCategory.getValue() != null) {
-            cbCategory.setValue(getCatName(listDataCategory, txtCategory.getValue()));
-        }
+        listModelClass = new ListModelList<>(listClass);
         listModelType = new ListModelList<>(listDataType);
         cbType.setModel(listModelType);
         if (txtType.getValue() != null) {
             cbType.setValue(FunctionUtil.getTypeDocument(txtType.getValue()));
+        }
+
+        cbCategory.setModel(listModelCategory);
+        if (txtCategory.getValue() != null) {
+            cbCategory.setValue(getCatName(listDataCategory, txtCategory.getValue()));
+        }
+        cbClass.setModel(listModelClass);
+        if (txtCategory.getValue() != null) {
+            cbClass.setValue(getClassName(listClass, txtCategory.getValue()));
+        }
+
+        if (txtType.getValue() == null || txtType.getValue() == 1) {
+            cbCategory.setVisible(false);
+            cbClass.setVisible(true);
+        } else if (txtType.getValue() == 2) {
+            cbCategory.setVisible(true);
+            cbClass.setVisible(false);
         }
 
     }
@@ -192,7 +212,13 @@ public class AddDocumentController extends GenericForwardComposer<Component> {
             String documentName = txtDocumentName.getValue().trim();
             Integer type = cbType.getSelectedItem().getValue();
             String path = linkHidden.getValue().trim();
-            Long category = cbCategory.getSelectedItem().getValue();
+            Long category = null;
+            if (txtType.getValue() == 1) {
+                category = cbClass.getSelectedItem().getValue();
+
+            } else if (txtType.getValue() == 2) {
+                category = cbCategory.getSelectedItem().getValue();
+            }
             String author = txtAuthor.getValue().trim();
             if (!StringUtils.valiString(author)) {
                 UserToken userToken = (UserToken) session.getAttribute(Constants.USER_TOKEN);
@@ -249,6 +275,10 @@ public class AddDocumentController extends GenericForwardComposer<Component> {
 
     }
 
+    /**
+     *
+     * @param evt
+     */
     public void onUpload$uploadbtn(UploadEvent evt) {
         session = Sessions.getCurrent();
         org.zkoss.util.media.Media media = evt.getMedia();
@@ -267,6 +297,12 @@ public class AddDocumentController extends GenericForwardComposer<Component> {
         linkHidden.setValue(fileUtils.getFilePathOutput());
     }
 
+    /**
+     *
+     * @param lstCat
+     * @param catID
+     * @return
+     */
     private String getCatName(List<Category> lstCat, Long catID) {
         if (lstCat != null && !lstCat.isEmpty()) {
             for (Category category : lstCat) {
@@ -276,5 +312,33 @@ public class AddDocumentController extends GenericForwardComposer<Component> {
             }
         }
         return "";
+    }
+
+    /**
+     *
+     * @param lstClass
+     * @param classID
+     * @return
+     */
+    private String getClassName(List<com.stfc.website.domain.Class> lstClass, Long classID) {
+        if (lstClass != null && !lstClass.isEmpty()) {
+            for (com.stfc.website.domain.Class clas : lstClass) {
+                if (classID.equals(clas.getClassId())) {
+                    return clas.getClassName();
+                }
+            }
+        }
+        return "";
+    }
+
+    @Listen("onChange = #cbType")
+    public void reloadType() {
+        if (txtType.getValue() == null || txtType.getValue() == 1) {
+            cbCategory.setVisible(false);
+            cbClass.setVisible(true);
+        } else if (txtType.getValue() == 2) {
+            cbCategory.setVisible(true);
+            cbClass.setVisible(false);
+        }
     }
 }

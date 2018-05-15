@@ -27,6 +27,7 @@ public class FileUtils {
     private String key;
     private static String SAVE_PATH;
     private String IMAGE_FORDER = "images/";
+    private String DOCUMENT_FORDER = "documents/";
 
     public String getKey() {
         return key;
@@ -69,7 +70,7 @@ public class FileUtils {
             if (isImage == 0) {
                 uploadPath = session.getWebApp().getRealPath(IMAGE_FORDER);
             } else {
-                uploadPath = SAVE_PATH;
+                uploadPath = session.getWebApp().getRealPath(DOCUMENT_FORDER);
             }
             File baseDir = new File(uploadPath);
             if (!baseDir.exists()) {
@@ -81,7 +82,7 @@ public class FileUtils {
                 filePathOutput = IMAGE_FORDER + StringUtils.convertSlug(vstrfileName);
             } else {
                 vfile = new File(baseDir + File.separator + StringUtils.convertSlug(vstrfileName));
-                filePathOutput = baseDir + File.separator + StringUtils.convertSlug(vstrfileName);
+                filePathOutput = DOCUMENT_FORDER + StringUtils.convertSlug(vstrfileName);
             }
             if (!media.isBinary()) {
                 Reader reader = media.getReaderData();

@@ -122,6 +122,16 @@
                                                label="${each.categoryName}" />
                                 </template>
                             </combobox>
+                            
+                            <combobox id="cbClass" 
+                                      value="${c:l('option')}"
+                                      model="${$composer.listModelClass}" autodrop="true"
+                                      buttonVisible="true" hflex="3">
+                                <template name="model">
+                                    <comboitem value="${each.classId}"
+                                               label="${each.className}" />
+                                </template>
+                            </combobox>
                         </hbox>
                         <hbox hflex="1" />
                     </hlayout>
