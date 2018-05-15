@@ -46,6 +46,9 @@ public class InternalPageController extends SelectorComposer<Div> {
     private static final Logger logger = Logger.getLogger(InternalPageController.class);
     @Wire
     Div indexSlider;
+    
+    @Wire
+    Div indexNotice;
 
     @Wire
     Div internalPage;
@@ -69,7 +72,22 @@ public class InternalPageController extends SelectorComposer<Div> {
         widgetService = (WidgetService) SpringUtil.getBean(SpringConstant.WIDGET_SERVICE);
         urlImage = Common.getParamByKey(Constants.INTERNAL_PAGE_URL_IMAGE).getParamValue();
         List<Banner> lstBanner = new ArrayList<>(Memory.getListBannerCache().values());
-        if (lstBanner != null && !lstBanner.isEmpty()) {
+        List<Post> lstPostNotice = new ArrayList<>();
+        try {
+            lstPostNotice = widgetService.getPostByCategoryId(Memory.getLngCategoryNotice(), 0, Constants.POST_IS_PUBLIC);
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+        }
+        if (lstPostNotice != null && !lstPostNotice.isEmpty()) {
+            List<Category> lstCategory = new ArrayList<>(Memory.getListCategoryCache().values());
+            if (lstCategory != null && !lstCategory.isEmpty()) {
+                for (Category c : lstCategory) {
+                    if (Memory.getLngCategoryNotice() == c.getCategoryId()) {
+                        widgetBuilder.buildBannerIndex(lstBanner, indexSlider, indexNotice, c.getCategoryName(), lstPostNotice);
+                    }
+                }
+            }
+        } else if (lstBanner != null && !lstBanner.isEmpty()) {
             widgetBuilder.buildBanner(lstBanner, indexSlider, urlImage);
         }
 

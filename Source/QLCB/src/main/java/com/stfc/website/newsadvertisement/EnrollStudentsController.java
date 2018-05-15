@@ -59,6 +59,9 @@ public class EnrollStudentsController extends SelectorComposer<Div> {
     Div indexSlider;
 
     @Wire
+    Div indexNotice;
+
+    @Wire
     Div addWidgetIndexRight;
 
     @Wire
@@ -67,15 +70,13 @@ public class EnrollStudentsController extends SelectorComposer<Div> {
     @Wire
     private Textbox name;
 
-    @Wire
-    private Datebox birthday;
-
+//    @Wire
+//    private Datebox birthday;
     @Wire
     private Textbox email;
 
-    @Wire
-    private Textbox address;
-
+//    @Wire
+//    private Textbox address;
     @Wire
     private Textbox phone;
 
@@ -106,7 +107,22 @@ public class EnrollStudentsController extends SelectorComposer<Div> {
         widgetService = (WidgetService) SpringUtil.getBean(SpringConstant.WIDGET_SERVICE);
         urlImage = Common.getParamByKey(Constants.ENROLL_STUDENTS_URL_IMAGE).getParamValue();
         List<Banner> lstBanner = new ArrayList<>(Memory.getListBannerCache().values());
-        if (lstBanner != null && !lstBanner.isEmpty()) {
+        List<Post> lstPostNotice = new ArrayList<>();
+        try {
+            lstPostNotice = widgetService.getPostByCategoryId(Memory.getLngCategoryNotice(), 0, Constants.POST_IS_PUBLIC);
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+        }
+        if (lstPostNotice != null && !lstPostNotice.isEmpty()) {
+            List<Category> lstCategory = new ArrayList<>(Memory.getListCategoryCache().values());
+            if (lstCategory != null && !lstCategory.isEmpty()) {
+                for (Category c : lstCategory) {
+                    if (Memory.getLngCategoryNotice() == c.getCategoryId()) {
+                        widgetBuilder.buildBannerIndex(lstBanner, indexSlider, indexNotice, c.getCategoryName(), lstPostNotice);
+                    }
+                }
+            }
+        } else if (lstBanner != null && !lstBanner.isEmpty()) {
             widgetBuilder.buildBanner(lstBanner, indexSlider, urlImage);
         }
         lstClass = widgetService.getAllClass();
@@ -135,15 +151,14 @@ public class EnrollStudentsController extends SelectorComposer<Div> {
         if (cbxClass.getSelectedItem() != null) {
             classId = cbxClass.getSelectedItem().getValue();
         }
-        int validate = validateRegister(name.getValue(), birthday.getValue(), email.getValue(), address.getValue(),
-                phone.getValue(), classId);
+        int validate = validateRegister(name.getValue(), email.getValue(), phone.getValue(), classId);
         switch (validate) {
             case 0:
                 //Luu
                 EnrollStudent student = new EnrollStudent();
                 student.setStudentName(name.getValue());
-                student.setBirthday(dateFormat.format(birthday.getValue()));
-                student.setAddress(address.getValue());
+//                student.setBirthday(dateFormat.format(birthday.getValue()));
+//                student.setAddress(address.getValue());
                 student.setEmail(email.getValue());
                 student.setPhone(phone.getValue());
                 student.setClassId(classId);
@@ -166,21 +181,21 @@ public class EnrollStudentsController extends SelectorComposer<Div> {
 
     }
 
-    private int validateRegister(String name, Date birthday, String email, String address, String phone,
+    private int validateRegister(String name, String email, String phone,
             Long classId) {
         if (!StringUtils.valiString(name) || !StringUtils.valiString(email)
-                || !StringUtils.valiString(address) || !StringUtils.valiString(phone)
+                || !StringUtils.valiString(phone)
                 || classId == -1L) {
             return -1;
         }
-        if (!StringUtils.isValidEmailAddress(String.valueOf(birthday))) {
-            try {
-                DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-                df.format(birthday);
-            } catch (Exception e) {
-                return 1;
-            }
-        }
+//        if (!StringUtils.isValidEmailAddress(String.valueOf(birthday))) {
+//            try {
+//                DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+//                df.format(birthday);
+//            } catch (Exception e) {
+//                return 1;
+//            }
+//        }
         if (!StringUtils.isValidEmailAddress(email)) {
             return 2;
         }

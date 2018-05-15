@@ -18,6 +18,10 @@
         <from>/login</from>
         <to>/login.zul</to>
     </rule>
+    <rule match-type="wildcard">
+        <from>/tuyen-sinh</from>
+        <to>/enrollstudents.zul</to>
+    </rule>
 <!--    <rule match-type="wildcard">
         <from>/</from>
         <to>/newsadvertisement/index.zul</to>

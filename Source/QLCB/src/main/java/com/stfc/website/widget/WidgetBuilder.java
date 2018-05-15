@@ -27,7 +27,7 @@ import org.zkoss.zul.Span;
  * @author daond
  */
 public class WidgetBuilder {
-    
+
     private SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm:ss dd/mm/yyyy");
 
     public void buildBanner(List<Banner> plstBanner, Component indexSlider, String urlImage) {
@@ -110,7 +110,7 @@ public class WidgetBuilder {
 
         Label lblFunctionName = new Label(titleNotice);
         lblFunctionName.setParent(spanTitle);
-        
+
         Div divListPost = new Div();
         divListPost.setSclass("post-hot scroll-y");
         divListPost.setParent(divIrsPost);
@@ -127,7 +127,7 @@ public class WidgetBuilder {
 
                 H4 h4Post = new H4();
                 h4Post.setParent(aPostItemTitle);
-                
+
                 Label lblPostTitle = new Label(p.getPostTitle());
 //                lblPostTitle.setClass("post-title");
                 lblPostTitle.setParent(h4Post);
@@ -151,62 +151,61 @@ public class WidgetBuilder {
             divFooter.setClass("irs-footer-field");
             divFooter.setParent(addWidgetIndex);
 
-            Div divContainer = new Div();
-            divContainer.setSclass("container");
-            divContainer.setParent(divFooter);
+//            Div divContainer = new Div();
+//            divContainer.setSclass("container");
+//            divContainer.setParent(divFooter);
+//
+//            Div divRow = new Div();
+//            divRow.setSclass("row animatedParent animateOnce animateOnce");
+//            divRow.setParent(divContainer);
+//            for (WidgetContent wc : wg.getListContent()) {
+//                Div divColumn3 = new Div();
+//                divColumn3.setSclass("col-md-4");
+//                switch (intWidgetContent) {
+//                    case 1:
+//                        divColumn3.setClass("col-md-12");
+//                        break;
+//                    case 2:
+//                        divColumn3.setClass("col-md-6");
+//                        break;
+//                    case 3:
+//                        divColumn3.setClass("col-md-4");
+//                        break;
+//                    case 4:
+//                        divColumn3.setClass("col-md-3");
+//                        break;
+//                    default:
+//                        divColumn3.setSclass("col-md-4");
+//                        break;
+//                }
+//                divColumn3.setParent(divRow);
+            WidgetContent wc = wg.getListContent().get(0);
+//                Div irsFooer = new Div();
+//                irsFooer.setClass("irs-footer-link");
+//                irsFooer.setParent(divColumn3);
 
-            Div divRow = new Div();
-            divRow.setSclass("row animatedParent animateOnce animateOnce");
-            divRow.setParent(divContainer);
-
-            for (WidgetContent wc : wg.getListContent()) {
-                Div divColumn3 = new Div();
-                divColumn3.setSclass("col-md-4");
-                switch (intWidgetContent) {
-                    case 1:
-                        divColumn3.setClass("col-md-12");
-                        break;
-                    case 2:
-                        divColumn3.setClass("col-md-6");
-                        break;
-                    case 3:
-                        divColumn3.setClass("col-md-4");
-                        break;
-                    case 4:
-                        divColumn3.setClass("col-md-3");
-                        break;
-                    default:
-                        divColumn3.setSclass("col-md-4");
-                        break;
-                }
-                divColumn3.setParent(divRow);
-
-                Div irsFooer = new Div();
-                irsFooer.setClass("irs-footer-link");
-                irsFooer.setParent(divColumn3);
-
-                H4 title = new H4();
-                title.setParent(irsFooer);
-                String strTitle = "";
-                if (wc.getWidgetContentName() != null && !"".equals(wc.getWidgetContentName())) {
-                    strTitle = wc.getWidgetContentName();
-                }
-                Label lblFunctionName = new Label(strTitle);
-                lblFunctionName.setClass("irs-footer-heading");
-                lblFunctionName.setParent(title);
-
-                P spanFooterContent = new P();
-                spanFooterContent.setParent(irsFooer);
-
-                Html htmPostItemTime = new Html();
-                String strContent = "";
-                if (wc.getWidgetContent() != null && !"".equals(wc.getWidgetContent())) {
-                    strContent = wc.getWidgetContent();
-                }
-                htmPostItemTime.setContent(strContent);
-                htmPostItemTime.setParent(spanFooterContent);
-
+            H4 title = new H4();
+            title.setParent(addWidgetIndex);
+            String strTitle = "";
+            if (wc.getWidgetContentName() != null && !"".equals(wc.getWidgetContentName())) {
+                strTitle = wc.getWidgetContentName();
             }
+            Label lblFunctionName = new Label(strTitle);
+            lblFunctionName.setClass("irs-footer-heading");
+            lblFunctionName.setParent(title);
+
+            P spanFooterContent = new P();
+            spanFooterContent.setParent(addWidgetIndex);
+
+            Html htmPostItemTime = new Html();
+            String strContent = "";
+            if (wc.getWidgetContent() != null && !"".equals(wc.getWidgetContent())) {
+                strContent = wc.getWidgetContent();
+            }
+            htmPostItemTime.setContent(strContent);
+            htmPostItemTime.setParent(spanFooterContent);
+
+//            }
         }
     }
 }

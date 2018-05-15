@@ -39,9 +39,9 @@ public interface WidgetService {
 
     List<Category> getAllCategory();
 
-    List<Post> getPostByCategorySlug(String categorytSlug, int limitPost);
+    List<Post> getPostByCategorySlug(String categorytSlug, int limitPost, int isPrivate);
 
-    List<Post> getPostByCategoryIdRelated(Long categorytId, int limitPost, Long postId);
+    List<Post> getPostByCategoryIdRelated(Long categorytId, int limitPost, Long postId, int isPrivate);
 
     List<Document> getDocument();
 

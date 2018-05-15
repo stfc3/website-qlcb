@@ -195,8 +195,14 @@
             <groupId>javax.mail</groupId>
             <artifactId>mail</artifactId>
             <version>1.4</version>
-        </dependency> 
-
+        </dependency>
+        
+        <dependency>
+            <groupId>org.zkoss.zkforge</groupId>
+            <artifactId>gmapsz</artifactId>
+            <version>3.0.4</version>
+        </dependency>
+        
     </dependencies>
 
     <build>

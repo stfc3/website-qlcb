@@ -830,3 +830,27 @@ form[role=login] > div {
 }
 
 /*End tuyen sinh*/
+.header-custom {
+    height: 120px;
+    margin: 0;
+}
+.header-custom img {
+    height: 120px;
+}
+.navbar-custom {
+    margin: 0;
+    /*padding-left: 0px;*/
+    float: left;
+}
+.pading-0 {
+    padding: 0;
+}
+.navbar-background {
+    /*background-color: #007dbb;*/
+}
+@media only screen and (max-width:767px) {
+    .navbar-nav {
+        height: 280px;
+        margin-top: 50px;
+    }
+}
