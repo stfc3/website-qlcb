@@ -82,14 +82,14 @@ public class WidgetServiceImpl implements WidgetService {
 
     @Transactional(readOnly = true)
     @Override
-    public List<Post> getPostByCategorySlug(String categorytSlug, int limitPost) {
-        return widgetDAO.getPostByCategorySlug(categorytSlug, limitPost);
+    public List<Post> getPostByCategorySlug(String categorytSlug, int limitPost, int isPrivate) {
+        return widgetDAO.getPostByCategorySlug(categorytSlug, limitPost, isPrivate);
     }
 
     @Transactional(readOnly = true)
     @Override
-    public List<Post> getPostByCategoryIdRelated(Long categorytId, int limitPost, Long postId) {
-        return widgetDAO.getPostByCategoryIdRelated(categorytId, limitPost, postId);
+    public List<Post> getPostByCategoryIdRelated(Long categorytId, int limitPost, Long postId, int isPrivate) {
+        return widgetDAO.getPostByCategoryIdRelated(categorytId, limitPost, postId, isPrivate);
     }
 
     @Transactional(readOnly = true)

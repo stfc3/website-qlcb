@@ -244,7 +244,7 @@ public class WidgetDAO {
         return null;
     }
 
-    public List<Post> getPostByCategorySlug(String categorySlug, int limitPost) {
+    public List<Post> getPostByCategorySlug(String categorySlug, int limitPost, int isPrivate) {
         try {
             StringBuilder vstrSql = new StringBuilder();
             vstrSql.append("SELECT p.post_id as postId, p.author as author, p.post_title as postTitle, p.post_excerpt as postExcerpt,");
@@ -255,6 +255,7 @@ public class WidgetDAO {
             vstrSql.append(" WHERE c.category_slug = :categorySlug");
             vstrSql.append(" AND p.post_status = 3");
             vstrSql.append(" AND m.post_status = 1");
+            vstrSql.append(" AND p.is_private IN (:isPrivate, 2)");
             vstrSql.append(" AND c.status = 1");
             vstrSql.append(" and p.effect_from_date <= sysdate()");
             vstrSql.append(" and (effect_to_date >= sysdate() or effect_to_date is null)");
@@ -280,6 +281,7 @@ public class WidgetDAO {
                     .setResultTransformer(
                             Transformers.aliasToBean(Post.class));
             query.setParameter("categorySlug", categorySlug);
+            query.setParameter("isPrivate", isPrivate);
             return (List<Post>) query.list();
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
@@ -287,7 +289,7 @@ public class WidgetDAO {
         return null;
     }
 
-    public List<Post> getPostByCategoryIdRelated(Long categoryId, int limitPost, Long postId) {
+    public List<Post> getPostByCategoryIdRelated(Long categoryId, int limitPost, Long postId, int isPrivate) {
         try {
             StringBuilder vstrSql = new StringBuilder();
             vstrSql.append("SELECT p.post_id as postId, p.author as author, p.post_title as postTitle, p.post_excerpt as postExcerpt,");
@@ -298,6 +300,7 @@ public class WidgetDAO {
             vstrSql.append(" WHERE m.category_id IN (:categoryId)");
             vstrSql.append(" AND p.post_status = 3");
             vstrSql.append(" AND m.post_status = 1");
+            vstrSql.append(" AND p.is_private IN (:isPrivate, 2)");
             vstrSql.append(" AND c.status = 1");
             vstrSql.append(" AND p.post_id NOT IN (:postId)");
             vstrSql.append(" and p.effect_from_date <= sysdate()");
@@ -325,6 +328,7 @@ public class WidgetDAO {
                             Transformers.aliasToBean(Post.class));
             query.setParameter("categoryId", categoryId);
             query.setParameter("postId", postId);
+            query.setParameter("isPrivate", isPrivate);
             return (List<Post>) query.list();
         } catch (Exception e) {
             logger.error(e.getMessage(), e);

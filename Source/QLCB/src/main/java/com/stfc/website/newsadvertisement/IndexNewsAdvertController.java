@@ -13,6 +13,7 @@ import com.stfc.website.bean.Banner;
 import com.stfc.website.bean.Post;
 import com.stfc.website.bean.WidgetContent;
 import com.stfc.website.bean.WidgetMapContent;
+import com.stfc.website.domain.Category;
 import com.stfc.website.service.WidgetService;
 import com.stfc.website.widget.WidgetBuilder;
 import java.text.SimpleDateFormat;
@@ -72,7 +73,22 @@ public class IndexNewsAdvertController extends SelectorComposer<Div> {
         List<Post> lstPost = widgetService.getPost(Memory.getLstCategoryId(), Constants.POST_IS_PUBLIC);
         List<Banner> lstBanner = new ArrayList<>(Memory.getListBannerCache().values());
         urlImage = Common.getParamByKey(Constants.HOME_NEWS_ADVERT_URL_IMAGE).getParamValue();
-        if (lstBanner != null && !lstBanner.isEmpty()) {
+        List<Post> lstPostNotice = new ArrayList<>();
+        try {
+            lstPostNotice = widgetService.getPostByCategoryId(Memory.getLngCategoryNotice(), 0, Constants.POST_IS_PUBLIC);
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+        }
+        if (lstPostNotice != null && !lstPostNotice.isEmpty()) {
+            List<Category> lstCategory = new ArrayList<>(Memory.getListCategoryCache().values());
+            if (lstCategory != null && !lstCategory.isEmpty()) {
+                for (Category c : lstCategory) {
+                    if (Memory.getLngCategoryNotice() == c.getCategoryId()) {
+                        widgetBuilder.buildBannerIndex(lstBanner, indexSlider, indexNotice, c.getCategoryName(), lstPostNotice);
+                    }
+                }
+            }
+        } else if (lstBanner != null && !lstBanner.isEmpty()) {
             widgetBuilder.buildBanner(lstBanner, indexSlider, urlImage);
         }
         buildWidgetLeft(vlstWidget, lstPost);
@@ -463,7 +479,7 @@ public class IndexNewsAdvertController extends SelectorComposer<Div> {
                     Div divTitle = new Div();
                     divTitle.setClass("post-title-over-new-post");
                     divTitle.setParent(divPostItem);
-                    
+
                     A aPostItemTitle = new A();
                     aPostItemTitle.setHref(p.getPostSlug());
                     aPostItemTitle.setParent(divTitle);

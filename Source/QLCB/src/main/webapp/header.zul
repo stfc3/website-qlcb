@@ -9,8 +9,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 col-sm-12">
-                        <x:nav class="navbar navbar-default irs-navbar">
-                            <div class="container-fluid" style="padding-right: 0px">
+                        <x:nav class="navbar navbar-default irs-navbar header-custom">
+                            <div  style="padding-right: 0px">
                                 <!-- Buton Menu in ipad-->
                                 <div class="navbar-header">
                                     <x:button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".bs-example-navbar-collapse-1"
@@ -20,11 +20,21 @@
                                         <span class="icon-bar"></span>
                                         <span class="icon-bar"></span>
                                     </x:button>
-                                    <a class="navbar-brand" href="">
-                                        <x:img src="../images/logo-ngang.png" alt=""></x:img>
-                                    </a>
+                                    <x:img src="images/logoqlcb.PNG" alt=""></x:img>
                                     
                                 </div>
+                                <!-- Menu -->
+<!--                                <div class="collapse navbar-collapse bs-example-navbar-collapse-1">
+                                    <x:ul id="menu" class="nav navbar-nav navbar-right" data-hover="dropdown" data-animations="flipInY">
+                                    </x:ul>
+                                </div>-->
+                            </div>
+                        </x:nav>
+                    </div>
+                    <div class="col-md-12 col-sm-12">
+                        <x:nav class="navbar navbar-default irs-navbar navbar-custom">
+                            <div class="container-fluid" style="padding-right: 0px">
+                                <!-- Buton Menu in ipad-->
                                 <!-- Menu -->
                                 <div class="collapse navbar-collapse bs-example-navbar-collapse-1">
                                     <x:ul id="menu" class="nav navbar-nav navbar-right" data-hover="dropdown" data-animations="flipInY">
