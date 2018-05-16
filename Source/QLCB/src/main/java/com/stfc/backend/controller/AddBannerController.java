@@ -9,7 +9,6 @@ import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.event.ForwardEvent;
 import org.zkoss.zk.ui.event.UploadEvent;
 import org.zkoss.zk.ui.select.annotation.WireVariable;
-import org.zkoss.zk.ui.util.GenericForwardComposer;
 import org.zkoss.zkplus.spring.SpringUtil;
 import org.zkoss.zul.Combobox;
 import org.zkoss.zul.Datebox;
@@ -28,42 +27,47 @@ import com.stfc.utils.FunctionUtil;
 import com.stfc.utils.SpringConstant;
 import com.stfc.utils.StringUtils;
 import org.zkoss.util.resource.Labels;
+import org.zkoss.zk.ui.Session;
 import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zk.ui.event.Events;
+import org.zkoss.zk.ui.select.SelectorComposer;
+import org.zkoss.zk.ui.select.annotation.Listen;
+import org.zkoss.zk.ui.select.annotation.Wire;
 import org.zkoss.zk.ui.util.Clients;
 import org.zkoss.zul.Button;
 
-public class AddBannerController extends GenericForwardComposer<Component> {
+public class AddBannerController extends SelectorComposer<Component> {
 
     private static final Logger logger = Logger.getLogger(AddBannerController.class);
+    @Wire
     private Window addBanner;
     @WireVariable
     protected BannerService bannerService;
 
     private ListModelList<Data> listModelType = new ListModelList<>();
 
-    @WireVariable
+    @Wire
     private Combobox cbType;
 
-    @WireVariable
+    @Wire
     private Textbox linkImageHidden;
 
-    @WireVariable
+    @Wire
     private Longbox txtBannerId;
 
-    @WireVariable
+    @Wire
     private Textbox txtBannerName;
 
-    @WireVariable
+    @Wire
     private Textbox txtURL;
 
-    @WireVariable
+    @Wire
     private Intbox txtOrder;
 
-    @WireVariable
+    @Wire
     private Datebox dtFromdate;
 
-    @WireVariable
+    @Wire
     private Datebox dtToDate;
 
 //    @WireVariable
@@ -76,13 +80,13 @@ public class AddBannerController extends GenericForwardComposer<Component> {
 //    
 //    @WireVariable
 //    private Label errType;
-    @WireVariable
+    @Wire
     private Intbox txtStatus;
 
-    @WireVariable
+    @Wire
     private Intbox txtType;
 
-    @WireVariable
+    @Wire
     private Image pics;
 
 //    @WireVariable
@@ -115,7 +119,8 @@ public class AddBannerController extends GenericForwardComposer<Component> {
 
     }
 
-    public void onClick$btnCancel() {
+    @Listen("onClick = #btnCancel")
+    public void close() {
         addBanner.detach();
     }
 
@@ -123,7 +128,8 @@ public class AddBannerController extends GenericForwardComposer<Component> {
      *
      * @param event
      */
-    public void onSave(ForwardEvent event) {
+    @Listen("onClick = #btnSave")
+    public void save() {
         try {
 
             String pathImage = linkImageHidden.getValue().trim();
@@ -218,14 +224,19 @@ public class AddBannerController extends GenericForwardComposer<Component> {
         dtFromdate.setValue(null);
         dtToDate.setValue(null);
     }
-
-    public void onUpload$uploadbtn(UploadEvent evt) {
-        session = Sessions.getCurrent();
+    @Listen("onUpload = #uploadbtn")
+    public void uploadImage(UploadEvent evt) {
+        Session session = Sessions.getCurrent();
         org.zkoss.util.media.Media media = evt.getMedia();
 //		org.zkoss.zul.Image image = new org.zkoss.zul.Image();
         pics.setContent((org.zkoss.image.Image) media);
         FileUtils fileUtils = new FileUtils();
         fileUtils.saveFile(media, session, 0);
         linkImageHidden.setValue(fileUtils.getFilePathOutput());
+    }
+
+    @Listen("onChange = #txtBannerName")
+    public void loadUrl() {
+        txtURL.setValue(txtBannerName.getValue());
     }
 }

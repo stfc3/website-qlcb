@@ -5,10 +5,8 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.zkoss.zk.ui.Component;
-import org.zkoss.zk.ui.event.ForwardEvent;
 import org.zkoss.zk.ui.event.UploadEvent;
 import org.zkoss.zk.ui.select.annotation.WireVariable;
-import org.zkoss.zk.ui.util.GenericForwardComposer;
 import org.zkoss.zkplus.spring.SpringUtil;
 import org.zkoss.zul.Combobox;
 import org.zkoss.zul.Intbox;
@@ -33,15 +31,20 @@ import com.stfc.website.domain.Class;
 import com.stfc.website.service.WidgetService;
 import java.util.Date;
 import org.zkoss.util.resource.Labels;
+import org.zkoss.zk.ui.Session;
 import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zk.ui.event.Events;
+import org.zkoss.zk.ui.select.SelectorComposer;
 import org.zkoss.zk.ui.select.annotation.Listen;
+import org.zkoss.zk.ui.select.annotation.Wire;
 import org.zkoss.zk.ui.util.Clients;
 import org.zkoss.zul.Button;
+import org.zkoss.zul.Vlayout;
 
-public class AddDocumentController extends GenericForwardComposer<Component> {
+public class AddDocumentController extends SelectorComposer<Component> {
 
     private static final Logger logger = Logger.getLogger(AddDocumentController.class);
+    @Wire
     private Window addDocument;
 
     @WireVariable
@@ -53,41 +56,42 @@ public class AddDocumentController extends GenericForwardComposer<Component> {
     private ListModelList<Category> listModelCategory = new ListModelList<>();
     private ListModelList<com.stfc.website.domain.Class> listModelClass = new ListModelList<>();
 
-    @WireVariable
+    @Wire
     private Textbox linkHidden;
 
-    @WireVariable
+    @Wire
     private Longbox txtDocumentId;
-    @WireVariable
+    @Wire
     private Intbox txtType;
-    @WireVariable
+    @Wire
     private Longbox txtCategory;
-    @WireVariable
+    @Wire
     private Intbox txtStatus;
 
-    @WireVariable
+    @Wire
     private Textbox txtDocumentName;
 
-    @WireVariable
+    @Wire
     private Combobox cbType;
 
-    @WireVariable
+    @Wire
     private Combobox cbCategory;
 
-    @WireVariable
+    @Wire
     private Combobox cbClass;
+    @Wire
+    private Vlayout layoutCat;
+    @Wire
+    private Vlayout layoutClass;
 
-    @WireVariable
+    @Wire
     private Label fileName;
 
-    @WireVariable
+    @Wire
     private Intbox txtOrder;
 
-    @WireVariable
+    @Wire
     private Textbox txtAuthor;
-
-    @WireVariable
-    private Label errPath;
 
     public ListModelList<Object> getListModelType() {
         return listModelType;
@@ -118,13 +122,9 @@ public class AddDocumentController extends GenericForwardComposer<Component> {
         super.doAfterCompose(comp);
         widgetService = (WidgetService) SpringUtil.getBean(SpringConstant.WIDGET_SERVICE);
         documentService = (DocumentService) SpringUtil.getBean(SpringConstant.DOCUMENT_SERVICE);
-//        List<Data> listDataType = FunctionUtil.createListTypeBanner();
-//
-//        listModelType = new ListModelList<>(listDataType);
-//        cbType.setModel(listModelType);
-//        cbType.setValue(FunctionUtil.getTypeName(txtType.getValue()));
 
         List<Data> listDataType = FunctionUtil.createListTypeDocument();
+        listDataType.remove(0);
         List<Category> listDataCategory = widgetService.getAllCategory();
         List<com.stfc.website.domain.Class> listClass = widgetService.getAllClass();
         Category catDefault = new Category();
@@ -136,7 +136,12 @@ public class AddDocumentController extends GenericForwardComposer<Component> {
         listModelType = new ListModelList<>(listDataType);
         cbType.setModel(listModelType);
         if (txtType.getValue() != null) {
+
             cbType.setValue(FunctionUtil.getTypeDocument(txtType.getValue()));
+        } else {
+
+            cbType.setValue(FunctionUtil.getTypeDocument(1));
+
         }
 
         cbCategory.setModel(listModelCategory);
@@ -149,16 +154,19 @@ public class AddDocumentController extends GenericForwardComposer<Component> {
         }
 
         if (txtType.getValue() == null || txtType.getValue() == 1) {
-            cbCategory.setVisible(false);
-            cbClass.setVisible(true);
+
+            layoutCat.setVisible(false);
+            layoutClass.setVisible(true);
+
         } else if (txtType.getValue() == 2) {
-            cbCategory.setVisible(true);
-            cbClass.setVisible(false);
+            layoutCat.setVisible(true);
+            layoutClass.setVisible(false);
         }
 
     }
 
-    public void onClick$btnCancel() {
+    @Listen("onClick = #btnCancel")
+    public void cancel() {
         addDocument.detach();
     }
 
@@ -166,11 +174,11 @@ public class AddDocumentController extends GenericForwardComposer<Component> {
      *
      * @param event
      */
-    public void onSave(ForwardEvent event) {
+    @Listen("onClick = #btnSave")
+    public void save() {
         try {
-
+            Session session = Sessions.getCurrent();
             Document document = new Document();
-
 //
             if (!StringUtils.valiString(txtDocumentName.getValue())) {
 //                errDocumentName.setValue(Labels.getLabel("document.error.empty.name"));
@@ -200,23 +208,33 @@ public class AddDocumentController extends GenericForwardComposer<Component> {
 //                errPath.setVisible(false);
                 return;
             }
-
-            if (cbCategory.getSelectedItem() == null || cbCategory.getSelectedItem().getValue().equals(-1l)) {
+            if (cbType.getSelectedItem().getValue().equals(2)) {
+                if (cbCategory.getSelectedItem() == null || cbCategory.getSelectedItem().getValue().equals(-1)) {
 //                errCategory.setVisible(true);
 //                errCategory.setValue(Labels.getLabel("document.error.empty.category"));
-                Clients.showNotification(Labels.getLabel("document.error.empty.category"), Clients.NOTIFICATION_TYPE_ERROR, cbCategory, Constants.MESSAGE_POSTION_END_CENTER, Constants.MESSAGE_TIME_CLOSE, Boolean.TRUE);
-                cbCategory.focus();
-                return;
+                    Clients.showNotification(Labels.getLabel("document.error.empty.category"), Clients.NOTIFICATION_TYPE_ERROR, cbCategory, Constants.MESSAGE_POSTION_END_CENTER, Constants.MESSAGE_TIME_CLOSE, Boolean.TRUE);
+                    cbCategory.focus();
+                    return;
+                }
+            } else {
+                if (cbClass.getSelectedItem() == null || cbClass.getSelectedItem().getValue().equals(-1)) {
+//                errCategory.setVisible(true);
+//                errCategory.setValue(Labels.getLabel("document.error.empty.category"));
+                    Clients.showNotification(Labels.getLabel("document.error.empty.category"), Clients.NOTIFICATION_TYPE_ERROR, cbClass, Constants.MESSAGE_POSTION_END_CENTER, Constants.MESSAGE_TIME_CLOSE, Boolean.TRUE);
+                    cbClass.focus();
+                    return;
+                }
             }
 
             String documentName = txtDocumentName.getValue().trim();
             Integer type = cbType.getSelectedItem().getValue();
             String path = linkHidden.getValue().trim();
             Long category = null;
-            if (txtType.getValue() == 1) {
+
+            if (type == 1) {
                 category = cbClass.getSelectedItem().getValue();
 
-            } else if (txtType.getValue() == 2) {
+            } else if (type == 2) {
                 category = cbCategory.getSelectedItem().getValue();
             }
             String author = txtAuthor.getValue().trim();
@@ -279,14 +297,15 @@ public class AddDocumentController extends GenericForwardComposer<Component> {
      *
      * @param evt
      */
-    public void onUpload$uploadbtn(UploadEvent evt) {
-        session = Sessions.getCurrent();
+    @Listen("onUpload = #uploadbtn")
+    public void uploadDocument(UploadEvent evt) {
+        Session session = Sessions.getCurrent();
         org.zkoss.util.media.Media media = evt.getMedia();
-        if (StringUtils.validatePattern(media.getName())) {
-            errPath.setValue(Labels.getLabel("document.error.empty.pattern"));
-            errPath.setVisible(false);
-            return;
-        }
+//        if (StringUtils.validatePattern(media.getName())) {
+//            errPath.setValue(Labels.getLabel("document.error.empty.pattern"));
+//            errPath.setVisible(false);
+//            return;
+//        }
         FileUtils fileUtils = new FileUtils();
         LoadProperties properties = LoadProperties.getInstant();
         ConfigEntity entity = properties.loadConfig();
@@ -332,13 +351,14 @@ public class AddDocumentController extends GenericForwardComposer<Component> {
     }
 
     @Listen("onChange = #cbType")
-    public void reloadType() {
-        if (txtType.getValue() == null || txtType.getValue() == 1) {
-            cbCategory.setVisible(false);
-            cbClass.setVisible(true);
-        } else if (txtType.getValue() == 2) {
-            cbCategory.setVisible(true);
-            cbClass.setVisible(false);
+    public void changeType() {
+        if (cbType.getSelectedItem() != null && !cbType.getSelectedItem().getValue().equals(-1l)
+                && cbType.getSelectedItem().getValue().equals(1)) {
+            layoutCat.setVisible(false);
+            layoutClass.setVisible(true);
+        } else if (cbType.getSelectedItem().getValue().equals(2)) {
+            layoutCat.setVisible(true);
+            layoutClass.setVisible(false);
         }
     }
 }

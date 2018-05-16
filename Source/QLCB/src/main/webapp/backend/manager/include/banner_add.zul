@@ -6,27 +6,27 @@
             position="center,center" closable="true"            
             action="show: slideDown;hide: slideUp" border="normal" width="60%"
             maximizable="false" title="${c:l('user.add')}"
-            onCancel="addUser.detach();" contentStyle="overflow-y:auto">
+            onCancel="addBanner.detach();" contentStyle="overflow-y:auto">
 
-        <groupbox class="groupboxFull">
-            <longbox hflex="2" class="text-right" visible="false"
+        
+        <longbox hflex="2" class="text-right" visible="false"
                      value="${arg.banners.bannerId}" id="txtBannerId"
                      onBlur="self.value=self.value.trim()" />
-            <intbox hflex="2" class="text-right" visible="false"
+        <intbox hflex="2" class="text-right" visible="false"
                     value="${arg.banners.bannerType}" id="txtType"
                     onBlur="self.value=self.value.trim()" />
             
-            <intbox hflex="2" class="text-right" visible="false"
+        <intbox hflex="2" class="text-right" visible="false"
                     value="${arg.banners.bannerStatus}" id="txtStatus"
                     onBlur="self.value=self.value.trim()" />
-            <textbox hflex="2" visible="false"
+        <textbox hflex="2" visible="false"
                      value="${arg.banners.bannerImage}"
                      id="linkImageHidden"
                      onBlur="self.value=self.value.trim()" />
-            <!--            <intbox hflex="2" class="text-right" visible="false"
-            value="${arg.banners.bannerStatus}" id="txtStatus"
-            onBlur="self.value=self.value.trim()"  />-->
-        </groupbox>
+        <!--            <intbox hflex="2" class="text-right" visible="false"
+        value="${arg.banners.bannerStatus}" id="txtStatus"
+        onBlur="self.value=self.value.trim()"  />-->
+        
         <vlayout class="groupboxFull">
             <label class="labelNote" hflex="1"
                    value="${c:l('user.note')}" />
@@ -117,7 +117,7 @@
                         <label value="${c:l('banner.type')}" />
                     </hbox>
                     <hbox hflex="7">
-                        <combobox id="cbType"
+                        <combobox id="cbType" autocomplete="true"
                                   model="${$composer.listModelType}" autodrop="true"
                                   buttonVisible="true" hflex="1" value="${arg.banners.bannerTypeName}">
                             <template name="model">

@@ -82,6 +82,8 @@
                         <hbox hflex="1" />
                     </hlayout>
                 </vlayout>
+                
+                
 
                 <!-- 				duong dan -->
                 <vlayout>
@@ -105,7 +107,7 @@
                     </hlayout>
                 </vlayout>
                 <!-- 				the loai -->
-                <vlayout>
+                <vlayout id="layoutCat">
                     <hlayout>
                         <hbox hflex="1" />
                         <hbox hflex="2">
@@ -121,7 +123,28 @@
                                     <comboitem value="${each.categoryId}"
                                                label="${each.categoryName}" />
                                 </template>
-                            </combobox>
+                            </combobox>                            
+                            
+                        </hbox>
+                        <hbox hflex="1" />
+                    </hlayout>
+                    <hlayout>
+                        <hbox hflex="1" />
+                        <label visible="false" id="errCategory"
+                               style="color:red" />
+
+                        <hbox hflex="1" />
+                    </hlayout>
+                </vlayout>
+                
+                <vlayout id="layoutClass">
+                    <hlayout>
+                        <hbox hflex="1" />
+                        <hbox hflex="2">
+                            <label value="${c:l('document.class')}" />
+                            <span style="color:red">*</span>
+                        </hbox>
+                        <hbox hflex="7">
                             
                             <combobox id="cbClass" 
                                       value="${c:l('option')}"
@@ -137,14 +160,14 @@
                     </hlayout>
                     <hlayout>
                         <hbox hflex="1" />
-                        <label visible="false" id="errCategory"
+                        <label visible="false" id="errClass"
                                style="color:red" />
 
                         <hbox hflex="1" />
                     </hlayout>
                 </vlayout>
                 <!-- 				vi tri banner -->
-                <vlayout>
+                <vlayout visible="false">
                     <hlayout>
                         <hbox hflex="1" />
 

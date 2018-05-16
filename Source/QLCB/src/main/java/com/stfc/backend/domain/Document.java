@@ -47,6 +47,7 @@ public class Document implements Serializable {
     private Integer status;
     private Date createDate;
     private Date modifiedDate;
+    private Integer isPrivate;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -172,6 +173,17 @@ public class Document implements Serializable {
     public void setDocumentTypeName(String documentTypeName) {
         this.documentTypeName = documentTypeName;
     }
+
+    @Column(name = "is_private", unique = false, nullable = true)
+    public Integer getIsPrivate() {
+        return isPrivate;
+    }
+
+    public void setIsPrivate(Integer isPrivate) {
+        this.isPrivate = isPrivate;
+    }
+    
+    
 
     @Override
     public String toString() {
