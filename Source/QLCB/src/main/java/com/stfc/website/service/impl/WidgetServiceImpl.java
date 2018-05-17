@@ -128,4 +128,9 @@ public class WidgetServiceImpl implements WidgetService {
         return widgetDAO.getDocumentById(documentId);
     }
 
+    @Override
+    public List<Document> getDocumentByCategoryId(Long categoryId) {
+        return widgetDAO.getDocumentByCategoryId(categoryId);
+    }
+
 }

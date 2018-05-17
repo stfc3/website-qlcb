@@ -71,5 +71,7 @@ public interface Constants {
     Integer ROLE_EDITOR = 2;
     Integer ROLE_AUTHOR = 3;
     Integer ROLE_CONTRIBUTOR = 4;
+    
+    public static final String CATEGORY_LEGISLATION = "CATEGORY_LEGISLATION";
 
 }

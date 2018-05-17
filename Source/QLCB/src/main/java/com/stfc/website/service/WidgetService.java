@@ -54,4 +54,6 @@ public interface WidgetService {
     UserToken getUserByUserName(String userName);
     
     List<Document> getDocumentById(Long documentId);
+    
+    List<Document> getDocumentByCategoryId(Long categoryId);
 }

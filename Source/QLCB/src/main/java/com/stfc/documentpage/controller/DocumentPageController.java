@@ -49,6 +49,9 @@ public class DocumentPageController extends SelectorComposer<Div> {
     Div indexSlider;
 
     @Wire
+    Div indexNotice;
+
+    @Wire
     Div documentPage;
 
     @Wire
@@ -70,7 +73,22 @@ public class DocumentPageController extends SelectorComposer<Div> {
         widgetService = (WidgetService) SpringUtil.getBean(SpringConstant.WIDGET_SERVICE);
         urlImage = Common.getParamByKey(Constants.DOCUMENT_PAGE_URL_IMAGE).getParamValue();
         List<Banner> lstBanner = new ArrayList<>(Memory.getListBannerCache().values());
-        if (lstBanner != null && !lstBanner.isEmpty()) {
+        List<Post> lstPostNotice = new ArrayList<>();
+        try {
+            lstPostNotice = widgetService.getPostByCategoryId(Memory.getLngCategoryNotice(), 0, Constants.POST_IS_PUBLIC);
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+        }
+        if (lstPostNotice != null && !lstPostNotice.isEmpty()) {
+            List<Category> lstCategory = new ArrayList<>(Memory.getListCategoryCache().values());
+            if (lstCategory != null && !lstCategory.isEmpty()) {
+                for (Category c : lstCategory) {
+                    if (Memory.getLngCategoryNotice() == c.getCategoryId()) {
+                        widgetBuilder.buildBannerIndex(lstBanner, indexSlider, indexNotice, c.getCategoryName(), lstPostNotice);
+                    }
+                }
+            }
+        } else if (lstBanner != null && !lstBanner.isEmpty()) {
             widgetBuilder.buildBanner(lstBanner, indexSlider, urlImage);
         }
 
@@ -131,11 +149,12 @@ public class DocumentPageController extends SelectorComposer<Div> {
                     String widgetTitle = wc.getCategoryName();
 
                     Label lblFunctionName = new Label(widgetTitle);
-                    lblFunctionName.setParent(spanTitleCategory);
 
                     if (plstDocument != null && !plstDocument.isEmpty()) {
                         for (Document p1 : plstDocument) {
                             if (wc.getCategoryId() == p1.getCategoryId()) {
+                                lblFunctionName.setParent(spanTitleCategory);
+
                                 Div divContentPostItem = new Div();
                                 divContentPostItem.setClass("irs-post-item-3-column-related");
                                 divContentPostItem.setParent(divColMd8);
@@ -188,7 +207,7 @@ public class DocumentPageController extends SelectorComposer<Div> {
                 Label lblNewPos = new Label(postNewPos);
                 lblNewPos.setParent(spanNewPost);
 
-                List<Post> lstPost1 = widgetService.getPostByCategoryId(categoryId1, Constants.MAX_POST_WIDGET_POST_DETAIL, Constants.POST_IS_PRIVATE);
+                List<Post> lstPost1 = widgetService.getPostByCategoryId(categoryId1, Constants.MAX_POST_WIDGET_POST_DETAIL, Constants.POST_IS_PUBLIC);
                 if (lstPost1 != null && !lstPost1.isEmpty()) {
                     for (Post p1 : lstPost1) {
                         Div divPostItem = new Div();
