@@ -40,6 +40,10 @@
         <filter-name>StfcURLFilter</filter-name>
         <url-pattern>/category/*</url-pattern>
     </filter-mapping>
+    <filter-mapping>
+        <filter-name>StfcURLFilter</filter-name>
+        <url-pattern>/documents/1</url-pattern>
+    </filter-mapping>
     <!--stfc filter--> 
     <!--rewrite url-->  
     <filter>

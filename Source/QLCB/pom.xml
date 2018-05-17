@@ -172,11 +172,11 @@
         <!-- ZK 5 breeze theme <dependency> <groupId>org.zkoss.theme</groupId> 
            <artifactId>breeze</artifactId> <version>${zk.version}</version> <optional>true</optional> 
         </dependency> -->
-        <dependency>
+<!--        <dependency>
             <groupId>org.zkoss.zk</groupId>
             <artifactId>zkmax</artifactId>
             <version>7.0.0</version>
-        </dependency>
+        </dependency>-->
         
         <!-- https://mvnrepository.com/artifact/org.zkoss.calendar/calendar -->
         <dependency>

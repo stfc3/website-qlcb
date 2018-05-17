@@ -36,6 +36,7 @@ public interface Constants {
     public static final int MAX_POST_WIDGET_POST_DETAIL = 5;
 
     String STFC_URL_ATTRIBUTE = "stfc-url";
+    String STFC_ID_ATTRIBUTE = "stfc-id";
     String PAGE_CATEGORY = "manager/category.zul";
     String PAGE_ADD_POST = "manager/addEditPost.zul";
     String PAGE_LIST_POST = "manager/listPost.zul";

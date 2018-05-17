@@ -13,7 +13,6 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 
 /**
@@ -38,7 +37,12 @@ public class WebsiteFilter implements Filter {
         }
         if (req != null) {
             logger.info("ServletPath: " + req.getServletPath());
-            req.setAttribute(Constants.STFC_URL_ATTRIBUTE, req.getServletPath());
+            String url = req.getServletPath();
+            if (url.startsWith("/documents/")) {
+                url = url.replace("/documents/", "");
+                req.setAttribute(Constants.STFC_ID_ATTRIBUTE, url);
+            }
+            req.setAttribute(Constants.STFC_URL_ATTRIBUTE, url);
         }
 
         chain.doFilter(request, response);

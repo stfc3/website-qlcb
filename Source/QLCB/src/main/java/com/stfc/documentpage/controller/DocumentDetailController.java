@@ -12,7 +12,6 @@ import com.stfc.utils.SpringConstant;
 import com.stfc.website.bean.Banner;
 import com.stfc.website.bean.Document;
 import com.stfc.website.bean.Post;
-import com.stfc.website.bean.WidgetContent;
 import com.stfc.website.bean.WidgetMapContent;
 import com.stfc.website.domain.Category;
 import com.stfc.website.domain.Param;
@@ -26,9 +25,7 @@ import org.zkoss.zhtml.H1;
 import org.zkoss.zk.ui.select.SelectorComposer;
 import org.zkoss.zk.ui.select.annotation.Wire;
 import org.zkoss.zul.Div;
-import org.zkoss.zhtml.H2;
 import org.zkoss.zhtml.H3;
-import org.zkoss.zhtml.H4;
 import org.zkoss.zul.Label;
 import org.zkoss.zul.Span;
 import org.zkoss.zhtml.P;
@@ -36,7 +33,6 @@ import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.select.annotation.WireVariable;
 import org.zkoss.zkplus.spring.SpringUtil;
 import org.zkoss.zul.A;
-import org.zkoss.zul.Html;
 import org.zkoss.zul.Iframe;
 import org.zkoss.zul.Image;
 
@@ -46,7 +42,7 @@ import org.zkoss.zul.Image;
  */
 public class DocumentDetailController extends SelectorComposer<Div> {
 
-    private static final Logger logger = Logger.getLogger(DocumentPageController.class);
+    private static final Logger logger = Logger.getLogger(DocumentDetailController.class);
     @Wire
     Div indexSlider;
     
@@ -71,7 +67,7 @@ public class DocumentDetailController extends SelectorComposer<Div> {
     @Override
     public void doAfterCompose(Div comp) throws Exception {
         super.doAfterCompose(comp);
-        logger.info("======>URL from Executions: " + Executions.getCurrent().getAttribute(Constants.STFC_URL_ATTRIBUTE));
+        logger.info("======>URL from Executions: " + Executions.getCurrent().getAttribute(Constants.STFC_ID_ATTRIBUTE));
         widgetService = (WidgetService) SpringUtil.getBean(SpringConstant.WIDGET_SERVICE);
         urlImage = Common.getParamByKey(Constants.DOCUMENT_PAGE_URL_IMAGE).getParamValue();
         List<Banner> lstBanner = new ArrayList<>(Memory.getListBannerCache().values());
@@ -95,7 +91,7 @@ public class DocumentDetailController extends SelectorComposer<Div> {
         }
 
         //build post detail
-        Long documentId = 1L;
+        Long documentId = Long.valueOf(String.valueOf(Executions.getCurrent().getAttribute(Constants.STFC_ID_ATTRIBUTE)));
         List<Document> lstDocument = widgetService.getDocumentById(documentId);
 //        List<Category> lstCategoryDoc = widgetService.getCategoryDocument();
 
@@ -161,7 +157,7 @@ public class DocumentDetailController extends SelectorComposer<Div> {
             Iframe htmPostContent = new Iframe();
             htmPostContent.setClass("documentIframe");
             if (plstDocument.get(0).getDocumentPath() != null && !"".equals(plstDocument.get(0).getDocumentPath())) {
-                strDocumentPath = urlImage + plstDocument.get(0).getDocumentPath();
+                strDocumentPath = plstDocument.get(0).getDocumentPath();
             }
             htmPostContent.setSrc(strDocumentPath);
             htmPostContent.setParent(spanContent);

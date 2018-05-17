@@ -6,17 +6,17 @@ import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.select.annotation.Wire;
 import org.zkoss.zk.ui.util.GenericForwardComposer;
-import org.zkoss.zkmax.zul.Nav;
-import org.zkoss.zkmax.zul.Navitem;
 import org.zkoss.zul.Include;
 import org.zkoss.zul.Label;
+import org.zkoss.zul.Menu;
+import org.zkoss.zul.Menuitem;
 
 public class MainComposer extends GenericForwardComposer<Component> {
 
     @Wire
-    Navitem category, document, user, menu, addPost, listPost, widget, banner;
+    Menuitem category, document, user, menu, addPost, listPost, widget, banner;
     @Wire
-    Nav post;
+    Menu post;
     @Wire
     Label breadcrumb;
     @Wire
