@@ -221,7 +221,7 @@ public class IndexNewsAdvertController extends SelectorComposer<Div> {
                                 divPostTitle.setParent(divPostItem);
 
                                 A aPostItemTitle = new A();
-                                aPostItemTitle.setHref(p1.getDocumentPath());
+                                aPostItemTitle.setHref(Constants.PREFIX_SLUG_DOCUMENT + p1.getDocumentId());
                                 aPostItemTitle.setParent(divPostTitle);
                                 String p1Title = "";
                                 if (p1.getDocumentName() != null && !"".equals(p1.getDocumentName())) {

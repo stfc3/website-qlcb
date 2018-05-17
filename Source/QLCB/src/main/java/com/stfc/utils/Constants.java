@@ -73,5 +73,6 @@ public interface Constants {
     Integer ROLE_CONTRIBUTOR = 4;
     
     public static final String CATEGORY_LEGISLATION = "CATEGORY_LEGISLATION";
+    public static final String PREFIX_SLUG_DOCUMENT = "/documents/";
 
 }
