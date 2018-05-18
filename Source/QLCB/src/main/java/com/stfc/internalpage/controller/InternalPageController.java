@@ -153,11 +153,12 @@ public class InternalPageController extends SelectorComposer<Div> {
                             String widgetTitle = wc.getWidgetContentName();
 
                             Label lblFunctionName = new Label(widgetTitle);
-                            lblFunctionName.setParent(spanTitleCategory);
 
                             if (plstPost != null && !plstPost.isEmpty()) {
                                 for (Post p1 : plstPost) {
                                     if (wc.getWidgetContent().equalsIgnoreCase(String.valueOf(p1.getCategoryId()))) {
+                                        lblFunctionName.setParent(spanTitleCategory);
+                                        
                                         Div divContentPostItem = new Div();
                                         divContentPostItem.setClass("irs-post-item-3-column-related");
                                         divContentPostItem.setParent(divColMd8);

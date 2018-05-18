@@ -28,7 +28,7 @@
     </rule>
     <rule match-type="wildcard">
         <from>/thong-tin-noi-bo</from>
-        <to>/internalpage/internalpage.zul</to>
+        <to>/internalpage.zul</to>
     </rule>
 <!--    <rule match-type="wildcard">
         <from>/</from>

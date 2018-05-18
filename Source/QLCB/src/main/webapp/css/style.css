@@ -783,9 +783,9 @@ form[role=login] > div {
 /*End login*/
 .documentIframe {
     width: 100%;
-    min-height: 500px;
+    min-height: 900px;
 }
 .documentIframe .z-iframe {
     width: 100%;
-    min-height: 500px;
+    min-height: 900px;
 }

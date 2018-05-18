@@ -10,10 +10,12 @@ import com.stfc.utils.Common;
 import com.stfc.utils.Constants;
 import com.stfc.utils.SpringConstant;
 import com.stfc.website.bean.Banner;
+import com.stfc.website.bean.Document;
 import com.stfc.website.bean.Post;
 import com.stfc.website.bean.WidgetContent;
 import com.stfc.website.bean.WidgetMapContent;
 import com.stfc.website.domain.Category;
+import com.stfc.website.domain.Param;
 import com.stfc.website.service.WidgetService;
 import com.stfc.website.widget.WidgetBuilder;
 import java.text.SimpleDateFormat;
@@ -45,7 +47,7 @@ public class ListPostNewsAdvertController extends SelectorComposer<Div> {
     private static final Logger logger = Logger.getLogger(ListPostNewsAdvertController.class);
     @Wire
     Div indexSlider;
-    
+
     @Wire
     Div indexNotice;
 
@@ -342,6 +344,7 @@ public class ListPostNewsAdvertController extends SelectorComposer<Div> {
         //Build tin tuc noi bat
         if (wg.getListContent() != null && !wg.getListContent().isEmpty()) {
             List<WidgetContent> wgContent = wg.getListContent();
+            Param categoryLegislation = com.getParamByKey(Constants.CATEGORY_LEGISLATION);
             for (WidgetContent wc : wgContent) {
                 Div divColMd4 = new Div();
                 divColMd4.setClass("");
@@ -365,7 +368,8 @@ public class ListPostNewsAdvertController extends SelectorComposer<Div> {
                     String postNewPos = wc.getWidgetContentName();
                     Label lblNewPos = new Label(postNewPos);
                     lblNewPos.setParent(spanNewPost);
-                    if (wc != null && wc.getWidgetContent() != null && Constants.WIDGET_CONTENT_TYPE_CATEGORY.equalsIgnoreCase(wc.getWidgetType())) {
+                    if (wc != null && wc.getWidgetContent() != null && Constants.WIDGET_CONTENT_TYPE_CATEGORY.equalsIgnoreCase(wc.getWidgetType())
+                            && !wc.getWidgetContent().equalsIgnoreCase(categoryLegislation.getParamValue())) {
                         List<Post> lstPost1 = com.getPostByContent(wg, lstPost);
                         int maxPost = 5;
                         if (lstPost1.size() <= 5) {
@@ -404,6 +408,50 @@ public class ListPostNewsAdvertController extends SelectorComposer<Div> {
                                 Label lblPostItemTime = new Label(dateP1);
                                 lblPostItemTime.setClass("time-post");
                                 lblPostItemTime.setParent(spanPostTime);
+                            }
+                        }
+                    }
+                    if (wc != null && wc.getWidgetContent() != null && Constants.WIDGET_CONTENT_TYPE_CATEGORY.equalsIgnoreCase(wc.getWidgetType())
+                            && wc.getWidgetContent().equalsIgnoreCase(categoryLegislation.getParamValue())) {
+                        //Van ban phap luat
+                        List<Document> lstPost1 = widgetService.getDocumentByCategoryId(Long.parseLong(wc.getWidgetContent()));
+                        int maxPost = 5;
+                        if (lstPost1.size() <= 5) {
+                            maxPost = lstPost1.size();
+                        }
+                        if (lstPost1 != null && !lstPost1.isEmpty()) {
+                            for (int i = 0; i < maxPost; i++) {
+                                Document p1 = lstPost1.get(i);
+                                Div divPostItem = new Div();
+                                divPostItem.setClass("irs-post-item-post-detail");
+                                divPostItem.setParent(irsPost);
+
+                                Div divPostTitle = new Div();
+                                divPostTitle.setClass("irs-post-item-post-detail-title-right");
+                                divPostTitle.setParent(divPostItem);
+
+                                A aPostItemTitle = new A();
+                                aPostItemTitle.setHref(Constants.PREFIX_SLUG_DOCUMENT + p1.getDocumentId());
+                                aPostItemTitle.setParent(divPostTitle);
+                                String p1Title = "";
+                                if (p1.getDocumentName() != null && !"".equals(p1.getDocumentName())) {
+                                    p1Title = p1.getDocumentName();
+                                }
+
+                                Label lblPostTitleItem = new Label(p1Title);
+                                lblPostTitleItem.setClass("post-title");
+                                lblPostTitleItem.setParent(aPostItemTitle);
+
+                                P spanPostTime = new P();
+                                spanPostTime.setParent(divPostItem);
+
+//                                String dateP1 = "";
+//                                if (p1.get != null && !"".equals(p1.getPostDate())) {
+//                                    dateP1 = dateFormat.format(p1.getPostDate());
+//                                }
+//                                Label lblPostItemTime = new Label(dateP1);
+//                                lblPostItemTime.setClass("time-post");
+//                                lblPostItemTime.setParent(spanPostTime);
                             }
                         }
                     } else if (wc != null && wc.getWidgetContent() != null && Constants.WIDGET_CONTENT_TYPE_TEXT.equalsIgnoreCase(wc.getWidgetType())) {

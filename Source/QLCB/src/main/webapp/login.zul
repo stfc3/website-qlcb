@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?page title="Login" href="images/mcredit.ico"?>
-<?link rel="shortcut icon" type="image/x-icon" href="images/mcredit.ico"?>
+<!--<?link rel="shortcut icon" type="image/x-icon" href="images/mcredit.ico"?>-->
 <?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c" ?>
 <?link href="css/style.css" rel="stylesheet" type="text/css"?>
 <?link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"?>
