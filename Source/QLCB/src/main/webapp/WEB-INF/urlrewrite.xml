@@ -23,7 +23,7 @@
         <to>/enrollstudents.zul</to>
     </rule>
     <rule match-type="wildcard">
-        <from>/documents/**</from>
+        <from>/doc/**</from>
         <to>/documentdetail.zul</to>
     </rule>
     <rule match-type="wildcard">
