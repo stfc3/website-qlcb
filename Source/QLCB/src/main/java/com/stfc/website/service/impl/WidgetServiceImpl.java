@@ -133,4 +133,9 @@ public class WidgetServiceImpl implements WidgetService {
         return widgetDAO.getDocumentByCategoryId(categoryId);
     }
 
+    @Override
+    public List<Document> getClassSchedule() {
+        return widgetDAO.getClassSchedule();
+    }
+
 }

@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.stfc.documentpage.controller;
+package com.stfc.schedule.controller;
 
+import com.stfc.documentpage.controller.*;
 import com.stfc.website.*;
 import com.stfc.utils.Common;
 import com.stfc.utils.Constants;
@@ -21,6 +22,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.log4j.Logger;
+import org.zkoss.util.resource.Labels;
 import org.zkoss.zk.ui.select.SelectorComposer;
 import org.zkoss.zk.ui.select.annotation.Wire;
 import org.zkoss.zul.Div;
@@ -41,9 +43,9 @@ import org.zkoss.zul.Image;
  *
  * @author daond
  */
-public class DocumentPageController extends SelectorComposer<Div> {
+public class ClassScheduleController extends SelectorComposer<Div> {
 
-    private static final Logger logger = Logger.getLogger(DocumentPageController.class);
+    private static final Logger logger = Logger.getLogger(ClassScheduleController.class);
     @Wire
     Div indexSlider;
 
@@ -51,7 +53,7 @@ public class DocumentPageController extends SelectorComposer<Div> {
     Div indexNotice;
 
     @Wire
-    Div documentPage;
+    Div schedulePage;
 
     @Wire
     Div addWidgetFooter;
@@ -92,8 +94,8 @@ public class DocumentPageController extends SelectorComposer<Div> {
         }
 
         //build post detail
-        List<Document> lstDocument = widgetService.getDocument();
-        List<Category> lstCategoryDoc = widgetService.getCategoryDocument();
+        List<Document> lstDocument = widgetService.getClassSchedule();
+//        List<Category> lstCategoryDoc = widgetService.getCategoryDocument();
 
         List<WidgetMapContent> vlstWidget = new ArrayList<>(Memory.getListWidgetMapContentCache().values());
         if (vlstWidget != null && !vlstWidget.isEmpty()) {
@@ -104,13 +106,13 @@ public class DocumentPageController extends SelectorComposer<Div> {
                 }
             }
         }
-        buildInternal(lstCategoryDoc, lstDocument);
+        buildInternal(Labels.getLabel("class.schedule"), lstDocument);
     }
 
-    private void buildInternal(List<Category> plstCategory, List<Document> plstDocument) {
+    private void buildInternal(String title, List<Document> plstDocument) {
         Div postMain = new Div();
         postMain.setClass("inner-page-content left-img");
-        postMain.setParent(documentPage);
+        postMain.setParent(schedulePage);
 
         Div divContainer = new Div();
         divContainer.setClass("container");
@@ -120,62 +122,54 @@ public class DocumentPageController extends SelectorComposer<Div> {
         divRow.setClass("row");
         divRow.setParent(divContainer);
 
-        if (plstCategory != null && !plstCategory.isEmpty()) {
 //            for (Category wmc : plstCategory) {
-            Div divColMd8 = new Div();
-            divColMd8.setClass("col-md-8");
-            divColMd8.setParent(divRow);
+        Div divColMd8 = new Div();
+        divColMd8.setClass("col-md-8");
+        divColMd8.setParent(divRow);
 
-            //Post content
-            if (plstCategory != null && !plstCategory.isEmpty()) {
-                for (Category wc : plstCategory) {
-                    Div rowTitle = new Div();
-                    rowTitle.setClass("border-bottom-title-category");
-                    rowTitle.setParent(divColMd8);
+        //Post content
+        Div rowTitle = new Div();
+        rowTitle.setClass("border-bottom-title-category");
+        rowTitle.setParent(divColMd8);
 
-                    Div titleCategory = new Div();
-                    titleCategory.setClass("title-category");
-                    titleCategory.setParent(rowTitle);
+        Div titleCategory = new Div();
+        titleCategory.setClass("title-category");
+        titleCategory.setParent(rowTitle);
 
-                    H2 h2Title = new H2();
-                    h2Title.setParent(titleCategory);
+        H2 h2Title = new H2();
+        h2Title.setParent(titleCategory);
 
-                    A hotnew = new A();
-                    hotnew.setParent(h2Title);
+        A hotnew = new A();
+        hotnew.setParent(h2Title);
 
-                    Span spanTitleCategory = new Span();
-                    spanTitleCategory.setParent(hotnew);
-                    String widgetTitle = wc.getCategoryName();
+        Span spanTitleCategory = new Span();
+        spanTitleCategory.setParent(hotnew);
+//        String widgetTitle = wc.getCategoryName();
 
-                    Label lblFunctionName = new Label(widgetTitle);
+        Label lblFunctionName = new Label(title);
 
-                    if (plstDocument != null && !plstDocument.isEmpty()) {
-                        for (Document p1 : plstDocument) {
-                            if (wc.getCategoryId() == p1.getCategoryId()) {
-                                lblFunctionName.setParent(spanTitleCategory);
+        if (plstDocument != null && !plstDocument.isEmpty()) {
+            for (Document p1 : plstDocument) {
+                lblFunctionName.setParent(spanTitleCategory);
 
-                                Div divContentPostItem = new Div();
-                                divContentPostItem.setClass("irs-post-item-3-column-related");
-                                divContentPostItem.setParent(divColMd8);
-                                A aPostItemTitle = new A();
-                                aPostItemTitle.setHref(p1.getDocumentPath());
-                                aPostItemTitle.setParent(divContentPostItem);
+                Div divContentPostItem = new Div();
+                divContentPostItem.setClass("irs-post-item-3-column-related");
+                divContentPostItem.setParent(divColMd8);
+                A aPostItemTitle = new A();
+//                aPostItemTitle.setHref(p1.getDocumentPath());
+                aPostItemTitle.setHref(Constants.PREFIX_SLUG_DOCUMENT + p1.getDocumentId());
+                aPostItemTitle.setParent(divContentPostItem);
 
-                                H4 h4Post = new H4();
-                                h4Post.setParent(aPostItemTitle);
-                                String titleRelated = "<i class='fa fa-angle-double-right'></i> " + p1.getDocumentName() + "<span style='font-size:11px; color: #0d4e96;'> (" + p1.getAuthor() + ") </span>";
-                                Html htmPostItem = new Html();
-                                htmPostItem.setContent(titleRelated);
-                                htmPostItem.setParent(h4Post);
+                H4 h4Post = new H4();
+                h4Post.setParent(aPostItemTitle);
+                String titleRelated = "<i class='fa fa-angle-double-right'></i> " + p1.getCategoryName();
+                Html htmPostItem = new Html();
+                htmPostItem.setContent(titleRelated);
+                htmPostItem.setParent(h4Post);
 
-                                P spanPostTime = new P();
-                                spanPostTime.setParent(divContentPostItem);
-                            }
-                        }
-                    }
-                }
+                P spanPostTime = new P();
+                spanPostTime.setParent(divContentPostItem);
             }
-//            }
         }
 
         //Build tin tuc noi bat

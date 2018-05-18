@@ -56,4 +56,6 @@ public interface WidgetService {
     List<Document> getDocumentById(Long documentId);
     
     List<Document> getDocumentByCategoryId(Long categoryId);
+    
+    List<Document> getClassSchedule();
 }

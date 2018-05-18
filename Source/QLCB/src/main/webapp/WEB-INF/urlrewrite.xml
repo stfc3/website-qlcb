@@ -30,6 +30,10 @@
         <from>/thong-tin-noi-bo</from>
         <to>/internalpage.zul</to>
     </rule>
+    <rule match-type="wildcard">
+        <from>/thoi-khoa-bieu</from>
+        <to>/classschedule.zul</to>
+    </rule>
 <!--    <rule match-type="wildcard">
         <from>/</from>
         <to>/newsadvertisement/index.zul</to>

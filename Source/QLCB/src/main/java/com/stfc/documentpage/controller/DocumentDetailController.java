@@ -32,6 +32,7 @@ import org.zkoss.zhtml.P;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.select.annotation.WireVariable;
 import org.zkoss.zkplus.spring.SpringUtil;
+import org.zkoss.zss.ui.Spreadsheet;
 import org.zkoss.zul.A;
 import org.zkoss.zul.Iframe;
 import org.zkoss.zul.Image;
@@ -45,7 +46,7 @@ public class DocumentDetailController extends SelectorComposer<Div> {
     private static final Logger logger = Logger.getLogger(DocumentDetailController.class);
     @Wire
     Div indexSlider;
-    
+
     @Wire
     Div indexNotice;
 
@@ -141,8 +142,14 @@ public class DocumentDetailController extends SelectorComposer<Div> {
             spanTitle.setClass("pTitle");
             spanTitle.setParent(titlePost);
             String postTitle = "";
-            if (plstDocument.get(0).getDocumentName() != null && !"".equals(plstDocument.get(0).getDocumentName())) {
-                postTitle = plstDocument.get(0).getDocumentName();
+            if (plstDocument.get(0).getDocumentType() == 2) {
+                if (plstDocument.get(0).getDocumentName() != null && !"".equals(plstDocument.get(0).getDocumentName())) {
+                    postTitle = plstDocument.get(0).getDocumentName();
+                }
+            } else {
+                if (plstDocument.get(0).getCategoryName() != null && !"".equals(plstDocument.get(0).getCategoryName())) {
+                    postTitle = plstDocument.get(0).getCategoryName();
+                }
             }
             Label lblPostTitle = new Label(postTitle);
             lblPostTitle.setParent(spanTitle);
@@ -154,13 +161,30 @@ public class DocumentDetailController extends SelectorComposer<Div> {
             spanContent.setClass("pBody");
             spanContent.setParent(postContent);
             String strDocumentPath = "";
-            Iframe htmPostContent = new Iframe();
-            htmPostContent.setClass("documentIframe");
-            if (plstDocument.get(0).getDocumentPath() != null && !"".equals(plstDocument.get(0).getDocumentPath())) {
-                strDocumentPath = plstDocument.get(0).getDocumentPath();
+            if (plstDocument.get(0).getDocumentType() == 2) {
+                Iframe htmPostContent = new Iframe();
+                htmPostContent.setClass("documentIframe");
+                if (plstDocument.get(0).getDocumentPath() != null && !"".equals(plstDocument.get(0).getDocumentPath())) {
+                    strDocumentPath = plstDocument.get(0).getDocumentPath();
+                }
+                htmPostContent.setSrc(strDocumentPath);
+                htmPostContent.setParent(spanContent);
+            } else {
+                Spreadsheet htmPostContent = new Spreadsheet();
+                htmPostContent.setShowSheetbar(true);
+                htmPostContent.setMaxrows(10000);
+                htmPostContent.setMaxcolumns(5000);
+                htmPostContent.setPreloadColumnSize(100);
+                htmPostContent.setPreloadRowSize(100);
+
+                htmPostContent.setClass("documentIframe");
+                if (plstDocument.get(0).getDocumentPath() != null && !"".equals(plstDocument.get(0).getDocumentPath())) {
+                    strDocumentPath = plstDocument.get(0).getDocumentPath();
+                }
+                htmPostContent.setSrc(strDocumentPath);
+                htmPostContent.setParent(spanContent);
             }
-            htmPostContent.setSrc(strDocumentPath);
-            htmPostContent.setParent(spanContent);
+
         }
 
         //Build tin tuc noi bat

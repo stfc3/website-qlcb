@@ -172,7 +172,7 @@
         <!-- ZK 5 breeze theme <dependency> <groupId>org.zkoss.theme</groupId> 
            <artifactId>breeze</artifactId> <version>${zk.version}</version> <optional>true</optional> 
         </dependency> -->
-<!--        <dependency>
+        <!--        <dependency>
             <groupId>org.zkoss.zk</groupId>
             <artifactId>zkmax</artifactId>
             <version>7.0.0</version>
@@ -201,6 +201,12 @@
             <groupId>org.zkoss.zkforge</groupId>
             <artifactId>gmapsz</artifactId>
             <version>3.0.4</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.zkoss.zss</groupId>
+            <artifactId>zss</artifactId>
+            <version>3.8.0.1</version>
         </dependency>
         
     </dependencies>

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.stfc.documentpage.controller;
+package com.stfc.schedule.controller;
 
 import com.stfc.website.*;
 import com.stfc.utils.Common;
@@ -21,29 +21,29 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.log4j.Logger;
+import org.zkoss.zhtml.H1;
 import org.zkoss.zk.ui.select.SelectorComposer;
 import org.zkoss.zk.ui.select.annotation.Wire;
 import org.zkoss.zul.Div;
-import org.zkoss.zhtml.H2;
 import org.zkoss.zhtml.H3;
-import org.zkoss.zhtml.H4;
 import org.zkoss.zul.Label;
 import org.zkoss.zul.Span;
 import org.zkoss.zhtml.P;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.select.annotation.WireVariable;
 import org.zkoss.zkplus.spring.SpringUtil;
+import org.zkoss.zss.ui.Spreadsheet;
 import org.zkoss.zul.A;
-import org.zkoss.zul.Html;
+import org.zkoss.zul.Iframe;
 import org.zkoss.zul.Image;
 
 /**
  *
  * @author daond
  */
-public class DocumentPageController extends SelectorComposer<Div> {
+public class ClassScheduleDetailController extends SelectorComposer<Div> {
 
-    private static final Logger logger = Logger.getLogger(DocumentPageController.class);
+    private static final Logger logger = Logger.getLogger(ClassScheduleDetailController.class);
     @Wire
     Div indexSlider;
 
@@ -51,7 +51,7 @@ public class DocumentPageController extends SelectorComposer<Div> {
     Div indexNotice;
 
     @Wire
-    Div documentPage;
+    Div schedulePage;
 
     @Wire
     Div addWidgetFooter;
@@ -68,7 +68,7 @@ public class DocumentPageController extends SelectorComposer<Div> {
     @Override
     public void doAfterCompose(Div comp) throws Exception {
         super.doAfterCompose(comp);
-        logger.info("======>URL from Executions: " + Executions.getCurrent().getAttribute(Constants.STFC_URL_ATTRIBUTE));
+        logger.info("======>URL from Executions: " + Executions.getCurrent().getAttribute(Constants.STFC_ID_ATTRIBUTE));
         widgetService = (WidgetService) SpringUtil.getBean(SpringConstant.WIDGET_SERVICE);
         urlImage = Common.getParamByKey(Constants.DOCUMENT_PAGE_URL_IMAGE).getParamValue();
         List<Banner> lstBanner = new ArrayList<>(Memory.getListBannerCache().values());
@@ -92,8 +92,9 @@ public class DocumentPageController extends SelectorComposer<Div> {
         }
 
         //build post detail
-        List<Document> lstDocument = widgetService.getDocument();
-        List<Category> lstCategoryDoc = widgetService.getCategoryDocument();
+        Long documentId = Long.valueOf(String.valueOf(Executions.getCurrent().getAttribute(Constants.STFC_ID_ATTRIBUTE)));
+        List<Document> lstDocument = widgetService.getDocumentById(documentId);
+//        List<Category> lstCategoryDoc = widgetService.getCategoryDocument();
 
         List<WidgetMapContent> vlstWidget = new ArrayList<>(Memory.getListWidgetMapContentCache().values());
         if (vlstWidget != null && !vlstWidget.isEmpty()) {
@@ -104,13 +105,13 @@ public class DocumentPageController extends SelectorComposer<Div> {
                 }
             }
         }
-        buildInternal(lstCategoryDoc, lstDocument);
+        buildInternal(lstDocument);
     }
 
-    private void buildInternal(List<Category> plstCategory, List<Document> plstDocument) {
+    private void buildInternal(List<Document> plstDocument) {
         Div postMain = new Div();
         postMain.setClass("inner-page-content left-img");
-        postMain.setParent(documentPage);
+        postMain.setParent(schedulePage);
 
         Div divContainer = new Div();
         divContainer.setClass("container");
@@ -120,62 +121,54 @@ public class DocumentPageController extends SelectorComposer<Div> {
         divRow.setClass("row");
         divRow.setParent(divContainer);
 
-        if (plstCategory != null && !plstCategory.isEmpty()) {
-//            for (Category wmc : plstCategory) {
+        if (plstDocument != null && !plstDocument.isEmpty()) {
             Div divColMd8 = new Div();
             divColMd8.setClass("col-md-8");
             divColMd8.setParent(divRow);
 
             //Post content
-            if (plstCategory != null && !plstCategory.isEmpty()) {
-                for (Category wc : plstCategory) {
-                    Div rowTitle = new Div();
-                    rowTitle.setClass("border-bottom-title-category");
-                    rowTitle.setParent(divColMd8);
+            Div irsBlogSingle = new Div();
+            irsBlogSingle.setClass("irs-blog-single-col");
+            irsBlogSingle.setParent(divColMd8);
 
-                    Div titleCategory = new Div();
-                    titleCategory.setClass("title-category");
-                    titleCategory.setParent(rowTitle);
+            Div irsBlogCol = new Div();
+            irsBlogCol.setClass("irs-blog-col");
+            irsBlogCol.setParent(irsBlogSingle);
 
-                    H2 h2Title = new H2();
-                    h2Title.setParent(titleCategory);
+            H1 titlePost = new H1();
+            titlePost.setParent(irsBlogCol);
 
-                    A hotnew = new A();
-                    hotnew.setParent(h2Title);
-
-                    Span spanTitleCategory = new Span();
-                    spanTitleCategory.setParent(hotnew);
-                    String widgetTitle = wc.getCategoryName();
-
-                    Label lblFunctionName = new Label(widgetTitle);
-
-                    if (plstDocument != null && !plstDocument.isEmpty()) {
-                        for (Document p1 : plstDocument) {
-                            if (wc.getCategoryId() == p1.getCategoryId()) {
-                                lblFunctionName.setParent(spanTitleCategory);
-
-                                Div divContentPostItem = new Div();
-                                divContentPostItem.setClass("irs-post-item-3-column-related");
-                                divContentPostItem.setParent(divColMd8);
-                                A aPostItemTitle = new A();
-                                aPostItemTitle.setHref(p1.getDocumentPath());
-                                aPostItemTitle.setParent(divContentPostItem);
-
-                                H4 h4Post = new H4();
-                                h4Post.setParent(aPostItemTitle);
-                                String titleRelated = "<i class='fa fa-angle-double-right'></i> " + p1.getDocumentName() + "<span style='font-size:11px; color: #0d4e96;'> (" + p1.getAuthor() + ") </span>";
-                                Html htmPostItem = new Html();
-                                htmPostItem.setContent(titleRelated);
-                                htmPostItem.setParent(h4Post);
-
-                                P spanPostTime = new P();
-                                spanPostTime.setParent(divContentPostItem);
-                            }
-                        }
-                    }
-                }
+            Span spanTitle = new Span();
+            spanTitle.setClass("pTitle");
+            spanTitle.setParent(titlePost);
+            String postTitle = "";
+            if (plstDocument.get(0).getCategoryName() != null && !"".equals(plstDocument.get(0).getCategoryName())) {
+                postTitle = plstDocument.get(0).getCategoryName();
             }
-//            }
+            Label lblPostTitle = new Label(postTitle);
+            lblPostTitle.setParent(spanTitle);
+
+            P postContent = new P();
+            postContent.setParent(irsBlogCol);
+
+            Span spanContent = new Span();
+            spanContent.setClass("pBody");
+            spanContent.setParent(postContent);
+            String strDocumentPath = "";
+
+            Spreadsheet htmPostContent = new Spreadsheet();
+            htmPostContent.setShowSheetbar(true);
+            htmPostContent.setMaxrows(10000);
+            htmPostContent.setMaxcolumns(5000);
+            htmPostContent.setPreloadColumnSize(100);
+            htmPostContent.setPreloadRowSize(100);
+
+            htmPostContent.setClass("documentIframe");
+            if (plstDocument.get(0).getDocumentPath() != null && !"".equals(plstDocument.get(0).getDocumentPath())) {
+                strDocumentPath = plstDocument.get(0).getDocumentPath();
+            }
+            htmPostContent.setSrc(strDocumentPath);
+            htmPostContent.setParent(spanContent);
         }
 
         //Build tin tuc noi bat
@@ -259,5 +252,4 @@ public class DocumentPageController extends SelectorComposer<Div> {
         }
 
     }
-
 }
