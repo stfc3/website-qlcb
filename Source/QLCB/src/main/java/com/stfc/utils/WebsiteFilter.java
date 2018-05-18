@@ -38,8 +38,8 @@ public class WebsiteFilter implements Filter {
         if (req != null) {
             logger.info("ServletPath: " + req.getServletPath());
             String url = req.getServletPath();
-            if (url.startsWith("/documents/")) {
-                url = url.replace("/documents/", "");
+            if (url.startsWith("/doc/")) {
+                url = url.replace("/doc/", "");
                 req.setAttribute(Constants.STFC_ID_ATTRIBUTE, url);
             }
             req.setAttribute(Constants.STFC_URL_ATTRIBUTE, url);
