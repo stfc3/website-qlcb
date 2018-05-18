@@ -42,7 +42,7 @@
     </filter-mapping>
     <filter-mapping>
         <filter-name>StfcURLFilter</filter-name>
-        <url-pattern>/documents/1</url-pattern>
+        <url-pattern>/doc/*</url-pattern>
     </filter-mapping>
     <!--stfc filter--> 
     <!--rewrite url-->  
