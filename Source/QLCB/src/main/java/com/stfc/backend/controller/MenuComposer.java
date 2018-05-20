@@ -26,6 +26,7 @@ import org.zkoss.zul.Combobox;
 import org.zkoss.zul.Comboitem;
 import org.zkoss.zul.Div;
 import org.zkoss.zul.Grid;
+import org.zkoss.zul.Intbox;
 import org.zkoss.zul.ListModelList;
 import org.zkoss.zul.Row;
 import org.zkoss.zul.Textbox;
@@ -41,9 +42,11 @@ public class MenuComposer extends SelectorComposer<Component> {
     @Wire
     Combobox menuType, menuParent, menuDataType, menuCategory, menuPost;
     @Wire
-    Textbox menuName;
+    Textbox menuName, menuLink;
     @Wire
-    Div divCategory, divPost;
+    Intbox menuOrder;
+    @Wire
+    Div divCategory, divPost, divLink;
     @Wire
     Grid listMenu;
     //default is public
@@ -57,7 +60,7 @@ public class MenuComposer extends SelectorComposer<Component> {
 
     private Menu menuSelected;
 
-    private boolean dataCategory = true;
+//    private boolean dataCategory = true;
     private boolean isAdd = true;
 
     @Override
@@ -103,15 +106,18 @@ public class MenuComposer extends SelectorComposer<Component> {
                 menuSelected = new Menu();
             }
             menuSelected.setMenuName(menuName.getValue());
+            menuSelected.setMenuOrder(menuOrder.getValue());
             if (!Labels.getLabel("option").equals(menuParent.getValue())) {
                 menuSelected.setMenuParent(menuParent.getSelectedItem().getValue());
             } else {
                 menuSelected.setMenuParent(null);
             }
-            if (dataCategory) {
+            if (intDataType == 1) {
                 menuSelected.setMenuSlug(menuCategory.getSelectedItem().getValue());
-            } else {
+            } else if (intDataType == 2) {
                 menuSelected.setMenuSlug(menuPost.getSelectedItem().getValue());
+            } else if (intDataType == 3) {
+                menuSelected.setMenuSlug(menuLink.getValue());
             }
             if (isAdd) {
                 menuSelected.setMenuStatus(Constants.STATUS_ACTIVE);
@@ -131,11 +137,15 @@ public class MenuComposer extends SelectorComposer<Component> {
         if (intDataType == 1) {
             divCategory.setVisible(true);
             divPost.setVisible(false);
-            dataCategory = true;
-        } else {
+            divLink.setVisible(false);
+        } else if (intDataType == 2) {
             divCategory.setVisible(false);
+            divLink.setVisible(false);
             divPost.setVisible(true);
-            dataCategory = false;
+        } else if (intDataType == 3) {
+            divCategory.setVisible(false);
+            divLink.setVisible(true);
+            divPost.setVisible(false);
         }
     }
 
@@ -162,6 +172,7 @@ public class MenuComposer extends SelectorComposer<Component> {
         Row rowSelected = (Row) event.getOrigin().getTarget().getParent().getParent();
         menuSelected = rowSelected.getValue();
         menuName.setValue(menuSelected.getMenuName());
+        menuOrder.setValue(menuSelected.getMenuOrder());
         if (StringUtils.valiString(menuSelected.getMenuParentName())) {
             menuParent.setValue(menuSelected.getMenuParentName());
         } else {
@@ -174,6 +185,10 @@ public class MenuComposer extends SelectorComposer<Component> {
         } else if (menuSelected.getMenuSlug().startsWith(Constants.PREFIX_SLUG_POST)) {
             setSelectedCombo(menuPost, menuSelected.getMenuSlug());
             menuDataType.setSelectedIndex(1);
+            loadTypeData();
+        } else {
+            menuLink.setValue(menuSelected.getMenuSlug());
+            menuDataType.setSelectedIndex(2);
             loadTypeData();
         }
     }
@@ -189,14 +204,19 @@ public class MenuComposer extends SelectorComposer<Component> {
             Clients.showNotification(Labels.getLabel("menu.name.empty"), Clients.NOTIFICATION_TYPE_ERROR, menuName, Constants.MESSAGE_POSTION_END_CENTER, Constants.MESSAGE_TIME_CLOSE, Boolean.TRUE);
             return false;
         }
-        if (dataCategory) {
+        if (intDataType == 1) {
             if (!StringUtils.valiString(menuCategory.getValue())) {
                 Clients.showNotification(Labels.getLabel("menu.category.empty"), Clients.NOTIFICATION_TYPE_ERROR, menuCategory, Constants.MESSAGE_POSTION_END_CENTER, Constants.MESSAGE_TIME_CLOSE, Boolean.TRUE);
                 return false;
             }
-        } else {
+        } else if (intDataType == 2) {
             if (!StringUtils.valiString(menuPost.getValue())) {
                 Clients.showNotification(Labels.getLabel("menu.post.empty"), Clients.NOTIFICATION_TYPE_ERROR, menuPost, Constants.MESSAGE_POSTION_END_CENTER, Constants.MESSAGE_TIME_CLOSE, Boolean.TRUE);
+                return false;
+            }
+        } else if (intDataType == 3) {
+            if (!StringUtils.valiString(menuLink.getValue())) {
+                Clients.showNotification(Labels.getLabel("menu.link.empty"), Clients.NOTIFICATION_TYPE_ERROR, menuLink, Constants.MESSAGE_POSTION_END_CENTER, Constants.MESSAGE_TIME_CLOSE, Boolean.TRUE);
                 return false;
             }
         }
@@ -227,6 +247,8 @@ public class MenuComposer extends SelectorComposer<Component> {
         menuName.setValue("");
         menuCategory.setValue("");
         menuPost.setValue("");
+        menuLink.setValue("");
+        menuOrder.setValue(null);
         loadMenu();
         loadTypeData();
     }
