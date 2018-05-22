@@ -37,6 +37,7 @@ import org.zkoss.zk.ui.select.annotation.WireVariable;
 import org.zkoss.zkplus.spring.SpringUtil;
 import org.zkoss.zul.A;
 import org.zkoss.zul.Html;
+import org.zkoss.zul.Image;
 
 /**
  *
@@ -105,7 +106,8 @@ public class PostNewsAdvertController extends SelectorComposer<Div> {
 
         List<WidgetMapContent> vlstWidget = new ArrayList<>(Memory.getListWidgetMapContentCache().values());
         List<Post> lstPostRight = widgetService.getPost(Memory.getLstCategoryId(), Constants.POST_IS_PUBLIC);
-        buildWidgetRight(vlstWidget, lstPostRight);
+//        buildWidgetRight(vlstWidget, lstPostRight);
+        buildNewsHot();
 
         if (vlstWidget != null && !vlstWidget.isEmpty()) {
             for (WidgetMapContent wg : vlstWidget) {
@@ -231,6 +233,86 @@ public class PostNewsAdvertController extends SelectorComposer<Div> {
                     spanPostTime.setParent(divContentPostItem);
                 }
             }
+        }
+    }
+
+    private void buildNewsHot() {
+        Div divColMd4 = new Div();
+        divColMd4.setParent(addWidgetIndexRight);
+
+        Div irsSideBar = new Div();
+        irsSideBar.setClass("irs-side-bar");
+        irsSideBar.setParent(divColMd4);
+
+        Div irsPost = new Div();
+        irsPost.setClass("irs-post");
+        irsPost.setParent(irsSideBar);
+
+        H3 newPost = new H3();
+        newPost.setParent(irsPost);
+
+        Param param1 = Common.getParamByKey(Constants.PARAM_KEY_CATEGORY_WIDGET_POST_DETAIL_1);
+        try {
+            if (param1 != null && param1.getParamValue() != null) {
+                Long categoryId1 = Long.parseLong(param1.getParamValue());
+                Category category1 = Common.getCategoryById(categoryId1);
+                Span spanNewPost = new Span();
+                spanNewPost.setClass("irs-sidebar-title");
+                spanNewPost.setParent(newPost);
+                String postNewPos = category1.getCategoryName();
+                Label lblNewPos = new Label(postNewPos);
+                lblNewPos.setParent(spanNewPost);
+
+                List<Post> lstPost1 = widgetService.getPostByCategoryId(categoryId1, Constants.MAX_POST_WIDGET_POST_DETAIL, Constants.POST_IS_PUBLIC);
+                if (lstPost1 != null && !lstPost1.isEmpty()) {
+                    for (Post p1 : lstPost1) {
+                        Div divPostItem = new Div();
+                        divPostItem.setClass("irs-post-item-post-detail post-item-padding");
+                        divPostItem.setParent(irsPost);
+
+                        A linkPostItem = new A();
+                        linkPostItem.setHref(p1.getPostSlug());
+                        linkPostItem.setParent(divPostItem);
+
+                        Image imgPostItem = new Image();
+                        String src = "";
+                        if (p1.getFeaturedImage() != null && !"".equals(p1.getFeaturedImage())) {
+                            src = p1.getFeaturedImage();
+                        }
+                        imgPostItem.setSrc(src);
+                        imgPostItem.setParent(linkPostItem);
+
+                        Div divPostTitle = new Div();
+                        divPostTitle.setClass("irs-post-item-post-detail-title");
+                        divPostTitle.setParent(divPostItem);
+
+                        A aPostItemTitle = new A();
+                        aPostItemTitle.setHref(p1.getPostSlug());
+                        aPostItemTitle.setParent(divPostTitle);
+                        String p1Title = "";
+                        if (p1.getPostTitle() != null && !"".equals(p1.getPostTitle())) {
+                            p1Title = p1.getPostTitle();
+                        }
+
+                        Label lblPostTitleItem = new Label(p1Title);
+                        lblPostTitleItem.setClass("post-title");
+                        lblPostTitleItem.setParent(aPostItemTitle);
+
+                        P spanPostTime = new P();
+                        spanPostTime.setParent(divPostItem);
+
+                        String dateP1 = "";
+                        if (p1.getPostDate() != null && !"".equals(p1.getPostDate())) {
+                            dateP1 = dateFormat.format(p1.getPostDate());
+                        }
+                        Label lblPostItemTime = new Label(dateP1);
+                        lblPostItemTime.setClass("time-post");
+                        lblPostItemTime.setParent(spanPostTime);
+                    }
+                }
+            }
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
         }
     }
 
