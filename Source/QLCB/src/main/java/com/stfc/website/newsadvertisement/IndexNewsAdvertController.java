@@ -213,11 +213,11 @@ public class IndexNewsAdvertController extends SelectorComposer<Div> {
                             for (int i = 0; i < maxPost; i++) {
                                 Document p1 = lstPost1.get(i);
                                 Div divPostItem = new Div();
-                                divPostItem.setClass("irs-post-item-post-detail");
+//                                divPostItem.setClass("irs-post-item-post-detail");
                                 divPostItem.setParent(irsPost);
 
                                 Div divPostTitle = new Div();
-                                divPostTitle.setClass("irs-post-item-post-detail-title-right");
+//                                divPostTitle.setClass("irs-post-item-post-detail-title-right");
                                 divPostTitle.setParent(divPostItem);
 
                                 A aPostItemTitle = new A();

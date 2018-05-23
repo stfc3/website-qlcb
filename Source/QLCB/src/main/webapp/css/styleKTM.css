@@ -112,7 +112,7 @@ h6{font-weight:400;line-height:1.2;color:#000;margin-top:0;margin-bottom:10px;}
 .irs-courses-field{padding:50px 0 50px;}
 .irs-courses-col{text-align:center;margin-bottom:30px;background:#F7F7F7;overflow:hidden;}
 .irs-courses-img{position:relative;overflow:hidden;}
-.index-img{height:200px;margin:0;}
+.index-img{height:165px;margin:0;}
 .irs-blog-single-col .index-img{height:400px;margin:0;}
 .irs-courses-img-two{float:left;width:33%;}
 .irs-courses-img img{background-size:cover;-webkit-transition:all 0.3s ease-in-out;-moz-transition:all 0.3s ease-in-out;-ms-transition:all 0.3s ease-in-out;-o-transition:all 0.3s ease-in-out;transition:all 0.3s ease-in-out;}
@@ -853,4 +853,7 @@ form[role=login] > div {
         height: 280px;
         margin-top: 50px;
     }
+}
+.index-img img {
+    height: 165px;
 }

@@ -63,8 +63,8 @@
                     <div class="col-md-6" style="height:230px;">
                         <div class="irs-footer-link">
                             <x:h4 class="irs-footer-heading">Chỉ dẫn đường đi</x:h4>
-                            <gmaps lat="21.023726" lng="105.808993" version="3.26" id="gmaps" style="width:100%; height:180px;" showSmallCtrl="true" protocol="https">
-                                <gmarker id="marker" lat="21.023726" lng="105.808993" content="54 NCT"/>
+                            <gmaps lat="21.071642" lng="105.773788" version="3.26" id="gmaps" style="width:360px; height:180px;" showSmallCtrl="true" protocol="https">
+                                <gmarker id="marker" lat="21.071642" lng="105.773788" content="54 NCT"/>
                             </gmaps>
                         </div>
                     </div>
