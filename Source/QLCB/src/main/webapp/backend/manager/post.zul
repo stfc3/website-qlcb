@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<zk xmlns:n="native">
+    <window apply="com.stfc.backend.controller.PostComposer">
+
+        <groupbox>
+            <caption label="${c:l('post.caption')}" />
+            <hlayout spacing="10px">
+                <hbox hflex="1" />
+                <hbox hflex="2">
+                    <label hflex="1" value="${c:l('post.title')}" />
+                    <textbox hflex="3" id="postTitle" onBlur="self.value=self.value.trim()" />
+                </hbox>
+                <hbox hflex="1" />
+                <hbox hflex="2">
+                    <label hflex="1" value="${c:l('post.status')}" />
+                    <combobox id="postStatus" buttonVisible="true" autocomplete="true" value="${c:l('option')}" hflex="3" >
+                        <comboitem  label="${c:l('option')}"/>
+                        <comboitem value="0" label="${c:l('post.status.delete')}"/>
+                        <comboitem value="1" label="${c:l('post.status.draff')}"/>
+                        <comboitem value="4" label="${c:l('post.status.review')}"/>
+                        <comboitem value="3" label="${c:l('post.status.public')}"/>
+                    </combobox>
+                </hbox>
+                <hbox hflex="1" />
+            </hlayout>
+            <space height="20px"></space>
+            <hlayout>
+                <hbox hflex="1" />
+
+                <hbox hflex="2">
+                    <label hflex="1" value="${c:l('post.fromDate')}" />
+                    <datebox id="fromDate" format="dd/MM/yyyy" hflex="3"/>
+                </hbox>
+                <hbox hflex="1" />
+                <hbox hflex="2">
+                    <label hflex="1" value="${c:l('post.toDate')}" />
+                    <datebox id="toDate" format="dd/MM/yyyy" hflex="3"/>
+                </hbox>
+                <hbox hflex="1" />
+            </hlayout>
+            <space height="20px"></space>
+
+            <space height="20px"></space>
+            <div style="text-align:center">
+                <button class="btn btn-default" mold="trendy"
+                        id="btnSearch" label="${c:l('search')}"
+                        focus="true" iconSclass="z-icon-search" />
+                <button class="btn btn-default" mold="trendy"
+                        id="btnReset" label="${c:l('reset')}" iconSclass="z-icon-refresh" />
+            </div>
+        </groupbox>
+        <groupbox >
+            <caption label="${c:l('post.list')}" />
+            <grid id="listPost" mold="paging" pageSize="10" pagingPosition="both">
+                <columns style="text-align:center; ">
+                    <column hflex="1">${c:l('user.index')}</column>
+                    <column hflex="4">${c:l('post.title')}</column>
+                    <column hflex="2">${c:l('post.createDate')}</column>
+                    <column hflex="2">${c:l('post.author')}</column>
+                    <column hflex="3">${c:l('post.category')}</column>
+                    <column hflex="2">${c:l('post.status')}</column>
+                    <column hflex="1">${c:l('user.action')}</column>
+                </columns>
+                <template name="model">
+                    <row value="${each}">
+                        <cell style="text-align: center;">
+                            <label value="${forEachStatus.index+1}" />
+                        </cell>
+                        <cell style="text-align: left;">
+                            <label value="${each.postTitle}" />
+                        </cell>
+                        <cell style="text-align: left;">
+                            <datebox hflex="1" format="dd/MM/yyyy KK:mm:ss" value="${each.createDate}" inplace="true" readonly="true" buttonVisible="false"/>
+                        </cell>
+                        <cell style="text-align: left;">
+                            <label value="${each.author}" />
+                        </cell>
+                        <cell style="text-align: left;">
+                            <label value="${each.categoryName}" />
+                        </cell>
+                        <cell style="text-align: left;">
+                            <label value="${each.postStatusStr}" />
+                        </cell>
+                        <cell style="text-align: center;">
+                            <a class="btn-cursor" iconSclass="z-icon-pencil" forward="onClick=onEdit" tooltiptext="${c:l('edit')}" />
+                            <a class="btn-cursor" iconSclass="z-icon-paper-plane" forward="onClick=onPublish" tooltiptext="${c:l('publish')}" />
+                            <a class="btn-cursor" iconSclass="z-icon-trash" forward="onClick=onDelete" tooltiptext="${c:l('delete')}" />
+                        </cell>
+                    </row>
+                </template>
+            </grid>
+        </groupbox>
+    </window>
+</zk>

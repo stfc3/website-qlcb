@@ -39,7 +39,7 @@ public interface Constants {
     String STFC_ID_ATTRIBUTE = "stfc-id";
     String PAGE_CATEGORY = "manager/category.zul";
     String PAGE_ADD_POST = "manager/addEditPost.zul";
-    String PAGE_LIST_POST = "manager/listPost.zul";
+    String PAGE_LIST_POST = "manager/post.zul";
     String PAGE_USER = "manager/user.zul";
     String PAGE_WIDGET = "manager/widget.zul";
     String PAGE_MENU = "manager/menu.zul";

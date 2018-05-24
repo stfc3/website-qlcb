@@ -4,6 +4,7 @@ import com.stfc.utils.Constants;
 import com.stfc.website.bean.UserToken;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Executions;
+import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zk.ui.select.annotation.Wire;
 import org.zkoss.zk.ui.util.GenericForwardComposer;
 import org.zkoss.zul.Include;
@@ -26,6 +27,7 @@ public class MainComposer extends GenericForwardComposer<Component> {
     @Override
     public void doAfterCompose(Component comp) throws Exception {
         super.doAfterCompose(comp);
+        Executions.getCurrent().getDesktop().getRequestPath();
         if (session.getAttribute(Constants.USER_TOKEN) == null) {
             Executions.sendRedirect(Constants.PAGE_LOGIN);
         } else {

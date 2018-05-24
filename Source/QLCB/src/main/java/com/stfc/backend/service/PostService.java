@@ -2,17 +2,20 @@ package com.stfc.backend.service;
 
 import com.stfc.backend.domain.CategoryPost;
 import com.stfc.backend.domain.Post;
+import java.io.Serializable;
 import java.math.BigInteger;
+import java.util.Date;
 import java.util.List;
 
 public interface PostService {
 
-//    List<Menu> getMenuByType(Integer type);
     List<Post> getPostByType(int isPrivate);
 
-    void saveOrUpdate(Post post);
+    void update(Post post);
+
+    Serializable save(Post post);
 
     void saveCategoryPost(CategoryPost categoryPost);
 
-    BigInteger getId();
+    public List<Post> searchPost(String postTitle, Integer postStatus, Date fromDate, Date toDate);
 }

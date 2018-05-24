@@ -138,8 +138,7 @@ public class AddEditPostComposer extends SelectorComposer<Component> {
             post.setToDate(toDate.getValue());
             post.setCreateDate(new Date());
             post.setModifiedDate(new Date());
-            postService.saveOrUpdate(post);
-            return postService.getId().longValue();
+            return (Long) postService.save(post);
         }
         return ERROR;
     }

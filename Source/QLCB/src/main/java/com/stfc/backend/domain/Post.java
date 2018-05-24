@@ -15,6 +15,8 @@ import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
+import javax.persistence.Transient;
+import org.zkoss.util.resource.Labels;
 
 /**
  *
@@ -24,7 +26,7 @@ import javax.persistence.Temporal;
 @Table(name = "stfc_posts")
 @NamedQuery(name = "Post.getPostByType", query = "FROM Post p WHERE p.postStatus = 3 AND isPrivate = :isPrivate")
 public class Post implements Serializable {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "post_id", unique = false, nullable = true)
@@ -66,6 +68,10 @@ public class Post implements Serializable {
     @Column(name = "modified_date")
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date modifiedDate;
+    @Transient
+    private String categoryName;
+    @Transient
+    private String postStatusStr;
 
     public Long getPostId() {
         return postId;
@@ -203,5 +209,28 @@ public class Post implements Serializable {
         this.modifiedDate = modifiedDate;
     }
 
-    
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
+    }
+
+    public String getPostStatusStr() {
+        if (this.postStatus == 0) {
+            return Labels.getLabel("post.status.delete");
+        }
+        if (this.postStatus == 1) {
+            return Labels.getLabel("post.status.draff");
+        }
+        if (this.postStatus == 3) {
+            return Labels.getLabel("post.status.public");
+        }
+        if (this.postStatus == 4) {
+            return Labels.getLabel("post.status.review");
+        }
+        return "";
+    }
+
 }

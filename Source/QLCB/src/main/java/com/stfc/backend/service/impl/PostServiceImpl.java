@@ -8,7 +8,9 @@ import com.stfc.backend.dao.PostDAO;
 import com.stfc.backend.domain.CategoryPost;
 import com.stfc.backend.domain.Post;
 import com.stfc.backend.service.PostService;
+import java.io.Serializable;
 import java.math.BigInteger;
+import java.util.Date;
 import java.util.List;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,15 +21,15 @@ public class PostServiceImpl implements PostService {
     @Autowired
     PostDAO postDAO;
 
-//    @Transactional(readOnly = true)
-//    @Override
-//    public List<Menu> getMenuByType(Integer type) {
-//        return menuDAO.getMenuByType(type);
-//    }
     @Transactional
     @Override
-    public void saveOrUpdate(Post post) {
-        postDAO.saveOrUpdate(post);
+    public void update(Post post) {
+        postDAO.update(post);
+    }
+    @Transactional
+    @Override
+    public Serializable save(Post post) {
+        return postDAO.save(post);
     }
 
     @Transactional
@@ -38,14 +40,14 @@ public class PostServiceImpl implements PostService {
 
     @Transactional(readOnly = true)
     @Override
-    public BigInteger getId() {
-        return postDAO.getId();
+    public List<Post> getPostByType(int isPrivate) {
+        return postDAO.getPostByType(isPrivate);
     }
 
     @Transactional(readOnly = true)
     @Override
-    public List<Post> getPostByType(int isPrivate) {
-        return postDAO.getPostByType(isPrivate);
+    public List<Post> searchPost(String postTitle, Integer postStatus, Date fromDate, Date toDate) {
+        return postDAO.searchPost(postTitle, postStatus, fromDate, toDate);
     }
 
 }

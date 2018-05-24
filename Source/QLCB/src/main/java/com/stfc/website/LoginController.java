@@ -47,7 +47,9 @@ public class LoginController extends SelectorComposer<Component> {
         super.doAfterCompose(comp);
         try {
             session = (Session) Sessions.getCurrent();
+            Executions.getCurrent().getDesktop().getRequestPath();
             widgetService = (WidgetService) SpringUtil.getBean(SpringConstant.WIDGET_SERVICE);
+            
             if (session.getAttribute(Constants.USER_TOKEN) != null) {
                 Executions.sendRedirect(Constants.BACKEND_PAGE_HOME);
             }

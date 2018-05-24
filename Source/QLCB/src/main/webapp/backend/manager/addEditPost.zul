@@ -41,10 +41,10 @@
                 <caption label="${c:l('post.config')}"/>
                 <div class="row">
                     <div class="col-md-6">
-                        <button id="btnSave" label="${c:l('post.save')}"/>
+                        <button id="btnSave" class="btn btn-default" iconSclass="z-icon-save" label="${c:l('post.save')}"/>
                     </div>
                     <div class="col-md-6">
-                        <button id="btnPreview" label="${c:l('post.preview')}"/>
+                        <button id="btnPreview" class="btn btn-default" iconSclass="z-icon-eye" label="${c:l('post.preview')}"/>
                     </div>
                 </div>
                 <space height="5px"/>
@@ -79,7 +79,7 @@
                 <space height="5px"/>
                 <div class="row">
                     <div class="col-md-12">
-                        <button id="btnPublish" label="${c:l('post.publish')}"/>
+                        <button id="btnPublish" class="btn btn-default" iconSclass="z-icon-paper-plane" label="${c:l('post.publish')}"/>
                     </div>
                 </div>
                 <div class="row">
