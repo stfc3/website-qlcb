@@ -24,6 +24,7 @@ import org.zkoss.zk.ui.select.annotation.Wire;
 import org.zkoss.zk.ui.select.annotation.WireVariable;
 import org.zkoss.zk.ui.util.Clients;
 import org.zkoss.zkplus.spring.SpringUtil;
+import org.zkoss.zul.Button;
 import org.zkoss.zul.Checkbox;
 import org.zkoss.zul.Datebox;
 import org.zkoss.zul.Div;
@@ -51,11 +52,15 @@ public class AddEditPostComposer extends SelectorComposer<Component> {
     Image imageFeature;
     @Wire
     Div main;
+    @Wire
+    Button btnSave;
     private Session session;
     private boolean isPublish;
+    private boolean isEdit;
     private ListModelList<Category> modelCategory;
     private Long ERROR = -1l;
     UserToken userToken;
+    private Post post;
 
     public ListModelList<Category> getModelCategory() {
         return modelCategory;
@@ -71,7 +76,14 @@ public class AddEditPostComposer extends SelectorComposer<Component> {
         session = Sessions.getCurrent();
         if (session.getAttribute(Constants.USER_TOKEN) != null) {
             userToken = (UserToken) session.getAttribute(Constants.USER_TOKEN);
-        } 
+        }
+        if (session.getAttribute(Constants.STFC_POST_ATTRIBUTE) != null) {
+            post = (Post) session.getAttribute(Constants.STFC_POST_ATTRIBUTE);
+            if (post != null) {
+                initPost();
+                isEdit = true;
+            }
+        }
         postService = (PostService) SpringUtil.getBean(SpringConstant.POST_SERVICE);
         loadCategory();
 
@@ -98,7 +110,7 @@ public class AddEditPostComposer extends SelectorComposer<Component> {
             saveCategoryPost(postId);
             clearInput();
         }
-        
+
     }
 
     @Listen("onClick = #btnPublish")
@@ -121,8 +133,12 @@ public class AddEditPostComposer extends SelectorComposer<Component> {
             if (isPrivate.isChecked()) {
                 vintPrivate = 1;
             }
-            Post post = new Post();
-            post.setAuthor(userToken.getUserName());
+            if (post == null) {
+                post = new Post();
+            }
+            if (!isEdit) {
+                post.setAuthor(userToken.getUserName());
+            }
             post.setPostTitle(postTitle.getValue());
             post.setPostExcerpt(postExcerpt.getValue());
             post.setPostContent(postContent.getValue());
@@ -131,19 +147,27 @@ public class AddEditPostComposer extends SelectorComposer<Component> {
             post.setFeaturedImage(imageFeature.getSrc());
             post.setPostSlug(Constants.PREFIX_SLUG_POST + postSlug.getValue());
             post.setPostStatus(status);
-            if (isPublish) {
+            if (isPublish && post.getPostDate() == null) {
                 post.setPostDate(new Date());
             }
             post.setFromDate(fromDate.getValue());
             post.setToDate(toDate.getValue());
-            post.setCreateDate(new Date());
+            if (!isEdit) {
+                post.setCreateDate(new Date());
+            }
             post.setModifiedDate(new Date());
-            return (Long) postService.save(post);
+            if (!isEdit) {
+                return (Long) postService.save(post);
+            } else {
+                postService.update(post);
+                return post.getPostId();
+            }
         }
         return ERROR;
     }
 
     private void saveCategoryPost(Long postId) {
+        postService.deleteCategoryByPostId(postId);
         List<Category> lstCate = new ArrayList<>(modelCategory.getSelection());
         if (!lstCate.isEmpty()) {
             for (Category vcategory : lstCate) {
@@ -158,6 +182,8 @@ public class AddEditPostComposer extends SelectorComposer<Component> {
     }
 
     private void clearInput() {
+        post = null;
+        isEdit = false;
         postTitle.setValue("");
         postSlug.setValue("");
         postExcerpt.setValue("");
@@ -205,6 +231,27 @@ public class AddEditPostComposer extends SelectorComposer<Component> {
             return false;
         }
         return true;
+    }
+
+    private void initPost() {
+        btnSave.setVisible(false);
+        postTitle.setValue(post.getPostTitle());
+        postExcerpt.setValue(post.getPostExcerpt());
+        postContent.setValue(post.getPostContent());
+        postSlug.setValue(post.getPostSlug());
+        if (post.getIsPin() == 1) {
+            isPin.setChecked(true);
+        } else {
+            isPin.setChecked(false);
+        }
+        if (post.getIsPrivate() == 1) {
+            isPrivate.setChecked(true);
+        } else {
+            isPrivate.setChecked(false);
+        }
+        fromDate.setValue(post.getFromDate());
+        toDate.setValue(post.getToDate());
+        imageFeature.setSrc(post.getFeaturedImage());
     }
 
 }

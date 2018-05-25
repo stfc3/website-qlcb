@@ -37,6 +37,7 @@ public interface Constants {
 
     String STFC_URL_ATTRIBUTE = "stfc-url";
     String STFC_ID_ATTRIBUTE = "stfc-id";
+    String STFC_POST_ATTRIBUTE = "stfc-post";
     String PAGE_CATEGORY = "manager/category.zul";
     String PAGE_ADD_POST = "manager/addEditPost.zul";
     String PAGE_LIST_POST = "manager/post.zul";
@@ -74,10 +75,10 @@ public interface Constants {
     Integer ROLE_EDITOR = 2;
     Integer ROLE_AUTHOR = 3;
     Integer ROLE_CONTRIBUTOR = 4;
-    
+
     public static final String CATEGORY_LEGISLATION = "CATEGORY_LEGISLATION";
     public static final String PREFIX_SLUG_DOCUMENT = "/doc/";
-	
-	public static final String KEY_COMPATE_NEW_POST = "KEY_COMPATE_NEW_POST";
+
+    public static final String KEY_COMPATE_NEW_POST = "KEY_COMPATE_NEW_POST";
 
 }

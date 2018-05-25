@@ -26,6 +26,7 @@ public class PostServiceImpl implements PostService {
     public void update(Post post) {
         postDAO.update(post);
     }
+
     @Transactional
     @Override
     public Serializable save(Post post) {
@@ -36,6 +37,12 @@ public class PostServiceImpl implements PostService {
     @Override
     public void saveCategoryPost(CategoryPost categoryPost) {
         postDAO.saveCategoryPost(categoryPost);
+    }
+
+    @Transactional
+    @Override
+    public void deleteCategoryByPostId(Long postId) {
+        postDAO.deleteCategoryByPostId(postId);
     }
 
     @Transactional(readOnly = true)

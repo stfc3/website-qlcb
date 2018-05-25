@@ -4,7 +4,6 @@ import com.stfc.utils.Constants;
 import com.stfc.website.bean.UserToken;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Executions;
-import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zk.ui.select.annotation.Wire;
 import org.zkoss.zk.ui.util.GenericForwardComposer;
 import org.zkoss.zul.Include;
@@ -68,6 +67,7 @@ public class MainComposer extends GenericForwardComposer<Component> {
     }
 
     public void onClick$addPost() {
+        session.setAttribute(Constants.STFC_POST_ATTRIBUTE, null);
         content.setSrc(Constants.PAGE_ADD_POST);
         breadcrumb.setValue(addPost.getLabel());
     }

@@ -16,6 +16,8 @@ public interface PostService {
     Serializable save(Post post);
 
     void saveCategoryPost(CategoryPost categoryPost);
+    
+    void deleteCategoryByPostId(Long postId);
 
     public List<Post> searchPost(String postTitle, Integer postStatus, Date fromDate, Date toDate);
 }

@@ -111,9 +111,11 @@ public class PostDAO {
         getCurrentSession().save(categoryPost);
     }
 
-    public BigInteger getId() {
-        Query query = getCurrentSession().createSQLQuery("SELECT LAST_INSERT_ID()");
-        return (BigInteger) query.list().get(0);
+    public void deleteCategoryByPostId(Long postId) {
+        String sql = "DELETE CategoryPost WHERE postId = :postId";
+        Query query = getCurrentSession().createQuery(sql);
+        query.setParameter("postId", postId);
+        query.executeUpdate();
     }
 
 }

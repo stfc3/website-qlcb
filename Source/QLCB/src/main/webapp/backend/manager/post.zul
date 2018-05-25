@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <zk xmlns:n="native">
-    <window apply="com.stfc.backend.controller.PostComposer">
+    <window id="winPost" apply="com.stfc.backend.controller.PostComposer">
 
         <groupbox>
             <caption label="${c:l('post.caption')}" />
@@ -83,9 +83,12 @@
                             <label value="${each.postStatusStr}" />
                         </cell>
                         <cell style="text-align: center;">
-                            <a class="btn-cursor" iconSclass="z-icon-pencil" forward="onClick=onEdit" tooltiptext="${c:l('edit')}" />
-                            <a class="btn-cursor" iconSclass="z-icon-paper-plane" forward="onClick=onPublish" tooltiptext="${c:l('publish')}" />
-                            <a class="btn-cursor" iconSclass="z-icon-trash" forward="onClick=onDelete" tooltiptext="${c:l('delete')}" />
+                            <a class="btn-cursor" iconSclass="z-icon-pencil" forward="listPost.onEdit" tooltiptext="${c:l('edit')}" 
+                            visible="${each.postStatus == 0 ? 'false' : 'true'}"/>
+                            <a class="btn-cursor" iconSclass="z-icon-paper-plane" forward="listPost.onPublish" tooltiptext="${c:l('publish')}" 
+                            visible="${each.postStatus == 4 ? 'true' : 'false'}"/>
+                            <a class="btn-cursor" iconSclass="z-icon-trash" forward="listPost.onDelete" tooltiptext="${c:l('delete')}" 
+                            visible="${each.postStatus == 0 ? 'false' : 'true'}"/>
                         </cell>
                     </row>
                 </template>

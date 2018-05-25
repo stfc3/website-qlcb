@@ -176,6 +176,8 @@ public class DocumentDetailController extends SelectorComposer<Div> {
                 htmPostContent.setMaxcolumns(5000);
                 htmPostContent.setPreloadColumnSize(100);
                 htmPostContent.setPreloadRowSize(100);
+                htmPostContent.setWidth("100%");
+                htmPostContent.setHeight("600px");
 
                 htmPostContent.setClass("documentIframe");
                 if (plstDocument.get(0).getDocumentPath() != null && !"".equals(plstDocument.get(0).getDocumentPath())) {
