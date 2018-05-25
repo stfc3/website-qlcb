@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<zk xmlns:n="native">
+    <window id="enrollManager"
+            apply="com.stfc.backend.controller.EnrollController">
+
+        <groupbox>
+            <caption label="${c:l('enroll.title.report')}" />
+            <hlayout spacing="10px">
+                <hbox hflex="1" />
+                <hbox hflex="2">
+                    <label hflex="2" value="${c:l('enroll.student.name')}" />
+                    <textbox hflex="3" id="txtStudentName"
+                             onBlur="self.value=self.value.trim()" />
+                </hbox>
+                <hbox hflex="1" />
+                <hbox hflex="2">
+                    <label hflex="1" value="${c:l('enroll.student.phone')}" />
+                    <textbox hflex="3" id="txtPhone"
+                             onBlur="self.value=self.value.trim()" />
+                </hbox>
+                <hbox hflex="1" />
+            </hlayout>
+            <space height="20px"></space>
+            <hlayout>
+                <hbox hflex="1" />
+
+                <hbox hflex="2">
+                    <label hflex="2" value="${c:l('enroll.student.email')}" />
+                    <textbox hflex="3" id="txtEmail"
+                             onBlur="self.value=self.value.trim()" />
+                </hbox>
+                <hbox hflex="1" />
+                <hbox hflex="2">
+                    <label hflex="1" value="${c:l('enroll.student.class')}" />
+                    <combobox id="cbxClass" value="${c:l('option')}"
+                              model="${$composer.listModelType}" autodrop="true"
+                              buttonVisible="true" hflex="3">
+                        <template name="model">
+                            <comboitem value="${each.classId}"
+                                       label="${each.className}" />
+                        </template>
+                    </combobox>
+                </hbox>
+                <hbox hflex="1" />
+            </hlayout>
+            <space height="20px"></space>
+            
+            <div style="text-align:center">
+                <button class="btn btn-default" mold="trendy"
+                        id="btnSearch" forward="onClick=onSearch" label="${c:l('search')}"
+                        focus="true" iconSclass="z-icon-search" />
+                <button class="btn btn-default" mold="trendy"
+                        id="btnAdd" label="${c:l('export')}" iconSclass="z-icon-file-excel-o" />
+        
+                <button class="btn btn-default" mold="trendy"
+                        id="btnReset" forward="onClick=onRefresh" label="${c:l('reset')}" iconSclass="z-icon-refresh" />
+            </div>
+        </groupbox>
+        <groupbox id="graction" visible="true">
+            <caption id="lstActionId" visible="true"
+                     label="${c:l('enroll.list')}" />
+            <grid id="gridEnroll" mold="paging" pageSize="10"
+                  pagingPosition="both">
+
+                <columns style="text-align:center; ">
+                    <column hflex="1">${c:l('user.index')}</column>
+                    <column hflex="2">${c:l('enroll.student.name')}</column>
+                    <column hflex="2">${c:l('enroll.student.phone')}</column>
+                    <column hflex="2">${c:l('enroll.student.email')}</column>
+                    <column hflex="4">${c:l('enroll.student.class')}</column>
+                </columns>
+                <template name="model">
+                    <row value="${each}">
+                        <cell style="text-align: center;">
+                            <label value="${forEachStatus.index+1}" />
+                        </cell>
+                        <cell style="text-align: left;">
+                            <label value="${each.studentName}" />
+                        </cell>
+                        <cell style="text-align: right;">
+                            <label value="${each.phone}" />
+                        </cell>
+                        <cell style="text-align: left;">
+                            <label value="${each.email}" />
+                        </cell>
+                        <cell style="text-align: left;">
+                            <label value="${each.className}" />
+                        </cell>
+                        
+                    </row>
+                </template>
+            </grid>
+
+        </groupbox>
+        <button id="reloadData" visible="false" />
+    </window>
+</zk>

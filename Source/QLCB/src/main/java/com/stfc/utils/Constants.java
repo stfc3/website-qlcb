@@ -45,6 +45,8 @@ public interface Constants {
     String PAGE_MENU = "manager/menu.zul";
     String PAGE_DOCUMENT = "manager/document.zul";
     String PAGE_BANNER = "manager/banner.zul";
+    String PAGE_ENROLL = "manager/enroll.zul";
+    String PAGE_FEEDBACK = "manager/feedback.zul";
 
     public static final String WIDGET_POSITION_INTERNAL = "INTERNAL_CONTENT";
     public static final String WIDGET_CONTENT_TYPE_CATEGORY_INTERNAL = "CATEGORY_INTERNAL";

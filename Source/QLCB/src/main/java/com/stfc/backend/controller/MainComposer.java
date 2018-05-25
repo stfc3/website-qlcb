@@ -15,7 +15,7 @@ import org.zkoss.zul.Menuitem;
 public class MainComposer extends GenericForwardComposer<Component> {
 
     @Wire
-    Menuitem category, document, user, menu, addPost, listPost, widget, banner;
+    Menuitem category, document, user, menu, addPost, listPost, widget, banner, enroll, feedback;
     @Wire
     Menu post;
     @Wire
@@ -34,7 +34,7 @@ public class MainComposer extends GenericForwardComposer<Component> {
             userToken = (UserToken) session.getAttribute(Constants.USER_TOKEN);
             loadMenu();
         }
-        
+
     }
 
     private void loadMenu() {
@@ -57,6 +57,8 @@ public class MainComposer extends GenericForwardComposer<Component> {
             listPost.setVisible(true);
             widget.setVisible(true);
             banner.setVisible(true);
+            enroll.setVisible(true);
+            feedback.setVisible(true);
         }
     }
 
@@ -98,6 +100,16 @@ public class MainComposer extends GenericForwardComposer<Component> {
     public void onClick$banner() {
         content.setSrc(Constants.PAGE_BANNER);
         breadcrumb.setValue(banner.getLabel());
+    }
+
+    public void onClick$enroll() {
+        content.setSrc(Constants.PAGE_ENROLL);
+        breadcrumb.setValue(enroll.getLabel());
+    }
+
+    public void onClick$feedback() {
+        content.setSrc(Constants.PAGE_FEEDBACK);
+        breadcrumb.setValue(feedback.getLabel());
     }
 
 }
