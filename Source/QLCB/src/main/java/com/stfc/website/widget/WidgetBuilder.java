@@ -5,11 +5,15 @@
  */
 package com.stfc.website.widget;
 
+import com.stfc.utils.Common;
+import com.stfc.utils.Constants;
 import com.stfc.website.bean.Banner;
 import com.stfc.website.bean.Post;
 import com.stfc.website.bean.WidgetContent;
 import com.stfc.website.bean.WidgetMapContent;
+import com.stfc.website.domain.Param;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import org.zkoss.zhtml.H4;
 import org.zkoss.zk.ui.Component;
@@ -28,7 +32,7 @@ import org.zkoss.zul.Span;
  */
 public class WidgetBuilder {
 
-    private SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm:ss dd/mm/yyyy");
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
 
     public void buildBanner(List<Banner> plstBanner, Component indexSlider, String urlImage) {
         Div slider;
@@ -95,17 +99,18 @@ public class WidgetBuilder {
         divBlogCol.setParent(divColMd4);
 
         Div divIrsPost = new Div();
-        divIrsPost.setSclass("irs-post");
+//        divIrsPost.setSclass("irs-post");
         divIrsPost.setParent(divBlogCol);
 
         Div divTitle = new Div();
-        divTitle.setSclass("title-category-hot border-bottom-title-category-hot");
+        divTitle.setSclass("title-category-hot");
         divTitle.setParent(divIrsPost);
 
         H2 h2Title = new H2();
         h2Title.setParent(divTitle);
 
         Span spanTitle = new Span();
+        spanTitle.setClass("irs-sidebar-title-right");
         spanTitle.setParent(h2Title);
 
         Label lblFunctionName = new Label(titleNotice);
@@ -131,14 +136,24 @@ public class WidgetBuilder {
                 Label lblPostTitle = new Label(p.getPostTitle());
 //                lblPostTitle.setClass("post-title");
                 lblPostTitle.setParent(h4Post);
+                int datePostPrimary = Integer.parseInt(dateFormat.format(p.getPostDate()));
+                int dateNow = Integer.parseInt(dateFormat.format(new Date()));
+                Param param = Common.getParamByKey(Constants.KEY_COMPATE_NEW_POST);
+                if (param != null && param.getParamValue() != null) {
+                    int dateCompate = Integer.parseInt(param.getParamValue());
+                    if (dateNow - datePostPrimary <= dateCompate) {
+                        Div divNew = new Div();
+                        divNew.setClass("new_flash");
+                        divNew.setParent(h4Post);
+                    }
+                }
 
-                P spanPostTime = new P();
-                spanPostTime.setParent(divContentPostItem);
-
-                String datePostPrimary = dateFormat.format(p.getPostDate());
-                Label lblPostItemTime = new Label(datePostPrimary);
-                lblPostItemTime.setClass("time-hot");
-                lblPostItemTime.setParent(spanPostTime);
+//                P spanPostTime = new P();
+//                spanPostTime.setParent(divContentPostItem);
+//                String datePostPrimary = dateFormat.format(p.getPostDate());
+//                Label lblPostItemTime = new Label(datePostPrimary);
+//                lblPostItemTime.setClass("time-hot");
+//                lblPostItemTime.setParent(spanPostTime);
             }
         }
 
@@ -146,10 +161,10 @@ public class WidgetBuilder {
 
     public void buildFooter(WidgetMapContent wg, Component addWidgetIndex) {
         if (wg.getListContent() != null && !wg.getListContent().isEmpty()) {
-            int intWidgetContent = wg.getListContent().size();
-            Div divFooter = new Div();
-            divFooter.setClass("irs-footer-field");
-            divFooter.setParent(addWidgetIndex);
+//            int intWidgetContent = wg.getListContent().size();
+//            Div divFooter = new Div();
+//            divFooter.setClass("irs-footer-field");
+//            divFooter.setParent(addWidgetIndex);
 
 //            Div divContainer = new Div();
 //            divContainer.setSclass("container");

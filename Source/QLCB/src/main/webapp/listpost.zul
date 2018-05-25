@@ -10,7 +10,7 @@
 <?link href="css/style.css" rel="stylesheet" type="text/css"?>
 <?link href="css/responsive.css" rel="stylesheet" type="text/css"?>
 <?link href="css/styleKTM.css" rel="stylesheet" type="text/css"?>
-
+<?link href="css/gzip.css" rel="stylesheet" type="text/css"?>
 
 <zk xmlns:x="xhtml" xmlns:zk="zk">    
     <div apply="com.stfc.website.newsadvertisement.ListPostNewsAdvertController">
@@ -62,8 +62,8 @@
                 <div class="row animatedParent animateOnce animateOnce">
                     <div class="col-md-6" style="height:230px;">
                         <div class="irs-footer-link">
-                            <x:h4 class="irs-footer-heading">Chỉ dẫn đường đi</x:h4>
-                            <gmaps lat="21.071642" lng="105.773788" version="3.26" id="gmaps" style="width:360px; height:180px;" showSmallCtrl="true" protocol="https">
+                            <x:h4 class="irs-footer-heading">CHỈ DẪN ĐƯỜNG ĐI</x:h4>
+                            <gmaps lat="21.071642" lng="105.773788" version="3.26" id="gmaps" style="width:300px; height:150px;" showSmallCtrl="true" protocol="https">
                                 <gmarker id="marker" lat="21.071642" lng="105.773788" content="54 NCT"/>
                             </gmaps>
                         </div>

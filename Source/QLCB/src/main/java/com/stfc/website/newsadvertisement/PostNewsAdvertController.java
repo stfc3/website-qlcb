@@ -298,16 +298,16 @@ public class PostNewsAdvertController extends SelectorComposer<Div> {
                         lblPostTitleItem.setClass("post-title");
                         lblPostTitleItem.setParent(aPostItemTitle);
 
-                        P spanPostTime = new P();
-                        spanPostTime.setParent(divPostItem);
-
-                        String dateP1 = "";
-                        if (p1.getPostDate() != null && !"".equals(p1.getPostDate())) {
-                            dateP1 = dateFormat.format(p1.getPostDate());
-                        }
-                        Label lblPostItemTime = new Label(dateP1);
-                        lblPostItemTime.setClass("time-post");
-                        lblPostItemTime.setParent(spanPostTime);
+//                        P spanPostTime = new P();
+//                        spanPostTime.setParent(divPostItem);
+//
+//                        String dateP1 = "";
+//                        if (p1.getPostDate() != null && !"".equals(p1.getPostDate())) {
+//                            dateP1 = dateFormat.format(p1.getPostDate());
+//                        }
+//                        Label lblPostItemTime = new Label(dateP1);
+//                        lblPostItemTime.setClass("time-post");
+//                        lblPostItemTime.setParent(spanPostTime);
                     }
                 }
             }

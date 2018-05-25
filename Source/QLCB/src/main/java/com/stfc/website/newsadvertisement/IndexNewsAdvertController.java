@@ -62,7 +62,7 @@ public class IndexNewsAdvertController extends SelectorComposer<Div> {
     @WireVariable
     protected WidgetService widgetService;
 
-    private SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm:ss dd/mm/yyyy");
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm:ss dd/MM/yyyy");
     private WidgetBuilder widgetBuilder = new WidgetBuilder();
     private String urlImage;
     private Common com = new Common();
@@ -536,13 +536,13 @@ public class IndexNewsAdvertController extends SelectorComposer<Div> {
                     lblPostTitle.setClass("post-title");
                     lblPostTitle.setParent(aPostItemTitle);
 
-                    P spanPostTime = new P();
-                    spanPostTime.setParent(divPostItem);
-
-                    String datePostPrimary = dateFormat.format(p.getPostDate());
-                    Label lblPostItemTime = new Label(datePostPrimary);
-                    lblPostItemTime.setClass("time-post");
-                    lblPostItemTime.setParent(spanPostTime);
+//                    P spanPostTime = new P();
+//                    spanPostTime.setParent(divPostItem);
+//
+//                    String datePostPrimary = dateFormat.format(p.getPostDate());
+//                    Label lblPostItemTime = new Label(datePostPrimary);
+//                    lblPostItemTime.setClass("time-post");
+//                    lblPostItemTime.setParent(spanPostTime);
                 }
             }
 
@@ -694,13 +694,13 @@ public class IndexNewsAdvertController extends SelectorComposer<Div> {
                             lblPostTitle.setClass("post-title");
                             lblPostTitle.setParent(aPostItemTitle);
 
-                            P spanPostTime = new P();
-                            spanPostTime.setParent(divContentPostItem);
-
-                            String datePostPrimary = dateFormat.format(p.getPostDate());
-                            Label lblPostItemTime = new Label(datePostPrimary);
-                            lblPostItemTime.setClass("time-post");
-                            lblPostItemTime.setParent(spanPostTime);
+//                            P spanPostTime = new P();
+//                            spanPostTime.setParent(divContentPostItem);
+//
+//                            String datePostPrimary = dateFormat.format(p.getPostDate());
+//                            Label lblPostItemTime = new Label(datePostPrimary);
+//                            lblPostItemTime.setClass("time-post");
+//                            lblPostItemTime.setParent(spanPostTime);
                         }
                     }
                 }

@@ -31,8 +31,16 @@
         <to>/internalpage.zul</to>
     </rule>
     <rule match-type="wildcard">
+        <from>/van-ban-noi-bo</from>
+        <to>/documentpage.zul</to>
+    </rule>
+    <rule match-type="wildcard">
         <from>/thoi-khoa-bieu</from>
         <to>/classschedule.zul</to>
+    </rule>
+    <rule match-type="wildcard">
+        <from>/gop-y</from>
+        <to>/feedback.zul</to>
     </rule>
 <!--    <rule match-type="wildcard">
         <from>/</from>

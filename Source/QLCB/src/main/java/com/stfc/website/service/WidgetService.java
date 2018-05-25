@@ -16,6 +16,7 @@ import com.stfc.website.domain.Param;
 import java.util.List;
 import com.stfc.website.domain.Class;
 import com.stfc.website.domain.EnrollStudent;
+import com.stfc.website.domain.Feedback;
 
 /**
  *
@@ -58,4 +59,6 @@ public interface WidgetService {
     List<Document> getDocumentByCategoryId(Long categoryId);
     
     List<Document> getClassSchedule();
+    
+    void insertFeedback(Feedback feedback);
 }

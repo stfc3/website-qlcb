@@ -75,5 +75,7 @@ public interface Constants {
     
     public static final String CATEGORY_LEGISLATION = "CATEGORY_LEGISLATION";
     public static final String PREFIX_SLUG_DOCUMENT = "/doc/";
+	
+	public static final String KEY_COMPATE_NEW_POST = "KEY_COMPATE_NEW_POST";
 
 }

@@ -19,8 +19,7 @@ import com.stfc.website.domain.Category;
 import com.stfc.website.domain.Param;
 import com.stfc.website.service.WidgetService;
 import com.stfc.website.widget.WidgetBuilder;
-import com.stfc.website.domain.Class;
-import com.stfc.website.domain.EnrollStudent;
+import com.stfc.website.domain.Feedback;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,10 +37,8 @@ import org.zkoss.zk.ui.select.annotation.Listen;
 import org.zkoss.zk.ui.select.annotation.WireVariable;
 import org.zkoss.zkplus.spring.SpringUtil;
 import org.zkoss.zul.A;
-import org.zkoss.zul.Combobox;
 import org.zkoss.zul.Html;
 import org.zkoss.zul.Image;
-import org.zkoss.zul.ListModelList;
 import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Textbox;
 
@@ -49,9 +46,9 @@ import org.zkoss.zul.Textbox;
  *
  * @author daond
  */
-public class EnrollStudentsController extends SelectorComposer<Div> {
+public class FeedbackController extends SelectorComposer<Div> {
 
-    private static final Logger logger = Logger.getLogger(EnrollStudentsController.class);
+    private static final Logger logger = Logger.getLogger(FeedbackController.class);
     @Wire
     Div indexSlider;
 
@@ -67,18 +64,14 @@ public class EnrollStudentsController extends SelectorComposer<Div> {
     @Wire
     private Textbox name;
 
-//    @Wire
-//    private Datebox birthday;
     @Wire
     private Textbox email;
 
-//    @Wire
-//    private Textbox address;
     @Wire
     private Textbox phone;
 
     @Wire
-    private Combobox cbxClass;
+    private Textbox content;
 
     @Wire
     private Label mesg;
@@ -93,9 +86,6 @@ public class EnrollStudentsController extends SelectorComposer<Div> {
     private String urlImage;
 
     private Common com = new Common();
-
-    private List<Class> lstClass;
-    ListModelList<Class> listDataModelFilter;
 
     @Override
     public void doAfterCompose(Div comp) throws Exception {
@@ -122,9 +112,6 @@ public class EnrollStudentsController extends SelectorComposer<Div> {
         } else if (lstBanner != null && !lstBanner.isEmpty()) {
             widgetBuilder.buildBanner(lstBanner, indexSlider, urlImage);
         }
-        lstClass = widgetService.getAllClass();
-        listDataModelFilter = new ListModelList(lstClass);
-        cbxClass.setModel(listDataModelFilter);
 
         List<WidgetMapContent> vlstWidget = new ArrayList<>(Memory.getListWidgetMapContentCache().values());
 //        List<Post> lstPostRight = widgetService.getPost(Memory.getLstCategoryId(), Constants.POST_IS_PUBLIC);
@@ -144,22 +131,16 @@ public class EnrollStudentsController extends SelectorComposer<Div> {
 
     @Listen("onClick = #btnRegisterStudent")
     public void registerStudent() {
-        Long classId = -1L;
-        if (cbxClass.getSelectedItem() != null) {
-            classId = cbxClass.getSelectedItem().getValue();
-        }
-        int validate = validateRegister(name.getValue(), email.getValue(), phone.getValue(), classId);
+        int validate = validateRegister(name.getValue(), email.getValue(), phone.getValue(), content.getValue());
         switch (validate) {
             case 0:
                 //Luu
-                EnrollStudent student = new EnrollStudent();
-                student.setStudentName(name.getValue());
-//                student.setBirthday(dateFormat.format(birthday.getValue()));
-//                student.setAddress(address.getValue());
-                student.setEmail(email.getValue());
-                student.setPhone(phone.getValue());
-                student.setClassId(classId);
-                widgetService.insertStudent(student);
+                Feedback feedback = new Feedback();
+                feedback.setName(name.getValue());
+                feedback.setEmail(email.getValue());
+                feedback.setPhone(phone.getValue());
+                feedback.setContent(content.getValue());
+                widgetService.insertFeedback(feedback);
                 Messagebox.show(Labels.getLabel("enrollstudents.message.content", new String[]{}), Labels.getLabel("enrollstudents.message.title"), Messagebox.OK, Messagebox.INFORMATION);
                 break;
             case 1:
@@ -179,20 +160,12 @@ public class EnrollStudentsController extends SelectorComposer<Div> {
     }
 
     private int validateRegister(String name, String email, String phone,
-            Long classId) {
+            String content) {
         if (!StringUtils.valiString(name) || !StringUtils.valiString(email)
                 || !StringUtils.valiString(phone)
-                || classId == -1L) {
+                || !StringUtils.valiString(content)) {
             return -1;
         }
-//        if (!StringUtils.isValidEmailAddress(String.valueOf(birthday))) {
-//            try {
-//                DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-//                df.format(birthday);
-//            } catch (Exception e) {
-//                return 1;
-//            }
-//        }
         if (!StringUtils.isValidEmailAddress(email)) {
             return 2;
         }

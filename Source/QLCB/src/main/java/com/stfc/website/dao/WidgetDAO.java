@@ -14,6 +14,7 @@ import com.stfc.website.domain.Class;
 import com.stfc.website.bean.WidgetContent;
 import com.stfc.website.domain.Category;
 import com.stfc.website.domain.EnrollStudent;
+import com.stfc.website.domain.Feedback;
 import com.stfc.website.domain.Param;
 import java.util.List;
 import org.apache.log4j.Logger;
@@ -518,5 +519,13 @@ public class WidgetDAO {
             logger.error(e.getMessage(), e);
         }
         return null;
+    }
+    
+    public void insertFeedback(Feedback feedback) {
+        try {
+            getCurrentSession().saveOrUpdate(feedback);
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+        }
     }
 }

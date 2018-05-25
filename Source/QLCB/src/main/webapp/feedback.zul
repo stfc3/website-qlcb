@@ -14,7 +14,7 @@
 
 
 <zk xmlns:x="xhtml" xmlns:zk="zk">    
-    <div apply="com.stfc.website.newsadvertisement.EnrollStudentsController" class="enrollstudents">
+    <div apply="com.stfc.website.newsadvertisement.FeedbackController" class="enrollstudents">
         <include src="/header.zul"/>
         <!-- Main Header end -->
         <!-- Slider -->
@@ -48,7 +48,7 @@
                         <div class="col-md-12">
                             <div class="login-form">
                                 <x:form method="post" action="#" role="login">
-                                    <label value="${c:l('enrollstudents.title')} " class="enrollstudents-title"></label>
+                                    <label value="${c:l('feedback.title')} " class="enrollstudents-title"></label>
                                     <div class="row">
                                         <div class="col-md-2"></div>
                                         <div class="col-md-2 div-title-margin-input">
@@ -82,42 +82,15 @@
                                         </div>
                                         <div class="col-md-2"></div>
                                     </div>
-<!--                                    <div class="row">
-                                        <div class="col-md-2"></div>
-                                        <div class="col-md-2 div-title-margin-input">
-                                            <label value="${c:l('enrollstudents.birthday')}: " class="title-input"></label>
-                                            <label style="color:red" value="*"/>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <datebox id="birthday" format="dd/MM/yyyy" placeholder="${c:l('enrollstudents.birthday')}" class="register-birthday "/>
-                                        </div>
-                                        <div class="col-md-2"></div>
-                                    </div>-->
-<!--                                    <div class="row">
-                                        <div class="col-md-2"></div>
-                                        <div class="col-md-2 div-title-margin-input">
-                                            <label value="${c:l('enrollstudents.address')}: " class="title-input"></label>
-                                            <label style="color:red" value="*"/>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <textbox id="address" placeholder="${c:l('enrollstudents.address')}" type="text" class="form-control input-lg"/>
-                                        </div>
-                                        <div class="col-md-2"></div>
-                                    </div>-->
                                     
                                     <div class="row">
                                         <div class="col-md-2"></div>
                                         <div class="col-md-2 div-title-margin-input">
-                                            <label value="${c:l('enrollstudents.class')}: " class="title-input"></label>
+                                            <label value="${c:l('feedback.content')}: " class="title-input"></label>
                                             <label style="color:red" value="*"/>
                                         </div>
                                         <div class="col-md-6">
-                                            <combobox  hflex="1" id="cbxClass" autodrop="true" placeholder="${c:l('enrollstudents.class')}"
-                                                       buttonVisible="true" class="register-birthday ">
-                                                <template name="model">
-                                                    <comboitem value="${each.classId}" label="${each.className}" />
-                                                </template>
-                                            </combobox>
+                                            <textbox id="content" placeholder="${c:l('feedback.content')}" type="text" class="form-control input-lg "/>
                                         </div>
                                         <div class="col-md-2"></div>
                                     </div>
@@ -141,7 +114,7 @@
                                     <div class="row">
                                         <div class="col-md-4"></div>
                                         <div class="col-md-6">
-                                            <a id ="btnRegisterStudent" class="btn btn-lg btn-primary btn-block">Đăng ký</a>
+                                            <a id ="btnRegisterStudent" class="btn btn-lg btn-primary btn-block">Gửi góp ý</a>
                                         </div>
                                         <div class="col-md-2"></div>
                                     </div>

@@ -348,7 +348,7 @@ h6{font-weight:400;line-height:1.2;color:#000;margin-top:0;margin-bottom:10px;}
 .irs-contact-col{margin-bottom:30px;}
 .irs-contact-field .form-control{height:40px;box-shadow:none;border-radius:0;margin-bottom:30px;}
 .irs-footer-field{padding:30px 0 0;background:url("../images/footer.png") #006400 no-repeat center;position:relative;}
-.irs-footer-field p{color:#ffffff;}
+.irs-footer-field p{color:#ffffff; margin: 8px 0}
 .irs-footer-about, .irs-footer-link,
 .irs-footer-tweets, .irs-footer-contact{margin-bottom:30px;}
 .irs-foooter-logo{width:60px;}
@@ -542,7 +542,7 @@ span.textRight{margin-left:15px;text-align:center;color:white;font-size:12px;fon
 .irs-post .irs-post-item-post-detail {position:relative;margin-bottom:10px;height:70px;}
 .irs-post .irs-post-item-post-detail img{width:70px;height:70px;position:absolute;left:0;top:0;}
 .irs-post .irs-post-item-post-detail-title{
-    height: 58px; 
+    height: 65px; 
     overflow: hidden;
     text-overflow: ellipsis;
 }
@@ -573,12 +573,15 @@ span.textRight{margin-left:15px;text-align:center;color:white;font-size:12px;fon
     margin-bottom: 10px;
     
 }*/
-.irs-post .irs-post-item-3-column-hot{position:relative;margin-bottom:0px;}
-.irs-post .irs-post-item-3-column-hot a h4 {font-size:13px; margin-bottom: 0px;}
-.irs-post .irs-post-item-3-column-hot img{width:70px;height:70px;position:absolute;left:0;top:0;}
-.irs-post .irs-post-item-3-column-hot h4 {text-transform:inherit;text-align:justify;}
-.irs-post .irs-post-item-3-column-hot {color:#006400;}
-.irs-post .irs-post-item-3-column-hot a h4 span:hover{
+.irs-post-item-3-column-hot{position:relative;margin-bottom:0px;}
+.irs-post-item-3-column-hot a h4 {font-size:13px; margin-bottom: 12px;}
+.irs-post-item-3-column-hot img{width:70px;height:70px;position:absolute;left:0;top:0;}
+.irs-post-item-3-column-hot h4 {text-transform:inherit;text-align:justify;}
+.irs-post-item-3-column-hot {color:#006400;}
+.irs-post-item-3-column-hot a h4 {
+    margin-top: 0px;
+}
+.irs-post-item-3-column-hot a h4 span:hover{
     color: #c4313d;
     text-decoration: underline;
 }
@@ -614,7 +617,7 @@ span.textRight{margin-left:15px;text-align:center;color:white;font-size:12px;fon
     padding: 0px;
 }
 .scroll-y {
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 .irs-post-item-3-column-related span{
     font-size: 14px;
@@ -690,7 +693,7 @@ span.textRight{margin-left:15px;text-align:center;color:white;font-size:12px;fon
 .widget-right {
     padding: 20px 0 0 10px;
 }
-.irs-sidebar-title-right{font-weight:bold;font-size:16px;color:#006400;padding-bottom:6px;margin-bottom:20px;border-bottom:1px solid #006400;display:block;}
+.irs-sidebar-title-right{font-weight:bold;font-size:16px;color:#006400;padding-bottom:6px;border-bottom:1px solid #006400;display:block;}
 .irs-sidebar-title-right span {
     font-weight:bold;
     font-size:15px;
@@ -711,7 +714,7 @@ span.textRight{margin-left:15px;text-align:center;color:white;font-size:12px;fon
 }
 .post-title-over-new-post {
     overflow: hidden;
-    height: 55px;
+    height: 60px;
 }
 .post-title-over-mutil-cate {
     overflow: hidden;
@@ -841,6 +844,10 @@ form[role=login] > div {
     margin: 0;
     /*padding-left: 0px;*/
     float: left;
+    width: 100%;
+    background-color: #417cf2;
+    border-radius: 0px;
+    margin: 5px 0;
 }
 .pading-0 {
     padding: 0;
@@ -856,4 +863,27 @@ form[role=login] > div {
 }
 .index-img img {
     height: 165px;
+}
+.navbar-right {
+    float: left !important;
+}
+.irs-navbar .navbar-nav > li > a {
+    color: white;
+}
+.irs-navbar .navbar-nav > .active > a {
+    color: white;
+}
+.irs-navbar .dropdown-menu > li > a {
+    text-transform: none;
+}
+.zmdi-calendar-alt z-label {
+    color: white
+}
+.irs-post .irs-post-item-post-detail-title-1{
+    height: 78px; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.irs-post .irs-post-item-post-detail-title-1 span{
+    font-size: 16px;
 }

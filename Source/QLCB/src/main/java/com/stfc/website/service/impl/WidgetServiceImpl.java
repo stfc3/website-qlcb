@@ -15,6 +15,7 @@ import com.stfc.website.domain.Class;
 import com.stfc.website.bean.WidgetContent;
 import com.stfc.website.domain.Category;
 import com.stfc.website.domain.EnrollStudent;
+import com.stfc.website.domain.Feedback;
 import com.stfc.website.domain.Param;
 import com.stfc.website.service.WidgetService;
 import java.util.List;
@@ -136,6 +137,11 @@ public class WidgetServiceImpl implements WidgetService {
     @Override
     public List<Document> getClassSchedule() {
         return widgetDAO.getClassSchedule();
+    }
+
+    @Override
+    public void insertFeedback(Feedback feedback) {
+        widgetDAO.insertFeedback(feedback);
     }
 
 }
