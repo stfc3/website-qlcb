@@ -27,7 +27,7 @@ public class FileUtils {
     private String key;
     private static String SAVE_PATH;
     private String IMAGE_FORDER = "images/";
-    private String DOCUMENT_FORDER = "documents/";
+    private String DOCUMENT_FORDER = "/documents/";
 
     public String getKey() {
         return key;
