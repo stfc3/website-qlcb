@@ -8,8 +8,8 @@ import com.stfc.backend.dao.PostDAO;
 import com.stfc.backend.domain.CategoryPost;
 import com.stfc.backend.domain.Post;
 import com.stfc.backend.service.PostService;
+import com.stfc.website.domain.Category;
 import java.io.Serializable;
-import java.math.BigInteger;
 import java.util.Date;
 import java.util.List;
 import org.springframework.transaction.annotation.Transactional;
@@ -55,6 +55,12 @@ public class PostServiceImpl implements PostService {
     @Override
     public List<Post> searchPost(String postTitle, Integer postStatus, Date fromDate, Date toDate) {
         return postDAO.searchPost(postTitle, postStatus, fromDate, toDate);
+    }
+
+    @Transactional(readOnly = true)
+    @Override
+    public List<Category> getCategoryIdByPostId(Long postId) {
+        return postDAO.getCategoryIdByPostId(postId);
     }
 
 }

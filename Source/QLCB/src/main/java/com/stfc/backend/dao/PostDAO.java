@@ -3,6 +3,7 @@ package com.stfc.backend.dao;
 import com.stfc.backend.domain.CategoryPost;
 import com.stfc.backend.domain.Post;
 import com.stfc.utils.FunctionUtil;
+import com.stfc.website.domain.Category;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -64,6 +65,7 @@ public class PostDAO {
             sql.append(" AND p.create_date <= :toDate");
         }
         sql.append(" GROUP BY p.post_id");
+        sql.append(" ORDER BY p.create_date DESC");
         Query query = getCurrentSession().createSQLQuery(sql.toString())
                 .addScalar("postId", StandardBasicTypes.LONG)
                 .addScalar("author", StandardBasicTypes.STRING)
@@ -116,6 +118,14 @@ public class PostDAO {
         Query query = getCurrentSession().createQuery(sql);
         query.setParameter("postId", postId);
         query.executeUpdate();
+    }
+
+    public List<Category> getCategoryIdByPostId(Long postId) {
+        String sql = "SELECT c FROM Category c, CategoryPost cp WHERE cp.categoryId=c.categoryId AND cp.postId = :postId";
+        Query query = getCurrentSession().createQuery(sql);
+        query.setParameter("postId", postId);
+        List<Category> listCategory = query.list();
+        return listCategory;
     }
 
 }
