@@ -50,7 +50,7 @@
                 <button class="btn btn-default" mold="trendy"
                         id="btnSearch" forward="onClick=onSearch" label="${c:l('search')}"
                         focus="true" iconSclass="z-icon-search" />
-                <button class="btn btn-default" mold="trendy"
+                <button class="btn btn-default" mold="trendy" visible="false"
                         id="btnAdd" label="${c:l('export')}" iconSclass="z-icon-file-excel-o" />
         
                 <button class="btn btn-default" mold="trendy"
