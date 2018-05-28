@@ -8,6 +8,7 @@ package com.stfc.website;
 import com.stfc.utils.Constants;
 import com.stfc.utils.EncryptUtil;
 import com.stfc.utils.SpringConstant;
+import com.stfc.utils.StringUtils;
 import com.stfc.website.bean.UserToken;
 import com.stfc.website.service.WidgetService;
 import org.apache.log4j.Logger;
@@ -47,11 +48,16 @@ public class LoginController extends SelectorComposer<Component> {
         super.doAfterCompose(comp);
         try {
             session = (Session) Sessions.getCurrent();
-            Executions.getCurrent().getDesktop().getRequestPath();
             widgetService = (WidgetService) SpringUtil.getBean(SpringConstant.WIDGET_SERVICE);
-            
+
             if (session.getAttribute(Constants.USER_TOKEN) != null) {
-                Executions.sendRedirect(Constants.BACKEND_PAGE_HOME);
+                String urlRedirect = (String) session.getAttribute(Constants.STFC_URL_REQUEST);
+                if (StringUtils.valiString(urlRedirect)) {
+                    Executions.sendRedirect(urlRedirect);
+                } else {
+                    Executions.sendRedirect(Constants.BACKEND_PAGE_HOME);
+                }
+
             }
         } catch (Exception ex) {
             logger.error(ex.getMessage(), ex);
@@ -71,7 +77,12 @@ public class LoginController extends SelectorComposer<Component> {
                 error.setValue(Labels.getLabel("login.error"));
             } else {
                 session.setAttribute(Constants.USER_TOKEN, vuser);
-                Executions.sendRedirect(Constants.BACKEND_PAGE_HOME);
+                String urlRedirect = (String) session.getAttribute(Constants.STFC_URL_REQUEST);
+                if (StringUtils.valiString(urlRedirect)) {
+                    Executions.sendRedirect(urlRedirect);
+                } else {
+                    Executions.sendRedirect(Constants.BACKEND_PAGE_HOME);
+                }
             }
         } catch (Exception ex) {
             logger.error(ex.getMessage(), ex);

@@ -38,6 +38,7 @@ public interface Constants {
     String STFC_URL_ATTRIBUTE = "stfc-url";
     String STFC_ID_ATTRIBUTE = "stfc-id";
     String STFC_POST_ATTRIBUTE = "stfc-post";
+    String STFC_URL_REQUEST = "stfc-url_request";
     String PAGE_CATEGORY = "manager/category.zul";
     String PAGE_ADD_POST = "manager/addEditPost.zul";
     String PAGE_LIST_POST = "manager/post.zul";

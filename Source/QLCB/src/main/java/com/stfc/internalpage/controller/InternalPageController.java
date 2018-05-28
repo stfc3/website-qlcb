@@ -20,6 +20,7 @@ import com.stfc.website.widget.WidgetBuilder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import javax.servlet.RequestDispatcher;
 import org.apache.log4j.Logger;
 import org.zkoss.zk.ui.select.SelectorComposer;
 import org.zkoss.zk.ui.select.annotation.Wire;
@@ -31,6 +32,8 @@ import org.zkoss.zul.Label;
 import org.zkoss.zul.Span;
 import org.zkoss.zhtml.P;
 import org.zkoss.zk.ui.Executions;
+import org.zkoss.zk.ui.Session;
+import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zk.ui.select.annotation.WireVariable;
 import org.zkoss.zkplus.spring.SpringUtil;
 import org.zkoss.zul.A;
@@ -55,6 +58,7 @@ public class InternalPageController extends SelectorComposer<Div> {
 
     @Wire
     Div addWidgetFooter;
+    private Session session;
 
     private WidgetBuilder widgetBuilder = new WidgetBuilder();
 
@@ -68,7 +72,11 @@ public class InternalPageController extends SelectorComposer<Div> {
     @Override
     public void doAfterCompose(Div comp) throws Exception {
         super.doAfterCompose(comp);
-        logger.info("======>URL from Executions: " + Executions.getCurrent().getAttribute(Constants.STFC_URL_ATTRIBUTE));
+        session = Sessions.getCurrent();
+        if (session.getAttribute(Constants.USER_TOKEN) == null) {
+            session.setAttribute(Constants.STFC_URL_REQUEST, Executions.getCurrent().getAttribute(RequestDispatcher.FORWARD_SERVLET_PATH));
+            Executions.sendRedirect(Constants.PAGE_LOGIN);
+        }
         widgetService = (WidgetService) SpringUtil.getBean(SpringConstant.WIDGET_SERVICE);
         urlImage = Common.getParamByKey(Constants.INTERNAL_PAGE_URL_IMAGE).getParamValue();
         List<Banner> lstBanner = new ArrayList<>(Memory.getListBannerCache().values());

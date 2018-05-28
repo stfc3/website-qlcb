@@ -26,7 +26,6 @@ public class MainComposer extends GenericForwardComposer<Component> {
     @Override
     public void doAfterCompose(Component comp) throws Exception {
         super.doAfterCompose(comp);
-        Executions.getCurrent().getDesktop().getRequestPath();
         if (session.getAttribute(Constants.USER_TOKEN) == null) {
             Executions.sendRedirect(Constants.PAGE_LOGIN);
         } else {
