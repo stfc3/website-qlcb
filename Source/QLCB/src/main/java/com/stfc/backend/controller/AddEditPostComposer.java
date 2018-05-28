@@ -94,6 +94,14 @@ public class AddEditPostComposer extends SelectorComposer<Component> {
 
         modelCategory = new ListModelList(lstCategory);
         modelCategory.setMultiple(true);
+//        if(isEdit){
+//            List<Category> listCategorySelected=postService.getCategoryIdByPostId(post.getPostId());
+//            if(listCategorySelected!=null && !listCategorySelected.isEmpty()){
+//                for(Category categoryData:listCategorySelected){
+//                    category.setSelectedIndex(modelCategory.indexOf(categoryData));
+//                }
+//            }
+//        }
         category.setModel(modelCategory);
     }
 

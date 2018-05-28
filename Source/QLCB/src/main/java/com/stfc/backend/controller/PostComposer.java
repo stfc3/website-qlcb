@@ -107,6 +107,7 @@ public class PostComposer extends SelectorComposer<Component> {
         post.setModifiedDate(new Date());
         post.setPostStatus(3);
         postService.update(post);
+        search();
     }
     @Listen("onDelete = #listPost")
     public void onDelete(ForwardEvent event) {
@@ -115,6 +116,7 @@ public class PostComposer extends SelectorComposer<Component> {
         post.setModifiedDate(new Date());
         post.setPostStatus(0);
         postService.update(post);
+        search();
     }
 
 }
