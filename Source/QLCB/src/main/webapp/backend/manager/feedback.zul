@@ -32,7 +32,7 @@
                 </hbox>
                 <hbox hflex="1" />
                 <hbox hflex="2">
-<!--                    <label hflex="1" value="${c:l('enroll.student.class')}" />
+                    <!--                    <label hflex="1" value="${c:l('enroll.student.class')}" />
                     <combobox id="cbxClass" value="${c:l('option')}"
                               model="${$composer.listModelType}" autodrop="true"
                               buttonVisible="true" hflex="3">
