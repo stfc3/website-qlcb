@@ -76,7 +76,7 @@ h6{font-weight:400;line-height:1.2;color:#000;margin-top:0;margin-bottom:10px;}
 .smaller .irs-navbar .navbar-nav > li > a{color:#535353;}
 .irs-main-slider{position:relative;}
 .fade-carousel{position:relative;height:310px;}
-.fade-carousel .carousel-inner .item img{height:310px;width:1140px;background-size:cover;background-position:bottom center;background-repeat:no-repeat;}
+.fade-carousel .carousel-inner .item img{height:318px;width:1140px;background-size:cover;background-position:bottom center;background-repeat:no-repeat;}
 .irs-main-slider .irs-big-btn{background:transparent;border:1px solid #ffffff;-webkit-transition:all 0.3s ease-in-out;-moz-transition:all 0.3s ease-in-out;-ms-transition:all 0.3s ease-in-out;-o-transition:all 0.3s ease-in-out;transition:all 0.3s ease-in-out;}
 .irs-main-slider .irs-big-btn:hover{background:#006400;border-color:#006400;-webkit-transition:all 0.3s ease-in-out;-moz-transition:all 0.3s ease-in-out;-ms-transition:all 0.3s ease-in-out;-o-transition:all 0.3s ease-in-out;transition:all 0.3s ease-in-out;}
 .fade-carousel .carousel-indicators > li{margin:0 2px;background-color:#f39c12;border-color:#f39c12;opacity:.7;}
@@ -503,7 +503,7 @@ span.textRight{margin-left:15px;text-align:center;color:white;font-size:12px;fon
 
 }
 .title-category span {
-    font-size: 25px;
+    font-size: 23px;
     color: #006400;
     font-weight: bold;
 }
@@ -522,7 +522,7 @@ span.textRight{margin-left:15px;text-align:center;color:white;font-size:12px;fon
 .irs-post-item-group {margin: 5px 0 10px 0; background-color: #006400;}
 .irs-post-item-group img{width:35%;height:60px;left:0;top:0;}
 .irs-post-item-group-title{
-    font-size: 20px;
+    font-size: 15px;
     text-transform:uppercase;
     margin-left:5px;
     font-weight: bold;
@@ -581,6 +581,9 @@ span.textRight{margin-left:15px;text-align:center;color:white;font-size:12px;fon
 .irs-post-item-3-column-hot a h4 {
     margin-top: 0px;
 }
+.irs-post-item-3-column-hot a h4 span {
+    font-size: 14px;
+}
 .irs-post-item-3-column-hot a h4 span:hover{
     color: #c4313d;
     text-decoration: underline;
@@ -611,10 +614,14 @@ span.textRight{margin-left:15px;text-align:center;color:white;font-size:12px;fon
 .post-hot {
     height:291px;
     padding: 10px 5px 5px 5px;
+    border-left:1px solid #006400;
+    border-bottom:1px solid #006400;
+    border-right:1px solid #006400;
 
 }
 .no-pading {
-    padding: 0px;
+    padding-left: 0px;
+    padding-right: 15px;
 }
 .scroll-y {
     overflow-y: auto;
@@ -689,18 +696,36 @@ span.textRight{margin-left:15px;text-align:center;color:white;font-size:12px;fon
 
 
 /*daond KTM*/
-.irs-courses-content span{font-size:15px;color:#333333;}
+.irs-courses-content span{font-size:14px;color:#333333;}
 .widget-right {
-    padding: 20px 0 0 10px;
+    padding: 16px 0 0 10px;
 }
-.irs-sidebar-title-right{font-weight:bold;font-size:16px;color:#006400;padding-bottom:6px;border-bottom:1px solid #006400;display:block;}
+.irs-sidebar-title-right
+{
+    font-weight:bold;
+    font-size:16px;
+    color:#006400;
+    padding-bottom:6px;
+    /*border-bottom:1px solid #006400;*/
+    display:block;
+    background-color: #006400;
+    padding: 5px 0px;
+    width: 100%;
+    text-align: center;
+}
+.irs-side-bar-border {
+    border:1px solid #006400;
+    padding: 10px 10px 20px 10px;
+}
 .irs-sidebar-title-right span {
     font-weight:bold;
     font-size:15px;
     color:white;
     text-transform:uppercase;
-    background-color: #006400;
-    padding: 7px 11px;
+    width: 100%;
+    
+
+
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
 }
@@ -710,7 +735,7 @@ span.textRight{margin-left:15px;text-align:center;color:white;font-size:12px;fon
     text-overflow: ellipsis;
 }
 .irs-post .irs-post-item-post-detail-title-right span{
-    font-size: 13px;
+    font-size: 14px;
 }
 .post-title-over-new-post {
     overflow: hidden;
@@ -848,8 +873,8 @@ form[role=login] > div {
 }
 @media only screen and (max-width:767px) {
     .navbar-nav {
-/*        height: 280px;
-        margin-top: 50px;*/
+        /*        height: 280px;
+                margin-top: 50px;*/
     }
 }
 .index-img img {
@@ -909,4 +934,31 @@ form[role=login] > div {
 }
 .bs-example-navbar-collapse-1 {
     background-color: #417cf2;
+}
+.irs-sidebar-title-right-banner {
+    font-weight:bold;
+    font-size:16px;
+    color:#006400;
+    padding-bottom:6px;
+    border-bottom:1px solid #006400;
+    display:block;
+}
+.irs-sidebar-title-right-banner span {
+    font-weight:bold;
+    font-size:15px;
+    color:white;
+    text-transform:uppercase;
+    background-color: #006400;
+    padding: 7px 11px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+.widget-right .irs-side-bar .irs-post h3 {
+    margin-bottom: 0px;
+}
+.irs-post-item-post-detail-title-right a span {
+    font-size: 14px;
+}
+.irs-post-item-post-detail-2 {
+    /*height: 58px;*/
 }

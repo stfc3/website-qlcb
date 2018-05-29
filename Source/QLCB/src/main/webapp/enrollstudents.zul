@@ -21,7 +21,7 @@
         <div class="irs-main-slider">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-8">
+                    <div class="col-md-9">
                         <x:div id="myCarousel" class="carousel fade-carousel slide" data-ride="carousel" data-interval="3000">
                             <!-- Indicators -->
                             <!-- Wrapper for slides -->

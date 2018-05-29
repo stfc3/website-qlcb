@@ -151,6 +151,10 @@ public class IndexNewsAdvertController extends SelectorComposer<Div> {
                 H3 newPost = new H3();
                 newPost.setParent(irsPost);
 
+                Div irsPostContent = new Div();
+                irsPostContent.setClass("irs-side-bar-border");
+                irsPostContent.setParent(irsPost);
+
                 try {
                     Span spanNewPost = new Span();
                     spanNewPost.setClass("irs-sidebar-title-right");
@@ -169,11 +173,11 @@ public class IndexNewsAdvertController extends SelectorComposer<Div> {
                             for (int i = 0; i < maxPost; i++) {
                                 Post p1 = lstPost1.get(i);
                                 Div divPostItem = new Div();
-                                divPostItem.setClass("irs-post-item-post-detail");
-                                divPostItem.setParent(irsPost);
+                                divPostItem.setClass("irs-post-item-post-detail-2");
+                                divPostItem.setParent(irsPostContent);
 
                                 Div divPostTitle = new Div();
-                                divPostTitle.setClass("irs-post-item-post-detail-title-right");
+                                divPostTitle.setClass("");
                                 divPostTitle.setParent(divPostItem);
 
                                 A aPostItemTitle = new A();
@@ -187,17 +191,22 @@ public class IndexNewsAdvertController extends SelectorComposer<Div> {
                                 Label lblPostTitleItem = new Label(p1Title);
                                 lblPostTitleItem.setClass("post-title");
                                 lblPostTitleItem.setParent(aPostItemTitle);
-
-                                P spanPostTime = new P();
-                                spanPostTime.setParent(divPostItem);
-
-                                String dateP1 = "";
-                                if (p1.getPostDate() != null && !"".equals(p1.getPostDate())) {
-                                    dateP1 = dateFormat.format(p1.getPostDate());
+                                
+                                if (com.checkNewsPost(p1.getPostDate())) {
+                                    Div divNew = new Div();
+                                    divNew.setClass("new_flash");
+                                    divNew.setParent(divPostTitle);
                                 }
-                                Label lblPostItemTime = new Label(dateP1);
-                                lblPostItemTime.setClass("time-post");
-                                lblPostItemTime.setParent(spanPostTime);
+//                                P spanPostTime = new P();
+//                                spanPostTime.setParent(divPostItem);
+//
+//                                String dateP1 = "";
+//                                if (p1.getPostDate() != null && !"".equals(p1.getPostDate())) {
+//                                    dateP1 = dateFormat.format(p1.getPostDate());
+//                                }
+//                                Label lblPostItemTime = new Label(dateP1);
+//                                lblPostItemTime.setClass("time-post");
+//                                lblPostItemTime.setParent(spanPostTime);
                             }
                         }
                     }
@@ -214,7 +223,7 @@ public class IndexNewsAdvertController extends SelectorComposer<Div> {
                                 Document p1 = lstPost1.get(i);
                                 Div divPostItem = new Div();
 //                                divPostItem.setClass("irs-post-item-post-detail");
-                                divPostItem.setParent(irsPost);
+                                divPostItem.setParent(irsPostContent);
 
                                 Div divPostTitle = new Div();
 //                                divPostTitle.setClass("irs-post-item-post-detail-title-right");
@@ -251,7 +260,7 @@ public class IndexNewsAdvertController extends SelectorComposer<Div> {
                             strContent = wc.getWidgetContent();
                         }
                         htmPostItemTime.setContent(strContent);
-                        htmPostItemTime.setParent(irsPost);
+                        htmPostItemTime.setParent(irsPostContent);
                     }
                 } catch (Exception e) {
                     logger.error(e.getMessage(), e);
