@@ -44,7 +44,8 @@ public class StringUtils {
 
     public static String convertSlug(String input) {
         String strReturn = unAccent(input);
-        return strReturn.replaceAll(" ", "-");
+        strReturn = strReturn.replaceAll(" ", "-");
+        return strReturn.replaceAll("[^a-zA-Z0-9-]+", "");
     }
 
 //    public static boolean validateString(String value,  String vstrPattern) {
@@ -54,8 +55,8 @@ public class StringUtils {
 //    }
 //
 //    public static void main(String[] arg) {
-//        System.out.println(convertSlug("Tôi là đông"));
+//        System.out.println(convertSlug("Trường Cán bộ quản lý GTVT đạt Giải Nhì toàn đoàn cuộc thi: \"Tiếng hát ngành GTVT năm 2014\" - Cụm số 5"));
 ////        ["<>#%{}|\^~\\\[\\\]`]
-//        System.out.println(validateString("gdgh","[\"<>#%{}|\\^~\\\\\\[\\\\\\]`]"));
+////        System.out.println(validateString("gdgh","[\"<>#%{}|\\^~\\\\\\[\\\\\\]`]"));
 //    }
 }

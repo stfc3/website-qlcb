@@ -21,6 +21,7 @@ import com.stfc.website.widget.WidgetBuilder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import javax.servlet.RequestDispatcher;
 import org.apache.log4j.Logger;
 import org.zkoss.zk.ui.select.SelectorComposer;
 import org.zkoss.zk.ui.select.annotation.Wire;
@@ -33,6 +34,8 @@ import org.zkoss.zul.Label;
 import org.zkoss.zul.Span;
 import org.zkoss.zhtml.P;
 import org.zkoss.zk.ui.Executions;
+import org.zkoss.zk.ui.Session;
+import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zk.ui.select.annotation.WireVariable;
 import org.zkoss.zkplus.spring.SpringUtil;
 import org.zkoss.zul.A;
@@ -60,6 +63,7 @@ public class PostNewsAdvertController extends SelectorComposer<Div> {
 
     @Wire
     Div addWidgetFooter;
+    private Session session;
 
     private WidgetBuilder widgetBuilder = new WidgetBuilder();
 
@@ -102,6 +106,16 @@ public class PostNewsAdvertController extends SelectorComposer<Div> {
         //build post detail
         String postSlug = String.valueOf(Executions.getCurrent().getAttribute(Constants.STFC_URL_ATTRIBUTE));
         List<Post> lstPost = widgetService.getPostBySlug(postSlug);
+        if (lstPost != null && !lstPost.isEmpty()) {
+            Post post = lstPost.get(0);
+            if (post.getIsPrivate() == 1) {
+                session = Sessions.getCurrent();
+                if (session.getAttribute(Constants.USER_TOKEN) == null) {
+                    session.setAttribute(Constants.STFC_URL_REQUEST, Executions.getCurrent().getAttribute(RequestDispatcher.FORWARD_SERVLET_PATH));
+                    Executions.sendRedirect(Constants.PAGE_LOGIN);
+                }
+            }
+        }
         buildPostDetail(lstPost);
 
         List<WidgetMapContent> vlstWidget = new ArrayList<>(Memory.getListWidgetMapContentCache().values());

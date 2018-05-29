@@ -20,6 +20,7 @@ public class Post {
     private String postTag;
     private long categoryId;
     private int isPin;
+    private int isPrivate;
     private String featuredImage;
     private String postSlug;
     private int postOrder;
@@ -120,6 +121,15 @@ public class Post {
     public void setPostDate(Date postDate) {
         this.postDate = postDate;
     }
+
+    public int getIsPrivate() {
+        return isPrivate;
+    }
+
+    public void setIsPrivate(int isPrivate) {
+        this.isPrivate = isPrivate;
+    }
+    
     
     
 }

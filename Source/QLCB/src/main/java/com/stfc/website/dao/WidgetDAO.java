@@ -209,7 +209,7 @@ public class WidgetDAO {
         try {
             StringBuilder vstrSql = new StringBuilder();
             vstrSql.append("SELECT p.post_id as postId, p.author as author, p.post_title as postTitle, p.post_excerpt as postExcerpt,");
-            vstrSql.append(" p.post_content as postContent, p.post_tag as postTag, m.category_id as categoryId, p.is_pin as isPin,");
+            vstrSql.append(" p.post_content as postContent, p.post_tag as postTag, m.category_id as categoryId, p.is_pin as isPin, p.is_private as isPrivate,");
             vstrSql.append(" p.featured_image as featuredImage, p.post_slug as postSlug, coalesce(p.post_order,0) as postOrder, p.post_date as postDate");
             vstrSql.append(" FROM stfc_posts p INNER JOIN stfc_category_post m ON p.post_id = m.post_id");
             vstrSql.append(" INNER JOIN stfc_categories c ON m.category_id = c.category_id");
@@ -231,6 +231,7 @@ public class WidgetDAO {
                     .addScalar("postTag", StandardBasicTypes.STRING)
                     .addScalar("categoryId", StandardBasicTypes.LONG)
                     .addScalar("isPin", StandardBasicTypes.INTEGER)
+                    .addScalar("isPrivate", StandardBasicTypes.INTEGER)
                     .addScalar("featuredImage", StandardBasicTypes.STRING)
                     .addScalar("postSlug", StandardBasicTypes.STRING)
                     .addScalar("postOrder", StandardBasicTypes.INTEGER)
