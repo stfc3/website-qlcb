@@ -54,6 +54,9 @@ public class DocumentPageController extends SelectorComposer<Div> {
     Div documentPage;
 
     @Wire
+    Div addWidgetIndexRight;
+
+    @Wire
     Div addWidgetFooter;
 
     private WidgetBuilder widgetBuilder = new WidgetBuilder();
@@ -105,33 +108,35 @@ public class DocumentPageController extends SelectorComposer<Div> {
             }
         }
         buildInternal(lstCategoryDoc, lstDocument);
+        List<Post> lstPostRight = widgetService.getPost(Memory.getLstCategoryId(), Constants.POST_IS_PUBLIC);
+        widgetBuilder.buildWidgetRight(vlstWidget, lstPostRight, addWidgetIndexRight, widgetService);
     }
 
     private void buildInternal(List<Category> plstCategory, List<Document> plstDocument) {
-        Div postMain = new Div();
-        postMain.setClass("inner-page-content left-img");
-        postMain.setParent(documentPage);
-
-        Div divContainer = new Div();
-        divContainer.setClass("container");
-        divContainer.setParent(postMain);
-
-        Div divRow = new Div();
-        divRow.setClass("row");
-        divRow.setParent(divContainer);
+//        Div postMain = new Div();
+//        postMain.setClass("inner-page-content left-img");
+//        postMain.setParent(documentPage);
+//
+//        Div divContainer = new Div();
+//        divContainer.setClass("container");
+//        divContainer.setParent(postMain);
+//
+//        Div divRow = new Div();
+//        divRow.setClass("row");
+//        divRow.setParent(divContainer);
 
         if (plstCategory != null && !plstCategory.isEmpty()) {
 //            for (Category wmc : plstCategory) {
-            Div divColMd8 = new Div();
-            divColMd8.setClass("col-md-8");
-            divColMd8.setParent(divRow);
+//            Div divColMd8 = new Div();
+//            divColMd8.setClass("col-md-8");
+//            divColMd8.setParent(divRow);
 
             //Post content
             if (plstCategory != null && !plstCategory.isEmpty()) {
                 for (Category wc : plstCategory) {
                     Div rowTitle = new Div();
                     rowTitle.setClass("border-bottom-title-category");
-                    rowTitle.setParent(divColMd8);
+                    rowTitle.setParent(documentPage);
 
                     Div titleCategory = new Div();
                     titleCategory.setClass("title-category");
@@ -156,7 +161,7 @@ public class DocumentPageController extends SelectorComposer<Div> {
 
                                 Div divContentPostItem = new Div();
                                 divContentPostItem.setClass("irs-post-item-3-column-related");
-                                divContentPostItem.setParent(divColMd8);
+                                divContentPostItem.setParent(documentPage);
                                 A aPostItemTitle = new A();
                                 aPostItemTitle.setHref(p1.getDocumentPath());
                                 aPostItemTitle.setParent(divContentPostItem);
@@ -176,86 +181,6 @@ public class DocumentPageController extends SelectorComposer<Div> {
                 }
             }
 //            }
-        }
-
-        //Build tin tuc noi bat
-        Div divColMd4 = new Div();
-        divColMd4.setClass("col-md-4");
-        divColMd4.setParent(divRow);
-
-        Div irsSideBar = new Div();
-        irsSideBar.setClass("irs-side-bar");
-        irsSideBar.setParent(divColMd4);
-
-        Div irsPost = new Div();
-        irsPost.setClass("irs-post");
-        irsPost.setParent(irsSideBar);
-
-        H3 newPost = new H3();
-        newPost.setParent(irsPost);
-
-        Param param1 = Common.getParamByKey(Constants.PARAM_KEY_CATEGORY_WIDGET_POST_DETAIL_1);
-        try {
-            if (param1 != null && param1.getParamValue() != null) {
-                Long categoryId1 = Long.parseLong(param1.getParamValue());
-                Category category1 = Common.getCategoryById(categoryId1);
-                Span spanNewPost = new Span();
-                spanNewPost.setClass("irs-sidebar-title");
-                spanNewPost.setParent(newPost);
-                String postNewPos = category1.getCategoryName();
-                Label lblNewPos = new Label(postNewPos);
-                lblNewPos.setParent(spanNewPost);
-
-                List<Post> lstPost1 = widgetService.getPostByCategoryId(categoryId1, Constants.MAX_POST_WIDGET_POST_DETAIL, Constants.POST_IS_PUBLIC);
-                if (lstPost1 != null && !lstPost1.isEmpty()) {
-                    for (Post p1 : lstPost1) {
-                        Div divPostItem = new Div();
-                        divPostItem.setClass("irs-post-item-post-detail post-item-padding");
-                        divPostItem.setParent(irsPost);
-
-                        A linkPostItem = new A();
-                        linkPostItem.setHref(p1.getPostSlug());
-                        linkPostItem.setParent(divPostItem);
-
-                        Image imgPostItem = new Image();
-                        String src = "";
-                        if (p1.getFeaturedImage() != null && !"".equals(p1.getFeaturedImage())) {
-                            src = urlImage + p1.getFeaturedImage();
-                        }
-                        imgPostItem.setSrc(src);
-                        imgPostItem.setParent(linkPostItem);
-
-                        Div divPostTitle = new Div();
-                        divPostTitle.setClass("irs-post-item-post-detail-title");
-                        divPostTitle.setParent(divPostItem);
-
-                        A aPostItemTitle = new A();
-                        aPostItemTitle.setHref(p1.getPostSlug());
-                        aPostItemTitle.setParent(divPostTitle);
-                        String p1Title = "";
-                        if (p1.getPostTitle() != null && !"".equals(p1.getPostTitle())) {
-                            p1Title = p1.getPostTitle();
-                        }
-
-                        Label lblPostTitleItem = new Label(p1Title);
-                        lblPostTitleItem.setClass("post-title");
-                        lblPostTitleItem.setParent(aPostItemTitle);
-
-//                        P spanPostTime = new P();
-//                        spanPostTime.setParent(divPostItem);
-//
-//                        String dateP1 = "";
-//                        if (p1.getPostDate() != null && !"".equals(p1.getPostDate())) {
-//                            dateP1 = dateFormat.format(p1.getPostDate());
-//                        }
-//                        Label lblPostItemTime = new Label(dateP1);
-//                        lblPostItemTime.setClass("time-post");
-//                        lblPostItemTime.setParent(spanPostTime);
-                    }
-                }
-            }
-        } catch (Exception e) {
-            logger.error(e.getMessage(), e);
         }
 
     }

@@ -502,11 +502,6 @@ span.textRight{margin-left:15px;text-align:center;color:white;font-size:12px;fon
     font-size: 20px;
 
 }
-.title-category span {
-    font-size: 23px;
-    color: #006400;
-    font-weight: bold;
-}
 .title-category h2 {
     margin-bottom: 0px;
 }
@@ -520,7 +515,7 @@ span.textRight{margin-left:15px;text-align:center;color:white;font-size:12px;fon
 }
 /*Tuyen sinh*/
 .irs-post-item-group {margin: 5px 0 10px 0; background-color: #006400;}
-.irs-post-item-group img{width:35%;height:60px;left:0;top:0;}
+.irs-post-item-group img{width:25%;height:48px;left:0;top:0;}
 .irs-post-item-group-title{
     font-size: 15px;
     text-transform:uppercase;
@@ -529,7 +524,7 @@ span.textRight{margin-left:15px;text-align:center;color:white;font-size:12px;fon
     color:#f79400;
 }
 .irs-post .irs-post-item-3-column{position:relative;margin-bottom:10px;}
-.irs-post .irs-post-item-3-column-height {height: 54px; overflow: hidden;}
+.irs-post .irs-post-item-3-column-height {height: 54px; overflow: hidden; border-bottom: 1px dotted silver;}
 .irs-post .irs-post-item-3-column img{width:70px;height:70px;position:absolute;left:0;top:0;}
 .irs-post .irs-post-item-3-column h4 {text-transform:inherit;text-align:justify;}
 .irs-post .irs-post-item-3-column {color:#006400;font-size:12px;}
@@ -539,7 +534,7 @@ span.textRight{margin-left:15px;text-align:center;color:white;font-size:12px;fon
 }
 .irs-post .irs-post-item {position:relative;margin-bottom:10px;height:70px;}
 .irs-post .irs-post-item img{width:70px;height:70px;position:absolute;left:0;top:0;}
-.irs-post .irs-post-item-post-detail {position:relative;margin-bottom:10px;height:70px;}
+.irs-post .irs-post-item-post-detail {position:relative;height:70px;}
 .irs-post .irs-post-item-post-detail img{width:70px;height:70px;position:absolute;left:0;top:0;}
 .irs-post .irs-post-item-post-detail-title{
     height: 79px; 
@@ -560,7 +555,10 @@ span.textRight{margin-left:15px;text-align:center;color:white;font-size:12px;fon
 }
 /*End Tuyen sinh*/
 .post-item-padding {
-    padding-left: 85px;
+    /*padding-left: 85px;*/
+    padding: 6px 0 6px 85px;
+    border-bottom: 1px dotted silver;
+
 }
 .time-post{
     color:#006400;
@@ -573,8 +571,16 @@ span.textRight{margin-left:15px;text-align:center;color:white;font-size:12px;fon
     margin-bottom: 10px;
     
 }*/
-.irs-post-item-3-column-hot{position:relative;margin-bottom:0px;}
-.irs-post-item-3-column-hot a h4 {font-size:13px; margin-bottom: 12px;}
+.irs-post-item-3-column-hot{
+    position:relative;
+    margin:6px;
+    border-bottom: 1px dotted silver;
+}
+.irs-post-item-3-column-hot a h4 {
+    font-size:13px;
+    /*margin: 6px 0;*/
+
+}
 .irs-post-item-3-column-hot img{width:70px;height:70px;position:absolute;left:0;top:0;}
 .irs-post-item-3-column-hot h4 {text-transform:inherit;text-align:justify;}
 .irs-post-item-3-column-hot {color:#006400;}
@@ -723,7 +729,7 @@ span.textRight{margin-left:15px;text-align:center;color:white;font-size:12px;fon
     color:white;
     text-transform:uppercase;
     width: 100%;
-    
+
 
 
     border-top-left-radius: 5px;
@@ -961,4 +967,28 @@ form[role=login] > div {
 }
 .irs-post-item-post-detail-2 {
     /*height: 58px;*/
+    border-bottom: 1px dotted silver;
+}
+.title-category {
+    height: 40px;
+}
+.title-category span {
+    font-size: 17px;
+    color: white;
+    font-weight: bold;
+    background-color: #006400;
+    margin-left: -15px;
+    padding: 7px 15px;
+}
+.border-post {
+    padding: 6px 0px;
+    border-bottom: 1px dotted silver;
+}
+.more-detail-right {
+    color: #006400;
+    float: right;
+}
+.more-detail-right:hover {
+    color: #c4313d;
+    text-decoration: underline;
 }

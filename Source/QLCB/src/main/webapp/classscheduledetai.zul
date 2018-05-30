@@ -44,8 +44,15 @@
         </div>
         <!--End Slider -->
         <!-- HOT NEWS -->
-        <div id="schedulePage">
-            
+        <div class="irs-blog-field irs-blog-single-field">
+            <div class="container">
+                <div class="col-md-9">
+                    <div id="schedulePage"></div>
+                </div>
+                <div class="col-md-3 widget-right">
+                    <div id="addWidgetIndexRight"></div>
+                </div>
+            </div>
         </div>
         <!-- HOT NEWS end -->
 
