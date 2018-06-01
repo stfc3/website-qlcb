@@ -46,4 +46,16 @@
         <from>/</from>
         <to>/newsadvertisement/index.zul</to>
     </rule>-->
+    <outbound-rule encodefirst="true">
+        <note>Remove jsessionid from embedded urls - for urls WITH query parameters</note>
+        <from>^/(.*);jsessionid=.*[?](.*)$</from>
+        <to encode="false">/$1?$2</to>
+    </outbound-rule>
+
+
+    <outbound-rule encodefirst="true">
+        <note>Remove jsessionid from embedded urls - for urls WITHOUT query parameters</note>
+        <from>^/(.*);jsessionid=.*[^?]$</from>
+        <to encode="false">/$1</to>
+    </outbound-rule>
 </urlrewrite>
