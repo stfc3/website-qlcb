@@ -243,7 +243,7 @@ public class AddEditPostComposer extends SelectorComposer<Component> {
         postTitle.setValue(post.getPostTitle());
         postExcerpt.setValue(post.getPostExcerpt());
         postContent.setValue(post.getPostContent());
-        postSlug.setValue(post.getPostSlug());
+        postSlug.setValue(post.getPostSlug().replace(Constants.PREFIX_SLUG_POST, ""));
         if (post.getIsPin() == 1) {
             isPin.setChecked(true);
         } else {
