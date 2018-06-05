@@ -14,7 +14,6 @@ import com.stfc.website.bean.Document;
 import com.stfc.website.bean.Post;
 import com.stfc.website.bean.WidgetMapContent;
 import com.stfc.website.domain.Category;
-import com.stfc.website.domain.Param;
 import com.stfc.website.service.WidgetService;
 import com.stfc.website.widget.WidgetBuilder;
 import java.text.SimpleDateFormat;
@@ -25,7 +24,6 @@ import org.zkoss.zk.ui.select.SelectorComposer;
 import org.zkoss.zk.ui.select.annotation.Wire;
 import org.zkoss.zul.Div;
 import org.zkoss.zhtml.H2;
-import org.zkoss.zhtml.H3;
 import org.zkoss.zhtml.H4;
 import org.zkoss.zul.Label;
 import org.zkoss.zul.Span;
@@ -35,7 +33,6 @@ import org.zkoss.zk.ui.select.annotation.WireVariable;
 import org.zkoss.zkplus.spring.SpringUtil;
 import org.zkoss.zul.A;
 import org.zkoss.zul.Html;
-import org.zkoss.zul.Image;
 
 /**
  *

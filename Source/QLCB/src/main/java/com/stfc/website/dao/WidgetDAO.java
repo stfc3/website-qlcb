@@ -529,4 +529,29 @@ public class WidgetDAO {
             logger.error(e.getMessage(), e);
         }
     }
+    
+    public List<Document> getScheduleWeek() {
+        try {
+            StringBuilder vstrSql = new StringBuilder();
+            vstrSql.append("select d.document_id as documentId, d.document_name as documentName, d.document_type as documentType,");
+            vstrSql.append(" d.document_path as documentPath, d.category_id as categoryId, d.author as author");
+            vstrSql.append(" from stfc_document d");
+            vstrSql.append(" where d.status = 1 and d.document_type = 3");
+            vstrSql.append(" ORDER BY d.create_date desc");
+            Query query = getCurrentSession()
+                    .createSQLQuery(vstrSql.toString())
+                    .addScalar("documentId", StandardBasicTypes.LONG)
+                    .addScalar("documentName", StandardBasicTypes.STRING)
+                    .addScalar("documentType", StandardBasicTypes.INTEGER)
+                    .addScalar("documentPath", StandardBasicTypes.STRING)
+                    .addScalar("categoryId", StandardBasicTypes.LONG)
+                    .addScalar("author", StandardBasicTypes.STRING)
+                    .setResultTransformer(
+                            Transformers.aliasToBean(Document.class));
+            return (List<Document>) query.list();
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+        }
+        return null;
+    }
 }

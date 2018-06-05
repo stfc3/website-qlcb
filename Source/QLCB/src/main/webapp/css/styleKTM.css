@@ -968,6 +968,7 @@ form[role=login] > div {
 .irs-post-item-post-detail-2 {
     /*height: 58px;*/
     border-bottom: 1px dotted silver;
+    padding: 6px 0px;
 }
 .title-category {
     height: 40px;
@@ -991,4 +992,36 @@ form[role=login] > div {
 .more-detail-right:hover {
     color: #c4313d;
     text-decoration: underline;
+}
+.hotline {
+    background-image: url(../images/dangky.jpg);
+    background-size: 100%;
+    min-height: 230px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.hotline-phone {
+    background-image: url(../images/phone.png);
+    width: 24px;
+    height: 24px;
+    background-repeat: no-repeat;
+    background-position: center;
+    float: left;
+    margin-right: 10px;
+}
+.text-center {
+    text-align: center;
+}
+.iconphone {
+    color: red;
+    font-size: 20px;
+    margin-right: 3px;
+}
+.btn-margin {
+    margin-top: -40px;
+    
+}
+.documentIframeScheduleWeek {
+    margin-bottom: 30px;
 }

@@ -10,9 +10,7 @@ import com.stfc.utils.Common;
 import com.stfc.utils.Constants;
 import com.stfc.utils.SpringConstant;
 import com.stfc.website.bean.Banner;
-import com.stfc.website.bean.Document;
 import com.stfc.website.bean.Post;
-import com.stfc.website.bean.WidgetContent;
 import com.stfc.website.bean.WidgetMapContent;
 import com.stfc.website.domain.Category;
 import com.stfc.website.domain.Param;
@@ -35,7 +33,6 @@ import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.select.annotation.WireVariable;
 import org.zkoss.zkplus.spring.SpringUtil;
 import org.zkoss.zul.A;
-import org.zkoss.zul.Html;
 import org.zkoss.zul.Image;
 
 /**

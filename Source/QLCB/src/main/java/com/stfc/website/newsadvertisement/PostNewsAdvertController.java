@@ -10,9 +10,7 @@ import com.stfc.utils.Common;
 import com.stfc.utils.Constants;
 import com.stfc.utils.SpringConstant;
 import com.stfc.website.bean.Banner;
-import com.stfc.website.bean.Document;
 import com.stfc.website.bean.Post;
-import com.stfc.website.bean.WidgetContent;
 import com.stfc.website.bean.WidgetMapContent;
 import com.stfc.website.domain.Category;
 import com.stfc.website.domain.Param;
@@ -191,60 +189,62 @@ public class PostNewsAdvertController extends SelectorComposer<Div> {
             htmPostContent.setParent(spanContent);
 
             //Tin tuc lien quan
-            Div hotNewMain = new Div();
-            hotNewMain.setClass("irs-blog-field");
-            hotNewMain.setParent(divColMd8);
+            if (p.getIsPrivate() != 1) {
+                Div hotNewMain = new Div();
+                hotNewMain.setClass("irs-blog-field");
+                hotNewMain.setParent(divColMd8);
 
-            Div container = new Div();
-            container.setClass("");
-            container.setParent(hotNewMain);
+                Div container = new Div();
+                container.setClass("");
+                container.setParent(hotNewMain);
 
-            Div rowTitle = new Div();
-            rowTitle.setClass("row border-bottom-title-category");
-            rowTitle.setParent(container);
+                Div rowTitle = new Div();
+                rowTitle.setClass("row border-bottom-title-category");
+                rowTitle.setParent(container);
 
-            Div col_md_8 = new Div();
-            col_md_8.setClass("col-md-8");
-            col_md_8.setParent(rowTitle);
+                Div col_md_8 = new Div();
+                col_md_8.setClass("col-md-8");
+                col_md_8.setParent(rowTitle);
 
-            Div titleCategory = new Div();
-            titleCategory.setClass("title-category");
-            titleCategory.setParent(col_md_8);
+                Div titleCategory = new Div();
+                titleCategory.setClass("title-category");
+                titleCategory.setParent(col_md_8);
 
-            H2 h2Title = new H2();
-            h2Title.setParent(titleCategory);
+                H2 h2Title = new H2();
+                h2Title.setParent(titleCategory);
 
-            A hotnew = new A();
-            hotnew.setParent(h2Title);
+                A hotnew = new A();
+                hotnew.setParent(h2Title);
 
-            Span spanTitleCategory = new Span();
-            spanTitleCategory.setParent(hotnew);
-            String widgetTitle = "Tin tức liên quan";
+                Span spanTitleCategory = new Span();
+                spanTitleCategory.setParent(hotnew);
+                String widgetTitle = "Tin tức liên quan";
 
-            Label lblFunctionName = new Label(widgetTitle);
-            lblFunctionName.setParent(spanTitleCategory);
-            Div divListPost = new Div();
-            divListPost.setParent(container);
-            List<Post> lstPostRelated = widgetService.getPostByCategoryIdRelated(categoryTitle.getCategoryId(), 10, p.getPostId(), Constants.POST_IS_PUBLIC);
-            if (lstPostRelated != null && !lstPostRelated.isEmpty()) {
-                for (Post p1 : lstPostRelated) {
-                    Div divContentPostItem = new Div();
-                    divContentPostItem.setClass("irs-post-item-3-column-related");
-                    divContentPostItem.setParent(divListPost);
-                    //daond
-                    A aPostItemTitle = new A();
-                    aPostItemTitle.setHref(p1.getPostSlug());
-                    aPostItemTitle.setParent(divContentPostItem);
+                Label lblFunctionName = new Label(widgetTitle);
+                lblFunctionName.setParent(spanTitleCategory);
+                Div divListPost = new Div();
+                divListPost.setParent(container);
+                List<Post> lstPostRelated = widgetService.getPostByCategoryIdRelated(categoryTitle.getCategoryId(), 10, p.getPostId(), Constants.POST_IS_PUBLIC);
+                if (lstPostRelated != null && !lstPostRelated.isEmpty()) {
+                    for (Post p1 : lstPostRelated) {
+                        Div divContentPostItem = new Div();
+                        divContentPostItem.setClass("irs-post-item-3-column-related");
+                        divContentPostItem.setParent(divListPost);
+                        //daond
+                        A aPostItemTitle = new A();
+                        aPostItemTitle.setHref(p1.getPostSlug());
+                        aPostItemTitle.setParent(divContentPostItem);
 
-                    H4 h4Post = new H4();
-                    h4Post.setParent(aPostItemTitle);
-                    String titleRelated = "<i class='fa fa-angle-double-right'></i> " + p1.getPostTitle() + "<span style='font-size:11px; color: #0d4e96;'> (" + dateFormatRelated.format(p1.getPostDate()) + ") </span>";
-                    Html htmPostItem = new Html();
-                    htmPostItem.setContent(titleRelated);
-                    htmPostItem.setParent(h4Post);
+                        H4 h4Post = new H4();
+                        h4Post.setParent(aPostItemTitle);
+                        String titleRelated = "<i class='fa fa-angle-double-right'></i> " + p1.getPostTitle() + "<span style='font-size:11px; color: #0d4e96;'> (" + dateFormatRelated.format(p1.getPostDate()) + ") </span>";
+                        Html htmPostItem = new Html();
+                        htmPostItem.setContent(titleRelated);
+                        htmPostItem.setParent(h4Post);
 
-                    P spanPostTime = new P();
-                    spanPostTime.setParent(divContentPostItem);
+                        P spanPostTime = new P();
+                        spanPostTime.setParent(divContentPostItem);
+                    }
                 }
             }
         }
@@ -330,5 +330,4 @@ public class PostNewsAdvertController extends SelectorComposer<Div> {
         }
     }
 
-    
 }

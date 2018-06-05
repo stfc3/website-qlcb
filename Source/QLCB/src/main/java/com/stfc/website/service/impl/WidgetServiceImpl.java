@@ -144,4 +144,9 @@ public class WidgetServiceImpl implements WidgetService {
         widgetDAO.insertFeedback(feedback);
     }
 
+    @Override
+    public List<Document> getScheduleWeek() {
+        return widgetDAO.getScheduleWeek();
+    }
+
 }

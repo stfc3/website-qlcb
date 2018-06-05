@@ -81,5 +81,7 @@ public interface Constants {
     public static final String PREFIX_SLUG_DOCUMENT = "/doc/";
 
     public static final String KEY_COMPATE_NEW_POST = "KEY_COMPATE_NEW_POST";
+    
+    public static final String KEY_NO_IMAGE = "images/no-image.png";
 
 }

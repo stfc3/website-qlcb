@@ -43,8 +43,16 @@
         </div>
         <!--End Slider -->
         <!-- HOT NEWS -->
-        <div id="internalPage">
-            
+        <div class="irs-blog-field irs-blog-single-field">
+            <div class="container">
+                <div class="col-md-9">
+                    <div id="scheduleWeek"></div>
+                    <div id="internalPage"></div>
+                </div>
+                <div class="col-md-3 widget-right">
+                    <div id="addWidgetIndexRight"></div>
+                </div>
+            </div>
         </div>
         <!-- HOT NEWS end -->
 

@@ -61,4 +61,6 @@ public interface WidgetService {
     List<Document> getClassSchedule();
     
     void insertFeedback(Feedback feedback);
+    
+    List<Document> getScheduleWeek();
 }

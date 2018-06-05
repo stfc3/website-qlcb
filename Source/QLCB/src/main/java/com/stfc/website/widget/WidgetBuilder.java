@@ -321,7 +321,7 @@ public class WidgetBuilder {
 //                                lblPostItemTime.setParent(spanPostTime);
                             }
                         }
-                        if (lstPost1.size() > 5) {
+                        if (lstPost1.size() >= 5) {
                             A linkReadMore = new A();
                             linkReadMore.setClass("more-detail-right");
                             String strUrlDetaiMore = "#";
@@ -377,7 +377,7 @@ public class WidgetBuilder {
 //                                lblPostItemTime.setClass("time-post");
 //                                lblPostItemTime.setParent(spanPostTime);
                             }
-                            if (lstPost1.size() > 5) {
+                            if (lstPost1.size() >= 5) {
                                 A linkReadMore = new A();
                                 linkReadMore.setClass("more-detail-right");
                                 String strUrlDetaiMore = "#";

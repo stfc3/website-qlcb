@@ -13,6 +13,7 @@ import com.stfc.website.domain.Category;
 import com.stfc.website.domain.Param;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import org.apache.log4j.Logger;
@@ -58,12 +59,15 @@ public class Common {
 
     public boolean checkNewsPost(Date postDate) {
         if (postDate != null) {
-            int datePostPrimary = Integer.parseInt(dateFormat.format(postDate));
-            int dateNow = Integer.parseInt(dateFormat.format(new Date()));
             Param param = Common.getParamByKey(Constants.KEY_COMPATE_NEW_POST);
             if (param != null && param.getParamValue() != null) {
                 int dateCompate = Integer.parseInt(param.getParamValue());
-                if (dateNow - datePostPrimary <= dateCompate) {
+                Date dt = new Date();
+                Calendar c = Calendar.getInstance();
+                c.setTime(dt);
+                c.add(Calendar.DATE, -dateCompate);
+                dt = c.getTime();
+                if (postDate.after(dt)) {
                     return true;
                 }
             }
