@@ -208,24 +208,25 @@ public class AddDocumentController extends SelectorComposer<Component> {
 //                errPath.setVisible(false);
                 return;
             }
-            if (cbType.getSelectedItem().getValue().equals(2)) {
-                if (cbCategory.getSelectedItem() == null || cbCategory.getSelectedItem().getValue().equals(-1)) {
+            if (!cbType.getSelectedItem().getValue().equals(3)) {
+                if (cbType.getSelectedItem().getValue().equals(2)) {
+                    if (cbCategory.getSelectedItem() == null || cbCategory.getSelectedItem().getValue().equals(-1)) {
 //                errCategory.setVisible(true);
 //                errCategory.setValue(Labels.getLabel("document.error.empty.category"));
-                    Clients.showNotification(Labels.getLabel("document.error.empty.category"), Clients.NOTIFICATION_TYPE_ERROR, cbCategory, Constants.MESSAGE_POSTION_END_CENTER, Constants.MESSAGE_TIME_CLOSE, Boolean.TRUE);
-                    cbCategory.focus();
-                    return;
-                }
-            } else {
-                if (cbClass.getSelectedItem() == null || cbClass.getSelectedItem().getValue().equals(-1)) {
+                        Clients.showNotification(Labels.getLabel("document.error.empty.category"), Clients.NOTIFICATION_TYPE_ERROR, cbCategory, Constants.MESSAGE_POSTION_END_CENTER, Constants.MESSAGE_TIME_CLOSE, Boolean.TRUE);
+                        cbCategory.focus();
+                        return;
+                    }
+                } else {
+                    if (cbClass.getSelectedItem() == null || cbClass.getSelectedItem().getValue().equals(-1)) {
 //                errCategory.setVisible(true);
 //                errCategory.setValue(Labels.getLabel("document.error.empty.category"));
-                    Clients.showNotification(Labels.getLabel("document.error.empty.category"), Clients.NOTIFICATION_TYPE_ERROR, cbClass, Constants.MESSAGE_POSTION_END_CENTER, Constants.MESSAGE_TIME_CLOSE, Boolean.TRUE);
-                    cbClass.focus();
-                    return;
+                        Clients.showNotification(Labels.getLabel("document.error.empty.category"), Clients.NOTIFICATION_TYPE_ERROR, cbClass, Constants.MESSAGE_POSTION_END_CENTER, Constants.MESSAGE_TIME_CLOSE, Boolean.TRUE);
+                        cbClass.focus();
+                        return;
+                    }
                 }
             }
-
             String documentName = txtDocumentName.getValue().trim();
             Integer type = cbType.getSelectedItem().getValue();
             String path = linkHidden.getValue().trim();
@@ -266,6 +267,12 @@ public class AddDocumentController extends SelectorComposer<Component> {
 //
             }
             documentService.save(document);
+
+            if (type == 3) {
+                List<Document> listWeeky = documentService.getAllDocumentByType();
+                listWeeky.remove(0);
+                documentService.update(listWeeky);
+            }
 //            Messagebox.show(
 //                    Labels.getLabel("document.action.success", new String[]{titile}),
 //                    Labels.getLabel("notification"), Messagebox.OK, Messagebox.INFORMATION);
@@ -359,6 +366,11 @@ public class AddDocumentController extends SelectorComposer<Component> {
         } else if (cbType.getSelectedItem().getValue().equals(2)) {
             layoutCat.setVisible(true);
             layoutClass.setVisible(false);
+        } else {
+
+            layoutCat.setVisible(false);
+            layoutClass.setVisible(false);
+
         }
     }
 }

@@ -14,10 +14,14 @@ import java.util.List;
  */
 public interface DocumentService {
 
-    public void save(Document document);
+	public void save(Document document);
 
-    public List<Document> search(Document document);
+	public List<Document> search(Document document);
 
-    public List<Document> getAllBanner();
+	public List<Document> getAllBanner();
+
+	public void update(List<Document> documents);
+
+	public List<Document> getAllDocumentByType();
 
 }

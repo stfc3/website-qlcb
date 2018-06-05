@@ -24,7 +24,9 @@ import javax.persistence.Transient;
 @Entity
 @Table(name = "stfc_document")
 @NamedQueries({
-    @NamedQuery(name = "Document.GetAllDocument", query = "FROM Document u order by createDate, modifiedDate desc")})
+    @NamedQuery(name = "Document.GetAllDocument", query = "FROM Document u order by createDate, modifiedDate desc"),
+    @NamedQuery(name = "Document.GetAllDocumentByType", query = "FROM Document u where documentType = 3  order by createDate desc"),
+    })
 public class Document implements Serializable {
 
     /**
@@ -87,7 +89,7 @@ public class Document implements Serializable {
         this.documentPath = documentPath;
     }
 
-    @Column(name = "category_id", unique = true, nullable = false)
+    @Column(name = "category_id", unique = true, nullable = true)
     public Long getCategoryId() {
         return categoryId;
     }

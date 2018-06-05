@@ -94,6 +94,7 @@ public class FunctionUtil {
         listObject.add(new Data(-1, Labels.getLabel("option")));
         listObject.add(new Data(1, Labels.getLabel("document.type.subject")));
         listObject.add(new Data(2, Labels.getLabel("document.type.document")));
+        listObject.add(new Data(3, Labels.getLabel("document.type.weekly")));
 
         return listObject;
     }
