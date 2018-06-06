@@ -11,6 +11,7 @@
 <?link href="css/responsive.css" rel="stylesheet" type="text/css"?>
 <?link href="css/styleKTM.css" rel="stylesheet" type="text/css"?>
 <?link href="css/gzip.css" rel="stylesheet" type="text/css"?>
+<?meta name="google-site-verification" content="-kgIj76WbIhXSEYmlm7_zBV8nyNQHixKG2pvScc0Yms" ?>
 
 <zk xmlns:x="xhtml" xmlns:zk="zk">
     <div apply="com.stfc.website.newsadvertisement.IndexNewsAdvertController">
