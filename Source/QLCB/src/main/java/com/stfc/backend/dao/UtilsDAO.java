@@ -5,11 +5,8 @@
  */
 package com.stfc.backend.dao;
 
-import com.stfc.backend.domain.Enroll;
-import com.stfc.backend.domain.FeedBack;
-import com.stfc.utils.FunctionUtil;
-import com.stfc.utils.StringUtils;
 import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -18,6 +15,11 @@ import org.hibernate.transform.Transformers;
 import org.hibernate.type.StandardBasicTypes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import com.stfc.backend.domain.Enroll;
+import com.stfc.backend.domain.FeedBack;
+import com.stfc.utils.FunctionUtil;
+import com.stfc.utils.StringUtils;
 
 /**
  *
@@ -36,6 +38,7 @@ public class UtilsDAO {
     }
 
     /**
+     * Lay danh sach tuyen sinh
      *
      * @param enroll
      * @return
@@ -62,14 +65,10 @@ public class UtilsDAO {
             }
             builder.append(" order by s.create_date desc");
             Query query = getCurrentSession().createSQLQuery(builder.toString())
-                    .addScalar("studentId", StandardBasicTypes.LONG)
-                    .addScalar("studentName", StandardBasicTypes.STRING)
-                    .addScalar("email", StandardBasicTypes.STRING)
-                    .addScalar("phone", StandardBasicTypes.STRING)
-                    .addScalar("classId", StandardBasicTypes.LONG)
-                    .addScalar("className", StandardBasicTypes.STRING)
-                    .setResultTransformer(
-                            Transformers.aliasToBean(Enroll.class));
+                    .addScalar("studentId", StandardBasicTypes.LONG).addScalar("studentName", StandardBasicTypes.STRING)
+                    .addScalar("email", StandardBasicTypes.STRING).addScalar("phone", StandardBasicTypes.STRING)
+                    .addScalar("classId", StandardBasicTypes.LONG).addScalar("className", StandardBasicTypes.STRING)
+                    .setResultTransformer(Transformers.aliasToBean(Enroll.class));
             if (StringUtils.valiString(enroll.getStudentName())) {
                 query.setParameter("studentName", "%" + FunctionUtil.escapeCharacter(enroll.getStudentName()) + "%");
             }
@@ -90,6 +89,12 @@ public class UtilsDAO {
         return null;
     }
 
+    /**
+     * Lay danh sach feedback
+     *
+     * @param feedBack
+     * @return
+     */
     public List<FeedBack> onSearchFeedBack(FeedBack feedBack) {
 
         try {
@@ -121,6 +126,46 @@ public class UtilsDAO {
             logger.error(e.getMessage(), e);
         }
         return null;
+    }
+
+    /**
+     * Lay danh sach lop
+     *
+     * @param value
+     * @return
+     */
+    public List<com.stfc.website.domain.Class> search(com.stfc.website.domain.Class value) {
+        try {
+
+            StringBuilder builder = new StringBuilder("select c from Class c where 1=1");
+            if (StringUtils.valiString(value.getClassName())) {
+                builder.append(" and c.className like :className");
+            }
+            if (value.getStatus() != null && value.getStatus() != -1) {
+                builder.append(" and c.status = :status");
+            }
+            Query query = getCurrentSession().createQuery(builder.toString());
+            if (StringUtils.valiString(value.getClassName())) {
+                query.setParameter("className", "%" + value.getClassName() + "%");
+            }
+            if (value.getStatus() != null && value.getStatus() != -1) {
+                query.setParameter("status", value.getStatus());
+            }
+            List<com.stfc.website.domain.Class> listReturn = query.list();
+
+            return listReturn;
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+        }
+        return null;
+    }
+
+    public void save(com.stfc.website.domain.Class value) {
+        try {
+            getCurrentSession().saveOrUpdate(value);
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+        }
     }
 
 }

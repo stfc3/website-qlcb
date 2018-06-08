@@ -49,6 +49,7 @@ public interface Constants {
     String PAGE_BANNER = "manager/banner.zul";
     String PAGE_ENROLL = "manager/enroll.zul";
     String PAGE_FEEDBACK = "manager/feedback.zul";
+    String PAGE_CLASS = "manager/class.zul";
 
     public static final String WIDGET_POSITION_INTERNAL = "INTERNAL_CONTENT";
     public static final String WIDGET_CONTENT_TYPE_CATEGORY_INTERNAL = "CATEGORY_INTERNAL";
@@ -83,5 +84,11 @@ public interface Constants {
     public static final String KEY_COMPATE_NEW_POST = "KEY_COMPATE_NEW_POST";
     
     public static final String KEY_NO_IMAGE = "images/no-image.png";
+    
+    public static final String ENROLL_PATH="/backend/file/enroll_data.xlsx";
+    public static final String ENROLL_PATH_TEMP="/backend/file/temp/";
+    
+    public static final String FEEDBACK_PATH="/backend/file/feedback_data.xlsx";
+    public static final String FEEDBACK_PATH_TEMP="/backend/file/temp/";
 
 }

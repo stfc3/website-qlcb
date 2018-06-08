@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<zk xmlns:n="native">
+    <window id="addClass"
+                apply="com.stfc.backend.controller.ClassController"
+                position="center,center" closable="true"
+                action="show: slideDown;hide: slideUp" border="normal" width="60%"
+                maximizable="false" title="${c:l('class.add')}"
+                onCancel="addClass.detach();" contentStyle="overflow-y:auto">
+
+
+        <longbox hflex="2" visible="false"
+                         value="${arg.classItem.classId}" id="txtClassId" />
+        <intbox hflex="2" visible="false"
+                        value="${arg.classItem.status}" id="txtStatus" />
+
+        <vlayout class="groupboxFull">
+            <label class="labelNote" hflex="1"
+                               value="${c:l('user.note')}" />
+            <vlayout>
+                <hlayout>
+                    <hbox hflex="1" />
+                    <hbox hflex="2">
+                        <label value="${c:l('class.name')}" />
+                        <span style="color:red">*</span>
+
+                    </hbox>
+                    <hbox hflex="7">
+                        <textbox hflex="2"
+                                                         value="${arg.classItem.className}" id="txtClassAddName"
+                                                         onBlur="self.value=self.value.trim()" />
+
+                    </hbox>
+
+                    <hbox hflex="1" />
+                </hlayout>
+                <hlayout>
+                    <hbox hflex="1" />
+                    <label hflex="2" visible="true" id="errBannerName"
+                                               style="color:red" />
+                    <hbox hflex="1" />
+                </hlayout>
+            </vlayout>
+
+            <vlayout>
+                <hlayout>
+                    <hbox hflex="1" />
+                    <hbox hflex="2">
+                        <label value="${c:l('class.order')}" />
+                        <!--<span style="color:red">*</span>-->
+
+                    </hbox>
+                    <hbox hflex="7">
+                        <intbox hflex="2" value="${arg.classItem.classOrder}"
+                                                        id="txtOrder" />
+                    </hbox>
+                    <hbox hflex="1" />
+
+                </hlayout>
+                <hlayout>
+                    <hbox hflex="1" />
+                    <label visible="false" id="errUserEmail"
+                                               style="color:red" />
+                    <hbox hflex="1" />
+                </hlayout>
+            </vlayout>
+
+            <vlayout>
+                <hlayout>
+                    <hbox hflex="1" />
+
+                    <hbox hflex="2">
+                        <label hflex="1"
+                                                       value="${c:l('class.description')}" />
+
+                    </hbox>
+                    <hbox hflex="7">
+                        <textbox hflex="2" id="txtDescription"
+                                                         value="${arg.classItem.description}"
+                                                         onBlur="self.value=self.value.trim()" />
+
+                    </hbox>
+                    <hbox hflex="1" />
+                </hlayout>
+                <hlayout>
+                    <hbox hflex="1" />
+                    <span visible="false" style="color:red">
+
+                    </span>
+                    <hbox hflex="1" />
+                </hlayout>
+            </vlayout>
+
+
+        </vlayout>
+        <space height="20px"></space>
+        <div style="text-align:center">
+            <button class="btn btn-default" mold="trendy" id="btnSave"
+                                forward="onClick=onSave" label="${c:l('save')}" focus="true"
+                                iconSclass="z-icon-floppy-o" />
+            <button class="btn btn-default" mold="trendy" id="btnCancel"
+                                label="${c:l('cancel')}" iconSclass="z-icon-ban" />
+
+        </div>
+
+    </window>
+</zk>

@@ -13,102 +13,108 @@ import org.zkoss.zul.Menuitem;
 
 public class MainComposer extends GenericForwardComposer<Component> {
 
-    @Wire
-    Menuitem category, document, user, menu, addPost, listPost, widget, banner, enroll, feedback;
-    @Wire
-    Menu post;
-    @Wire
-    Label breadcrumb;
-    @Wire
-    Include content;
-    UserToken userToken;
+	@Wire
+	Menuitem category, document, user, menu, addPost, listPost, widget, banner, enroll, feedback, classItem;
+	@Wire
+	Menu post;
+	@Wire
+	Label breadcrumb;
+	@Wire
+	Include content;
+	UserToken userToken;
 
-    @Override
-    public void doAfterCompose(Component comp) throws Exception {
-        super.doAfterCompose(comp);
-        if (session.getAttribute(Constants.USER_TOKEN) == null) {
-            Executions.sendRedirect(Constants.PAGE_LOGIN);
-        } else {
-            userToken = (UserToken) session.getAttribute(Constants.USER_TOKEN);
-            loadMenu();
-        }
+	@Override
+	public void doAfterCompose(Component comp) throws Exception {
+		super.doAfterCompose(comp);
+		if (session.getAttribute(Constants.USER_TOKEN) == null) {
+			Executions.sendRedirect(Constants.PAGE_LOGIN);
+		} else {
+			userToken = (UserToken) session.getAttribute(Constants.USER_TOKEN);
+			loadMenu();
+		}
 
-    }
+	}
 
-    private void loadMenu() {
-        if (Constants.ROLE_EDITOR.equals(userToken.getRole()) || Constants.ROLE_AUTHOR.equals(userToken.getRole())
-                || Constants.ROLE_CONTRIBUTOR.equals(userToken.getRole())) {
-            post.setVisible(true);
-            addPost.setVisible(true);
-            listPost.setVisible(true);
-        }
-        if (Constants.ROLE_EDITOR.equals(userToken.getRole())) {
-            category.setVisible(true);
-        }
-        if (Constants.ROLE_ADMIN.equals(userToken.getRole())) {
-            category.setVisible(true);
-            document.setVisible(true);
-            user.setVisible(true);
-            menu.setVisible(true);
-            post.setVisible(true);
-            addPost.setVisible(true);
-            listPost.setVisible(true);
-            widget.setVisible(true);
-            banner.setVisible(true);
-            enroll.setVisible(true);
-            feedback.setVisible(true);
-        }
-    }
+	private void loadMenu() {
+		if (Constants.ROLE_EDITOR.equals(userToken.getRole()) || Constants.ROLE_AUTHOR.equals(userToken.getRole())
+				|| Constants.ROLE_CONTRIBUTOR.equals(userToken.getRole())) {
+			post.setVisible(true);
+			addPost.setVisible(true);
+			listPost.setVisible(true);
+		}
+		if (Constants.ROLE_EDITOR.equals(userToken.getRole())) {
+			category.setVisible(true);
+		}
+		if (Constants.ROLE_ADMIN.equals(userToken.getRole())) {
+			category.setVisible(true);
+			document.setVisible(true);
+			user.setVisible(true);
+			menu.setVisible(true);
+			post.setVisible(true);
+			addPost.setVisible(true);
+			listPost.setVisible(true);
+			widget.setVisible(true);
+			banner.setVisible(true);
+			enroll.setVisible(true);
+			feedback.setVisible(true);
+			classItem.setVisible(true);
+		}
+	}
 
-    public void onClick$category() {
-        content.setSrc(Constants.PAGE_CATEGORY);
-        breadcrumb.setValue(category.getLabel());
-    }
+	public void onClick$category() {
+		content.setSrc(Constants.PAGE_CATEGORY);
+		breadcrumb.setValue(category.getLabel());
+	}
 
-    public void onClick$addPost() {
-        session.setAttribute(Constants.STFC_POST_ATTRIBUTE, null);
-        content.setSrc(Constants.PAGE_ADD_POST);
-        breadcrumb.setValue(addPost.getLabel());
-    }
+	public void onClick$addPost() {
+		session.setAttribute(Constants.STFC_POST_ATTRIBUTE, null);
+		content.setSrc(Constants.PAGE_ADD_POST);
+		breadcrumb.setValue(addPost.getLabel());
+	}
 
-    public void onClick$listPost() {
-        content.setSrc(Constants.PAGE_LIST_POST);
-        breadcrumb.setValue(listPost.getLabel());
-    }
+	public void onClick$listPost() {
+		content.setSrc(Constants.PAGE_LIST_POST);
+		breadcrumb.setValue(listPost.getLabel());
+	}
 
-    public void onClick$user() {
-        content.setSrc(Constants.PAGE_USER);
-        breadcrumb.setValue(user.getLabel());
-    }
+	public void onClick$user() {
+		content.setSrc(Constants.PAGE_USER);
+		breadcrumb.setValue(user.getLabel());
+	}
 
-    public void onClick$menu() {
-        content.setSrc(Constants.PAGE_MENU);
-        breadcrumb.setValue(menu.getLabel());
-    }
+	public void onClick$menu() {
+		content.setSrc(Constants.PAGE_MENU);
+		breadcrumb.setValue(menu.getLabel());
+	}
 
-    public void onClick$document() {
-        content.setSrc(Constants.PAGE_DOCUMENT);
-        breadcrumb.setValue(document.getLabel());
-    }
+	public void onClick$document() {
+		content.setSrc(Constants.PAGE_DOCUMENT);
+		breadcrumb.setValue(document.getLabel());
+	}
 
-    public void onClick$widget() {
-        content.setSrc(Constants.PAGE_WIDGET);
-        breadcrumb.setValue(widget.getLabel());
-    }
+	public void onClick$widget() {
+		content.setSrc(Constants.PAGE_WIDGET);
+		breadcrumb.setValue(widget.getLabel());
+	}
 
-    public void onClick$banner() {
-        content.setSrc(Constants.PAGE_BANNER);
-        breadcrumb.setValue(banner.getLabel());
-    }
+	public void onClick$banner() {
+		content.setSrc(Constants.PAGE_BANNER);
+		breadcrumb.setValue(banner.getLabel());
+	}
 
-    public void onClick$enroll() {
-        content.setSrc(Constants.PAGE_ENROLL);
-        breadcrumb.setValue(enroll.getLabel());
-    }
+	public void onClick$enroll() {
+		content.setSrc(Constants.PAGE_ENROLL);
+		breadcrumb.setValue(enroll.getLabel());
+	}
 
-    public void onClick$feedback() {
-        content.setSrc(Constants.PAGE_FEEDBACK);
-        breadcrumb.setValue(feedback.getLabel());
-    }
+	public void onClick$feedback() {
+		content.setSrc(Constants.PAGE_FEEDBACK);
+		breadcrumb.setValue(feedback.getLabel());
+	}
+
+	public void onClick$classItem() {
+		content.setSrc(Constants.PAGE_CLASS);
+		breadcrumb.setValue(classItem.getLabel());
+	}
 
 }

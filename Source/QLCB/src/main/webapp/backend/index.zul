@@ -31,6 +31,7 @@
                         <menuitem id="banner"  label="Banner" iconSclass="z-icon-picture-o" visible="false"/>
                         <menuitem id="enroll"  label="${c:l('enroll.title.report')}" iconSclass="z-icon-graduation-cap" visible="false"/>
                         <menuitem id="feedback"  label="${c:l('feedback.title.report')}" iconSclass="z-icon-comments" visible="false"/>
+                        <menuitem id="classItem"  label="${c:l('class.title')}" iconSclass="z-icon-list" visible="false"/>
                     </menubar>
                 </div>
             </div>

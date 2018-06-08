@@ -5,7 +5,11 @@
  */
 package com.stfc.backend.controller;
 
+import java.io.File;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.zkoss.zk.ui.Component;
@@ -14,13 +18,17 @@ import org.zkoss.zk.ui.select.annotation.Wire;
 import org.zkoss.zk.ui.select.annotation.WireVariable;
 import org.zkoss.zk.ui.util.GenericForwardComposer;
 import org.zkoss.zkplus.spring.SpringUtil;
+import org.zkoss.zul.Filedownload;
 import org.zkoss.zul.Grid;
 import org.zkoss.zul.ListModelList;
 import org.zkoss.zul.Textbox;
 
 import com.stfc.backend.domain.Enroll;
 import com.stfc.backend.domain.FeedBack;
+import com.stfc.backend.excel.annotation.ExcelWriter;
 import com.stfc.backend.service.UtilsService;
+import com.stfc.utils.Constants;
+import com.stfc.utils.DatetimeUtils;
 import com.stfc.utils.SpringConstant;
 import com.stfc.utils.StringUtils;
 import com.stfc.website.service.WidgetService;
@@ -55,6 +63,7 @@ public class FeedBackController extends GenericForwardComposer<Component> {
 
     @WireVariable
     private Textbox txtPhone;
+    private List<FeedBack> listFeedBack;
 
     private ListModelList<com.stfc.website.domain.Class> listModelType = new ListModelList<>();
 
@@ -105,7 +114,7 @@ public class FeedBackController extends GenericForwardComposer<Component> {
             feedBack.setEmail(txtEmail.getValue().trim());
         }
 
-        List<FeedBack> listFeedBack = utilsService.onSearchFeedBack(feedBack);
+        listFeedBack = utilsService.onSearchFeedBack(feedBack);
 
         listSearch = new ListModelList(listFeedBack);
         listSearch.setMultiple(true);
@@ -117,6 +126,31 @@ public class FeedBackController extends GenericForwardComposer<Component> {
         txtFeedBackName.setValue("");
         txtPhone.setValue("");
         txtEmail.setValue("");
+    }
+    public void onExport(ForwardEvent event) {
+    	ExcelWriter<FeedBack> excelWriter = new ExcelWriter<FeedBack>();
+    	try {
+    		String fileName = "Danhsachykiengopy.xlsx";
+            int index = 0;
+            for (FeedBack feedBack : listFeedBack) {
+                index++;
+                feedBack.setIndex(index);                
+            }
+            String pathFileInput = session.getWebApp().getRealPath(Constants.FEEDBACK_PATH);
+            String pathFileOut = session.getWebApp().getRealPath(Constants.FEEDBACK_PATH_TEMP);
+            excelWriter.setFileOutName(fileName);
+            Map<String, Object> beans = new HashMap<>();
+            beans.put("data", listFeedBack);
+            beans.put("day", DatetimeUtils.getTime(new Date(), 1));
+            beans.put("month", DatetimeUtils.getTime(new Date(), 2));
+            beans.put("year", DatetimeUtils.getTime(new Date(), 3));
+            excelWriter.write(beans, pathFileInput, pathFileOut);
+            File file = new File(excelWriter.getFileExport());
+            Filedownload.save(file, null);
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            logger.error(e.getMessage(), e);
+        }
     }
 
 }

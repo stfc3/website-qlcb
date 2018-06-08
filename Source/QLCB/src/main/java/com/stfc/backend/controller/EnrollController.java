@@ -5,7 +5,11 @@
  */
 package com.stfc.backend.controller;
 
+import java.io.File;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.zkoss.util.resource.Labels;
@@ -16,21 +20,26 @@ import org.zkoss.zk.ui.select.annotation.WireVariable;
 import org.zkoss.zk.ui.util.GenericForwardComposer;
 import org.zkoss.zkplus.spring.SpringUtil;
 import org.zkoss.zul.Combobox;
+import org.zkoss.zul.Filedownload;
 import org.zkoss.zul.Grid;
 import org.zkoss.zul.ListModelList;
 import org.zkoss.zul.Textbox;
 import org.zkoss.zul.Window;
 
+
 import com.stfc.backend.domain.Enroll;
+import com.stfc.backend.excel.annotation.ExcelWriter;
 import com.stfc.backend.service.UtilsService;
+import com.stfc.utils.Constants;
+import com.stfc.utils.DatetimeUtils;
 import com.stfc.utils.SpringConstant;
 import com.stfc.utils.StringUtils;
 import com.stfc.website.service.WidgetService;
 
 /**
  *
- * @author admin
- * @since 27/03/2018
+ * @author viettx
+ * @since 08/06/2018
  */
 public class EnrollController extends GenericForwardComposer<Component> {
     
@@ -49,7 +58,6 @@ public class EnrollController extends GenericForwardComposer<Component> {
     @Wire
     private Grid gridEnroll;
     
-    private Window enrollManager;
     
     @WireVariable
     private Textbox txtStudentName;
@@ -62,6 +70,8 @@ public class EnrollController extends GenericForwardComposer<Component> {
     
     @WireVariable
     private Combobox cbxClass;
+    
+    private List<Enroll> listEnroll;
     
     private ListModelList<com.stfc.website.domain.Class> listModelType = new ListModelList<>();
 
@@ -123,7 +133,7 @@ public class EnrollController extends GenericForwardComposer<Component> {
         if (cbxClass.getSelectedItem() != null && !cbxClass.getSelectedItem().getValue().equals(-1l)) {
             enroll.setClassId(cbxClass.getSelectedItem().getValue());
         }
-        List<Enroll> listEnroll = utilsService.searchEnroll(enroll);
+        listEnroll = utilsService.searchEnroll(enroll);
         
         listSearch = new ListModelList(listEnroll);
         listSearch.setMultiple(true);
@@ -136,6 +146,32 @@ public class EnrollController extends GenericForwardComposer<Component> {
         txtPhone.setValue("");
         txtEmail.setValue("");
         cbxClass.setSelectedIndex(0);
+    }
+    
+    public void onExport(ForwardEvent event) {
+    	ExcelWriter<Enroll> excelWriter = new ExcelWriter<Enroll>();
+    	try {
+    		String fileName = "Danhsachhocviendangky.xlsx";
+            int index = 0;
+            for (Enroll enroll : listEnroll) {
+                index++;
+                enroll.setIndex(index);                
+            }
+            String pathFileInput = session.getWebApp().getRealPath(Constants.ENROLL_PATH);
+            String pathFileOut = session.getWebApp().getRealPath(Constants.ENROLL_PATH_TEMP);
+            excelWriter.setFileOutName(fileName);
+            Map<String, Object> beans = new HashMap<>();
+            beans.put("data", listEnroll);
+            beans.put("day", DatetimeUtils.getTime(new Date(), 1));
+            beans.put("month", DatetimeUtils.getTime(new Date(), 2));
+            beans.put("year", DatetimeUtils.getTime(new Date(), 3));
+            excelWriter.write(beans, pathFileInput, pathFileOut);
+            File file = new File(excelWriter.getFileExport());
+            Filedownload.save(file, null);
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            logger.error(e.getMessage(), e);
+        }
     }
     
 }

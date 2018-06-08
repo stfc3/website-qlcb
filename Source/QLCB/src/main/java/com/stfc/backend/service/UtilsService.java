@@ -18,4 +18,8 @@ public interface UtilsService {
     List<Enroll> searchEnroll(Enroll enroll);
 
     List<FeedBack> onSearchFeedBack(FeedBack feedBack);
+    
+    List<com.stfc.website.domain.Class> search(com.stfc.website.domain.Class value);
+    
+    void save(com.stfc.website.domain.Class value);
 }

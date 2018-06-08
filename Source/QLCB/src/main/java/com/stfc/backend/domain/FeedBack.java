@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
+import javax.persistence.Transient;
 
 /**
  *
@@ -43,6 +44,8 @@ public class FeedBack {
     @Column(name = "create_date", unique = false, nullable = false, insertable = true, updatable = true)
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date createDate;
+    @Transient
+    private int index;
 
     public Long getFeedbackID() {
         return feedbackID;
@@ -91,5 +94,20 @@ public class FeedBack {
     public void setCreateDate(Date createDate) {
         this.createDate = createDate;
     }
+
+	/**
+	 * @return the index
+	 */
+	public int getIndex() {
+		return index;
+	}
+
+	/**
+	 * @param index the index to set
+	 */
+	public void setIndex(int index) {
+		this.index = index;
+	}
+    
 
 }

@@ -11,13 +11,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 /**
  *
  * @author viettx
  */
 @Entity
-@Table(name = "stfc_enroll_students")
+@Table(name = "stfc_enroll_students")	
 public class Enroll {
 
     /**
@@ -45,6 +46,8 @@ public class Enroll {
     private String phone;
     @Column(name = "className", unique = false, nullable = false, insertable = true, updatable = true)
     private String className;
+    @Transient
+    private int index;
 
     public Long getStudentId() {
         return studentId;
@@ -109,6 +112,20 @@ public class Enroll {
     public void setClassName(String className) {
         this.className = className;
     }
+
+	/**
+	 * @return the index
+	 */
+	public int getIndex() {
+		return index;
+	}
+
+	/**
+	 * @param index the index to set
+	 */
+	public void setIndex(int index) {
+		this.index = index;
+	}
 
     
 

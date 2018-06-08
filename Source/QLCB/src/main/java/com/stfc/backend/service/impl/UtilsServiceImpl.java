@@ -10,6 +10,8 @@ import com.stfc.backend.dao.UtilsDAO;
 import com.stfc.backend.domain.Enroll;
 import com.stfc.backend.domain.FeedBack;
 import com.stfc.backend.service.UtilsService;
+import com.stfc.website.domain.Class;
+
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
@@ -42,5 +44,23 @@ public class UtilsServiceImpl implements UtilsService {
         }
         return null;
     }
+
+    @Transactional(readOnly = true)
+	@Override
+	public List<Class> search(Class value) {
+		try {
+            List<Class> list = utilsDAO.search(value);
+            return list;
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+        }
+        return null;
+	}
+    @Transactional
+	@Override
+	public void save(Class value) {
+		// TODO Auto-generated method stub
+    	utilsDAO.save(value);
+	}
 
 }
