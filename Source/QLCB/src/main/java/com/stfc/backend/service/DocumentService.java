@@ -23,5 +23,7 @@ public interface DocumentService {
 	public void update(List<Document> documents);
 
 	public List<Document> getAllDocumentByType();
+        
+        public void delete(Document document);
 
 }

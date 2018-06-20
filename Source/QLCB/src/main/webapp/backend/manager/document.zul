@@ -121,6 +121,9 @@
                             <a class="btn-cursor"
                                iconSclass="z-icon-lock" forward="onClick=onLock"
                                tooltiptext="${(each.status == 1) ? c:l('active') : c:l('inactive')}" />
+                            <a class="btn-cursor"
+                                iconSclass="z-icon-trash-o text-danger" forward="onClick=onDelete"
+                                 tooltiptext="${c:l('delete')}" />
                         </cell>
                     </row>
                 </template>
