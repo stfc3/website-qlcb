@@ -19,6 +19,7 @@
             </div>
             <div class="col-md-2">
                 <button label="${c:l('select')}" id="btnOK"/> 
+                <button label="${c:l('import.image')}" upload="true" id="btnUpload"/> 
             </div>
             <div class="col-md-5"/>
         </div>

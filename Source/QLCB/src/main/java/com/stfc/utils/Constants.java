@@ -5,6 +5,8 @@
  */
 package com.stfc.utils;
 
+import java.util.List;
+
 /**
  *
  * @author dmin
@@ -82,13 +84,14 @@ public interface Constants {
     public static final String PREFIX_SLUG_DOCUMENT = "/doc/";
 
     public static final String KEY_COMPATE_NEW_POST = "KEY_COMPATE_NEW_POST";
-    
+
     public static final String KEY_NO_IMAGE = "images/no-image.png";
-    
-    public static final String ENROLL_PATH="/backend/file/enroll_data.xlsx";
-    public static final String ENROLL_PATH_TEMP="/backend/file/temp/";
-    
-    public static final String FEEDBACK_PATH="/backend/file/feedback_data.xlsx";
-    public static final String FEEDBACK_PATH_TEMP="/backend/file/temp/";
+
+    public static final String ENROLL_PATH = "/backend/file/enroll_data.xlsx";
+    public static final String ENROLL_PATH_TEMP = "/backend/file/temp/";
+
+    public static final String FEEDBACK_PATH = "/backend/file/feedback_data.xlsx";
+    public static final String FEEDBACK_PATH_TEMP = "/backend/file/temp/";
+    public static final String[] formatImage = new String[]{".png", ".jpg", ".jpeg", ".tiff", ".gif", ".jfif"};
 
 }
