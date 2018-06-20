@@ -625,9 +625,16 @@ span.textRight{margin-left:15px;text-align:center;color:white;font-size:12px;fon
     border-right:1px solid #00aaed;
 
 }
-.no-pading {
-    padding-left: 0px;
-    padding-right: 15px;
+@media only screen and (min-width:991px) {
+    .no-pading {
+        padding-left: 0px;
+        padding-right: 15px;
+    }
+}
+@media only screen and (max-width:991px) {
+    .no-pading {
+        margin-top: 15px;
+    }
 }
 .scroll-y {
     overflow-y: auto;
@@ -916,12 +923,12 @@ form[role=login] > div {
     min-height: 40px;
 }
 
-@media only screen and (max-width:1199px) {
+@media only screen and (max-width:767px) {
     .bs-example-navbar-collapse-1 {
         margin-top: 40px;
     }
 }
-@media only screen and (min-width:1199px) {
+@media only screen and (min-width:767px) {
     .navbar-custom {
         margin: 0;
         float: left;
@@ -931,6 +938,11 @@ form[role=login] > div {
         margin: 5px 0;
     }
 }
+/*@media only screen and (min-width:1199px) {*/
+/*    .navbar-custom {
+        background-color: #417cf2;
+    }*/
+/*}*/
 
 @media only screen and (min-width:1199px) {
     .navbar-right {
@@ -957,7 +969,7 @@ form[role=login] > div {
     color:white;
     text-transform:uppercase;
     background-color: #00aaed;
-    padding: 7px 11px;
+    padding: 5px 11px 7px 11px;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
 }
@@ -999,7 +1011,7 @@ form[role=login] > div {
 .hotline {
     background-image: url(../images/dangky.jpg);
     background-size: 100%;
-    min-height: 230px;
+    min-height: 320px;
     background-repeat: no-repeat;
     background-position: center;
 }
@@ -1023,13 +1035,17 @@ form[role=login] > div {
 }
 .btn-margin {
     margin-top: -40px;
-    
+
 }
 .documentIframeScheduleWeek {
     margin-bottom: 30px;
 }
 
 .post-title-detail {
-    font-weight: bold;
+    margin-bottom: 15px;
     text-align: justify;
+}
+.post-title-detail span{
+    font-size: 22px;
+    font-weight: bold;
 }

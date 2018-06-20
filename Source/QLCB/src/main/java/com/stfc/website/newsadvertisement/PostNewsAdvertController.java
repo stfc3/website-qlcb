@@ -158,15 +158,16 @@ public class PostNewsAdvertController extends SelectorComposer<Div> {
             irsBlogSingle.setParent(divColMd8);
 
             Div irsBlogCol = new Div();
-            irsBlogCol.setClass("irs-blog-col post-title-detail");
+            irsBlogCol.setClass("irs-blog-col");
             irsBlogCol.setParent(irsBlogSingle);
 
-//            H1 titlePost = new H1();
-//            titlePost.setParent(irsBlogCol);
+            Div titlePost = new Div();
+            titlePost.setClass("post-title-detail");
+            titlePost.setParent(irsBlogCol);
 
             Span spanTitle = new Span();
-            spanTitle.setClass("pTitle post-title-detail-span");
-            spanTitle.setParent(irsBlogCol);
+            spanTitle.setClass("post-title-detail");
+            spanTitle.setParent(titlePost);
             String postTitle = "";
             if (p.getPostTitle() != null && !"".equals(p.getPostTitle())) {
                 postTitle = p.getPostTitle();

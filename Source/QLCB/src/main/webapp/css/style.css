@@ -610,9 +610,9 @@ span.textRight{margin-left:15px;text-align:center;color:white;font-size:12px;fon
     padding: 10px 5px 5px 5px;
     
 }
-.no-pading {
+/*.no-pading {
     padding: 0px;
-}
+}*/
 .scroll-y {
     overflow-y: scroll;
 }
