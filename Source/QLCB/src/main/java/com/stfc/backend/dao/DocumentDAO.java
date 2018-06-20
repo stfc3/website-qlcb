@@ -51,7 +51,7 @@ public class DocumentDAO {
 
         return null;
     }
-    
+
     public List<Document> getAllDocumentByType() {
         try {
             Query query = getCurrentSession().getNamedQuery("Document.GetAllDocumentByType");
@@ -129,7 +129,6 @@ public class DocumentDAO {
     public void save(Document document) {
         try {
             getCurrentSession().saveOrUpdate(document);
-            logger.info("Document DAO: " + document.toString());
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
         }
@@ -137,14 +136,22 @@ public class DocumentDAO {
     }
 
     public void update(List<Document> documents) {
-    	Session session = getCurrentSession();
-    	if(documents != null && !documents.isEmpty()) {
-    		for(Document document: documents) {
-    			document.setStatus(0);
-    			session.saveOrUpdate(document);
-    		}
-    	}
+        Session session = getCurrentSession();
+        if (documents != null && !documents.isEmpty()) {
+            for (Document document : documents) {
+                document.setStatus(0);
+                session.saveOrUpdate(document);
+            }
+        }
 
+    }
+
+    public void delete(Document document) {
+        try {
+            getCurrentSession().delete(document);
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+        }
     }
 
 }
