@@ -25,26 +25,26 @@ h5,
 h6{font-weight:400;line-height:1.2;color:#000;margin-top:0;margin-bottom:10px;}
 .irs-section-title{text-align:left;}
 .irs-section-title h2{font-size:40px;margin-bottom:20px;}
-.irs-section-title h2 span{color:#006400;}
+.irs-section-title h2 span{color:#00aaed;}
 .irs-section-title .irs-title-line{width:180px;height:2px;background:#333333;margin:0 auto;margin-bottom:30px;position:relative;}
 .irs-section-title .irs-title-line .irs-title-icon{position:absolute;top:-25px;left:50%;margin-left:-25px;width:50px;height:50px;background:#ffffff;}
-.irs-section-title .irs-title-line .irs-title-icon i{color:#006400;font-size:30px;line-height:50px;}
+.irs-section-title .irs-title-line .irs-title-icon i{color:#00aaed;font-size:30px;line-height:50px;}
 .irs-section-title p{font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;font-weight:bold;color:#595959;}
 .irs-layer-black{position:relative;}
 .irs-layer-black:before{content:" ";height:100%;left:0;position:absolute;top:0;width:100%;z-index:0;background:rgba(0, 0, 0, 0.4);}
-.irs-btn-transparent{padding:4px 22px;background:none;border-radius:0;color:#006400;border:1px solid #006400;text-transform:uppercase;-webkit-transition:all 0.3s ease-in-out;-moz-transition:all 0.3s ease-in-out;-ms-transition:all 0.3s ease-in-out;-o-transition:all 0.3s ease-in-out;transition:all 0.3s ease-in-out;}
-.irs-btn-transparent:hover{color:#ffffff;background:#006400;border-radius:0;border:1px solid #006400;-webkit-transition:all 0.3s ease-in-out;-moz-transition:all 0.3s ease-in-out;-ms-transition:all 0.3s ease-in-out;-o-transition:all 0.3s ease-in-out;transition:all 0.3s ease-in-out;}
-.irs-btn-transparent-two{color:#ffffff;font-weight:bold;background:#006400;border-radius:0;text-transform:uppercase;padding:8px 30px;border:1px solid #006400;-webkit-transition:all 0.3s ease-in-out;-moz-transition:all 0.3s ease-in-out;-ms-transition:all 0.3s ease-in-out;-o-transition:all 0.3s ease-in-out;transition:all 0.3s ease-in-out;}
+.irs-btn-transparent{padding:4px 22px;background:none;border-radius:0;color:#00aaed;border:1px solid #00aaed;text-transform:uppercase;-webkit-transition:all 0.3s ease-in-out;-moz-transition:all 0.3s ease-in-out;-ms-transition:all 0.3s ease-in-out;-o-transition:all 0.3s ease-in-out;transition:all 0.3s ease-in-out;}
+.irs-btn-transparent:hover{color:#ffffff;background:#00aaed;border-radius:0;border:1px solid #00aaed;-webkit-transition:all 0.3s ease-in-out;-moz-transition:all 0.3s ease-in-out;-ms-transition:all 0.3s ease-in-out;-o-transition:all 0.3s ease-in-out;transition:all 0.3s ease-in-out;}
+.irs-btn-transparent-two{color:#ffffff;font-weight:bold;background:#00aaed;border-radius:0;text-transform:uppercase;padding:8px 30px;border:1px solid #00aaed;-webkit-transition:all 0.3s ease-in-out;-moz-transition:all 0.3s ease-in-out;-ms-transition:all 0.3s ease-in-out;-o-transition:all 0.3s ease-in-out;transition:all 0.3s ease-in-out;}
 .old{position:fixed;right:-27px;padding:12px;font-size:12px;font-weight:100;-webkit-transform:rotate(90deg);-moz-transform:rotate(90deg);-ms-transform:rotate(90deg);-o-transform:rotate(90deg);filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=3);}
 .irs-btn-transparent-two:hover{color:#6c6c6c;background:transparent;border:1px solid #C1C1C1;-webkit-transition:all 0.3s ease-in-out;-moz-transition:all 0.3s ease-in-out;-ms-transition:all 0.3s ease-in-out;-o-transition:all 0.3s ease-in-out;transition:all 0.3s ease-in-out;}
 .irs-btn-transparent-three{padding:4px 26px;background:none;border-radius:20px;border:1px solid #999999;-webkit-transition:all 0.3s ease-in-out;-moz-transition:all 0.3s ease-in-out;-ms-transition:all 0.3s ease-in-out;-o-transition:all 0.3s ease-in-out;transition:all 0.3s ease-in-out;}
-.irs-btn-transparent-three:hover{color:#ffffff;background:#006400;border:1px solid #006400;-webkit-transition:all 0.3s ease-in-out;-moz-transition:all 0.3s ease-in-out;-ms-transition:all 0.3s ease-in-out;-o-transition:all 0.3s ease-in-out;transition:all 0.3s ease-in-out;}
-.irs-big-btn{background-color:#006400;color:#ffffff;font-size:16px;font-weight:400;text-transform:uppercase;text-shadow:none;padding:15px 50px;box-shadow:none;border:none;-webkit-border-radius:0;-moz-border-radius:0;-ms-border-radius:0;-o-border-radius:0;border-radius:0;-webkit-transition:all 0.3s ease-in-out;-moz-transition:all 0.3s ease-in-out;-ms-transition:all 0.3s ease-in-out;-o-transition:all 0.3s ease-in-out;transition:all 0.3s ease-in-out;}
+.irs-btn-transparent-three:hover{color:#ffffff;background:#00aaed;border:1px solid #00aaed;-webkit-transition:all 0.3s ease-in-out;-moz-transition:all 0.3s ease-in-out;-ms-transition:all 0.3s ease-in-out;-o-transition:all 0.3s ease-in-out;transition:all 0.3s ease-in-out;}
+.irs-big-btn{background-color:#00aaed;color:#ffffff;font-size:16px;font-weight:400;text-transform:uppercase;text-shadow:none;padding:15px 50px;box-shadow:none;border:none;-webkit-border-radius:0;-moz-border-radius:0;-ms-border-radius:0;-o-border-radius:0;border-radius:0;-webkit-transition:all 0.3s ease-in-out;-moz-transition:all 0.3s ease-in-out;-ms-transition:all 0.3s ease-in-out;-o-transition:all 0.3s ease-in-out;transition:all 0.3s ease-in-out;}
 .irs-big-btn:hover{color:#ffffff;background:#ea8e40;-webkit-transition:all 0.3s ease-in-out;-moz-transition:all 0.3s ease-in-out;-ms-transition:all 0.3s ease-in-out;-o-transition:all 0.3s ease-in-out;transition:all 0.3s ease-in-out;}
 #scrollUp{bottom:10px;right:10px;padding:8px 10px;}
 #scrollUp:before{content:"\f01b";font-family:FontAwesome;font-size:26px;color:#f79400;padding-top:7px;}
 .preloader{position:fixed;left:0px;top:0px;width:100%;height:100%;z-index:99999999;background-color:#ffffff;background-position:center center;background-repeat:no-repeat;background-image:url(../images/preloader.gif);}
-.irs-header-top-bar{background:#006400;}
+.irs-header-top-bar{background:#00aaed;}
 .irs-header-top-bar p{margin-top:5px;margin-bottom:5px;color:#ffffff;}
 .irs-header-top-bar p i{color:#ffffff;margin-right:5px;}
 .irs-social{margin-top:3px;}
@@ -56,19 +56,19 @@ h6{font-weight:400;line-height:1.2;color:#000;margin-top:0;margin-bottom:10px;}
 .irs-navbar{margin:10px auto;border:none;background-color:transparent;}
 .irs-navbar .navbar-nav > .active > a,
 .irs-navbar .navbar-nav > .active > a:focus,
-.irs-navbar .navbar-nav > .active > a:hover{color:#006400;background:transparent;}
-.scroll-to-fixed-fixed .irs-navbar .navbar-nav > .active > a{color:#006400;background:transparent;}
+.irs-navbar .navbar-nav > .active > a:hover{color:#00aaed;background:transparent;}
+.scroll-to-fixed-fixed .irs-navbar .navbar-nav > .active > a{color:#00aaed;background:transparent;}
 .irs-navbar .navbar-nav > li > a{padding-left:7px;padding-right:7px;font-size:14px;font-weight:bold;color:#535353;text-transform:uppercase;}
 .irs-navbar .navbar-nav > .open > a{background-color:transparent;}
 .irs-navbar .navbar-nav > .open > a:hover{background-color:transparent;}
-.navbar-right .dropdown-menu{right:auto;box-shadow:none;border-top:2px solid #006400;border-radius:0;padding:0;}
+.navbar-right .dropdown-menu{right:auto;box-shadow:none;border-top:2px solid #00aaed;border-radius:0;padding:0;}
 .irs-navbar .dropdown-menu > li > a{color:#535353;font-size:14px;font-weight:bold;text-transform:uppercase;padding:12px 15px;-webkit-transition:all 0.3s ease-in-out;-moz-transition:all 0.3s ease-in-out;-ms-transition:all 0.3s ease-in-out;-o-transition:all 0.3s ease-in-out;transition:all 0.3s ease-in-out;}
-.irs-navbar .dropdown-menu > li > a:hover{color:#006400;padding-left:10px;-webkit-transition:all 0.3s ease-in-out;-moz-transition:all 0.3s ease-in-out;-ms-transition:all 0.3s ease-in-out;-o-transition:all 0.3s ease-in-out;transition:all 0.3s ease-in-out;}
-.irs-log-reg{background:#006400;text-align:center;color:#ffffff;padding:5px 15px;margin-top:30px;}
+.irs-navbar .dropdown-menu > li > a:hover{color:#00aaed;padding-left:10px;-webkit-transition:all 0.3s ease-in-out;-moz-transition:all 0.3s ease-in-out;-ms-transition:all 0.3s ease-in-out;-o-transition:all 0.3s ease-in-out;transition:all 0.3s ease-in-out;}
+.irs-log-reg{background:#00aaed;text-align:center;color:#ffffff;padding:5px 15px;margin-top:30px;}
 .irs-log-reg a{color:#ffffff;}
 .ire-header-two{position:fixed;left:0;top:0;z-index:9999;width:100%;-webkit-transition:all 0.3s ease-in-out;-moz-transition:all 0.3s ease-in-out;-ms-transition:all 0.3s ease-in-out;-o-transition:all 0.3s ease-in-out;transition:all 0.3s ease-in-out;}
 .ire-header-two .irs-navbar .navbar-nav > li > a{color:#ffffff;}
-.ire-header-two .irs-navbar .navbar-nav > li > a:hover{color:#006400;}
+.ire-header-two .irs-navbar .navbar-nav > li > a:hover{color:#00aaed;}
 .smaller{background:#ffffff;-webkit-box-shadow:0px 8px 12px -10px rgba(0,0,0,0.75);-moz-box-shadow:0px 8px 12px -10px rgba(0,0,0,0.75);box-shadow:0px 8px 12px -10px rgba(0,0,0,0.75);-webkit-transition:all 0.3s ease-in-out;-moz-transition:all 0.3s ease-in-out;-ms-transition:all 0.3s ease-in-out;-o-transition:all 0.3s ease-in-out;transition:all 0.3s ease-in-out;}
 .irs-logo-1{display:none !important;}
 .smaller .irs-logo-1{display:block !important;}
@@ -78,26 +78,26 @@ h6{font-weight:400;line-height:1.2;color:#000;margin-top:0;margin-bottom:10px;}
 .fade-carousel{position:relative;height:310px;}
 .fade-carousel .carousel-inner .item img{height:318px;width:1140px;background-size:cover;background-position:bottom center;background-repeat:no-repeat;}
 .irs-main-slider .irs-big-btn{background:transparent;border:1px solid #ffffff;-webkit-transition:all 0.3s ease-in-out;-moz-transition:all 0.3s ease-in-out;-ms-transition:all 0.3s ease-in-out;-o-transition:all 0.3s ease-in-out;transition:all 0.3s ease-in-out;}
-.irs-main-slider .irs-big-btn:hover{background:#006400;border-color:#006400;-webkit-transition:all 0.3s ease-in-out;-moz-transition:all 0.3s ease-in-out;-ms-transition:all 0.3s ease-in-out;-o-transition:all 0.3s ease-in-out;transition:all 0.3s ease-in-out;}
+.irs-main-slider .irs-big-btn:hover{background:#00aaed;border-color:#00aaed;-webkit-transition:all 0.3s ease-in-out;-moz-transition:all 0.3s ease-in-out;-ms-transition:all 0.3s ease-in-out;-o-transition:all 0.3s ease-in-out;transition:all 0.3s ease-in-out;}
 .fade-carousel .carousel-indicators > li{margin:0 2px;background-color:#f39c12;border-color:#f39c12;opacity:.7;}
 .fade-carousel .carousel-indicators > li.active{width:10px;opacity:1;}
 .fade-carousel .slides{background-size:cover;background-position:center center;background-repeat:no-repeat;}
 .irs-main-slider .carousel-indicators{}
 .irs-main-slider .carousel-indicators li{width:30px;height:5px;background-color:#ffffff;border:none;margin:0;border-radius:0;}
-.irs-main-slider .carousel-indicators .active{background-color:#006400;}
-.irs-main-slider .fade-carousel .carousel-indicators > li.active{width:30px;background-color:#006400;border:none;margin:0;}
+.irs-main-slider .carousel-indicators .active{background-color:#00aaed;}
+.irs-main-slider .fade-carousel .carousel-indicators > li.active{width:30px;background-color:#00aaed;border:none;margin:0;}
 .irs-welcome-field{padding:50px 0;position:relative;}
 .irs-welcome-field h1{font-size:32px;margin-bottom:20px;}
-.irs-welcome-field span{color:#006400;font-size:45px;font-weight:bold;}
-.irs-welcome-field i{color:#006400;font-size:80px;}
+.irs-welcome-field span{color:#00aaed;font-size:45px;font-weight:bold;}
+.irs-welcome-field i{color:#00aaed;font-size:80px;}
 .irs-welcome-field p{margin-top:20px;}
 .irs-about-field{padding:0px 0 30px;}
 .irs-about-field .irs-section-title{margin-bottom:50px;}
 .irs-about-box{margin-bottom:50px;text-align:center;padding:10px 30px 20px 30px;border:1px solid #e6e6e6;position:relative;-webkit-transition:all 0.4s ease-in-out;-moz-transition:all 0.4s ease-in-out;-ms-transition:all 0.4s ease-in-out;-o-transition:all 0.4s ease-in-out;transition:all 0.4s ease-in-out;}
-.irs-about-box:hover{border-color:#006400;-webkit-transition:all 0.4s ease-in-out;-moz-transition:all 0.4s ease-in-out;-ms-transition:all 0.4s ease-in-out;-o-transition:all 0.4s ease-in-out;transition:all 0.4s ease-in-out;}
+.irs-about-box:hover{border-color:#00aaed;-webkit-transition:all 0.4s ease-in-out;-moz-transition:all 0.4s ease-in-out;-ms-transition:all 0.4s ease-in-out;-o-transition:all 0.4s ease-in-out;transition:all 0.4s ease-in-out;}
 .irs-about-icon{width:60px;height:60px;background:#ffffff;border:1px solid #e6e6e6;text-align:center;position:absolute;left:50%;top:-30px;margin-left:-30px;margin-bottom:40px;-webkit-transition:all 0.4s ease-in-out;-moz-transition:all 0.4s ease-in-out;-ms-transition:all 0.4s ease-in-out;-o-transition:all 0.4s ease-in-out;transition:all 0.4s ease-in-out;}
-.irs-about-box:hover .irs-about-icon{background:#006400;border-color:#006400;-webkit-transition:all 0.4s ease-in-out;-moz-transition:all 0.4s ease-in-out;-ms-transition:all 0.4s ease-in-out;-o-transition:all 0.4s ease-in-out;transition:all 0.4s ease-in-out;}
-.irs-about-icon i{color:#006400;font-size:40px;line-height:60px;-webkit-transition:all 0.4s ease-in-out;-moz-transition:all 0.4s ease-in-out;-ms-transition:all 0.4s ease-in-out;-o-transition:all 0.4s ease-in-out;transition:all 0.4s ease-in-out;}
+.irs-about-box:hover .irs-about-icon{background:#00aaed;border-color:#00aaed;-webkit-transition:all 0.4s ease-in-out;-moz-transition:all 0.4s ease-in-out;-ms-transition:all 0.4s ease-in-out;-o-transition:all 0.4s ease-in-out;transition:all 0.4s ease-in-out;}
+.irs-about-icon i{color:#00aaed;font-size:40px;line-height:60px;-webkit-transition:all 0.4s ease-in-out;-moz-transition:all 0.4s ease-in-out;-ms-transition:all 0.4s ease-in-out;-o-transition:all 0.4s ease-in-out;transition:all 0.4s ease-in-out;}
 .irs-about-box:hover .irs-about-icon i{color:#ffffff;-webkit-transition:all 0.4s ease-in-out;-moz-transition:all 0.4s ease-in-out;-ms-transition:all 0.4s ease-in-out;-o-transition:all 0.4s ease-in-out;transition:all 0.4s ease-in-out;}
 .irs-about-box h4{font-weight:bold;margin-top:20px;}
 .irs-about-box p{margin-bottom:25px;}
@@ -108,7 +108,7 @@ h6{font-weight:400;line-height:1.2;color:#000;margin-top:0;margin-bottom:10px;}
 .irs-divider-field .irs-divider-col p{color:#e2e0e0;margin-bottom:20px;}
 .irs-divider-field .irs-call-numbar{border:1px solid rgba(255, 255, 255, 0.3);padding:40px 20px;}
 .irs-divider-field .irs-divider-col .irs-call-numbar h4{color:#e2e0e0;font-size:24px;margin-bottom:0;}
-.irs-divider-field .irs-divider-col .irs-call-numbar h4 i{color:#006400;}
+.irs-divider-field .irs-divider-col .irs-call-numbar h4 i{color:#00aaed;}
 .irs-courses-field{padding:50px 0 50px;}
 .irs-courses-col{text-align:center;margin-bottom:30px;background:#F7F7F7;overflow:hidden;}
 .irs-courses-img{position:relative;overflow:hidden;}
@@ -119,7 +119,7 @@ h6{font-weight:400;line-height:1.2;color:#000;margin-top:0;margin-bottom:10px;}
 .irs-courses-col:hover .irs-courses-img img{-ms-transform:scale(1.1);-webkit-transform:scale(1.1);transform:scale(1.1);-webkit-transition:all 0.3s ease-in-out;-moz-transition:all 0.3s ease-in-out;-ms-transition:all 0.3s ease-in-out;-o-transition:all 0.3s ease-in-out;transition:all 0.3s ease-in-out;}
 .irs-time{position:absolute;top:-40px;right:-2px;-webkit-transition:all 0.3s ease-in-out;-moz-transition:all 0.3s ease-in-out;-ms-transition:all 0.3s ease-in-out;-o-transition:all 0.3s ease-in-out;transition:all 0.3s ease-in-out;}
 .irs-courses-col:hover .irs-time{top:0;-webkit-transition:all 0.3s ease-in-out;-moz-transition:all 0.3s ease-in-out;-ms-transition:all 0.3s ease-in-out;-o-transition:all 0.3s ease-in-out;transition:all 0.3s ease-in-out;}
-.irs-time p a{color:#ffffff;text-transform:uppercase;background:#006400;padding:10px 18px;}
+.irs-time p a{color:#ffffff;text-transform:uppercase;background:#00aaed;padding:10px 18px;}
 .irs-courses-img-text{position:absolute;bottom:0;left:0;background:rgba(0, 0, 0, 0.8);width:100%;padding:5px 20px;-webkit-transition:all 0.3s ease-in-out;-moz-transition:all 0.3s ease-in-out;-ms-transition:all 0.3s ease-in-out;-o-transition:all 0.3s ease-in-out;transition:all 0.3s ease-in-out;}
 .irs-courses-col:hover .irs-courses-img-text{background:rgba(155, 28, 39, 0.8);-webkit-transition:all 0.3s ease-in-out;-moz-transition:all 0.3s ease-in-out;-ms-transition:all 0.3s ease-in-out;-o-transition:all 0.3s ease-in-out;transition:all 0.3s ease-in-out;}
 .irs-courses-img-text ul li{float:right;}
@@ -144,43 +144,43 @@ h6{font-weight:400;line-height:1.2;color:#000;margin-top:0;margin-bottom:10px;}
 .irs-course-features h2{font-size:24px;border-bottom:1px solid #cccccc;display:inline-block;margin-bottom:20px;padding-bottom:10px;}
 .irs-course-features ul{border:1px solid #cccccc;margin-bottom:30px;}
 .irs-course-features ul li{text-transform:capitalize;border-bottom:1px solid #cccccc;padding:10px 10px 10px 10px;}
-.irs-course-features ul li:last-child{font-size:20px;font-weight:bold;color:#006400;border-bottom:none;}
-.irs-course-features ul li span i{color:#006400;}
-.irs-comment-single h3{color:#006400;}
+.irs-course-features ul li:last-child{font-size:20px;font-weight:bold;color:#00aaed;border-bottom:none;}
+.irs-course-features ul li span i{color:#00aaed;}
+.irs-comment-single h3{color:#00aaed;}
 .irs-comment-item{position:relative;padding-left:100px;margin-bottom:60px;}
 .irs-comment-item-right{margin-left:100px;}
 .irs-comment-item img{width:80px;height:80px;position:absolute;left:0;top:0;-webkit-border-radius:50%;-moz-border-radius:50%;-ms-border-radius:50%;-o-border-radius:50%;border-radius:50%;}
 .irs-comment-content h4 a{font-size:18px;color:#333333;}
 .irs-comment-content h6 a{color:#333333;}
-.irs-comment-content h4 a:hover, .irs-comment-content h6 a:hover{color:#006400;}
+.irs-comment-content h4 a:hover, .irs-comment-content h6 a:hover{color:#00aaed;}
 .irs-live-comment{margin-bottom:60px;}
 .irs-blog-live-comment{margin-bottom:0;}
-.irs-live-comment h3{color:#006400;margin-bottom:30px;}
+.irs-live-comment h3{color:#00aaed;margin-bottom:30px;}
 .irs-live-comment .form-control{height:40px;margin-bottom:30px;border-radius:0;box-shadow:none;}
 .irs-textarea{height:100% !important;resize:none;}
-.irs-related-courses h3{color:#006400;margin-bottom:30px;}
+.irs-related-courses h3{color:#00aaed;margin-bottom:30px;}
 .irs-counter-field{padding:100px 0 50px;background:url(../images/bg/mid.jpg);background-size:cover;background-position:center;background-repeat:no-repeat;background-attachment:fixed;}
 .irs-counter-col{margin-bottom:50px;text-align:center;}
-.irs-counter-col i{font-size:80px;color:#006400;font-weight:normal;}
+.irs-counter-col i{font-size:80px;color:#00aaed;font-weight:normal;}
 .irs-counter-col .irs-funfact{margin-top:20px;}
 .irs-counter-col .irs-funfact{color:#ffffff;font-size:32px;}
 .irs-counter-col .irs-funfact h4{color:#ffffff;font-size:18px;font-weight:400;margin-top:10px;margin-bottom:0;}
 .irs-side-bar{margin-bottom:30px;}
 .irs-search-box{margin-bottom:30px;}
-.irs-sidebar-title{font-weight:bold;font-size:20px;color:#006400;padding-bottom:10px;margin-bottom:20px;border-bottom:1px solid rgba(193, 193, 193, 0.5);display:block;}
-.irs-sidebar-title span {font-weight:bold;font-size:20px;color:#006400;text-transform:uppercase;}
+.irs-sidebar-title{font-weight:bold;font-size:20px;color:#00aaed;padding-bottom:10px;margin-bottom:20px;border-bottom:1px solid rgba(193, 193, 193, 0.5);display:block;}
+.irs-sidebar-title span {font-weight:bold;font-size:20px;color:#00aaed;text-transform:uppercase;}
 .irs-search-box .form-control{height:45px;border-radius:0;box-shadow:none;}
-.irs-search-box .form-control:focus{border-color:#006400;}
-.irs-search-box .btn{height:45px;border:1px solid #006400;border-radius:0;padding:8px 20px;color:#ffffff;background:#006400;}
+.irs-search-box .form-control:focus{border-color:#00aaed;}
+.irs-search-box .btn{height:45px;border:1px solid #00aaed;border-radius:0;padding:8px 20px;color:#ffffff;background:#00aaed;}
 .irs-post{margin-bottom:50px;}
 .irs-categories{margin-bottom:50px;}
 .irs-categories ul li{margin-bottom:15px;}
-.irs-categories ul li a:hover{color:#006400;}
+.irs-categories ul li a:hover{color:#00aaed;}
 .irs-categories ul li i{margin-right:10px;}
 .irs-video{margin-bottom:50px;}
 .irs-tag-box ul li{float:left;margin-bottom:25px;margin-right:10px;}
 .irs-tag-box ul li a{padding:10px 14px;border:1px solid #C1C1C1;background:transparent;-webkit-transition:all 0.3s ease-in-out;-moz-transition:all 0.3s ease-in-out;-ms-transition:all 0.3s ease-in-out;-o-transition:all 0.3s ease-in-out;transition:all 0.3s ease-in-out;}
-.irs-tag-box ul li a:hover{background:#006400;color:#ffffff;-webkit-transition:all 0.3s ease-in-out;-moz-transition:all 0.3s ease-in-out;-ms-transition:all 0.3s ease-in-out;-o-transition:all 0.3s ease-in-out;transition:all 0.3s ease-in-out;}
+.irs-tag-box ul li a:hover{background:#00aaed;color:#ffffff;-webkit-transition:all 0.3s ease-in-out;-moz-transition:all 0.3s ease-in-out;-ms-transition:all 0.3s ease-in-out;-o-transition:all 0.3s ease-in-out;transition:all 0.3s ease-in-out;}
 .irs-instagram-box ul li{float:left;margin-right:10px;margin-bottom:10px;}
 .irs-instagram-box ul li img{width:80px;height:80px;}
 .irs-testimonial-field{padding:100px 0 100px;background:url(../images/bg/3.jpg);background-attachment:fixed;background-size:cover;background-position:center;background-repeat:no-repeat;position:relative;}
@@ -188,14 +188,14 @@ h6{font-weight:400;line-height:1.2;color:#000;margin-top:0;margin-bottom:10px;}
 .irs-transparent-space{height:50px;width:100%;background:transparent;}
 .irs-testimonial-single{background:rgba(28, 28, 28, 0.5);border:3px solid rgba(244, 164, 96, 0.5);padding:60px 40px 30px;text-align:center;position:relative;}
 .irs-testimonial-single .irs-comment-icon{position:absolute;right:100px;bottom:0;}
-.irs-testimonial-single .irs-comment-icon i{font-size:110px;color:#006400;opacity:0.2;}
+.irs-testimonial-single .irs-comment-icon i{font-size:110px;color:#00aaed;opacity:0.2;}
 .irs-testimonial-single p{color:#ffffff;margin-bottom:20px;}
-.irs-testimonial-single h4{font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;font-size:18px;color:#006400;font-weight:400;}
+.irs-testimonial-single h4{font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;font-size:18px;color:#00aaed;font-weight:400;}
 .irs-testimonial-single h5{font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;color:#ffffff;}
 .irs-testimonial-field .owl-theme .owl-nav{margin-top:30px;}
 .irs-testimonial-field .owl-theme .owl-dots .owl-dot span{width:30px;height:8px;background:#ffffff;border:2px solid transparent;margin:0 3px 0;-webkit-border-radius:0;-moz-border-radius:0;-ms-border-radius:0;-o-border-radius:0;border-radius:0;}
 .irs-testimonial-field .owl-theme .owl-dots .owl-dot.active span,
-.irs-testimonial-field .owl-theme .owl-dots .owl-dot:hover span{border:2px solid #006400;background:#ffffff;}
+.irs-testimonial-field .owl-theme .owl-dots .owl-dot:hover span{border:2px solid #00aaed;background:#ffffff;}
 .irs-teachers-field{padding:50px 0 50px;}
 .irs-teachers-col{margin-bottom:30px;position:relative;overflow:hidden;-webkit-transition:all 0.4s ease-in-out;-moz-transition:all 0.4s ease-in-out;-ms-transition:all 0.4s ease-in-out;-o-transition:all 0.4s ease-in-out;transition:all 0.4s ease-in-out;}
 .irs-teachers-col .irs-teachers-name{position:absolute;left:0;bottom:0;width:100%;text-align:center;background:rgba(0, 0, 0, 0.8);padding:15px 25px;-webkit-transition:all 0.4s ease-in-out;-moz-transition:all 0.4s ease-in-out;-ms-transition:all 0.4s ease-in-out;-o-transition:all 0.4s ease-in-out;transition:all 0.4s ease-in-out;}
@@ -205,19 +205,19 @@ h6{font-weight:400;line-height:1.2;color:#000;margin-top:0;margin-bottom:10px;}
 .irs-teachers-social{position:absolute;top:-40px;right:0;text-align:center;background:rgba(0, 0, 0, 0.8);padding:5px 10px;-webkit-transition:all 0.4s ease-in-out;-moz-transition:all 0.4s ease-in-out;-ms-transition:all 0.4s ease-in-out;-o-transition:all 0.4s ease-in-out;transition:all 0.4s ease-in-out;}
 .irs-teachers-col:hover .irs-teachers-social{top:0;right:0;-webkit-transition:all 0.4s ease-in-out;-moz-transition:all 0.4s ease-in-out;-ms-transition:all 0.4s ease-in-out;-o-transition:all 0.4s ease-in-out;transition:all 0.4s ease-in-out;}
 .irs-teachers-social a i{color:#ffffff;margin-right:10px;-webkit-transition:all 0.4s ease-in-out;-moz-transition:all 0.4s ease-in-out;-ms-transition:all 0.4s ease-in-out;-o-transition:all 0.4s ease-in-out;transition:all 0.4s ease-in-out;}
-.irs-teachers-social a i:hover{color:#006400;-webkit-transition:all 0.4s ease-in-out;-moz-transition:all 0.4s ease-in-out;-ms-transition:all 0.4s ease-in-out;-o-transition:all 0.4s ease-in-out;transition:all 0.4s ease-in-out;}
+.irs-teachers-social a i:hover{color:#00aaed;-webkit-transition:all 0.4s ease-in-out;-moz-transition:all 0.4s ease-in-out;-ms-transition:all 0.4s ease-in-out;-o-transition:all 0.4s ease-in-out;transition:all 0.4s ease-in-out;}
 .irs-pagination{}
 .irs-pagination .pagination > li > a,
 .irs-pagination .pagination > li > span{padding:8px 18px;color:#666666;background:#ffffff;border:1px solid #DCD9D9;-webkit-border-radius:0;-moz-border-radius:0;-ms-border-radius:0;-o-border-radius:0;border-radius:0;-webkit-transition:all 0.4s ease-in-out;-moz-transition:all 0.4s ease-in-out;-ms-transition:all 0.4s ease-in-out;-o-transition:all 0.4s ease-in-out;transition:all 0.4s ease-in-out;}
-.irs-pagination .pagination > li > a:hover{color:#ffffff;background:#006400;-webkit-transition:all 0.4s ease-in-out;-moz-transition:all 0.4s ease-in-out;-ms-transition:all 0.4s ease-in-out;-o-transition:all 0.4s ease-in-out;transition:all 0.4s ease-in-out;}
+.irs-pagination .pagination > li > a:hover{color:#ffffff;background:#00aaed;-webkit-transition:all 0.4s ease-in-out;-moz-transition:all 0.4s ease-in-out;-ms-transition:all 0.4s ease-in-out;-o-transition:all 0.4s ease-in-out;transition:all 0.4s ease-in-out;}
 .irs-teacher-single-field{padding:50px 0 50px;}
 .irs-teacher-single-col{margin-bottom:30px;}
 .irs-teacher-biography ul{margin-bottom:30px;}
 .irs-teacher-biography ul li{text-transform:capitalize;margin-bottom:10px;}
 .irs-teacher-biography ul li strong{margin-right:10px;}
-.irs-teacher-biography ul li i{color:#006400;}
+.irs-teacher-biography ul li i{color:#00aaed;}
 .irs-teacher-biography ul li a i{margin-right:5px;color:#595959;}
-.irs-teacher-biography ul li a i:hover{color:#006400;}
+.irs-teacher-biography ul li a i:hover{color:#00aaed;}
 .irs-other-teachers h3{margin-bottom:30px;}
 .irs-gallery-field{padding-top:50px;margin-bottom:50px;}
 .irs-img-hover{position:relative;margin-bottom:-1px;}
@@ -230,7 +230,7 @@ h6{font-weight:400;line-height:1.2;color:#000;margin-top:0;margin-bottom:10px;}
 .irs-gallery-field-two ul{margin-bottom:20px;}
 .irs-gallery-field-two ul li{margin-bottom:30px;}
 .irs-gallery-field-two ul li a{background-color:transparent;padding:10px 20px;border:1px solid #C1C1C1;-webkit-transition:all 0.3s ease-in-out;-moz-transition:all 0.3s ease-in-out;-ms-transition:all 0.3s ease-in-out;-o-transition:all 0.3s ease-in-out;transition:all 0.3s ease-in-out;}
-.irs-gallery-field-two ul li a:hover{border-color:#006400;color:#ffffff;background-color:#006400;-webkit-transition:all 0.3s ease-in-out;-moz-transition:all 0.3s ease-in-out;-ms-transition:all 0.3s ease-in-out;-o-transition:all 0.3s ease-in-out;transition:all 0.3s ease-in-out;}
+.irs-gallery-field-two ul li a:hover{border-color:#00aaed;color:#ffffff;background-color:#00aaed;-webkit-transition:all 0.3s ease-in-out;-moz-transition:all 0.3s ease-in-out;-ms-transition:all 0.3s ease-in-out;-o-transition:all 0.3s ease-in-out;transition:all 0.3s ease-in-out;}
 .masonry-gallery .isotope-item{width:25%;}
 .masonry-gallery .isotope-item{width:33.33%;}
 .masonry-gallery .isotope-item{overflow:hidden;}
@@ -239,7 +239,7 @@ h6{font-weight:400;line-height:1.2;color:#000;margin-top:0;margin-bottom:10px;}
 .irs-blog-col{margin-bottom:0px;}
 .irs-blog-col h3{text-align:justify;font-size:22px;font-weight:bold;margin-bottom:20px;}
 .irs-blog-col .irs-courses-content p{margin-bottom:0px;}
-.irs-blog-field .irs-info-text{padding:5px 20px;background:#006400;}
+.irs-blog-field .irs-info-text{padding:5px 20px;background:#00aaed;}
 .irs-blog-field .irs-info-text ul li{display:inline-block;margin-right:10px;margin-left:10px;}
 .irs-blog-field .irs-info-text ul li p i{color:#ffffff;}
 .irs-blog-field .irs-info-text ul li p a{color:#ffffff;}
@@ -247,23 +247,23 @@ h6{font-weight:400;line-height:1.2;color:#000;margin-top:0;margin-bottom:10px;}
 .irs-blog-single-field{padding:0;}
 .page{padding:50px 0 50px;}
 .irs-blog-single-col{margin-bottom:0px;}
-.irs-blog-single-field .irs-courses-content h6{padding:50px;background:#F7F7F7;font-size:16px;line-height:26px;border-left:2px solid #006400;margin-bottom:50px;margin-top:50px;}
+.irs-blog-single-field .irs-courses-content h6{padding:50px;background:#F7F7F7;font-size:16px;line-height:26px;border-left:2px solid #00aaed;margin-bottom:50px;margin-top:50px;}
 .irs-newsletter-field{}
 .irs-newsletter-col{margin-bottom:30px;}
 .irs-newsletter-field h2{margin-bottom:20px;}
 .irs-newsletter-field p{margin-bottom:30px;}
 .irs-newsletter-field .form-control{height:40px;border-radius:0;box-shadow:none;}
-.irs-newsletter-field .form-control:focus{border-color:#006400;}
-.irs-newsletter-field .input-group-btn .btn{height:40px;border-radius:0;padding:6px 20px;color:#ffffff;background:#006400;}
+.irs-newsletter-field .form-control:focus{border-color:#00aaed;}
+.irs-newsletter-field .input-group-btn .btn{height:40px;border-radius:0;padding:6px 20px;color:#ffffff;background:#00aaed;}
 .irs-newsletter-field-two{padding-top:80px;}
 .irs-discription-field{padding:50px 0 0;background:#F6F6F6;}
 .des{text-align:justify;}
 .irs-discription-col{margin-bottom:30px;}
-.irs-discription-col h1{color:#006400;text-transform:uppercase;font-size:40px;margin-bottom:30px;}
-.irs-discription-col h1 span{color:#006400;}
-.irs-discription-col h2 span{color:#006400;font-size:25px;font-weight:600;}
-.irs-discription-col h1 span{color:#006400;font-size:25px;font-weight:600;}
-.irs-discription-col h2 span{color:#006400;}
+.irs-discription-col h1{color:#00aaed;text-transform:uppercase;font-size:40px;margin-bottom:30px;}
+.irs-discription-col h1 span{color:#00aaed;}
+.irs-discription-col h2 span{color:#00aaed;font-size:25px;font-weight:600;}
+.irs-discription-col h1 span{color:#00aaed;font-size:25px;font-weight:600;}
+.irs-discription-col h2 span{color:#00aaed;}
 .irs-topdiscription{margin-bottom:20px;}
 .irs-discription-col ul li{position:relative;margin-bottom:10px;}
 .irs-discription-col ul li span{font-weight:bold;}
@@ -271,20 +271,20 @@ h6{font-weight:400;line-height:1.2;color:#000;margin-top:0;margin-bottom:10px;}
 .irs-mission-field{padding:50px 0 50px;background:#F6F6F6;}
 .irs-left-item{position:relative;margin-bottom:50px;padding-left:90px;}
 .irs-hexagon-two{position:absolute;top:20px;left:0;width:70px;height:40px;background-color:#535353;text-align:center;-webkit-transition:all 0.5s ease-in-out;-moz-transition:all 0.5s ease-in-out;-ms-transition:all 0.5s ease-in-out;-o-transition:all 0.5s ease-in-out;transition:all 0.5s ease-in-out;}
-.irs-left-item:hover .irs-hexagon-two{background-color:#006400;}
+.irs-left-item:hover .irs-hexagon-two{background-color:#00aaed;}
 .irs-hexagon-two:before,
 .irs-hexagon-two:after{content:"";position:absolute;left:0;width:0;border-left:35px solid transparent;border-right:35px solid transparent;}
 .irs-hexagon-two:before{bottom:100%;border-bottom:20px solid #535353;-webkit-transition:all 0.5s ease-in-out;-moz-transition:all 0.5s ease-in-out;-ms-transition:all 0.5s ease-in-out;-o-transition:all 0.5s ease-in-out;transition:all 0.5s ease-in-out;}
-.irs-left-item:hover .irs-hexagon-two:before{border-bottom-color:#006400;}
+.irs-left-item:hover .irs-hexagon-two:before{border-bottom-color:#00aaed;}
 .irs-hexagon-two:after{top:100%;width:0;border-top:20px solid #535353;-webkit-transition:all 0.5s ease-in-out;-moz-transition:all 0.5s ease-in-out;-ms-transition:all 0.5s ease-in-out;-o-transition:all 0.5s ease-in-out;transition:all 0.5s ease-in-out;}
-.irs-left-item:hover .irs-hexagon-two:after{border-top-color:#006400;}
+.irs-left-item:hover .irs-hexagon-two:after{border-top-color:#00aaed;}
 .irs-hexagon-two i{color:#ffffff;font-size:38px;-webkit-transition:all 0.5s ease-in-out;-moz-transition:all 0.5s ease-in-out;-ms-transition:all 0.5s ease-in-out;-o-transition:all 0.5s ease-in-out;transition:all 0.5s ease-in-out;}
 .irs-mission-col h4{font-size:18px;}
 .irs-right-item{position:relative;margin-bottom:50px;padding-right:90px;text-align:right;}
 .irs-right-item .irs-hexagon-two{position:absolute;left:290px;top:20px;}
-.irs-right-item:hover .irs-hexagon-two{background-color:#006400;}
-.irs-right-item:hover .irs-hexagon-two:before{border-bottom-color:#006400;}
-.irs-right-item:hover .irs-hexagon-two:after{border-top-color:#006400;}
+.irs-right-item:hover .irs-hexagon-two{background-color:#00aaed;}
+.irs-right-item:hover .irs-hexagon-two:before{border-bottom-color:#00aaed;}
+.irs-right-item:hover .irs-hexagon-two:after{border-top-color:#00aaed;}
 .irs-sponsor-field{padding:100px 0 100px;}
 .irs-sponsor-col{margin-bottom:30px;}
 .irs-sponsor-col ul{border:1px solid #DCD9D9;}
@@ -297,9 +297,9 @@ h6{font-weight:400;line-height:1.2;color:#000;margin-top:0;margin-bottom:10px;}
 .irs-faq-img{display:block;text-align:center;}
 .irs-faq-img img{width:300px;height:auto;margin-bottom:30px;}
 .irs-accordion-two .panel .panel-title a i{background-color:transparent;line-height:40px;text-align:center;width:40px;height:40px;margin-right:10px;border-right:1px solid #dddddd;}
-.irs-accordion-two .panel .panel-title a .icon-1{display:inline-block;color:#006400;}
+.irs-accordion-two .panel .panel-title a .icon-1{display:inline-block;color:#00aaed;}
 .irs-accordion-two .panel-title a.collapsed .icon-1{display:none;}
-.irs-accordion-two .panel .panel-title a .icon-2{display:none;color:#006400;}
+.irs-accordion-two .panel .panel-title a .icon-2{display:none;color:#00aaed;}
 .irs-accordion-two .panel .panel-title a.collapsed .icon-2{display:inline-block;}
 .irs-accordion-two .panel-title a{color:#333333;font-weight:400;}
 .irs-accordion-two .panel-group .panel{border-radius:0;margin-bottom:20px;}
@@ -308,9 +308,9 @@ h6{font-weight:400;line-height:1.2;color:#000;margin-top:0;margin-bottom:10px;}
 .irs-contact-field .irs-contact-col{margin-bottom:30px;}
 .irs-address-box{background:#F6F6F6;text-align:center;height:145px;padding:65px 80px 30px 80px;margin-bottom:80px;}
 .irs-hexagon-three{margin-bottom:0;position:absolute;top:-20px;left:50%;margin-left:-35px;}
-.irs-address-box:hover .irs-hexagon-three{background-color:#006400;}
-.irs-address-box:hover .irs-hexagon-three:before{border-bottom-color:#006400;}
-.irs-address-box:hover .irs-hexagon-three:after{border-top-color:#006400;}
+.irs-address-box:hover .irs-hexagon-three{background-color:#00aaed;}
+.irs-address-box:hover .irs-hexagon-three:before{border-bottom-color:#00aaed;}
+.irs-address-box:hover .irs-hexagon-three:after{border-top-color:#00aaed;}
 .irs-hexagon-three i{font-size:25px;line-height:40px;}
 .irs-contact-col .form-control{background:transparent;border:1px solid #C1C1C1;border-radius:0;height:40px;text-transform:capitalize;margin-bottom:30px;box-shadow:none;}
 .irs-contact-field .irs-contact-col h4{font-size:18px;color:#464646;margin-bottom:20px;}
@@ -321,39 +321,39 @@ h6{font-weight:400;line-height:1.2;color:#000;margin-top:0;margin-bottom:10px;}
 .irs-inner-page-heading i{font-size:30px;color:#fff;}
 .irs-inner-page-heading p{margin-top:10px;color:#ffffff;text-transform:uppercase;}
 .irs-inner-page-heading p a{color:#ffffff;font-weight:bold;}
-.irs-inner-page-heading p a:hover{color:#006400;}
+.irs-inner-page-heading p a:hover{color:#00aaed;}
 .irs-service-field{padding:50px 0 50px;}
 .irs-service-col{margin-bottom:30px;background:#f7f7f7;padding:30px 20px;-webkit-transition:all 0.4s ease-in-out;-moz-transition:all 0.4s ease-in-out;-ms-transition:all 0.4s ease-in-out;-o-transition:all 0.4s ease-in-out;transition:all 0.4s ease-in-out;}
-.irs-service-col:hover{background:#006400;-webkit-transition:all 0.4s ease-in-out;-moz-transition:all 0.4s ease-in-out;-ms-transition:all 0.4s ease-in-out;-o-transition:all 0.4s ease-in-out;transition:all 0.4s ease-in-out;}
-.irs-service-col i{font-size:60px;color:#006400;-webkit-transition:all 0.4s ease-in-out;-moz-transition:all 0.4s ease-in-out;-ms-transition:all 0.4s ease-in-out;-o-transition:all 0.4s ease-in-out;transition:all 0.4s ease-in-out;}
+.irs-service-col:hover{background:#00aaed;-webkit-transition:all 0.4s ease-in-out;-moz-transition:all 0.4s ease-in-out;-ms-transition:all 0.4s ease-in-out;-o-transition:all 0.4s ease-in-out;transition:all 0.4s ease-in-out;}
+.irs-service-col i{font-size:60px;color:#00aaed;-webkit-transition:all 0.4s ease-in-out;-moz-transition:all 0.4s ease-in-out;-ms-transition:all 0.4s ease-in-out;-o-transition:all 0.4s ease-in-out;transition:all 0.4s ease-in-out;}
 .irs-service-col:hover i{color:#ffffff;-webkit-transition:all 0.4s ease-in-out;-moz-transition:all 0.4s ease-in-out;-ms-transition:all 0.4s ease-in-out;-o-transition:all 0.4s ease-in-out;transition:all 0.4s ease-in-out;}
 .irs-service-col h3{margin-top:20px;margin-bottom:10px;-webkit-transition:all 0.4s ease-in-out;-moz-transition:all 0.4s ease-in-out;-ms-transition:all 0.4s ease-in-out;-o-transition:all 0.4s ease-in-out;transition:all 0.4s ease-in-out;}
 .irs-service-col:hover h3{color:#ffffff;-webkit-transition:all 0.4s ease-in-out;-moz-transition:all 0.4s ease-in-out;-ms-transition:all 0.4s ease-in-out;-o-transition:all 0.4s ease-in-out;transition:all 0.4s ease-in-out;}
 .irs-service-col:hover p{color:#ffffff;-webkit-transition:all 0.4s ease-in-out;-moz-transition:all 0.4s ease-in-out;-ms-transition:all 0.4s ease-in-out;-o-transition:all 0.4s ease-in-out;transition:all 0.4s ease-in-out;}
 .irs-account-field{padding:50px 0 50px;}
 .irs-account-col{margin-bottom:30px;background:#F7F7F7;padding:30px;}
-.irs-account-col h3{color:#006400;margin-bottom:20px;}
+.irs-account-col h3{color:#00aaed;margin-bottom:20px;}
 .irs-account-col .form-control{height:40px;margin-bottom:30px;border-radius:0;background:transparent;box-shadow:none;}
-.form-control:focus{border-color:#006400;}
+.form-control:focus{border-color:#00aaed;}
 .irs-account-col .btn{margin-top:20px;}
 .irs-404-field{padding:100px 0;}
-.irs-404-field h1{font-size:12vw;color:#006400;}
+.irs-404-field h1{font-size:12vw;color:#00aaed;}
 .irs-404-field h2{font-size:3vw;margin-bottom:50px;}
-.irs-404-field h3 a{color:#333333;border-bottom:2px solid #006400;padding-bottom:10px;}
+.irs-404-field h3 a{color:#333333;border-bottom:2px solid #00aaed;padding-bottom:10px;}
 .irs-contact-field{padding:50px 0 50px;}
 .irs-google-map{margin-bottom:100px;}
 .irs-address-col{margin-bottom:10px;text-align:center;padding:20px 20px;background:#F7F7F7;}
-.irs-address-col i{color:#006400;font-size:50px;}
+.irs-address-col i{color:#00aaed;font-size:50px;}
 .irs-address-col p{margin-top:10px;}
 .irs-contact-col{margin-bottom:30px;}
 .irs-contact-field .form-control{height:40px;box-shadow:none;border-radius:0;margin-bottom:30px;}
-.irs-footer-field{padding:30px 0 0;background:url("../images/footer.png") #006400 no-repeat center;position:relative;}
+.irs-footer-field{padding:30px 0 0;background:url("../images/footer.png") #3563c1 no-repeat center;position:relative;}
 .irs-footer-field p{color:#ffffff; margin: 8px 0}
 .irs-footer-about, .irs-footer-link,
 .irs-footer-tweets, .irs-footer-contact{margin-bottom:30px;}
 .irs-foooter-logo{width:60px;}
 .irs-footer-about p{color:#ffffff;margin:0% 0 20px;}
-.irs-footer-about .irs-social a i:hover{color:#006400;}
+.irs-footer-about .irs-social a i:hover{color:#00aaed;}
 .irs-footer-heading{color:#ffffff;font-size:18px;font-weight:400;margin-bottom:20px;}
 .irs-footer-link ul li{}
 .irs-footer-link ul li:last-child{border-bottom:none;}
@@ -363,12 +363,12 @@ h6{font-weight:400;line-height:1.2;color:#000;margin-top:0;margin-bottom:10px;}
 .irs-footer-tweets{}
 .irs-tweets{position:relative;padding-left:30px;border-bottom:1px solid #3a3a3a;padding-bottom:25px;margin-bottom:25px;}
 .irs-tweets:last-child{border-bottom:none;padding-bottom:0;margin-bottom:0;}
-.irs-tweets i{position:absolute;left:0;top:5px;color:#006400;}
+.irs-tweets i{position:absolute;left:0;top:5px;color:#00aaed;}
 .irs-footer-contact p{}
 .irs-footer-contact p i{margin-right:10px;}
 .irs-copyright-field{background:#083970;text-align:center;padding:5px 0;}
 .irs-copyright-field {color:#ffffff;text-transform:capitalize;}
-.irs-copyright-field  a{color:#006400;}
+.irs-copyright-field  a{color:#00aaed;}
 .entry{padding-bottom:10px;margin-bottom:20px;border-bottom:2px solid #F5F5F5;}
 .entry-title{font-size:30px;}
 .entry-title a{color:#333;text-align:justify;}
@@ -385,7 +385,7 @@ h6{font-weight:400;line-height:1.2;color:#000;margin-top:0;margin-bottom:10px;}
 .entry-text span{font-size: 14px;}
 .entry-meta li:after{content:'/';padding-left:9px;padding-right:8px;}
 .entry-meta li:last-child:after{content:"";display:none;}
-.read-more{display:block;float:right;margin-bottom:5px;color:#006400;font-weight:bold;font-style:italic;}
+.read-more{display:block;float:right;margin-bottom:5px;color:#00aaed;font-weight:bold;font-style:italic;}
 .read-more:hover{cursor:pointer;}
 .read-more a{color:inherit;}
 .btn-read-more{float:right;margin-bottom:20px;}
@@ -444,24 +444,24 @@ ul.category-list li a:hover{color:#d95b44;margin-left:5px;}
 .pHead{font-weight:bold;}
 .pTitle span{font-size:25px;}
 .pBody span{font-size:16px;line-height: 26px;}
-.pBody a, tbody a{color:#006400;font-weight:bold;font-style:italic;}
+.pBody a, tbody a{color:#00aaed;font-weight:bold;font-style:italic;}
 p img{width:initial;}
 i.fa.fa-home{font-size:25px;margin-top:-4px;}
 li.dropdown{}
-.irs-about-box .icofont{color:#006400;}
+.irs-about-box .icofont{color:#00aaed;}
 .link-web img{margin:0 auto;width:80px;height:80px;border:2px solid rgba(13,78,150,1);border-radius:100%;padding:8px;margin-bottom:5px;}
-.link-web p{line-height:20px;color:#006400;font-weight:bold;font-size:13px;}
+.link-web p{line-height:20px;color:#00aaed;font-weight:bold;font-size:13px;}
 .s-index{padding:20px 0;background:#fff;}
 .s-index h4{height:50px;}
-.intro h3, .icofont-ui-check{font-weight:bold;color:#006400;}
+.intro h3, .icofont-ui-check{font-weight:bold;color:#00aaed;}
 .social{text-align:right;margin:20px auto;padding:10px 0;}
 .dsKhoa{}
 .dsKhoa h3{font-size:30px;}
 .irs-about-field .carousel-indicators{bottom:-30px;}
 section .carousel .carousel-indicators li{background-color:#ADB2B5;}
-section .carousel .carousel-indicators .active{background-color:#006400;}
+section .carousel .carousel-indicators .active{background-color:#00aaed;}
 .site-name{padding-top:5px;display:inline-block;}
-.site-name .school-name{font-size:17px;color:#006400;font-weight:bold;text-transform:uppercase;}
+.site-name .school-name{font-size:17px;color:#00aaed;font-weight:bold;text-transform:uppercase;}
 .site-name .faculty-name{font-size:15px;color:#333333;}
 .site-name .school-slogan{font-size:12px;font-weight:bold;margin-top:-5px;}
 .menu li{font-size:12px;font-family:Tahoma;display:inline;margin-right:5px;padding-right:5px;border-right:solid 2px #ffffff;}
@@ -469,18 +469,18 @@ section .carousel .carousel-indicators .active{background-color:#006400;}
 .menu li a:hover{color:khaki;-webkit-transition:all 0.3s ease-in-out;-moz-transition:all 0.3s ease-in-out;-ms-transition:all 0.3s ease-in-out;-o-transition:all 0.3s ease-in-out;transition:all 0.3s ease-in-out;}
 .dropbtn{font-weight:bold;padding:0;background-color:inherit;color:#fff;border:none;cursor:pointer;}
 .dropdown{position:relative;display:inline-block;}
-.dropdown-content{display:none;position:absolute;background-color:#006400;min-width:200px;z-index:1;}
+.dropdown-content{display:none;position:absolute;background-color:#00aaed;min-width:200px;z-index:1;}
 .dropdown-content a{color:#333;padding:3px 5px;text-decoration:none;display:block;}
 .dropdown .dropdown-content a:hover{color:black;background-color:#fff;}
 .dropdown:hover .dropdown-content{display:block;}
 .dropdown:hover .dropbtn{color:khaki;}
 .col-md-3.col-sm-12{background:#F3F3F3;height:100%;}
 .wrap-highlight{width:100%;}
-.event-title-highlight{text-align:center;font-weight:bold;font-size:22px;padding:15px 25px;color:#006400;border-top:solid;border-bottom:1px solid;border-bottom-color:#e2e2e2;}
+.event-title-highlight{text-align:center;font-weight:bold;font-size:22px;padding:15px 25px;color:#00aaed;border-top:solid;border-bottom:1px solid;border-bottom-color:#e2e2e2;}
 a.btn.btn-default.irs-btn-transparent-two.btn-read-more.see-event{margin-top:20px;}
 .hot-event-contener{background:#f8f8f4;display:block;}
 .event-month-highlight p{text-align:center;color:#545454;font-size:20px;}
-.event-day-highlight p{text-align:center;color:#006400;font-size:30px;margin-top:10px;margin-bottom:10px;}
+.event-day-highlight p{text-align:center;color:#00aaed;font-size:30px;margin-top:10px;margin-bottom:10px;}
 .event-content-highlight{margin-left:15px;text-align:justify;margin-top:-10px;font-size:15px;}
 tr{border-bottom:1px solid #ddd;}
 #map{height:150px;width:100%;}
@@ -506,7 +506,7 @@ span.textRight{margin-left:15px;text-align:center;color:white;font-size:12px;fon
     margin-bottom: 0px;
 }
 .border-bottom-title-category {
-    border-bottom: 1px solid #006400;
+    border-bottom: 1px solid #00aaed;
     margin-bottom: 10px;
 }
 .irs-post-item a h4:hover{
@@ -514,20 +514,20 @@ span.textRight{margin-left:15px;text-align:center;color:white;font-size:12px;fon
     text-decoration: underline;
 }
 /*Tuyen sinh*/
-.irs-post-item-group {margin: 5px 0 10px 0; background-color: #006400;}
+.irs-post-item-group {margin: 5px 0 10px 0; background-color: #00aaed;}
 .irs-post-item-group img{width:25%;height:48px;left:0;top:0;}
 .irs-post-item-group-title{
     font-size: 15px;
     text-transform:uppercase;
     margin-left:5px;
     font-weight: bold;
-    color:#f79400;
+    color:white;
 }
 .irs-post .irs-post-item-3-column{position:relative;margin-bottom:10px;}
 .irs-post .irs-post-item-3-column-height {height: 54px; overflow: hidden; border-bottom: 1px dotted silver;}
 .irs-post .irs-post-item-3-column img{width:70px;height:70px;position:absolute;left:0;top:0;}
 .irs-post .irs-post-item-3-column h4 {text-transform:inherit;text-align:justify;}
-.irs-post .irs-post-item-3-column {color:#006400;font-size:12px;}
+.irs-post .irs-post-item-3-column {color:#00aaed;font-size:12px;}
 .irs-post .irs-post-item-3-column a h4 span:hover{
     color: #c4313d;
     text-decoration: underline;
@@ -561,7 +561,7 @@ span.textRight{margin-left:15px;text-align:center;color:white;font-size:12px;fon
 
 }
 .time-post{
-    color:#006400;
+    color:#00aaed;
     font-size:12px !important;
     position: relative;
     top: -5px;
@@ -583,7 +583,7 @@ span.textRight{margin-left:15px;text-align:center;color:white;font-size:12px;fon
 }
 .irs-post-item-3-column-hot img{width:70px;height:70px;position:absolute;left:0;top:0;}
 .irs-post-item-3-column-hot h4 {text-transform:inherit;text-align:justify;}
-.irs-post-item-3-column-hot {color:#006400;}
+.irs-post-item-3-column-hot {color:#00aaed;}
 .irs-post-item-3-column-hot a h4 {
     margin-top: 0px;
 }
@@ -606,7 +606,7 @@ span.textRight{margin-left:15px;text-align:center;color:white;font-size:12px;fon
 }
 .title-category-hot span {
     font-size: 16px;
-    color: #006400;
+    color: #00aaed;
     font-weight: bold;
 }
 .title-category-hot h2 {
@@ -614,15 +614,15 @@ span.textRight{margin-left:15px;text-align:center;color:white;font-size:12px;fon
     line-height: 0px;
 }
 .border-bottom-title-category-hot {
-    border-bottom: 1px solid #006400;
+    border-bottom: 1px solid #00aaed;
     margin-bottom: 0px;
 }
 .post-hot {
     height:291px;
     padding: 10px 5px 5px 5px;
-    border-left:1px solid #006400;
-    border-bottom:1px solid #006400;
-    border-right:1px solid #006400;
+    border-left:1px solid #00aaed;
+    border-bottom:1px solid #00aaed;
+    border-right:1px solid #00aaed;
 
 }
 .no-pading {
@@ -710,17 +710,17 @@ span.textRight{margin-left:15px;text-align:center;color:white;font-size:12px;fon
 {
     font-weight:bold;
     font-size:16px;
-    color:#006400;
+    color:#00aaed;
     padding-bottom:6px;
-    /*border-bottom:1px solid #006400;*/
+    /*border-bottom:1px solid #00aaed;*/
     display:block;
-    background-color: #006400;
+    background-color: #00aaed;
     padding: 5px 0px;
     width: 100%;
     text-align: center;
 }
 .irs-side-bar-border {
-    border:1px solid #006400;
+    border:1px solid #00aaed;
     padding: 10px 10px 20px 10px;
 }
 .irs-sidebar-title-right span {
@@ -746,10 +746,12 @@ span.textRight{margin-left:15px;text-align:center;color:white;font-size:12px;fon
 .post-title-over-new-post {
     overflow: hidden;
     height: 60px;
+    text-align: justify;
 }
 .post-title-over-mutil-cate {
     overflow: hidden;
     height: 55px;
+    text-align: justify;
 }
 
 /*end daond KTM*/
@@ -944,9 +946,9 @@ form[role=login] > div {
 .irs-sidebar-title-right-banner {
     font-weight:bold;
     font-size:16px;
-    color:#006400;
+    color:#00aaed;
     padding-bottom:6px;
-    border-bottom:1px solid #006400;
+    border-bottom:1px solid #00aaed;
     display:block;
 }
 .irs-sidebar-title-right-banner span {
@@ -954,7 +956,7 @@ form[role=login] > div {
     font-size:15px;
     color:white;
     text-transform:uppercase;
-    background-color: #006400;
+    background-color: #00aaed;
     padding: 7px 11px;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
@@ -969,6 +971,7 @@ form[role=login] > div {
     /*height: 58px;*/
     border-bottom: 1px dotted silver;
     padding: 6px 0px;
+    text-align: justify;
 }
 .title-category {
     height: 40px;
@@ -977,7 +980,7 @@ form[role=login] > div {
     font-size: 17px;
     color: white;
     font-weight: bold;
-    background-color: #006400;
+    background-color: #00aaed;
     margin-left: -15px;
     padding: 7px 15px;
 }
@@ -986,7 +989,7 @@ form[role=login] > div {
     border-bottom: 1px dotted silver;
 }
 .more-detail-right {
-    color: #006400;
+    color: #00aaed;
     float: right;
 }
 .more-detail-right:hover {
@@ -1024,4 +1027,9 @@ form[role=login] > div {
 }
 .documentIframeScheduleWeek {
     margin-bottom: 30px;
+}
+
+.post-title-detail {
+    font-weight: bold;
+    text-align: justify;
 }

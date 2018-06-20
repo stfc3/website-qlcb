@@ -227,7 +227,8 @@ public class IndexNewsAdvertController extends SelectorComposer<Div> {
         divReadMore.setParent(rowContent);
 
         A linkReadMore = new A();
-        linkReadMore.setClass("btn btn-default irs-btn-transparent-two btn-read-more");
+//        linkReadMore.setClass("btn btn-default irs-btn-transparent-two btn-read-more");
+        linkReadMore.setClass("more-detail-right");
         String strUrlDetaiMore = "#";
         if (wg != null && wg.getListContent() != null && wg.getListContent().get(0) != null) {
             if (wg.getListContent().get(0).getDetailMoreSlug() != null && !"".equals(wg.getListContent().get(0).getDetailMoreSlug())) {
@@ -237,7 +238,7 @@ public class IndexNewsAdvertController extends SelectorComposer<Div> {
         linkReadMore.setHref(strUrlDetaiMore);
         linkReadMore.setParent(divReadMore);
 
-        Label lblTitle = new Label("Xem thêm");
+        Label lblTitle = new Label("Xem thêm >>");
         lblTitle.setParent(linkReadMore);
     }
 
@@ -246,10 +247,10 @@ public class IndexNewsAdvertController extends SelectorComposer<Div> {
             List<Post> lstPostByContent = com.getPostByContent(wg, lstPost);
             int postNumber;
             int postNumberRight = 0;
-            if (lstPostByContent.size() >= 4) {
-                postNumber = 4;
-                if (lstPostByContent.size() >= 8) {
-                    postNumberRight = 8;
+            if (lstPostByContent.size() >= 5) {
+                postNumber = 5;
+                if (lstPostByContent.size() >= 10) {
+                    postNumberRight = 10;
                 } else {
                     postNumberRight = lstPostByContent.size();
                 }
@@ -299,7 +300,7 @@ public class IndexNewsAdvertController extends SelectorComposer<Div> {
 
             //build Post
             Div divPost = new Div();
-            if (lstPostByContent.size() <= 4) {
+            if (lstPostByContent.size() <= 5) {
                 divPost.setClass("col-md-12 col-sm-12");
             } else {
                 divPost.setClass("col-md-6 col-sm-12");
@@ -320,7 +321,8 @@ public class IndexNewsAdvertController extends SelectorComposer<Div> {
             irsPost.setParent(divPostSide);
 
             A linkReadMore = new A();
-            linkReadMore.setClass("btn btn-default irs-btn-transparent-two btn-read-more btn-margin");
+//            linkReadMore.setClass("btn btn-default irs-btn-transparent-two btn-read-more btn-margin");
+            linkReadMore.setClass("more-detail-right btn-margin");
             String strUrlDetaiMore = "";
             if (wg != null && wg.getListContent() != null && wg.getListContent().get(0) != null) {
                 if (wg.getListContent().get(0).getDetailMoreSlug() != null && !"".equals(wg.getListContent().get(0).getDetailMoreSlug())) {
@@ -330,7 +332,7 @@ public class IndexNewsAdvertController extends SelectorComposer<Div> {
             linkReadMore.setHref(strUrlDetaiMore);
 //            linkReadMore.setParent(divRow);
 
-            Label lblTitle = new Label("Xem thêm");
+            Label lblTitle = new Label("Xem thêm >>");
             lblTitle.setParent(linkReadMore);
 
             if (!lstPostByContent.isEmpty()) {
@@ -365,10 +367,10 @@ public class IndexNewsAdvertController extends SelectorComposer<Div> {
                     lblPostTitle.setParent(aPostItemTitle);
                 }
             }
-            if (lstPostByContent.size() <= 4) {
+            if (lstPostByContent.size() <= 5) {
                 linkReadMore.setParent(divPost);
             }
-            if (lstPostByContent.size() > 4) {
+            if (lstPostByContent.size() > 5) {
                 if (!lstPostByContent.isEmpty()) {
                     //build Post
                     Div divPost1 = new Div();
@@ -590,7 +592,8 @@ public class IndexNewsAdvertController extends SelectorComposer<Div> {
             }
 
             A linkReadMore = new A();
-            linkReadMore.setClass("btn btn-default irs-btn-transparent-two btn-read-more");
+//            linkReadMore.setClass("btn btn-default irs-btn-transparent-two btn-read-more");
+            linkReadMore.setClass("more-detail-right");
             String strUrlDetaiMore = "";
             if (wg != null && wg.getListContent() != null && wg.getListContent().get(0) != null) {
                 if (wg.getListContent().get(0).getDetailMoreSlug() != null && !"".equals(wg.getListContent().get(0).getDetailMoreSlug())) {
@@ -600,7 +603,7 @@ public class IndexNewsAdvertController extends SelectorComposer<Div> {
             linkReadMore.setHref(strUrlDetaiMore);
             linkReadMore.setParent(irsPost);
 
-            Label lblTitle = new Label("Xem thêm");
+            Label lblTitle = new Label("Xem thêm >>");
             lblTitle.setParent(linkReadMore);
         }
 
@@ -748,7 +751,8 @@ public class IndexNewsAdvertController extends SelectorComposer<Div> {
                     }
                 }
                 A linkReadMore = new A();
-                linkReadMore.setClass("btn btn-default irs-btn-transparent-two btn-read-more");
+//                linkReadMore.setClass("btn btn-default irs-btn-transparent-two btn-read-more");
+                linkReadMore.setClass("more-detail-right");
                 String strUrlDetaiMore = "";
                 if (wc != null && wc.getDetailMoreSlug() != null && !"".equals(wc.getDetailMoreSlug())) {
                     strUrlDetaiMore = wg.getListContent().get(j).getDetailMoreSlug();
@@ -756,7 +760,7 @@ public class IndexNewsAdvertController extends SelectorComposer<Div> {
                 linkReadMore.setHref(strUrlDetaiMore);
                 linkReadMore.setParent(divContentPost);
 
-                Label lblMore = new Label("Xem thêm");
+                Label lblMore = new Label("Xem thêm >>");
                 lblMore.setParent(linkReadMore);
             }
         }

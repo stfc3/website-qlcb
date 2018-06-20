@@ -165,27 +165,27 @@ public class InternalPageController extends SelectorComposer<Div> {
 
             P postContent = new P();
             postContent.setParent(irsBlogCol);
-
-            Span spanContent = new Span();
-            spanContent.setClass("pBody");
-            spanContent.setParent(postContent);
-            String strDocumentPath = "";
-
-            Spreadsheet htmPostContent = new Spreadsheet();
-            htmPostContent.setShowSheetbar(true);
-            htmPostContent.setMaxrows(10000);
-            htmPostContent.setMaxcolumns(5000);
-            htmPostContent.setPreloadColumnSize(100);
-            htmPostContent.setPreloadRowSize(100);
-            htmPostContent.setWidth("100%");
-            htmPostContent.setHeight("500px");
-
-            htmPostContent.setClass("documentIframeScheduleWeek");
             if (plstDocument.get(0).getDocumentPath() != null && !"".equals(plstDocument.get(0).getDocumentPath())) {
+                Span spanContent = new Span();
+                spanContent.setClass("pBody");
+                spanContent.setParent(postContent);
+                String strDocumentPath = "";
+
+                Spreadsheet htmPostContent = new Spreadsheet();
+                htmPostContent.setShowSheetbar(true);
+                htmPostContent.setMaxrows(10000);
+                htmPostContent.setMaxcolumns(5000);
+                htmPostContent.setPreloadColumnSize(100);
+                htmPostContent.setPreloadRowSize(100);
+                htmPostContent.setWidth("100%");
+                htmPostContent.setHeight("500px");
+
+                htmPostContent.setClass("documentIframeScheduleWeek");
+
                 strDocumentPath = plstDocument.get(0).getDocumentPath();
+                htmPostContent.setSrc(strDocumentPath);
+                htmPostContent.setParent(spanContent);
             }
-            htmPostContent.setSrc(strDocumentPath);
-            htmPostContent.setParent(spanContent);
 
         }
 
