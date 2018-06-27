@@ -1011,7 +1011,7 @@ form[role=login] > div {
 .hotline {
     background-image: url(../images/dangky.jpg);
     background-size: 100%;
-    min-height: 320px;
+    min-height: 250px;
     background-repeat: no-repeat;
     background-position: center;
 }
