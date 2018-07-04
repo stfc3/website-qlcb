@@ -412,9 +412,9 @@ public class WidgetDAO {
         if (userName != null) {
             try {
                 StringBuilder vstrSql = new StringBuilder();
-                vstrSql.append("SELECT user_name as userName, first_name as firstName, last_name as lastName, password as password, email as email, role as role");
+                vstrSql.append("SELECT user_name as userName, first_name as firstName, last_name as lastName, password as password, email as email, role as role, status as status");
                 vstrSql.append(" FROM stfc_users");
-                vstrSql.append(" WHERE status=1 AND user_name = :userName ");
+                vstrSql.append(" WHERE user_name = :userName ");
                 Query query = getCurrentSession()
                         .createSQLQuery(vstrSql.toString())
                         .addScalar("userName", StandardBasicTypes.STRING)
@@ -423,6 +423,7 @@ public class WidgetDAO {
                         .addScalar("password", StandardBasicTypes.STRING)
                         .addScalar("email", StandardBasicTypes.STRING)
                         .addScalar("role", StandardBasicTypes.INTEGER)
+                        .addScalar("status", StandardBasicTypes.INTEGER)
                         .setResultTransformer(
                                 Transformers.aliasToBean(UserToken.class));
                 query.setParameter("userName", userName);
@@ -553,5 +554,25 @@ public class WidgetDAO {
             logger.error(e.getMessage(), e);
         }
         return null;
+    }
+    
+    public void changePassword(UserToken user) {
+        // TODO Auto-generated method stub
+        Session session = getCurrentSession();
+        try {
+            StringBuilder builder = new StringBuilder("UPDATE stfc_users SET ");
+            builder.append("password = :newPassword ");
+            builder.append("WHERE user_name = :userName ");
+
+            Query query = session.createSQLQuery(builder.toString());
+            query.setParameter("newPassword", user.getPassword());
+            query.setParameter("userName", user.getUserName());
+            
+            query.executeUpdate();
+
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+            session.beginTransaction().rollback();
+        }
     }
 }

@@ -93,5 +93,7 @@ public interface Constants {
     public static final String FEEDBACK_PATH = "/backend/file/feedback_data.xlsx";
     public static final String FEEDBACK_PATH_TEMP = "/backend/file/temp/";
     public static final String[] formatImage = new String[]{".png", ".jpg", ".jpeg", ".tiff", ".gif", ".jfif"};
+    
+    public static final String PAGE_CHANGE_PASSWORD = "/changepassword.zul";
 
 }

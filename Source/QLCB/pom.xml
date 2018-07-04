@@ -212,6 +212,14 @@
             <artifactId>jxls-core</artifactId>
             <version>1.0.6</version>
         </dependency>
+        
+        <!--lib Captcha-->
+        <dependency> <!-- Used for Hibernate4 LocalSessionFactoryBean -->
+            <groupId>org.zkoss.zkforge</groupId>
+            <artifactId>bwcaptcha</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <!--End lib Captcha-->
     </dependencies>
 
     <build>
