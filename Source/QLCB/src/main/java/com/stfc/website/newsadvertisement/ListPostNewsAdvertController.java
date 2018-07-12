@@ -56,7 +56,7 @@ public class ListPostNewsAdvertController extends SelectorComposer<Div> {
 
     private WidgetBuilder widgetBuilder = new WidgetBuilder();
 
-    private SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm:ss dd/mm/yyyy");
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm:ss dd/MM/yyyy");
 
     @WireVariable
     protected WidgetService widgetService;
