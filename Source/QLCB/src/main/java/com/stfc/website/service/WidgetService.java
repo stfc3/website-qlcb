@@ -63,4 +63,6 @@ public interface WidgetService {
     void insertFeedback(Feedback feedback);
     
     List<Document> getScheduleWeek();
+    
+    void changePassword(UserToken user);
 }

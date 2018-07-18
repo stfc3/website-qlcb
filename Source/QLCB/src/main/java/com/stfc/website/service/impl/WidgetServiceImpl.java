@@ -149,4 +149,9 @@ public class WidgetServiceImpl implements WidgetService {
         return widgetDAO.getScheduleWeek();
     }
 
+    @Override
+    public void changePassword(UserToken user) {
+        widgetDAO.changePassword(user);
+    }
+
 }

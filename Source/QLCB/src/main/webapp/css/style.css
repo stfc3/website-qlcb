@@ -749,11 +749,11 @@ form[role=login] {
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
 }
-form[role=login] img {
+/*form[role=login] img {
     display: block;
     margin: 0 auto;
     margin-bottom: 35px;
-}
+}*/
 form[role=login] input,
 form[role=login] button {
     font-size: 18px;

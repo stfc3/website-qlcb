@@ -20,6 +20,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.log4j.Logger;
+import org.zkoss.util.resource.Labels;
 import org.zkoss.zhtml.H2;
 import org.zkoss.zk.ui.select.SelectorComposer;
 import org.zkoss.zk.ui.select.annotation.Wire;
@@ -750,18 +751,37 @@ public class IndexNewsAdvertController extends SelectorComposer<Div> {
                         }
                     }
                 }
-                A linkReadMore = new A();
-//                linkReadMore.setClass("btn btn-default irs-btn-transparent-two btn-read-more");
-                linkReadMore.setClass("more-detail-right");
-                String strUrlDetaiMore = "";
-                if (wc != null && wc.getDetailMoreSlug() != null && !"".equals(wc.getDetailMoreSlug())) {
-                    strUrlDetaiMore = wg.getListContent().get(j).getDetailMoreSlug();
-                }
-                linkReadMore.setHref(strUrlDetaiMore);
-                linkReadMore.setParent(divContentPost);
+                if (postNumber == 0) {
+                    Div divContentPostItem = new Div();
+                    divContentPostItem.setClass("irs-post-item-3-column");
+                    divContentPostItem.setParent(divContentPost);
+                    //daond
+                    Div divContentPostItemTitle = new Div();
+                    divContentPostItemTitle.setClass("irs-post-item-3-column-height");
+                    divContentPostItemTitle.setParent(divContentPostItem);
 
-                Label lblMore = new Label("Xem thêm >>");
-                lblMore.setParent(linkReadMore);
+                    Div divTitle = new Div();
+                    divTitle.setClass("post-title-over-mutil-cate");
+                    divTitle.setParent(divContentPostItemTitle);
+
+                    Label lblPostTitle = new Label(Labels.getLabel("data.notfound"));
+                    lblPostTitle.setClass("post-title");
+                    lblPostTitle.setParent(divTitle);
+                }
+                if (postNumber >= Constants.MAX_POST_WIDGET_TYPE_MULTI) {
+                    A linkReadMore = new A();
+                    linkReadMore.setClass("more-detail-right");
+                    String strUrlDetaiMore = "";
+                    if (wc != null && wc.getDetailMoreSlug() != null && !"".equals(wc.getDetailMoreSlug())) {
+                        strUrlDetaiMore = wg.getListContent().get(j).getDetailMoreSlug();
+                    }
+                    linkReadMore.setHref(strUrlDetaiMore);
+                    linkReadMore.setParent(divContentPost);
+
+                    Label lblMore = new Label("Xem thêm >>");
+                    lblMore.setParent(linkReadMore);
+                }
+
             }
         }
 

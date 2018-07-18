@@ -11,6 +11,7 @@ import com.stfc.utils.SpringConstant;
 import com.stfc.utils.StringUtils;
 import com.stfc.website.bean.UserToken;
 import com.stfc.website.service.WidgetService;
+import java.io.IOException;
 import org.apache.log4j.Logger;
 import org.zkoss.zk.ui.Session;
 import org.zkoss.zk.ui.Sessions;
@@ -22,6 +23,7 @@ import org.zkoss.zk.ui.select.annotation.Listen;
 import org.zkoss.zk.ui.select.annotation.Wire;
 import org.zkoss.zk.ui.select.annotation.WireVariable;
 import org.zkoss.zkplus.spring.SpringUtil;
+import org.zkoss.zul.Div;
 import org.zkoss.zul.Label;
 import org.zkoss.zul.Textbox;
 
@@ -42,6 +44,23 @@ public class LoginController extends SelectorComposer<Component> {
     private Session session;
     @WireVariable
     protected WidgetService widgetService;
+
+    @Wire
+    private Textbox txtUserName;
+
+    //Change Pasowrd
+    @Wire
+    private Textbox txtOldPassword;
+    @Wire
+    private Textbox txtNewPassword;
+    @Wire
+    private Textbox txtConfirmPassword;
+    @Wire
+    private Textbox captcha;
+    @Wire
+    private Label mesg;
+    @Wire
+    Div changePassword;
 
     @Override
     public void doAfterCompose(Component comp) throws Exception {
@@ -73,6 +92,8 @@ public class LoginController extends SelectorComposer<Component> {
             UserToken vuser = widgetService.getUserByUserName(vstrUserName);
             if (vuser == null) {
                 error.setValue(Labels.getLabel("login.error"));
+            } else if (vuser.getStatus() != null && vuser.getStatus() != 1) {
+                error.setValue(Labels.getLabel("login.lock.user.message"));
             } else if (!EncryptUtil.encrypt(vstrPassword).equals(vuser.getPassword())) {
                 error.setValue(Labels.getLabel("login.error"));
             } else {
@@ -86,6 +107,46 @@ public class LoginController extends SelectorComposer<Component> {
             }
         } catch (Exception ex) {
             logger.error(ex.getMessage(), ex);
+        }
+    }
+
+    @Listen("onClick = #changePassword")
+    public void changePassword() throws IOException {
+        Executions.sendRedirect(Constants.PAGE_CHANGE_PASSWORD);
+    }
+
+    @Listen("onClick = #btnchangePassword")
+    public void updatePassowrd() {
+        String vstrUserName = txtUserName.getValue();
+        String vstrOldPassword = txtOldPassword.getValue();
+        String vstrNewPassword = txtNewPassword.getValue();
+        String vstrConfirmPassword = txtConfirmPassword.getValue();
+        UserToken vuser = widgetService.getUserByUserName(vstrUserName);
+
+        if (captcha.getValue() == null || "".equals(captcha.getValue())) {
+            mesg.setValue(Labels.getLabel("login.change.password.captcha.empty"));
+        }
+        if (vuser == null) {
+            mesg.setValue(Labels.getLabel("login.error"));
+        } else if (vuser.getStatus() != null && vuser.getStatus() != 1) {
+            mesg.setValue(Labels.getLabel("login.lock.user.message"));
+        } else if (!EncryptUtil.encrypt(vstrOldPassword).equals(vuser.getPassword())) {
+            mesg.setValue(Labels.getLabel("login.old.password.error"));
+//        } else if (!vstrNewPassword.matches(Constants.PASSWORD_PATTERN)) {
+//            mesg.setValue(Labels.getLabel("login.new.password.error"));
+        } else if (!vstrNewPassword.equals(vstrConfirmPassword)) {
+            mesg.setValue(Labels.getLabel("login.confirm.password.error"));
+        } else {
+            try {
+                vuser.setPassword(EncryptUtil.encrypt(vstrNewPassword));
+                widgetService.changePassword(vuser);
+                session.invalidate();
+                Executions.sendRedirect(Constants.PAGE_LOGIN);
+//                mesgChangePassSuccess.setValue(Labels.getLabel("login.change.password.success"));
+            } catch (Exception e) {
+                mesg.setValue(Labels.getLabel("login.change.password.fail"));
+            }
+
         }
     }
 }

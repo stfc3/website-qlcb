@@ -58,8 +58,8 @@ public class DocumentPageController extends SelectorComposer<Div> {
 
     private WidgetBuilder widgetBuilder = new WidgetBuilder();
 
-    private SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm:ss dd/mm/yyyy");
-    private SimpleDateFormat dateFormatRelated = new SimpleDateFormat("dd/mm/yyyy");
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm:ss dd/MM/yyyy");
+    private SimpleDateFormat dateFormatRelated = new SimpleDateFormat("dd/MM/yyyy");
 
     @WireVariable
     protected WidgetService widgetService;

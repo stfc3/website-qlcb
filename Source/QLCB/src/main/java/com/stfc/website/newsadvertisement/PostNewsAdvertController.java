@@ -65,8 +65,8 @@ public class PostNewsAdvertController extends SelectorComposer<Div> {
 
     private WidgetBuilder widgetBuilder = new WidgetBuilder();
 
-    private SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm:ss dd/mm/yyyy");
-    private SimpleDateFormat dateFormatRelated = new SimpleDateFormat("dd/mm/yyyy");
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+    private SimpleDateFormat dateFormatRelated = new SimpleDateFormat("dd/MM/yyyy");
 
     @WireVariable
     protected WidgetService widgetService;
@@ -174,6 +174,29 @@ public class PostNewsAdvertController extends SelectorComposer<Div> {
             }
             Label lblPostTitle = new Label(postTitle);
             lblPostTitle.setParent(spanTitle);
+            
+            
+            
+            
+            Div divTime = new Div();
+            divTime.setClass("time-post-detail");
+            divTime.setParent(irsBlogCol);
+
+            Span spanTime = new Span();
+            spanTime.setClass("");
+            spanTime.setParent(divTime);
+            String time = "";
+            if (p.getPostDate()!= null && !"".equals(p.getPostDate())) {
+                time = dateFormat.format(p.getPostDate());
+            }
+            Label lblPostTime = new Label(time);
+            lblPostTime.setParent(spanTime);
+            
+            
+            
+            
+            
+            
 
             P postContent = new P();
             postContent.setParent(irsBlogCol);

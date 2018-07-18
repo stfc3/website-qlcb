@@ -54,7 +54,7 @@ public class IndexController extends SelectorComposer<Div> {
     @WireVariable
     protected WidgetService widgetService;
 
-    private SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm:ss dd/mm/yyyy");
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm:ss dd/MM/yyyy");
     private WidgetBuilder widgetBuilder = new WidgetBuilder();
     private String urlImage;
 

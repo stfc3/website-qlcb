@@ -3,6 +3,7 @@
 <!--<?link rel="shortcut icon" type="image/x-icon" href="images/mcredit.ico"?>-->
 <?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c" ?>
 <?link href="css/style.css" rel="stylesheet" type="text/css"?>
+<?link href="css/styleKTM.css" rel="stylesheet" type="text/css"?>
 <?link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"?>
 <zk xmlns:x="xhtml" xmlns:zk="zk">    
     <div class="container" apply="com.stfc.website.LoginController">
@@ -16,9 +17,21 @@
                         <textbox id="password" type="password" placeholder="${c:l('main.password')}" class="form-control input-lg" constraint="no empty: ${c:l('main.password.empty')}"/>
                         <label id="error" style="color:red"/>
                         <a id="login" label="${c:l('main.login')}" class="btn-lg btn-primary btn-block btn-login"/>
+                        <div class="clearfix">
+                            <div class="fl resg">
+                                <!--Bạn chưa có tài khoản? -->
+                                Nếu bạn chưa có tài khoản, vui lòng liên hệ quản trị hệ thống !
+                            </div>   
+                            <div class="fr">
+                                <!--<a id="" class="button button" href="#">Đăng ký dịch vụ</a>-->
+                                <div id="changePassword" class="change-password">Đổi mật khẩu</div>
+                            </div>
+                        </div>
                     </x:form>
                 </div>  
+                
             </div>
+            <div class="col-md-4"></div>
         </div> 
     </div>
 </zk>

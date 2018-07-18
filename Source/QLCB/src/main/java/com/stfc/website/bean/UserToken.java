@@ -17,6 +17,7 @@ public class UserToken {
     private String password;
     private String email;
     private Integer role;
+    private Integer status;
 
     public String getUserName() {
         return userName;
@@ -64,6 +65,14 @@ public class UserToken {
 
     public void setRole(Integer role) {
         this.role = role;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
 }

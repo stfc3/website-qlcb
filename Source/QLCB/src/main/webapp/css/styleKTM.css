@@ -810,11 +810,11 @@ form[role=login] {
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
 }
-form[role=login] img {
+/*form[role=login] img {
     display: block;
     margin: 0 auto;
     margin-bottom: 35px;
-}
+}*/
 form[role=login] input,
 form[role=login] button {
     font-size: 18px;
@@ -1009,9 +1009,9 @@ form[role=login] > div {
     text-decoration: underline;
 }
 .hotline {
-    background-image: url(../images/dangky.jpg);
+    background-image: url(../images/contact.jpg);
     background-size: 100%;
-    min-height: 320px;
+    min-height: 150px;
     background-repeat: no-repeat;
     background-position: center;
 }
@@ -1048,4 +1048,29 @@ form[role=login] > div {
 .post-title-detail span{
     font-size: 22px;
     font-weight: bold;
+}
+
+/*--------------------Change Password--------------------*/
+.input-captcha{
+    height: 30px;
+}
+.refresh-captcha{
+    color: #f15a29;
+    margin: 0 5px;
+    font-size: 16px;
+}
+.change-password {
+    float: right;
+    color: #008242;
+    text-decoration: underline;
+}
+.change-password:hover {
+    cursor: pointer;
+}
+/*--------------------End Change Password--------------------*/
+.btn-login{ 
+    background:#264eab; 
+    border-color:#052a81; 
+    color:#fff;
+    text-shadow: none !important;
 }
