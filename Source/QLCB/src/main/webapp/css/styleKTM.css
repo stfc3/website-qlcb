@@ -517,7 +517,7 @@ span.textRight{margin-left:15px;text-align:center;color:white;font-size:12px;fon
 .irs-post-item-group {margin: 5px 0 10px 0; background-color: #00aaed;}
 .irs-post-item-group img{width:25%;height:48px;left:0;top:0;}
 .irs-post-item-group-title{
-    font-size: 15px;
+    font-size: 14px;
     text-transform:uppercase;
     margin-left:5px;
     font-weight: bold;
@@ -935,7 +935,7 @@ form[role=login] > div {
         width: 100%;
         background-color: #417cf2;
         border-radius: 0px;
-        margin: 5px 0;
+        margin: 1px 0 5px 0;
     }
 }
 /*@media only screen and (min-width:1199px) {*/
@@ -989,7 +989,7 @@ form[role=login] > div {
     height: 40px;
 }
 .title-category span {
-    font-size: 17px;
+    font-size: 15px;
     color: white;
     font-weight: bold;
     background-color: #00aaed;

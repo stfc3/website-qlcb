@@ -63,9 +63,9 @@
                     <div class="col-md-6" style="height:230px;">
                         <div class="irs-footer-link">
                             <x:h4 class="irs-footer-heading">CHỈ DẪN ĐƯỜNG ĐI</x:h4>
-                            <gmaps lat="21.071642" lng="105.773788" version="3.26" id="gmaps" style="width:300px; height:150px;" showSmallCtrl="true" protocol="https">
-                                <gmarker id="marker" lat="21.071642" lng="105.773788" content="54 NCT"/>
-                            </gmaps>
+                            <a target="_blank" href="https://www.google.com/maps/place/Tr%C6%B0%E1%BB%9Dng+C%C3%A1n+b%E1%BB%99+Qu%E1%BA%A3n+l%C3%BD+Giao+th%C3%B4ng,+C%E1%BB%95+Nhu%E1%BA%BF,+T%E1%BB%AB+Li%C3%AAm,+H%C3%A0+N%E1%BB%99i/@21.0782197,105.7775132,13z/data=!4m5!3m4!1s0x3134552e49eb4501:0x4d8a011afbb6ecd0!8m2!3d21.0711588!4d105.7737219">
+                                <div style = "width:300px; height:150px;" ><x:img src="images/map.png" alt=""></x:img></div>
+                            </a>
                         </div>
                     </div>
                     <div class="col-md-6" style="height:230px;">
@@ -78,7 +78,6 @@
                 </div>
             </div>
         </div>
-        <script type="text/javascript" content="zk.googleAPIkey='AIzaSyAMy00kczTM-91kXde8fD0VQM-8ltXcR9o'" />
         <!-- Footer end -->
 
         <include src="/copyright.zul"/>
