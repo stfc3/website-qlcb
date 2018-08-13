@@ -1,5 +1,6 @@
 package com.stfc.utils;
 
+import com.stfc.backend.entity.Data;
 import com.stfc.website.bean.ConfigEntity;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -13,6 +14,7 @@ import java.io.Reader;
 import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import org.apache.log4j.Logger;
 import org.zkoss.util.media.Media;
@@ -175,5 +177,20 @@ public class FileUtils {
             }
         }
         return listFileImage;
+    }
+
+    public static List<Object> findFile(String name, File file) {
+        List<Object> listFile = new ArrayList<>();
+        File[] list = file.listFiles();
+        if (list != null) {
+            for (File fil : list) {
+                if (fil.isDirectory()) {
+                    findFile(name, fil);
+                } else if (fil.getName().toLowerCase().contains(name.toLowerCase())) {
+                    listFile.add(fil.getName());
+                }
+            }
+        }
+        return listFile;
     }
 }

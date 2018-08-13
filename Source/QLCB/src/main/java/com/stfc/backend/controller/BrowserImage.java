@@ -7,23 +7,29 @@ package com.stfc.backend.controller;
 
 import com.stfc.utils.Constants;
 import com.stfc.utils.FileUtils;
+import java.io.File;
 import java.util.List;
 import org.apache.log4j.Logger;
-import static org.zkoss.poi.hssf.usermodel.HeaderFooter.page;
 import org.zkoss.util.media.Media;
 import org.zkoss.util.resource.Labels;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Page;
 import org.zkoss.zk.ui.Session;
 import org.zkoss.zk.ui.Sessions;
+import org.zkoss.zk.ui.event.Event;
+import org.zkoss.zk.ui.event.EventListener;
+import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zk.ui.event.ForwardEvent;
 import org.zkoss.zk.ui.event.UploadEvent;
 import org.zkoss.zk.ui.metainfo.ComponentInfo;
 import org.zkoss.zk.ui.select.SelectorComposer;
 import org.zkoss.zk.ui.select.annotation.Listen;
 import org.zkoss.zk.ui.select.annotation.Wire;
+import org.zkoss.zul.Div;
 import org.zkoss.zul.Image;
+import org.zkoss.zul.Label;
 import org.zkoss.zul.Messagebox;
+import org.zkoss.zul.Textbox;
 import org.zkoss.zul.Window;
 
 /**
@@ -31,29 +37,35 @@ import org.zkoss.zul.Window;
  * @author dmin
  */
 public class BrowserImage extends SelectorComposer<Component> {
-
+    
     private static final Logger logger = Logger.getLogger(BrowserImage.class);
     @Wire
     Window winImage;
-
+    
     Object[] listImage;
     private Session session;
     private String srcSelected;
-
+    
+    @Wire
+    public Textbox txtSearch;
+    
+    @Wire
+    public Div divImage;
+    
     public Object[] getListImage() {
         return listImage;
     }
-
+    
     public void setListImage(Object[] listImage) {
         this.listImage = listImage;
     }
-
+    
     @Override
     public void doAfterCompose(Component comp) throws Exception {
         super.doAfterCompose(comp);
-
+        
     }
-
+    
     @Override
     public ComponentInfo doBeforeCompose(Page page, Component parent, ComponentInfo compInfo) {
         session = Sessions.getCurrent();
@@ -63,19 +75,19 @@ public class BrowserImage extends SelectorComposer<Component> {
         page.setAttribute("listImage", listImage);
         return super.doBeforeCompose(page, parent, compInfo);
     }
-
+    
     @Listen("onSelectImage = #winImage")
     public void onSelectImage(ForwardEvent event) {
         Image imageSelected = (Image) event.getOrigin().getTarget();
         srcSelected = imageSelected.getSrc();
     }
-
+    
     @Listen("onClick = #btnOK")
     public void onOK() {
         ((Image) winImage.getParent().getFellow("imageFeature")).setSrc(srcSelected);
         winImage.detach();
     }
-
+    
     @Listen("onUpload = #btnUpload")
     public void onUpload(UploadEvent evt) {
         Session session = Sessions.getCurrent();
@@ -95,4 +107,54 @@ public class BrowserImage extends SelectorComposer<Component> {
         FileUtils fileUtils = new FileUtils();
         fileUtils.saveFile(media, session, 0);
     }
+    
+    @Listen("onChange = #txtSearch")
+    public void search() {
+        session = Sessions.getCurrent();
+        File directory = new File(session.getWebApp().getRealPath("/images"));
+        List<Object> listFile = FileUtils.findFile(txtSearch.getValue(), directory);
+        setListImage(listFile.toArray());
+        buildListImage(listFile);
+    }
+    
+    void buildListImage(List<Object> objects) {
+        divImage.getChildren().clear();
+        if (objects != null && !objects.isEmpty()) {
+            for (Object object : objects) {
+                Div parent = new Div();
+                parent.setSclass("imageDiv");
+                Image image = new Image();
+                image.setSrc("/images/" + object);
+                image.setWidth("100%");
+                image.setHeight("100%");
+//                image.addForward(null, winImage, Events.ON_SELECTION, "onSelectImage");
+                image.addEventListener(Events.ON_CLICK, new MenuOnClickListener());
+                Div item = new Div();
+                item.setSclass("title-image");
+                Label label = new Label();
+                label.setValue(String.valueOf(object));
+                item.appendChild(label);
+                parent.appendChild(image);
+                parent.appendChild(item);
+                divImage.appendChild(parent);
+            }
+        }
+        
+    }
+    
+    class MenuOnClickListener implements EventListener<Event> {
+        
+        @Override
+        public void onEvent(Event event) {
+            try {
+                Image imageSelected = (Image) event.getTarget();
+                imageSelected.focus();
+                imageSelected.setSclass("image-select");
+                srcSelected = imageSelected.getSrc();
+            } catch (Exception ex) {
+                logger.error(ex.getMessage(), ex);
+            }
+        }
+    }
+    
 }

@@ -92,3 +92,9 @@ body {
 .imageDiv:hover,.imageDiv:focus {
     border: 2px solid blue;  
 } 
+.title-image{
+    text-align: center;
+}
+.image-select{
+    border: 2px solid blue; 
+}

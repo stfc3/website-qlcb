@@ -8,9 +8,16 @@
             action="show: slideDown;hide: slideUp" border="normal" width="80%" height="80%"
             maximizable="false" title="${c:l('browse.image.title')}"
             onCancel="winImage.detach();" contentStyle="overflow:auto">
-        <div sclass="gallery">
+        <div sclass="divSearch" tabindex="1">
+            <textbox id="txtSearch" placeholder="${c:l('search')}" width="100%" />
+        </div>
+        <div sclass="gallery" id="divImage">
             <div sclass="imageDiv" tabindex="1" forEach="${listImage}">
-                <image src="/images/${each}" width="100%" height="100%" forward="winImage.onSelectImage"/>               
+                
+                <image src="/images/${each}" width="100%" height="100%" forward="winImage.onSelectImage"/>   
+                <div style="text-align: center;">
+                    <label value="${each}" width="100%" height="100%"/>        
+                </div>      
             </div>
         </div>
         <space height="5px"/>
