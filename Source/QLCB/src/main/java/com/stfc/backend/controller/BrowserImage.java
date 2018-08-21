@@ -106,6 +106,9 @@ public class BrowserImage extends SelectorComposer<Component> {
         }
         FileUtils fileUtils = new FileUtils();
         fileUtils.saveFile(media, session, 0);
+                File directory = new File(session.getWebApp().getRealPath("/images"));
+        List<Object> listFile = FileUtils.findFile(txtSearch.getValue(), directory);
+        buildListImage(listFile);
     }
     
     @Listen("onChange = #txtSearch")

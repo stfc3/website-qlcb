@@ -1,6 +1,5 @@
 package com.stfc.utils;
 
-import com.stfc.backend.entity.Data;
 import com.stfc.website.bean.ConfigEntity;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -14,7 +13,6 @@ import java.io.Reader;
 import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Pattern;
 
 import org.apache.log4j.Logger;
 import org.zkoss.util.media.Media;
@@ -181,13 +179,29 @@ public class FileUtils {
 
     public static List<Object> findFile(String name, File file) {
         List<Object> listFile = new ArrayList<>();
+        List<String> listFileExtend = new ArrayList<>();
+        listFileExtend.add("jpg");
+        listFileExtend.add("png");
+        listFileExtend.add("gif");
         File[] list = file.listFiles();
         if (list != null) {
             for (File fil : list) {
+                if (!StringUtils.valiString(name)) {
+                    String[] tmp = file.getName().split("\\.");
+                    String fileExtend = tmp[tmp.length - 1];
+                    if (listFileExtend.contains(fileExtend.toLowerCase())) {
+                        listFile.add(fil.getName());
+                        continue;
+                    }
+                }
                 if (fil.isDirectory()) {
                     findFile(name, fil);
                 } else if (fil.getName().toLowerCase().contains(name.toLowerCase())) {
-                    listFile.add(fil.getName());
+                    String[] tmp = file.getName().split("\\.");
+                    String fileExtend = tmp[tmp.length - 1];
+                    if (listFileExtend.contains(fileExtend.toLowerCase())) {
+                        listFile.add(fil.getName());
+                    }
                 }
             }
         }
