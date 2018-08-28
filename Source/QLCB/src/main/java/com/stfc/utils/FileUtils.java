@@ -165,6 +165,9 @@ public class FileUtils {
         File[] files = directoryImage.listFiles();
         if (files != null && files.length > 0) {
             for (File file : files) {
+                if (file.isDirectory()) {
+                    listFileImage.add(file.getName());
+                }
                 if (file.isFile()) {
                     String[] tmp = file.getName().split("\\.");
                     String fileExtend = tmp[tmp.length - 1];
@@ -177,8 +180,39 @@ public class FileUtils {
         return listFileImage;
     }
 
-    public static List<Object> findFile(String name, File file) {
-        List<Object> listFile = new ArrayList<>();
+//    public static List<Object> findFile(String name, File file) {
+//        List<Object> listFile = new ArrayList<>();
+//        List<String> listFileExtend = new ArrayList<>();
+//        listFileExtend.add("jpg");
+//        listFileExtend.add("png");
+//        listFileExtend.add("gif");
+//        File[] list = file.listFiles();
+//        if (list != null) {
+//            for (File fil : list) {
+//                if (!StringUtils.valiString(name)) {
+//                    String[] tmp = file.getName().split("\\.");
+//                    String fileExtend = tmp[tmp.length - 1];
+//                    if (listFileExtend.contains(fileExtend.toLowerCase())) {
+//                        listFile.add(fil.getName());
+//                        continue;
+//                    }
+//                }
+//                if (fil.isDirectory()) {
+//                    findFile(name, fil);
+//                    listFile.add(fil.getName());
+//                } else if (fil.getName().toLowerCase().contains(name.toLowerCase())) {
+//                    String[] tmp = file.getName().split("\\.");
+//                    String fileExtend = tmp[tmp.length - 1];
+//                    if (listFileExtend.contains(fileExtend.toLowerCase())) {
+//                        listFile.add(fil.getName());
+//                    }
+//                }
+//            }
+//        }
+//        return listFile;
+//    }
+    public static List<File> findFile(String name, File file) {
+        List<File> listFile = new ArrayList<>();
         List<String> listFileExtend = new ArrayList<>();
         listFileExtend.add("jpg");
         listFileExtend.add("png");
@@ -187,24 +221,95 @@ public class FileUtils {
         if (list != null) {
             for (File fil : list) {
                 if (!StringUtils.valiString(name)) {
-                    String[] tmp = file.getName().split("\\.");
+                    String[] tmp = fil.getName().split("\\.");
                     String fileExtend = tmp[tmp.length - 1];
-                    if (listFileExtend.contains(fileExtend.toLowerCase())) {
-                        listFile.add(fil.getName());
+                    if (listFileExtend.contains(fileExtend.toLowerCase())
+                            && !fil.getName().equals("FOLDER.jpg")) {
+                        listFile.add(fil);
                         continue;
                     }
                 }
                 if (fil.isDirectory()) {
                     findFile(name, fil);
-                } else if (fil.getName().toLowerCase().contains(name.toLowerCase())) {
-                    String[] tmp = file.getName().split("\\.");
+                    listFile.add(fil);
+                } else if (fil.getName().toLowerCase().contains(name.toLowerCase())
+                        && !fil.getName().equals("FOLDER.jpg")) {
+                    String[] tmp = fil.getName().split("\\.");
                     String fileExtend = tmp[tmp.length - 1];
                     if (listFileExtend.contains(fileExtend.toLowerCase())) {
-                        listFile.add(fil.getName());
+                        listFile.add(fil);
                     }
                 }
             }
         }
         return listFile;
+    }
+
+    public static List<File> find(String name, File file) {
+        List<File> listFile = new ArrayList<>();
+        File[] list = file.listFiles();
+        if (list != null) {
+            for (File fil : list) {
+                if (fil.getName().toLowerCase().contains(name.toLowerCase())) {
+                    listFile.add(fil);
+                }
+            }
+        }
+        return listFile;
+    }
+
+    public void uploadImage(Media media, Session session, String uploadPath) {
+        BufferedInputStream in = null;
+        BufferedOutputStream out = null;
+        File vfile;
+        try {
+
+            final String vstrfileName = media.getName();
+
+            File baseDir = new File(uploadPath);
+            if (!baseDir.exists()) {
+                baseDir.mkdirs();
+            }
+
+            vfile = new File(baseDir + File.separator + vstrfileName);
+
+            if (!media.isBinary()) {
+                Reader reader = media.getReaderData();
+
+                Writer writer = new FileWriter(vfile);
+                copyCompletely(reader, writer);
+            } else {
+                InputStream fin = media.getStreamData();
+                in = new BufferedInputStream(fin);
+                OutputStream fout = new FileOutputStream(vfile);
+                out = new BufferedOutputStream(fout);
+                byte buffer[] = new byte[1024];
+                int ch = in.read(buffer);
+                while (ch != -1) {
+                    out.write(buffer, 0, ch);
+                    ch = in.read(buffer);
+                }
+            }
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                if (out != null) {
+                    out.close();
+                }
+
+                if (in != null) {
+                    in.close();
+                }
+
+            } catch (IOException e) {
+                logger.error(e.getMessage(), e);
+                throw new RuntimeException(e);
+            }
+        }
+
     }
 }

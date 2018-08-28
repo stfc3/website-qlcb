@@ -80,7 +80,7 @@ body {
 .gallery {
     margin: 0px 30px;
 }
- 
+
 .imageDiv {
     display: inline-block;
     position: relative;
@@ -97,4 +97,46 @@ body {
 }
 .image-select{
     border: 2px solid blue; 
+}
+.image-deselect{
+    border: none; 
+}
+.txt-disable{
+    border: none;
+    background: #FFFFFF;
+    color: black;
+    text-align: center;
+    margin-top: 5px;
+    height: 100%;
+    width: 100%;
+}
+.txt-enable{
+    border: 2px solid silver;
+    background: transparent;
+    margin-top: 5px;
+    height: 100%;
+    width: 100%;
+}
+.btn-back{
+    border: 1px solid silver;
+    border-radius: 53px;
+    height: 40px;
+}
+.div-search{
+    text-align: right;
+    height: 40px;
+    margin-right: 10px;
+    /*width: 60%;*/
+}
+.div-button{
+    height: 40px;
+    /*border: 1px solid red;*/
+    margin-top: 10px;
+    /*width: 40%;*/
+}
+.div-upload{
+    /*    border: 1px solid silver;
+        border-radius: 5px;*/
+    margin-top: 2px;
+    padding-bottom: 2px;
 }

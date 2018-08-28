@@ -8,20 +8,48 @@
             action="show: slideDown;hide: slideUp" border="normal" width="80%" height="80%"
             maximizable="false" title="${c:l('browse.image.title')}"
             onCancel="winImage.detach();" contentStyle="overflow:auto">
-        <div sclass="divSearch" tabindex="1">
-            <textbox id="txtSearch" placeholder="${c:l('search')}" width="100%" />
+        <div class="row" sclass="div-upload">
+            <div class="col-md-1">
+                <button iconSclass="z-icon-arrow-left" id="btnBack" sclass="btn-back"/>
+            </div>
+                <div sclass="div-button">
+                    <div class="col-md-3">
+                        <button iconSclass="z-icon-check" id="btnOK" tooltip="${c:l('select')}"/> 
+                        <button iconSclass="z-icon-upload" upload="true" id="btnUpload" tooltip="${c:l('import.image')}"/> 
+                        <button iconSclass="z-icon-folder-o" id="btnCreateFile" tooltip="${c:l('create.folder')}"/> 
+                        <button iconSclass="z-icon-trash" id="btnDeleteFile" tooltip="${c:l('delete.folder')}"/> 
+                        <button iconSclass="z-icon-refresh" id="btnRenameFile" tooltip="${c:l('rename.folder')}"/> 
+                   
+                    </div>
+                    <div class="col-md-6">
+                        <textbox id="txtLink" width="100%"/>
+                    </div>
+                    <div class="col-md-3" sclass="div-search">
+                        <textbox id="txtSearch" placeholder="${c:l('search')}">
+                            <attribute name="onOK"></attribute>
+                        </textbox>
+                    </div>
+                    
+                </div>
+                
+            
+           
+            <!--<div class="col-md-5"/>-->
         </div>
-        <div sclass="gallery" id="divImage">
+        <div sclass="gallery" id="divImage" context="contextMenu">
             <div sclass="imageDiv" tabindex="1" forEach="${listImage}">
                 
-                <image src="/images/${each}" width="100%" height="100%" forward="winImage.onSelectImage"/>   
+<!--                                <image src="/images/${each}" width="100%" height="100%" forward="winImage.onSelectImage"/>   
                 <div style="text-align: center;">
                     <label value="${each}" width="100%" height="100%"/>        
-                </div>      
+                </div>      -->
             </div>
         </div>
+<!--        <tablelayout id="tableImage"columns="3">
+            
+        </tablelayout>-->
         <space height="5px"/>
-        <div class="row">
+        <!--        <div class="row">
             <div class="col-md-5">
             </div>
             <div class="col-md-2">
@@ -29,7 +57,14 @@
                 <button label="${c:l('import.image')}" upload="true" id="btnUpload"/> 
             </div>
             <div class="col-md-5"/>
-        </div>
+        </div>-->
+        <menupopup id="contextMenu">
+            <menuitem id="create" label="New folder"/>
+            <menuitem id="rename" label="Rename"/>
+            <menuitem id="delete" label="Delete"/>
+        </menupopup>
+        
+
          
     </window>  
 </zk>
