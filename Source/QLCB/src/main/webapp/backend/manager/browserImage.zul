@@ -14,11 +14,11 @@
             </div>
                 <div sclass="div-button">
                     <div class="col-md-3">
-                        <button iconSclass="z-icon-check" id="btnOK" tooltip="${c:l('select')}"/> 
-                        <button iconSclass="z-icon-upload" upload="true" id="btnUpload" tooltip="${c:l('import.image')}"/> 
-                        <button iconSclass="z-icon-folder-o" id="btnCreateFile" tooltip="${c:l('create.folder')}"/> 
-                        <button iconSclass="z-icon-trash" id="btnDeleteFile" tooltip="${c:l('delete.folder')}"/> 
-                        <button iconSclass="z-icon-refresh" id="btnRenameFile" tooltip="${c:l('rename.folder')}"/> 
+                        <button iconSclass="z-icon-check" id="btnOK" tooltiptext="${c:l('select')}"/> 
+                        <button iconSclass="z-icon-upload" upload="true" id="btnUpload" tooltiptext="${c:l('import.image')}"/> 
+                        <button iconSclass="z-icon-folder-o" id="btnCreateFile" tooltiptext="${c:l('create.folder')}"/> 
+                        <button iconSclass="z-icon-trash" id="btnDeleteFile" tooltiptext="${c:l('delete.folder')}"/> 
+                        <button iconSclass="z-icon-refresh" id="btnRenameFile" tooltiptext="${c:l('rename.folder')}"/> 
                    
                     </div>
                     <div class="col-md-6">

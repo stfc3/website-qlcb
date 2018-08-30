@@ -7,9 +7,9 @@ package com.stfc.backend.controller;
 
 import com.stfc.utils.Constants;
 import com.stfc.utils.FileUtils;
-import com.stfc.utils.StringUtils;
 import java.io.File;
-import java.util.Arrays;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.List;
 import org.apache.log4j.Logger;
 import org.zkoss.util.media.Media;
@@ -28,7 +28,6 @@ import org.zkoss.zk.ui.metainfo.ComponentInfo;
 import org.zkoss.zk.ui.select.SelectorComposer;
 import org.zkoss.zk.ui.select.annotation.Listen;
 import org.zkoss.zk.ui.select.annotation.Wire;
-import org.zkoss.zk.ui.util.Clients;
 import org.zkoss.zul.Div;
 import org.zkoss.zul.Image;
 import org.zkoss.zul.Menuitem;
@@ -171,7 +170,8 @@ public class BrowserImage extends SelectorComposer<Component> {
                     image.setAttribute("FILE", "FILE");
                     image.setSrc("/images/FOLDER.jpg");
                     image.addEventListener(Events.ON_DOUBLE_CLICK, new ItemOnDoubleClickListener());
-
+                    image.addEventListener(Events.ON_CLICK, new ItemOnClickListener());
+//                    image.addEventListener(Events.ON_FOCUS, new ItemFocusListener());
 //                    File[] list = object.listFiles();
 //                    buildListImage(Arrays.asList(list));
                 } else {
@@ -324,7 +324,7 @@ public class BrowserImage extends SelectorComposer<Component> {
 //            path += divSelected;
 //        }
         String root = session.getWebApp().getRealPath("/images");
-        if (divSelected.startsWith(root)) {
+        if (divSelected.startsWith(root) && !divSelected.equals(root)) {
             File directory = new File(divSelected);
             File parent = directory.getParentFile();
             divSelected = parent.getAbsolutePath();
@@ -337,7 +337,7 @@ public class BrowserImage extends SelectorComposer<Component> {
 
     private String shortNamePath(String pathFull) {
         String root = session.getWebApp().getRealPath("/images");
-        return pathFull.replace(root, "/images");
+        return pathFull.replace(root, "/images").replaceAll("\\\\", "/");
     }
 
     @Listen("onClick = #btnRenameFile")
@@ -410,14 +410,19 @@ public class BrowserImage extends SelectorComposer<Component> {
     @Listen("onClick = #btnDeleteFile")
     public void deleteFile() {
 
-//            String path = session.getWebApp().getRealPath("/images/");
-        File fileSelect = new File(divSelected + File.separator + fileSelection);
-        boolean delete = false;
-        if (fileSelect.exists()) {
-            delete = fileSelect.delete();
+        try {
+            //            String path = session.getWebApp().getRealPath("/images/");
+            File fileSelect = new File(divSelected + File.separator + fileSelection);
+            boolean delete = false;
+//        if (fileSelect.exists()) {
+//            delete = fileSelect.delete();
+//        }
+            delete = Files.deleteIfExists(fileSelect.toPath());
+            reload(divSelected);
+            logger.info("Delete file: " + delete);
+        } catch (IOException ex) {
+            logger.error(ex.getMessage(),ex);
         }
-        reload(divSelected);
-        logger.info("Delete file: " + delete);
     }
 
     void cleanFocus() {
