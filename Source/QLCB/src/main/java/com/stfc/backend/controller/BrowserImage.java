@@ -7,9 +7,11 @@ package com.stfc.backend.controller;
 
 import com.stfc.utils.Constants;
 import com.stfc.utils.FileUtils;
+import com.stfc.utils.StringUtils;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.ArrayList;
 import java.util.List;
 import org.apache.log4j.Logger;
 import org.zkoss.util.media.Media;
@@ -105,8 +107,15 @@ public class BrowserImage extends SelectorComposer<Component> {
 
     @Listen("onClick = #btnOK")
     public void onOK() {
-        ((Image) winImage.getParent().getFellow("imageFeature")).setSrc(srcSelected);
-        winImage.detach();
+
+        if (srcSelected.split("\\.").length != 2) {
+            ((Image) winImage.getParent().getFellow("imageFeature")).setSrc(srcSelected);
+            winImage.detach();
+        } else {
+            Messagebox.show(
+                    Labels.getLabel("select.image.fail"),
+                    Labels.getLabel("notification"), Messagebox.OK, Messagebox.ERROR);
+        }
     }
 
     @Listen("onUpload = #btnUpload")
@@ -122,7 +131,7 @@ public class BrowserImage extends SelectorComposer<Component> {
         if (!isCheck) {
             Messagebox.show(
                     Labels.getLabel("upload.image.error"),
-                    Labels.getLabel("notification"), Messagebox.OK, Messagebox.INFORMATION);
+                    Labels.getLabel("notification"), Messagebox.OK, Messagebox.ERROR);
             return;
         }
         FileUtils fileUtils = new FileUtils();
@@ -173,6 +182,7 @@ public class BrowserImage extends SelectorComposer<Component> {
                     image.setSrc("/images/FOLDER.jpg");
                     image.addEventListener(Events.ON_DOUBLE_CLICK, new ItemOnDoubleClickListener());
                     image.addEventListener(Events.ON_CLICK, new ItemOnClickListener());
+
 //                    image.addEventListener(Events.ON_FOCUS, new ItemFocusListener());
 //                    File[] list = object.listFiles();
 //                    buildListImage(Arrays.asList(list));
@@ -189,6 +199,7 @@ public class BrowserImage extends SelectorComposer<Component> {
                 Textbox label = new Textbox();
                 label.setId("/images/" + object.getName());
                 label.setValue(String.valueOf(object.getName()));
+                label.addEventListener(Events.ON_CHANGE, new ItemOnChangeListener());
                 label.setSclass("txt-disable");
                 label.setReadonly(true);
                 item.appendChild(label);
@@ -205,6 +216,24 @@ public class BrowserImage extends SelectorComposer<Component> {
             divImage.setWidth("90%");
             divImage.setHeight("80%");
 //            divImage.appendChild(parent);
+        }
+
+    }
+
+    class ItemOnChangeListener implements EventListener<Event> {
+
+        @Override
+        public void onEvent(Event t) throws Exception {
+            Textbox imageSelected = (Textbox) t.getTarget();
+            File fileItem = new File(divSelected + File.separator + fileSelection);
+            String[] array = fileSelection.split("\\.");
+            String extentFile = "";
+            if (array.length == 2) {
+                extentFile = "." + array[1];
+            }
+            fileItem.renameTo(new File(divSelected + File.separator + imageSelected.getValue().trim() + extentFile));
+            reload(divSelected);
+            fileSelection = "";
         }
 
     }
@@ -422,14 +451,10 @@ public class BrowserImage extends SelectorComposer<Component> {
 
     @Listen("onClick = #btnDeleteFile")
     public void deleteFile() {
-
-        //            String path = session.getWebApp().getRealPath("/images/");
-        Messagebox.show(Labels.getLabel("delete.folder"),
-                Labels.getLabel("user.comfirm"), Messagebox.YES | Messagebox.NO, Messagebox.QUESTION,
-                new EventListener() {
-
-            @Override
-            public void onEvent(Event event) throws Exception {
+        if (StringUtils.valiString(fileSelection)) {
+            //            String path = session.getWebApp().getRealPath("/images/");
+            Messagebox.show(Labels.getLabel("delete.folder"),
+                    Labels.getLabel("user.comfirm"), Messagebox.YES | Messagebox.NO, Messagebox.QUESTION, (Event event) -> {
                 // TODO Auto-generated method stub
                 if (Messagebox.ON_YES.equals(event.getName())) {
                     File fileSelect = new File(divSelected + File.separator + fileSelection);
@@ -440,11 +465,16 @@ public class BrowserImage extends SelectorComposer<Component> {
                     delete(fileSelect);
 //                    delete = Files.deleteIfExists(fileSelect.toPath());
                     reload(divSelected);
+                    nextPath = divSelected;
+                    fileSelection = "";
 //                    logger.info("Delete file: " + delete);
                 }
-            }
-
-        });
+            });
+        } else {
+            Messagebox.show(
+                    Labels.getLabel("select.file.empty"),
+                    Labels.getLabel("NOTIFICATION"), Messagebox.OK, Messagebox.ERROR);
+        }
 
     }
 
