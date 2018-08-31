@@ -122,6 +122,11 @@ body {
     border-radius: 53px;
     height: 40px;
 }
+.btn-next{
+    border: 1px solid silver;
+    border-radius: 53px;
+    height: 30px;
+}
 .div-search{
     text-align: right;
     height: 40px;

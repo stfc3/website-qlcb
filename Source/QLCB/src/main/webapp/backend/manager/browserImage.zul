@@ -9,8 +9,9 @@
             maximizable="false" title="${c:l('browse.image.title')}"
             onCancel="winImage.detach();" contentStyle="overflow:auto">
         <div class="row" sclass="div-upload">
-            <div class="col-md-1">
+            <div class="col-md-2">
                 <button iconSclass="z-icon-arrow-left" id="btnBack" sclass="btn-back"/>
+                <button iconSclass="z-icon-arrow-right" id="btnNext" sclass="btn-next"/>
             </div>
                 <div sclass="div-button">
                     <div class="col-md-3">
@@ -21,7 +22,7 @@
                         <button iconSclass="z-icon-refresh" id="btnRenameFile" tooltiptext="${c:l('rename.folder')}"/> 
                    
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-5">
                         <textbox id="txtLink" width="100%"/>
                     </div>
                     <div class="col-md-3" sclass="div-search">

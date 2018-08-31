@@ -51,6 +51,7 @@ public class BrowserImage extends SelectorComposer<Component> {
     private Session session;
     private String srcSelected;
     private String divSelected;
+    private String nextPath;
     private String fileSelection;
 
     @Wire
@@ -78,6 +79,7 @@ public class BrowserImage extends SelectorComposer<Component> {
         super.doAfterCompose(comp);
         String path = session.getWebApp().getRealPath("/images");
         divSelected = path;
+        nextPath = path;
         File directory = new File(path);
         List<File> listFile = FileUtils.findFile(txtSearch.getValue(), directory);
         buildListImage(listFile);
@@ -264,6 +266,7 @@ public class BrowserImage extends SelectorComposer<Component> {
                 parent.focus();
                 Div textbox = (Div) parent.getLastChild();
                 divSelected += File.separator + textbox.getId();
+                nextPath = divSelected;
                 reload(divSelected);
                 txtLink.setValue(shortNamePath(divSelected));
                 fileSelection = textbox.getId();
@@ -333,6 +336,16 @@ public class BrowserImage extends SelectorComposer<Component> {
             buildListImage(listFile);
             txtLink.setValue(shortNamePath(divSelected));
         }
+    }
+
+    @Listen("onClick = #btnNext")
+    public void onNext() {
+        divSelected = nextPath;
+        File directory = new File(nextPath);
+        List<File> listFile = FileUtils.findFile(txtSearch.getValue(), directory);
+        setListImage(listFile.toArray());
+        buildListImage(listFile);
+        txtLink.setValue(shortNamePath(divSelected));
     }
 
     private String shortNamePath(String pathFull) {
@@ -410,19 +423,43 @@ public class BrowserImage extends SelectorComposer<Component> {
     @Listen("onClick = #btnDeleteFile")
     public void deleteFile() {
 
-        try {
-            //            String path = session.getWebApp().getRealPath("/images/");
-            File fileSelect = new File(divSelected + File.separator + fileSelection);
-            boolean delete = false;
-//        if (fileSelect.exists()) {
-//            delete = fileSelect.delete();
-//        }
-            delete = Files.deleteIfExists(fileSelect.toPath());
-            reload(divSelected);
-            logger.info("Delete file: " + delete);
-        } catch (IOException ex) {
-            logger.error(ex.getMessage(),ex);
+        //            String path = session.getWebApp().getRealPath("/images/");
+        Messagebox.show(Labels.getLabel("delete.folder"),
+                Labels.getLabel("user.comfirm"), Messagebox.YES | Messagebox.NO, Messagebox.QUESTION,
+                new EventListener() {
+
+            @Override
+            public void onEvent(Event event) throws Exception {
+                // TODO Auto-generated method stub
+                if (Messagebox.ON_YES.equals(event.getName())) {
+                    File fileSelect = new File(divSelected + File.separator + fileSelection);
+//                    boolean delete = false;
+//            if (fileSelect.exists()) {
+////            delete = fileSelect.delete();
+//            }
+                    delete(fileSelect);
+//                    delete = Files.deleteIfExists(fileSelect.toPath());
+                    reload(divSelected);
+//                    logger.info("Delete file: " + delete);
+                }
+            }
+
+        });
+
+    }
+
+    void delete(File folder) {
+        File[] files = folder.listFiles();
+        if (files != null) { //some JVMs return null for empty dirs
+            for (File f : files) {
+                if (f.isDirectory()) {
+                    delete(f);
+                } else {
+                    f.delete();
+                }
+            }
         }
+        folder.delete();
     }
 
     void cleanFocus() {
