@@ -283,32 +283,34 @@ public class WidgetBuilder {
                         }
                         if (lstPost1 != null && !lstPost1.isEmpty()) {
                             for (int i = 0; i < maxPost; i++) {
+
                                 Post p1 = lstPost1.get(i);
-                                Div divPostItem = new Div();
-                                divPostItem.setClass("irs-post-item-post-detail-2");
-                                divPostItem.setParent(irsPostContent);
+                                if (wc.getWidgetContent().equalsIgnoreCase(String.valueOf(p1.getCategoryId()))) {
+                                    Div divPostItem = new Div();
+                                    divPostItem.setClass("irs-post-item-post-detail-2");
+                                    divPostItem.setParent(irsPostContent);
 
-                                Div divPostTitle = new Div();
-                                divPostTitle.setClass("");
-                                divPostTitle.setParent(divPostItem);
+                                    Div divPostTitle = new Div();
+                                    divPostTitle.setClass("");
+                                    divPostTitle.setParent(divPostItem);
 
-                                A aPostItemTitle = new A();
-                                aPostItemTitle.setHref(p1.getPostSlug());
-                                aPostItemTitle.setParent(divPostTitle);
-                                String p1Title = "";
-                                if (p1.getPostTitle() != null && !"".equals(p1.getPostTitle())) {
-                                    p1Title = p1.getPostTitle();
-                                }
+                                    A aPostItemTitle = new A();
+                                    aPostItemTitle.setHref(p1.getPostSlug());
+                                    aPostItemTitle.setParent(divPostTitle);
+                                    String p1Title = "";
+                                    if (p1.getPostTitle() != null && !"".equals(p1.getPostTitle())) {
+                                        p1Title = p1.getPostTitle();
+                                    }
 
-                                Label lblPostTitleItem = new Label(p1Title);
-                                lblPostTitleItem.setClass("post-title");
-                                lblPostTitleItem.setParent(aPostItemTitle);
+                                    Label lblPostTitleItem = new Label(p1Title);
+                                    lblPostTitleItem.setClass("post-title");
+                                    lblPostTitleItem.setParent(aPostItemTitle);
 
-                                if (com.checkNewsPost(p1.getPostDate())) {
-                                    Div divNew = new Div();
-                                    divNew.setClass("new_flash");
-                                    divNew.setParent(divPostTitle);
-                                }
+                                    if (com.checkNewsPost(p1.getPostDate())) {
+                                        Div divNew = new Div();
+                                        divNew.setClass("new_flash");
+                                        divNew.setParent(divPostTitle);
+                                    }
 //                                P spanPostTime = new P();
 //                                spanPostTime.setParent(divPostItem);
 //
@@ -319,6 +321,8 @@ public class WidgetBuilder {
 //                                Label lblPostItemTime = new Label(dateP1);
 //                                lblPostItemTime.setClass("time-post");
 //                                lblPostItemTime.setParent(spanPostTime);
+                                }
+
                             }
                         }
                         if (lstPost1.size() >= 5) {
