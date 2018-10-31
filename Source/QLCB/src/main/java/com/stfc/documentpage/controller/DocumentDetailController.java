@@ -110,43 +110,51 @@ public class DocumentDetailController extends SelectorComposer<Div> {
     }
 
     private void buildInternal(List<Document> plstDocument) {
-//        Div postMain = new Div();
-//        postMain.setClass("inner-page-content left-img");
-//        postMain.setParent(documentPage);
-//
-//        Div divContainer = new Div();
-//        divContainer.setClass("container");
-//        divContainer.setParent(postMain);
-//
-//        Div divRow = new Div();
-//        divRow.setClass("row");
-//        divRow.setParent(divContainer);
+        Div postMain = new Div();
+        postMain.setClass("inner-page-content left-img");
+        postMain.setParent(documentPage);
+
+        Div divContainer = new Div();
+        divContainer.setClass("container");
+        divContainer.setParent(postMain);
+
+        Div divRow = new Div();
+        divRow.setClass("row");
+        divRow.setParent(divContainer);
 
         if (plstDocument != null && !plstDocument.isEmpty()) {
-//            Div divColMd8 = new Div();
-//            divColMd8.setClass("col-md-8");
-//            divColMd8.setParent(divRow);
+            Div divColMd8 = new Div();
+            divColMd8.setClass("col-md-8");
+            divColMd8.setParent(divRow);
 
             //Post content
             Div irsBlogSingle = new Div();
             irsBlogSingle.setClass("irs-blog-single-col");
-            irsBlogSingle.setParent(documentPage);
+            irsBlogSingle.setParent(divColMd8);
 
             Div irsBlogCol = new Div();
             irsBlogCol.setClass("irs-blog-col");
             irsBlogCol.setParent(irsBlogSingle);
 
-            H1 titlePost = new H1();
+            //dongdv
+//            H1 titlePost = new H1();
+//            titlePost.setParent(irsBlogCol);
+//
+//            Span spanTitle = new Span();
+//            spanTitle.setClass("pTitle");
+//            spanTitle.setParent(titlePost);
+            Div titlePost = new Div();
+            titlePost.setClass("post-title-detail");
             titlePost.setParent(irsBlogCol);
 
             Span spanTitle = new Span();
-            spanTitle.setClass("pTitle");
+            spanTitle.setClass("post-title-detail");
             spanTitle.setParent(titlePost);
             String postTitle = "";
 //            if (plstDocument.get(0).getDocumentType() == 2) {
-                if (plstDocument.get(0).getDocumentName() != null && !"".equals(plstDocument.get(0).getDocumentName())) {
-                    postTitle = plstDocument.get(0).getDocumentName();
-                }
+            if (plstDocument.get(0).getDocumentName() != null && !"".equals(plstDocument.get(0).getDocumentName())) {
+                postTitle = plstDocument.get(0).getDocumentName();
+            }
 //            } else {
 //                if (plstDocument.get(0).getCategoryName() != null && !"".equals(plstDocument.get(0).getCategoryName())) {
 //                    postTitle = plstDocument.get(0).getCategoryName();
